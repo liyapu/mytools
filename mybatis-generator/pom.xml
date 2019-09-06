@@ -33,6 +33,8 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.7</version>
                 <configuration>
+                    <!-- mybatis-generator的配置文件，根据情况调整位置，默认在resources,可以不配置-->
+                    <!-- <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>-->
                     <verbose>true</verbose>
                     <!-- 是否覆盖，true表示会替换生成的JAVA文件，false则不覆盖 -->
                     <overwrite>true</overwrite>

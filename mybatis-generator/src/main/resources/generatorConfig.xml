@@ -80,6 +80,7 @@
          -->
         <javaModelGenerator targetPackage="com.lyp.mt.mg.pojo" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
             <!-- 是否对modal添加构造函数 -->
             <property name="constructorBased" value="true" />
@@ -105,8 +106,15 @@
         </sqlMapGenerator>
 
         <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="XMLMAPPER">-->
-        <javaClientGenerator  targetPackage="com.lyp.mt.mg.mapper" targetProject="src/main/java" type="XMLMAPPER">
+        <!--
+            客户端代码，生成易于使用的针对Model对象和XML配置文件的代码
+            type="ANNOTATEDMAPPER",生成Java Model和基于注解的Mapper对象
+            type="MIXEDMAPPER",生成基于注解的Java Model和相应的Mapper对象
+            type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
+        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="XMLMAPPER">
+<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
@@ -158,7 +166,6 @@
 
         <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表      -->
           <table tableName="%" />
-<!--        <table tableName="%" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
 
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
 <!--        <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
