@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--导入属性配置-->
+    <properties resource="datasource.properties"></properties>
+
+    <!-- 在MBG工作的时候，需要额外加载的依赖包,location属性指明加载jar/zip包的全路径-->
+    <!-- 指定数据库驱动的jdbc驱动jar包的位置 -->
+    <!-- 通过 plugins下的dependency 指定驱动包之后，此处就不需要了    -->
+<!--    <classPathEntry location="${db.driverLocation}" />-->
+
+    <!--
+    context:生成一组对象的环境,逆向工程的主要配置信息
+    id:必选，上下文id，起个名字,用于在生成错误时提示
+    defaultModelType:指定生成对象的样式
+        1，conditional：类似hierarchical；
+        2，flat：所有内容（主键，blob）等全部生成在一个对象中；
+        3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)
+    targetRuntime:
+        1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+        2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
+    introspectedColumnImpl：类全限定名，用于扩展MBG
+      -->
+    <context id="default" targetRuntime="MyBatis3Simple">
+
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖
+        -->
+        <property name="autoDelimitKeywords" value="false"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+
+        <!--optional,旨在创建class时，对注释进行控制-->
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!--jdbc的数据库连接-->
+        <jdbcConnection driverClass="${db.driverClassName}"
+                        connectionURL="${db.url}"
+                        userId="${db.username}"
+                        password="${db.password}">
+        </jdbcConnection>
+
+        <!-- 非必须, java类型处理器 ，类型处理器，在数据库类型和java类型之间的转换控制
+            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+         -->
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- java模型创建器，是必须要的元素
+            负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
+            targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+            targetProject：目标项目，生成的实体类所在的硬盘位置,指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+         -->
+        <javaModelGenerator targetPackage="com.lyp.mt.mg.pojo" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 是否对modal添加构造函数 -->
+            <property name="constructorBased" value="true" />
+            <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
+            <property name="trimStrings" value="true" />
+            <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
+            <property name="immutable" value="false" />
+            <!-- 设置一个根对象，
+            如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
+            注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
+                1，属性名相同，类型相同，有相同的getter/setter方法；
+             -->
+            <!-- <property name="rootClass" value="com._520it.mybatis.domain.BaseDomain"/>-->
+
+        </javaModelGenerator>
+
+        <!-- targetPackage 和 targetProject：生成的 xml mapper 文件的包和位置,在java目录下-->
+<!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.mappers" targetProject="src/main/java">-->
+        <!--   xml mapper 在 resources 目录下    -->
+        <sqlMapGenerator targetPackage="mg.mappers" targetProject="src/main/resources">
+            <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
+<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="XMLMAPPER">-->
+        <javaClientGenerator  targetPackage="com.lyp.mt.mg.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+
+        <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
+            选择的table会生成一下文件：
+            1，SQL map文件
+            2，生成一个主键类；
+            3，除了BLOB和主键的其他字段的类；
+            4，包含BLOB的类；
+            5，一个用户生成动态查询的条件类（selectByExample, deleteByExample），可选；
+            6，Mapper接口（可选）
+            tableName（必要）：要生成对象的表名；
+            注意：大小写敏感问题。正常情况下，MBG会自动的去识别数据库标识符的大小写敏感度，在一般情况下，MBG会
+                根据设置的schema，catalog或tablename去查询数据表，按照下面的流程：
+                1，如果schema，catalog或tablename中有空格，那么设置的是什么格式，就精确的使用指定的大小写格式去查询；
+                2，否则，如果数据库的标识符使用大写的，那么MBG自动把表名变成大写再查找；
+                3，否则，如果数据库的标识符使用小写的，那么MBG自动把表名变成小写再查找；
+                4，否则，使用指定的大小写格式查询；
+            另外的，如果在创建表的时候，使用的""把数据库对象规定大小写，就算数据库标识符是使用的大写，在这种情况下也会使用给定的大小写来创建表名；
+            这个时候，请设置delimitIdentifiers="true"即可保留大小写格式；
+            可选：
+            1，schema：数据库的schema；
+            2，catalog：数据库的catalog；
+            3，alias：为数据表设置的别名，如果设置了alias，那么生成的所有的SELECT SQL语句中，列名会变成：alias_actualColumnName
+            4，domainObjectName：生成的domain类的名字，如果不设置，直接使用表名作为domain类的名字；可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
+            5，enableInsert（默认true）：指定是否生成insert语句；
+            6，enableSelectByPrimaryKey（默认true）：指定是否生成按照主键查询对象的语句（就是getById或get）；
+            7，enableSelectByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询语句；
+            8，enableUpdateByPrimaryKey（默认true）：指定是否生成按照主键修改对象的语句（即update)；
+            9，enableDeleteByPrimaryKey（默认true）：指定是否生成按照主键删除对象的语句（即delete）；
+            10，enableDeleteByExample（默认true）：MyBatis3Simple为false，指定是否生成动态删除语句；
+            11，enableCountByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询总条数语句（用于分页的总条数查询）；
+            12，enableUpdateByExample（默认true）：MyBatis3Simple为false，指定是否生成动态修改语句（只修改对象中不为空的属性）；
+            13，modelType：参考context元素的defaultModelType，相当于覆盖；
+            14，delimitIdentifiers：参考tableName的解释，注意，默认的delimitIdentifiers是双引号，如果类似MYSQL这样的数据库，使用的是`（反引号，那么还需要设置context的beginningDelimiter和endingDelimiter属性）
+            15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性
+            注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
+         -->
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <!-- 比较干净简洁的，没有Example相关的实体与crud      -->
+<!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
+<!--            &lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+<!--            &lt;!&ndash; <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>&ndash;&gt;-->
+<!--        </table>-->
+<!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+
+        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表      -->
+          <table tableName="%" />
+<!--        <table tableName="%" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+
+        <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
+<!--        <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
+<!--        <table tableName="table_show_field" domainObjectName="tableShowField" ></table>-->
+    </context>
+</generatorConfiguration>
