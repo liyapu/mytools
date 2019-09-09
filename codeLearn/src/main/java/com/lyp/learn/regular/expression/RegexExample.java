@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author: liyapu
- * @description:
+ * @description: 正则表达式 测试类
  * @date 2019-09-09 15:35
  */
 public class RegexExample {
@@ -23,9 +23,51 @@ public class RegexExample {
         System.out.println("+1234".matches("(-|\\+)?\\d+"));
     }
 
+    /**
+     * Pattern complie(String regex)
+     * 由于Pattern的构造函数是私有的,不可以直接创建,
+     * 所以通过静态方法compile(String regex)方法来创建,将给定的正则表达式编译并赋予给Pattern类
+     *
+     * String pattern() 返回正则表达式的字符串形式,其实就是返回Pattern.complile(String regex)的regex参数
+     */
+    @Test
+    public void test02(){
+        Pattern p1 = Pattern.compile("\\d+");
+        System.out.println(p1.pattern());
+
+        Pattern p2 = Pattern.compile("\\?|\\*");
+        System.out.println(p2.pattern());
+    }
+
+    /**
+     * 可以在Compile 方法中，指定一个特殊标志：
+     * Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+     * Pattern 类包含多个标志(int 类型),这些标志可以控制Pattern 匹配模式的方式。上面代码中的标志使模式匹配是忽略大小写
+     */
+    @Test
+    public void testCompile(){
+        Pattern p1 = Pattern.compile("[a-z]*");
+        Matcher m1 = p1.matcher("aabbcc");
+        System.out.println(m1.matches());
+
+        Matcher m2 = p1.matcher("aaBBcc");
+        System.out.println(m2.matches());
+    }
+
+    @Test
+    public void testCompile2(){
+        Pattern p1 = Pattern.compile("[a-z]*",Pattern.CASE_INSENSITIVE);
+        Matcher m1 = p1.matcher("aabbcc");
+        System.out.println(m1.matches());
+
+        Matcher m2 = p1.matcher("aaBBcc");
+        System.out.println(m2.matches());
+    }
+
 
     /**
      * 预编译的正则表达式，可以重用
+     *
      */
     public boolean match(String line, String regExpress) {
         //编译正则表达式
@@ -41,7 +83,7 @@ public class RegexExample {
      * ? 零次或一次
      */
     @Test
-    public void test02() {
+    public void test03() {
         String regExpress = "fo?";
         System.out.println(match("f", regExpress));
         System.out.println(match("fo", regExpress));
@@ -54,7 +96,7 @@ public class RegexExample {
      * * 零次或多次
      */
     @Test
-    public void test03() {
+    public void test04() {
         String regExpress = "fo*";
         System.out.println(match("f", regExpress));
         System.out.println(match("fo", regExpress));
@@ -67,7 +109,7 @@ public class RegexExample {
      * + 一次或多次
      */
     @Test
-    public void test04() {
+    public void test05() {
         String regExpress = "fo+";
         System.out.println(match("f", regExpress));
         System.out.println(match("fo", regExpress));
@@ -81,7 +123,7 @@ public class RegexExample {
      * 等价于match方法的(上面的三行写法)
      */
     @Test
-    public void test05() {
+    public void test06() {
         boolean isMatch = Pattern.matches("^a\\w*y$", "aabby");
         System.out.println(isMatch);
     }
@@ -90,7 +132,7 @@ public class RegexExample {
      * matches() 对整个字符串进行匹配，只有整个字符串都匹配了才返回true
      */
     @Test
-    public void test06() {
+    public void test07() {
         Pattern p = Pattern.compile("\\d+");
 
 
@@ -106,7 +148,7 @@ public class RegexExample {
      * lookingAt() 对前面的字符串进行匹配,只有匹配到的字符串在最前面才返回true
      */
     @Test
-    public void test07() {
+    public void test08() {
         Pattern p = Pattern.compile("\\d+");
 
         Matcher m1 = p.matcher("22bb33");
@@ -121,7 +163,7 @@ public class RegexExample {
      * find()对字符串进行匹配，匹配到的字符串可以在任何位置
      */
     @Test
-    public void test08() {
+    public void test09() {
         Pattern p = Pattern.compile("\\d+");
 
         Matcher m1 = p.matcher("2233");
@@ -145,7 +187,7 @@ public class RegexExample {
      * group()返回匹配到的子字符串。
      */
     @Test
-    public void test40() {
+    public void test10() {
         Pattern p = Pattern.compile("\\d+");
 
         System.out.println("==========find 方法==========");
@@ -175,7 +217,7 @@ public class RegexExample {
      * find  循环输出
      */
     @Test
-    public void test09() {
+    public void test11() {
         Pattern p = Pattern.compile("\\d+");
 
         Matcher m1 = p.matcher("aa11bb22 cc333dd44");
@@ -190,7 +232,7 @@ public class RegexExample {
      * Mathcer 类还有一个groupCount()用于返回有多少组。
      */
     @Test
-    public void test46() {
+    public void testFindStart() {
         Pattern p = Pattern.compile("([a-z]+)(\\d+)");
         Matcher m = p.matcher("aaa2223bb");
 
@@ -205,7 +247,7 @@ public class RegexExample {
     }
 
     @Test
-    public void test47() {
+    public void testFindStartEnd() {
         Pattern p = Pattern.compile("([a-z]+)(\\d+)");
         Matcher m1 = p.matcher("aaa2223bb");
 
@@ -229,7 +271,7 @@ public class RegexExample {
     }
 
     @Test
-    public void test48() {
+    public void testFindFor() {
         String regEx = "(\\w+)%(\\d+)";
         String line = "ab%12-cd%34";
 
@@ -249,7 +291,7 @@ public class RegexExample {
      * 利用java的正则操作是那么的简单。
      */
     @Test
-    public void test56(){
+    public void testFindNum(){
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher("我的QQ是:456456 我的电话是:0532214 我的邮箱是:aaa123@aaa.com");
         while (m.find()) {
@@ -267,7 +309,7 @@ public class RegexExample {
      * 也就是当matches()，lookingAt()，find()其中任意一个方法返回 true 时，才可以使用。
      */
     @Test
-    public void test57(){
+    public void testFindStatEnd(){
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher("我的QQ是:456456 我的电话是:0532214 我的邮箱是:aaa123@aaa.com");
         while (m.find()) {
@@ -279,23 +321,71 @@ public class RegexExample {
     }
 
     /**
-     * 捕获组
+     * String.split方法很常用，用于切割字符串，split传入的参数是正则表达式，它的内部是每次都comiple正则表达式，再调用Pattern.split方法：
+     * 因此，如果你调用String.split非常频繁的话，每次都重新编译正则表达式的代价很高，性能会受到很大影响，
      *
-     * @param line
-     * @param regEx
+     * 此时最好自己预编译Pattern,再调用Pattern.split方法为妙。
+     * 比如下面的方法
      */
-    public static void match_3(String line, String regEx) {
+    @Test
+    public void testSplit(){
+        Pattern p = Pattern.compile("[,:;]");
+        String[] arr = p.split("aa,23,gg:66;yy88;ee:ww,99");
+        for(String a : arr){
+            System.out.println(a);
+        }
+    }
 
+
+    @Test
+    public void testReplaceFirst(){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher("aa11 bb 1234ccd5ef -=88ddb");
+        String str = m.replaceFirst("Y");
+        System.out.println(str);
+    }
+
+    @Test
+    public void testReplaceAll(){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher("aa11 bb 1234ccd5ef -=88ddb");
+        String str = m.replaceAll("Y");
+        System.out.println(str);
     }
 
     /**
-     * 组匹配
-     * 参数 group 为 0。组零表示整个模式
+     * [abc][vz]
+     *
+     * 复选集定义，匹配字母 a 或 b 或 c，后面跟着 v 或 z
      */
     @Test
-    public void test20() {
-        match_3("ab%12-cd%34", "(\\w+)%(\\d+)");
+    public void testKuoHao(){
+        Pattern p = Pattern.compile("[abc][vz]");
+        System.out.println(p.matcher("ab").matches());
+        System.out.println(p.matcher("av").matches());
+        System.out.println(p.matcher("avz").matches());
+        System.out.println(p.matcher("1avz").matches());
+        System.out.println(p.matcher("az").matches());
+        System.out.println(p.matcher("ay").matches());
+        System.out.println(p.matcher("bv").matches());
+        System.out.println(p.matcher("abv").matches());
     }
 
+    /**
+     * [a-d1-7]
+     *
+     * 范围匹配，匹配字母 a 到 d 和数字从 1 到 7 之间，但不匹配 d1
+     */
+    @Test
+    public void testKuoHao2(){
+        Pattern p = Pattern.compile("[a-m1-5]");
+        System.out.println(p.matcher("a").matches());
+        System.out.println(p.matcher("b").matches());
+        System.out.println(p.matcher("z").matches());
+        System.out.println(p.matcher("1").matches());
+        System.out.println(p.matcher("2").matches());
+        System.out.println(p.matcher("8").matches());
+        System.out.println(p.matcher("a3").matches());
+    }
 
 }
