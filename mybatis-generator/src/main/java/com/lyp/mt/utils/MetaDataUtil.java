@@ -232,15 +232,15 @@ public class MetaDataUtil {
 
     public static void main(String[] args) throws IOException {
         List<String> tableNames = new ArrayList<>();
-        tableNames.add("report_indicator");
-        tableNames.add("financial_indicator_industry_ranking");
-        System.out.println("tableNames:" + tableNames);
+//        tableNames.add("report_indicator");
+//        tableNames.add("financial_indicator_industry_ranking");
+//        System.out.println("tableNames:" + tableNames);
 //        for (String tableName : tableNames) {
 //            System.out.println("ColumnNames:" + getColumnNames(tableName));
 //            System.out.println("ColumnTypes:" + getColumnTypes(tableName));
 //            System.out.println("ColumnComments:" + getColumnComments(tableName));
 //        }
-        getColumnComments("report_indicator");
+        getColumnComments("file_mapping");
 //        getColumnComments("financial_indicator_industry_ranking");
     }
 

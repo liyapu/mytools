@@ -13,9 +13,27 @@ public class MyMetaDataUtil2 {
     private static final Logger logger = LoggerFactory.getLogger(MyMetaDataUtil2.class);
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
+//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "Root$123";
+
+    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?serverTimezone=UTC&characterEncoding=utf8";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Root$123";
+    private static final String PASSWORD = "Tusdao@mysql2019*";
+
+
+    /**
+     * datasource:
+     *     url: jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8
+     *     username: root
+     *     password: Tusdao@mysql2019*
+     *     driver-class-name: com.mysql.cj.jdbc.Driver
+     *     type: com.zaxxer.hikari.HikariDataSource
+     *     hikari:
+     *       maximum-pool-size: 2
+     */
+
+
 
     /**
      * 获取数据库连接
@@ -76,6 +94,8 @@ public class MyMetaDataUtil2 {
 
     /**
      * 获取所有的数据库名称
+     * 可以执行 SHOW DATABASES 语句，看一下返回数据
+     * 通过数字下标 或者 字符串 都可以获取到名字
      * @return
      */
     public static List<String> showAllDatabases() throws SQLException {
@@ -87,7 +107,8 @@ public class MyMetaDataUtil2 {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
-                System.out.println("showAllDatabases ::::" + resultSet.getString("database"));
+//                System.out.println("showAllDatabases ::::" + resultSet.getString(1));
+//                System.out.println("showAllDatabases ::::" + resultSet.getString("database"));
                 databases.add(resultSet.getString("database"));
             }
         } catch (SQLException e) {
@@ -119,6 +140,7 @@ public class MyMetaDataUtil2 {
             //参数2 int resultSetConcurrency
             //ResultSet.CONCUR_READ_ONLY 不能用结果集更新数据库中的表。
             //ResultSet.CONCUR_UPDATETABLE 能用结果集更新数据库中的表
+//            connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
             //获取数据库的元数据
             DatabaseMetaData metaData = connection.getMetaData();
@@ -126,7 +148,7 @@ public class MyMetaDataUtil2 {
             //目录名称; 数据库名; 表名称; 表类型;
             rs = metaData.getTables(null, null, null, new String[]{"TABLE"});
             while (rs.next()){
-                System.out.println("getAllTables :::::" + rs.getString("TABLE_NAME") );
+//                System.out.println("getAllTables :::::" + rs.getString("TABLE_NAME") );
                 tableNames.add(rs.getString("TABLE_NAME"));
             }
         } catch (Exception e) {
@@ -157,7 +179,7 @@ public class MyMetaDataUtil2 {
                 String tableName = resultSet.getString(1);
                 //通过列名获取表名，需要拼接 数据库名字 "Tables_in_"+当前数据库名字
 //                String tableName = resultSet.getString("Tables_in_test");
-                System.out.println("getCurrentDbTables :::::" + tableName );
+//                System.out.println("getCurrentDbTables :::::" + tableName );
                 tableNames.add(tableName);
             }
         } catch (Exception e) {
@@ -177,28 +199,35 @@ public class MyMetaDataUtil2 {
      */
     public static List<FieldEntity> listByTableName(String tableName){
         List<FieldEntity> fieldEntities = new ArrayList<>();
+        FieldEntity fe = null;
         Connection connection = null;
-
         try {
             connection = getConnection();
             DatabaseMetaData metaData = connection.getMetaData();
-//            ResultSet tableRet = metaData.getTables(null, "%",tableName,new String[]{"TABLE"});
-//            while(tableRet.next()) {
-//                System.out.println("listByTableName ::::" + tableRet.getString("TABLE_NAME"));
-//            }
             ResultSet colRet = metaData.getColumns(null,"%", tableName,"%");
             while(colRet.next()) {
+                fe = new FieldEntity();
+                //列名
                 String columnName = colRet.getString("COLUMN_NAME");
+                //列的类型
                 String columnType = colRet.getString("TYPE_NAME");
                 int datasize = colRet.getInt("COLUMN_SIZE");
+                //列类型的长度
                 int digits = colRet.getInt("DECIMAL_DIGITS");
                 int nullable = colRet.getInt("NULLABLE");
-                System.out.println(columnName+" "+columnType+" "+datasize+" "+digits+" "+ nullable + " " );
+                //注释
+                String remark = colRet.getString("REMARKS");
+//                System.out.println(columnName+" "+columnType+" "+datasize+" "+digits+" "+ nullable + " " +remark );
+                fe.setField(columnName);
+                fe.setType(columnType);
+                fe.setComment(remark);
+                fieldEntities.add(fe);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("listByTableName error." + e);
         } finally {
+            closeConnection(connection);
         }
 
         return fieldEntities;
@@ -207,10 +236,11 @@ public class MyMetaDataUtil2 {
 
     /**
      * 根据表名获取表中所有的字段名称
+     * 通过 sql 语句
      * @param tableName
      * @return
      */
-    public static List<FieldEntity> listByTableName2(String tableName){
+    public static List<FieldEntity> listByTableNameSql(String tableName){
         List<FieldEntity> fieldEntities = new ArrayList<>();
         String sql = "show full columns from " + tableName;
         Connection connection = null;
@@ -249,18 +279,26 @@ public class MyMetaDataUtil2 {
 
             //获取所有表名
 //            List<String> tableNames = getAllTables();
-            //获取当前数据库的所有表名
-            List<String> tableNames = getCurrentDbTables();
-            for(String tn : tableNames){
-                System.out.println(tn);
-                //listByTableName(tn);
-                List<FieldEntity> fieldEntities = listByTableName2(tn);
-                for(FieldEntity fe : fieldEntities){
-                    System.out.println(fe);
-                }
-                System.out.println("---------------");
-                System.out.println();
-            }
+//            for(String tn : tableNames){
+//                System.out.println(tn);
+//            }
+
+//            List<FieldEntity> fieldEntities = listByTableName("file_mapping");
+//                for(FieldEntity fe : fieldEntities){
+//                    System.out.println(fe);
+//                }
+//            //获取当前数据库的所有表名
+////            List<String> tableNames = getCurrentDbTables();
+//            for(String tn : tableNames){
+//                System.out.println(tn);
+//                //listByTableName(tn);
+//                List<FieldEntity> fieldEntities = listByTableName2(tn);
+//                for(FieldEntity fe : fieldEntities){
+//                    System.out.println(fe);
+//                }
+//                System.out.println("---------------");
+//                System.out.println();
+//            }
 
 
 

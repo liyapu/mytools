@@ -388,4 +388,126 @@ public class RegexExample {
         System.out.println(p.matcher("a3").matches());
     }
 
+    /**
+     * appendReplacement方法：sb是一个StringBuffer，replaceContext待替换的字符串，
+     * 这个方法会把匹配到的内容替换为replaceContext，并且把从上次替换的位置到这次替换位置之间的字符串也拿到，
+     * 然后，加上这次替换后的结果一起追加到StringBuffer里（假如这次替换是第一次替换，那就是只追加替换后的字符串啦）
+     */
+    @Test
+    public void testAppendReplacement(){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher("aa11 bb22cc33dd 44ee");
+
+        if(m.find()){
+            StringBuffer sb = new StringBuffer();
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+        if(m.find()){
+            StringBuffer sb = new StringBuffer();
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+        if(m.find()){
+            StringBuffer sb = new StringBuffer();
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+
+    }
+
+    /**
+     * appendReplacement（StringBuffer sb, String replaceMent）方法
+     * 是将输入字符序列首次与正在表达式匹配的部分进行更改为replaceMent
+     * 并且把结果添加到一个sb结果集中，对于匹配之前的字符序列，它们被转移到sb字符集中
+     *
+     * 如果输入字符集中没有能与正则表达式匹配的，
+     * 则appendReplacement（StringBuffer sb, String replaceMent）方法的sb参数将没有任何变化。
+     */
+    @Test
+    public void testAppendReplacement2(){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher("aa11 bb22cc33dd 44ee");
+
+        StringBuffer sb = new StringBuffer();
+        if(m.find()){
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+        if(m.find()){
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+        if(m.find()){
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testAppendReplacement3(){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher("aa11 bb22cc33dd 44ee");
+
+        StringBuffer sb = new StringBuffer();
+        while (m.find()){
+            m.appendReplacement(sb,"Y");
+            System.out.println(sb);
+        }
+        System.out.println("------------");
+        m.appendTail(sb);
+        System.out.println(sb);
+        System.out.println("-------------");
+        System.out.println(p.matcher("aa11 bb22cc33dd 44ee").replaceAll("Y"));
+    }
+
+    /**
+     * appendTail方法：sb是一个StringBuffer，这个方法是把最后一次匹配到内容之后的字符串追加到StringBuffer中。
+     */
+    @Test
+    public void testAppendTail(){
+        StringBuffer sb= new StringBuffer();
+        //匹配模式为[Tt]
+        Pattern p = Pattern.compile("[Tt]");
+        Matcher m = p.matcher("OK,thank you very much");
+        //首先调用m.find 对匹配字符串进行匹配
+        m.find();
+        //调用appendReplacement方法，会将找到匹配字符't'之前的所有字符
+        //也就是"OK,"这几个字符添加到sb中，然后在对sb中追加“你好”
+        m.appendReplacement(sb,"你好");
+        System.out.println(sb);//"OK,你好"
+        //appendTail顾名思义也就是追加一个小尾巴，也就是将从appendReplacement替换后剩余的"hank you very much"添加到sb中,
+        // 注意注意 没有t
+        m.appendTail(sb);
+        System.out.println(sb);//"OK,你好hank you very much"
+    }
+
+
+    private static Pattern linePattern = Pattern.compile("_(\\w)");
+
+    /**
+     * \w 等价于[a-zA-Z0-9_]  只会匹配一个字符
+     */
+    @Test
+    public void testLinePattern(){
+        Matcher m = linePattern.matcher("aa_bbbb_ccc");
+        m.find();
+        System.out.println(m.start());
+        System.out.println(m.end());
+        System.out.println(m.group(0));
+        System.out.println(m.group(1));
+    }
+
+    @Test
+    public void testLinePattern2(){
+        Matcher m = linePattern.matcher("aa_bbbb_ccc");
+        while (m.find()){
+            System.out.println(m.start()+":"+m.end()+":"+m.group(0)+":"+m.group(1));
+        }
+    }
+
 }
