@@ -2,10 +2,7 @@ package com.lyp.mt.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lyp.mt.entity.FieldEntity;
-import com.lyp.mt.entity.yapi.Field;
-import com.lyp.mt.entity.yapi.Page;
-import com.lyp.mt.entity.yapi.Root;
-import com.lyp.mt.entity.yapi.WebResult;
+import com.lyp.mt.entity.yapi.*;
 import com.lyp.mt.entity.yapi.business.TableShowFieldVo;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +20,19 @@ import java.util.Map;
  * @date 2019-09-09 20:51
  */
 public class YApiUtil {
+
+    //排除的字段
+    static List<String> excludeFields = new ArrayList<>();
+
+    static {
+        excludeFields.add("id");
+        excludeFields.add("valid");
+        excludeFields.add("createTime");
+        excludeFields.add("updateTime");
+        excludeFields.add("create_time");
+        excludeFields.add("update_time");
+    }
+
     public static Page getPage() {
         Page page = new Page();
         page.setType("object");
@@ -90,11 +100,61 @@ public class YApiUtil {
      */
     @Test
     public void test01() {
+
+        Data data = getData();
+
+        Items items = new Items();
+        items.setType("object");
+        List<String> required = new ArrayList<>();
+        items.setRequired(required);
+        Map<String, Field> properties = new HashMap<>();
+        items.setProperties(properties);
+
         List<TableShowFieldVo> tableShowFieldVos = getTableShowFieldByTableName("financial_indicator_industry_ranking");
-        System.out.println(JSONObject.toJSONString(tableShowFieldVos));
+        //System.out.println(JSONObject.toJSONString(tableShowFieldVos));
+        for(TableShowFieldVo tsfv : tableShowFieldVos){
+            String fieldName = tsfv.getFieldName();
+            String fieldShow = tsfv.getFieldShow();
+            int fieldOrder = tsfv.getFieldOrder();
+            if(excludeFields.contains(fieldName)){
+                continue;
+            }
+            required.add(fieldName);
+            properties.put(fieldName,new Field(fieldShow,fieldOrder));
+        }
+
+    }
+
+    public Data getData() {
+        Data data = new Data();
+        data.setType("array");
+        data.setDescription("数据信息");
+        Items items = getDataItems();
+        data.setItems(items);
+        return data;
+    }
+
+    public Items getDataItems() {
+        Items items = new Items();
+        items.setType("object");
+        List<String> required = new ArrayList<>();
+        items.setRequired(required);
+        Map<String, Field> properties = new HashMap<>();
+        items.setProperties(properties);
 
         List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("financial_indicator_industry_ranking");
-        System.out.println(fieldEntities);
+        //System.out.println(fieldEntities);
+        for (FieldEntity fe : fieldEntities) {
+            String fieldName = FieldUtil.lineToHump(fe.getField());
+            String comment = fe.getComment();
+            if (excludeFields.contains(fieldName)) {
+                continue;
+            }
+            required.add(fieldName);
+            properties.put(fieldName, new Field("string", comment));
+        }
+       // System.out.println(JSONObject.toJSONString(items));
+        return items;
     }
 
     public List<TableShowFieldVo> getTableShowFieldByTableName(String tableName) {
