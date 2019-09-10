@@ -252,6 +252,62 @@ public class MySqlMetaDataUtil {
         return fieldEntities;
     }
 
+    /**
+     * 获取表字段的原始字段列表
+     * @param tableName
+     * @return
+     */
+    public static List<String> getTableOriginField(String tableName){
+            List<String> fields = new ArrayList<>();
+            List<FieldEntity> fieldEntities = listByTableNameSql(tableName);
+            for(FieldEntity fe : fieldEntities){
+                fields.add(fe.getField());
+            }
+            return fields;
+    }
+
+
+    /**
+     * 获取表字段的原始字段列表，以字符串形式返回
+     *id,file_url,file_path,retry_times,valid
+     * @param tableName
+     * @return
+     */
+    public static String getTableOriginFieldStr(String tableName){
+        StringBuilder sb = new StringBuilder();
+        List<FieldEntity> fieldEntities = listByTableNameSql(tableName);
+        for(int i = 0; i  < fieldEntities.size(); i++){
+            if(i > 0){
+                sb.append(",");
+            }
+            sb.append(fieldEntities.get(i).getField());
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 获取表字段的原始字段列表和驼峰命名字段，以字符串形式返回
+     * id,file_url AS fileUrl,file_path AS filePath,retry_times AS retryTimes,valid
+     * @param tableName
+     * @return
+     */
+    public static String getTableOriginFieldAndHump(String tableName){
+        StringBuilder sb = new StringBuilder();
+        List<FieldEntity> fieldEntities = listByTableNameSql(tableName);
+        for(int i = 0; i  < fieldEntities.size(); i++){
+            if(i > 0){
+                sb.append(",");
+            }
+            String fieldName = fieldEntities.get(i).getField();
+            sb.append(fieldName);
+            if(fieldName.contains("_")){
+                sb.append(" ").append("AS").append(" ").append(FieldUtil.lineToHump(fieldName));
+            }
+        }
+        return sb.toString();
+    }
+
+
     public static void main(String[] args) {
         try {
             //获取所有的数据库
@@ -283,7 +339,15 @@ public class MySqlMetaDataUtil {
 //                System.out.println();
 //            }
 
+            String tableName = "file_mapping";
 
+            List<String> fields = getTableOriginField(tableName);
+            for(String s : fields){
+                System.out.println(s);
+            }
+
+            System.out.println(getTableOriginFieldStr(tableName));
+            System.out.println(getTableOriginFieldAndHump(tableName));
 
         } catch (Exception e) {
             System.out.println("main error. " + e);
