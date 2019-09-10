@@ -1,5 +1,7 @@
 package com.lyp.mt.entity.yapi;
 
+import lombok.ToString;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @description:
  * @date 2019-09-09 20:41
  */
+@ToString
 public class Root {
     private String type;
     private String title;

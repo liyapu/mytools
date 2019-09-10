@@ -114,6 +114,8 @@ public class YApiUtil {
         System.out.println("-----------------");
         System.out.println(JSONObject.toJSONString(root));
 
+        MyFileUtil.toFileJson(root,"rootest");
+
     }
 
     public Result getResult() {
@@ -152,7 +154,7 @@ public class YApiUtil {
         Map<String, Field> properties = new HashMap<>();
         items.setProperties(properties);
 
-        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("table_show_field");
+        List<FieldEntity> fieldEntities = MySqlMetaDataUtil.listByTableNameSql("table_show_field");
         //System.out.println(fieldEntities);
         for (FieldEntity fe : fieldEntities) {
             String fieldName = FieldUtil.lineToHump(fe.getField());
@@ -184,7 +186,7 @@ public class YApiUtil {
         items.setProperties(properties);
 
 //        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("financial_indicator_industry_ranking");
-        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("report_indicator");
+        List<FieldEntity> fieldEntities = MySqlMetaDataUtil.listByTableNameSql("report_indicator");
         //System.out.println(fieldEntities);
         for (FieldEntity fe : fieldEntities) {
             String fieldName = FieldUtil.lineToHump(fe.getField());
@@ -202,7 +204,7 @@ public class YApiUtil {
     public List<TableShowFieldVo> getTableShowFieldByTableName(String tableName) {
         List<TableShowFieldVo> tableShowFieldVos = new ArrayList<>();
         TableShowFieldVo tsfv = null;
-        Connection connection = MyMetaDataUtil2.getConnection();
+        Connection connection = MySqlMetaDataUtil.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "select field_name,field_show,field_order from table_show_field where valid =1 and table_name = '" + tableName + "' order by field_order ASC";
@@ -222,10 +224,13 @@ public class YApiUtil {
         } catch (Exception e) {
             System.out.println("getTableShowFieldByTableName error" + e);
         } finally {
-            MyMetaDataUtil2.close(connection, ps, rs);
+            MySqlMetaDataUtil.close(connection, ps, rs);
         }
         return tableShowFieldVos;
     }
+
+
+
 
     public static void main(String[] args) {
         System.out.println(JSONObject.toJSONString(getPage()));

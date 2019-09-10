@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyMetaDataUtil2 {
+public class MySqlMetaDataUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(MyMetaDataUtil2.class);
+    private static final Logger logger = LoggerFactory.getLogger(MySqlMetaDataUtil.class);
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
