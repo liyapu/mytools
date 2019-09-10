@@ -29,8 +29,10 @@ public class YApiUtil {
         excludeFields.add("valid");
         excludeFields.add("createTime");
         excludeFields.add("updateTime");
+        excludeFields.add("tableName");
         excludeFields.add("create_time");
         excludeFields.add("update_time");
+        excludeFields.add("table_name");
     }
 
     public static Page getPage() {
@@ -101,8 +103,48 @@ public class YApiUtil {
     @Test
     public void test01() {
 
-        Data data = getData();
+        WebResult wr = getWebResult();
+        Page page = getPage();
+        Result result = getResult();
+        wr.setPage(page);
+        wr.setResult(result);
 
+        Root root = getRootPage();
+        root.setProperties(wr);
+        System.out.println("-----------------");
+        System.out.println(JSONObject.toJSONString(root));
+
+    }
+
+    public Result getResult() {
+        Result result = new Result();
+
+        result.setType("object");
+        result.setDescription("结果集");
+
+        Map<String,Object> properties = new HashMap<>();
+        Data data = getData();
+        Data title = getTitle();
+        properties.put("data",data);
+        properties.put("title",title);
+        result.setProperties(properties);
+
+        List<String> required = new ArrayList<>();
+        required.add("data");
+        required.add("title");
+        return result;
+    }
+
+    public Data getTitle() {
+        Data title = new Data();
+        Items items = getTitleItems();
+        title.setType("array");
+        title.setDescription("表头信息");
+        title.setItems(items);
+        return title;
+    }
+
+    public Items getTitleItems() {
         Items items = new Items();
         items.setType("object");
         List<String> required = new ArrayList<>();
@@ -110,19 +152,18 @@ public class YApiUtil {
         Map<String, Field> properties = new HashMap<>();
         items.setProperties(properties);
 
-        List<TableShowFieldVo> tableShowFieldVos = getTableShowFieldByTableName("financial_indicator_industry_ranking");
-        //System.out.println(JSONObject.toJSONString(tableShowFieldVos));
-        for(TableShowFieldVo tsfv : tableShowFieldVos){
-            String fieldName = tsfv.getFieldName();
-            String fieldShow = tsfv.getFieldShow();
-            int fieldOrder = tsfv.getFieldOrder();
-            if(excludeFields.contains(fieldName)){
+        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("table_show_field");
+        //System.out.println(fieldEntities);
+        for (FieldEntity fe : fieldEntities) {
+            String fieldName = FieldUtil.lineToHump(fe.getField());
+            String comment = fe.getComment();
+            if (excludeFields.contains(fieldName)) {
                 continue;
             }
             required.add(fieldName);
-            properties.put(fieldName,new Field(fieldShow,fieldOrder));
+            properties.put(fieldName, new Field("string", comment));
         }
-
+        return items;
     }
 
     public Data getData() {
@@ -142,7 +183,8 @@ public class YApiUtil {
         Map<String, Field> properties = new HashMap<>();
         items.setProperties(properties);
 
-        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("financial_indicator_industry_ranking");
+//        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("financial_indicator_industry_ranking");
+        List<FieldEntity> fieldEntities = MyMetaDataUtil2.listByTableNameSql("report_indicator");
         //System.out.println(fieldEntities);
         for (FieldEntity fe : fieldEntities) {
             String fieldName = FieldUtil.lineToHump(fe.getField());

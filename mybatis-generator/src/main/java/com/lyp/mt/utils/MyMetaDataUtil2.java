@@ -13,26 +13,9 @@ public class MyMetaDataUtil2 {
     private static final Logger logger = LoggerFactory.getLogger(MyMetaDataUtil2.class);
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-//    private static final String USERNAME = "root";
-//    private static final String PASSWORD = "Root$123";
-
-    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?serverTimezone=UTC&characterEncoding=utf8";
+    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Tusdao@mysql2019*";
-
-
-    /**
-     * datasource:
-     *     url: jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8
-     *     username: root
-     *     password: Tusdao@mysql2019*
-     *     driver-class-name: com.mysql.cj.jdbc.Driver
-     *     type: com.zaxxer.hikari.HikariDataSource
-     *     hikari:
-     *       maximum-pool-size: 2
-     */
-
+    private static final String PASSWORD = "Root$123";
 
 
     /**
