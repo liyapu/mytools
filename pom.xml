@@ -11,6 +11,7 @@
     <modules>
         <module>mybatis-generator</module>
         <module>codeLearn</module>
+        <module>design-pattern</module>
     </modules>
 
     <properties>
