@@ -12,6 +12,8 @@
         <module>mybatis-generator</module>
         <module>codeLearn</module>
         <module>design-pattern</module>
+        <module>data-structure</module>
+        <module>java8</module>
     </modules>
 
     <properties>
