@@ -1,5 +1,7 @@
 package com.lyp.mt.utils;
 
+import com.google.common.collect.Lists;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.lyp.mt.entity.FieldEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -308,6 +310,38 @@ public class MySqlMetaDataUtil {
     }
 
 
+    /**
+     * 根据表名，获取建表语句
+     * @param tableNames
+     * @return
+     */
+    public static List<String> getCreateTableByTableName(List<String> tableNames){
+        List<String> createTables = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        FieldEntity entity = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            for(String tableName : tableNames){
+                String sql = "show create table  " + tableName;
+                resultSet = statement.executeQuery(sql);
+                while (resultSet.next()){
+                    String createTable = resultSet.getString("Create Table");
+                    createTables.add(createTable);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("listByTableName2 error." + e);
+        } finally {
+            close(connection,null,resultSet);
+        }
+        return createTables;
+    }
+
+
     public static void main(String[] args) {
         try {
             //获取所有的数据库
@@ -339,15 +373,21 @@ public class MySqlMetaDataUtil {
 //                System.out.println();
 //            }
 
-            String tableName = "file_mapping";
+//            String tableName = "file_mapping";
+//
+//            List<String> fields = getTableOriginField(tableName);
+//            for(String s : fields){
+//                System.out.println(s);
+//            }
+//
+//            System.out.println(getTableOriginFieldStr(tableName));
+//            System.out.println(getTableOriginFieldAndHump(tableName));
 
-            List<String> fields = getTableOriginField(tableName);
-            for(String s : fields){
-                System.out.println(s);
-            }
-
-            System.out.println(getTableOriginFieldStr(tableName));
-            System.out.println(getTableOriginFieldAndHump(tableName));
+            List<String> tableNames = new ArrayList<>();
+            tableNames.add("file_mapping");
+            tableNames.add("table_show_field");
+            List<String> createTables = getCreateTableByTableName(tableNames);
+            createTables.stream().forEach(s -> System.out.println(s));
 
         } catch (Exception e) {
             System.out.println("main error. " + e);
