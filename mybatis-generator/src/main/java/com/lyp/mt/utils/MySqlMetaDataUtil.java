@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MySqlMetaDataUtil {
 
@@ -310,6 +312,8 @@ public class MySqlMetaDataUtil {
     }
 
 
+    static Pattern p = Pattern.compile("(AUTO_INCREMENT=\\d*)");
+
     /**
      * 根据表名，获取建表语句
      * @param tableNames
@@ -329,6 +333,12 @@ public class MySqlMetaDataUtil {
                 resultSet = statement.executeQuery(sql);
                 while (resultSet.next()){
                     String createTable = resultSet.getString("Create Table");
+                    Matcher m = p.matcher(createTable);
+                    if(m.find()){
+//                        System.out.println(m.group(1));
+                        createTable = createTable.replace(m.group(1),"AUTO_INCREMENT=1");
+                    }
+
                     createTables.add(createTable);
                 }
             }
