@@ -1,4 +1,4 @@
-package com.lyp.learn.base.demo.pk07;
+package java.lang;
 
 /**
  * Runnable接口应由任何类实现，其实例将由线程执行。 该类必须定义一个无参数的方法，称为run 。

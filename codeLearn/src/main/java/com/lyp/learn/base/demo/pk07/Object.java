@@ -1,4 +1,4 @@
-package com.lyp.learn.base.demo.pk07;
+package java.lang;
 
 /**
  * java.lang.Object为java所有类的基类，所以一般的类都可用重写或直接使用Object下方法

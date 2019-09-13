@@ -1,4 +1,4 @@
-package com.lyp.learn.base.demo.pk06;
+package java.util;
 
 import java.util.*;
 import java.util.function.Consumer;

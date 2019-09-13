@@ -1,4 +1,4 @@
-package com.lyp.learn.base.demo.pk07;
+package java.lang;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;

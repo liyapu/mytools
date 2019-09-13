@@ -1,4 +1,4 @@
-package com.lyp.learn.base.demo.pk07;
+package java.lang;
 
 public class ThreadDemo {
     public static void main(String[] args) {
