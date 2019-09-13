@@ -15,6 +15,7 @@
         <module>data-structure</module>
         <module>java8</module>
         <module>json</module>
+        <module>tools</module>
     </modules>
 
     <properties>
