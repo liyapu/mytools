@@ -253,7 +253,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
         // Set the capacity according to the size and load factor ensuring that
         // the HashMap is at least 25% full but clamping to maximum capacity.
         capacity = (int) Math.min(size * Math.min(1 / loadFactor, 4.0f),
-                java.util.HashMap.MAXIMUM_CAPACITY);
+                HashMap.MAXIMUM_CAPACITY);
 
         // Constructing the backing map will lazily create an array when the first element is
         // added, so check it before construction. Call HashMap.tableSizeFor to compute the

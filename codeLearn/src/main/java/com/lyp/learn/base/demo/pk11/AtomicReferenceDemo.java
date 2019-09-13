@@ -1,7 +1,7 @@
 package com.lyp.learn.base.demo.pk11;
 
 
-import com.lyp.learn.demo.pk04.Person;
+import com.lyp.learn.base.demo.pk04.Person;
 
 import java.util.concurrent.atomic.AtomicReference;
 
