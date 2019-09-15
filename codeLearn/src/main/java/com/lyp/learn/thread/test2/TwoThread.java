@@ -1,5 +1,7 @@
 package com.lyp.learn.thread.test2;
 
+import org.junit.Test;
+
 /**
  * @Author: liyapu
  * @Description:
@@ -21,5 +23,10 @@ public class TwoThread {
 
         a.start();
         b.start();
+    }
+
+    @Test
+    public void test1(){
+        System.out.println("aaa");
     }
 }
