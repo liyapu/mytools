@@ -6,15 +6,15 @@ import java.util.concurrent.RecursiveTask;
 public class ForkJoinTest {
     public static void main(String[] args) {
         ForkJoinPool pool = new ForkJoinPool();
-        long start = 0;
-        long end = 1000000000;
+        long start = 0L;
+        long end = 1000L;
         ForkJoinSumCalculate forkJoinSumCalculate = new ForkJoinSumCalculate(start,end);
 
         Long result = pool.invoke(forkJoinSumCalculate);
         System.out.println(result);
 
         System.out.println("-------验证一下结果--------");
-        long sum = 0;
+        long sum = 0L;
         for(long i = start; i <= end; i++){
             sum += i;
         }
@@ -28,7 +28,7 @@ public class ForkJoinTest {
 class ForkJoinSumCalculate extends RecursiveTask<Long>{
     private long start;
     private long end;
-    private final long THRESHOLD = 10000; //阈值
+    private final long THRESHOLD = 100L; //阈值
 
     public  ForkJoinSumCalculate(long start,long end){
         this.start = start;
