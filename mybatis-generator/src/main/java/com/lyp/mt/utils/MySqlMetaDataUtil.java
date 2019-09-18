@@ -1,14 +1,12 @@
 package com.lyp.mt.utils;
 
-import com.google.common.collect.Lists;
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.lyp.mt.entity.FieldEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.Collator;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,11 +14,16 @@ public class MySqlMetaDataUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(MySqlMetaDataUtil.class);
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Root$123";
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "Root$123";
 
+
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Tusdao@mysql2019*";
 
     /**
      * 获取数据库连接
@@ -257,6 +260,46 @@ public class MySqlMetaDataUtil {
     }
 
     /**
+     * 执行一条sql
+     */
+    public static void  executeOneSql(String sql){
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            statement.execute(sql);
+            System.out.println("执行成功：：：：" + sql);
+        } catch (Exception e) {
+            System.out.println("executeOneSql error." + e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    /**
+     * 执行一批sql
+     */
+    public static void  executeBatchSql(List<String> sqls){
+        Connection connection = null;
+        Statement statement = null;
+        String sqlTemp = "";
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            for(String sql : sqls){
+                sqlTemp = sql;
+                statement.execute(sql);
+                System.out.println("执行成功：：：：" + sql);
+            }
+        } catch (Exception e) {
+            System.out.println("executeBatchSql sqlTemp: " + sqlTemp + " error." + e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    /**
      * 获取表字段的原始字段列表
      * @param tableName
      * @return
@@ -351,6 +394,133 @@ public class MySqlMetaDataUtil {
         return createTables;
     }
 
+    /**
+     * 获取数据库中所有表的字段与注释
+     */
+    public static List<FieldEntity> listAllTablesComment(){
+        System.out.println("------------获取数据库中所有表的字段与注释-------");
+        Pattern p1 = Pattern.compile("w*\\_origin$");
+        List<String> currentDbTables = getCurrentDbTables();
+        List<String> excludeField = Arrays.asList("id","valid","create_time","update_time");
+        List<FieldEntity> fieldEntities = new ArrayList<>();
+        for(String tableName : currentDbTables){
+            if(p1.matcher(tableName).find()){
+                continue;
+            }
+            List<FieldEntity> fieldEntityTemp = listByTableNameSql(tableName);
+            for(FieldEntity fe : fieldEntityTemp){
+                fe.setTableName(tableName);
+                if(excludeField.contains(fe.getField())){
+                    continue;
+                }
+                fieldEntities.add(fe);
+            }
+        }
+        //System.out.println("----------fieldEntities size = " + fieldEntities.size());
+
+        Collections.sort(fieldEntities,(FieldEntity fe1,FieldEntity fe2) -> Collator.getInstance(Locale.CHINESE).compare(fe1.getComment(),fe2.getComment()));
+
+        //fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "  =======  " + fe.getField() + " ====== " + fe.getTableName()));
+        //System.out.println("----------fieldEntities size = " + fieldEntities.size());
+        return fieldEntities;
+    }
+
+    /**
+     * 获取已经翻译好的字段
+     */
+    public static List<FieldEntity> fieldEntityOriginGlobal = null;
+    public static List<FieldEntity> listAllTablesTranslated(){
+        List<FieldEntity> fieldEntities = new ArrayList<>();
+        List<FieldEntity> fieldEntityOrigin = fieldEntityOriginGlobal;
+        if(fieldEntityOrigin == null || fieldEntityOrigin.size() <= 0){
+            fieldEntityOrigin = listAllTablesComment();
+            fieldEntityOriginGlobal = fieldEntityOrigin;
+        }
+
+        Pattern p = Pattern.compile("^f\\d+[dvn]$");
+        for(FieldEntity fe : fieldEntityOrigin){
+            if(p.matcher(fe.getField()).find()){
+                //System.out.println("剔除数据：：：："+fe);
+                continue;
+            }
+            fieldEntities.add(fe);
+        }
+        return fieldEntities;
+    }
+
+    /**
+     * 获取没有翻译的字段
+     */
+    public static List<FieldEntity> listAllTablesNoTranslate(){
+        List<FieldEntity> fieldEntities = new ArrayList<>();
+        List<FieldEntity> fieldEntityOrigin = listAllTablesComment();
+        Pattern p = Pattern.compile("^f\\d+[dvn]$");
+        for(FieldEntity fe : fieldEntityOrigin){
+            if(p.matcher(fe.getField()).find()){
+                System.out.println("未翻译数据：：：："+fe);
+                fieldEntities.add(fe);
+            }
+        }
+        return fieldEntities;
+    }
+
+    /**
+     * 翻译 一个字段
+     * @param fieldName
+     * @return
+     */
+    public static String translateField(String fieldName){
+        List<FieldEntity>  fieldEntities = listAllTablesTranslated();
+        for(FieldEntity fe : fieldEntities){
+            if(fe.getComment().equals(fieldName)){
+                //System.out.println(fieldName + " -----" + fe.getComment() + " ---" + fe.getField());
+                return fe.getField();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 翻译一个表
+     * @param tableName
+     * @return
+     */
+    public static void translateTableField(String tableName){
+        List<FieldEntity> fieldEntityTrans = listAllTablesTranslated();
+        List<FieldEntity> fieldEntityOrigins = listByTableNameSql(tableName);
+        List<String> noFindTrans = new ArrayList<>();
+        List<String> sqls = new ArrayList<>();
+        String sql = "ALTER TABLE `golden_palm`.`%s`  CHANGE COLUMN `%s` `%s` VARCHAR(%s) NULL DEFAULT NULL COMMENT '%s' ;";
+        Pattern p = Pattern.compile("^f\\d+[dvn]$");
+        Pattern pn = Pattern.compile("\\((\\d*)\\)");
+
+        for(FieldEntity feo : fieldEntityOrigins){
+            if(!p.matcher(feo.getField()).find()){
+                continue;
+            }
+            for(FieldEntity fet : fieldEntityTrans){
+                if(fet.getComment().equals(feo.getComment()) || fet.getComment().equals(feo.getComment() + " 单位：元")){
+                    Matcher m = pn.matcher(feo.getType());
+                    if(m.find()){
+//                        System.out.println(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
+                        sqls.add(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
+                    }
+                    break;
+                }
+            }
+        }
+        executeBatchSql(sqls);
+    }
+
+    /**
+     * 自己手工翻译，可以让多个表使用这个源，达到一个翻译词，更新多个表的工能
+     * @return
+     */
+    public List<FieldEntity> manualTranslate(){
+        List<FieldEntity> fieldEntities = new ArrayList<>();
+        fieldEntities.add(new FieldEntity("defer_tax_decrease","递延所得税资产减少"));
+        return fieldEntities;
+    }
 
     public static void main(String[] args) {
         try {
@@ -393,12 +563,45 @@ public class MySqlMetaDataUtil {
 //            System.out.println(getTableOriginFieldStr(tableName));
 //            System.out.println(getTableOriginFieldAndHump(tableName));
 
-            List<String> tableNames = new ArrayList<>();
-            tableNames.add("file_mapping");
-            tableNames.add("table_show_field");
-            List<String> createTables = getCreateTableByTableName(tableNames);
-            createTables.stream().forEach(s -> System.out.println(s));
+//            List<String> tableNames = new ArrayList<>();
+//            tableNames.add("file_mapping");
+//            tableNames.add("table_show_field");
+//            List<String> createTables = getCreateTableByTableName(tableNames);
+//            createTables.stream().forEach(s -> System.out.println(s));
+//            listAllTablesTranslated();
 
+            System.out.println("start--------");
+//            translateTableField("financial_cash_flow_y2007");
+//            translateTableField("financial_profit_y2007");
+//            translateTableField("investment_rating");
+//            translateTableField("performance_expectation");
+//            translateTableField("quarter_cash_flow");
+//            translateTableField("quarter_financial_indicator");
+//            translateTableField("quarter_financial_profit");
+//            translateTableField("quote_data");
+//            translateTableField("shareholder_controller");
+//            translateTableField("shareholder_stock_change");
+//            translateTableField("shareholding_concentration");
+//            translateTableField("stock_basic");
+//            translateTableField("ttm_cash_flow");
+//            translateTableField("ttm_financial_profit");
+            System.out.println("done------");
+              listAllTablesNoTranslate();
+//            List<FieldEntity> fieldEntities = listAllTablesTranslated();
+//            fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "  =======  " + fe.getField() + " ====== " + fe.getTableName()));
+//            String str = "varchar(20)";
+//            Pattern p = Pattern.compile("\\((\\d*)\\)");
+//            Matcher m1 = p.matcher(str);
+//            if(m1.find()){
+//                System.out.println(m1.group(1));
+//            }
+//            while (m1.find()) {
+//                int groupCount = m1.groupCount();
+//                System.out.println("groupCount = " + groupCount);
+//                for (int i = 0; i <= groupCount; i++) {
+//                    System.out.println("i = " + i + "\t开始位置：" + m1.start(i) + "\t 结束位置：" + m1.end(i) + " \t 匹配字符 " + m1.group(i));
+//                }
+//            }
         } catch (Exception e) {
             System.out.println("main error. " + e);
         }

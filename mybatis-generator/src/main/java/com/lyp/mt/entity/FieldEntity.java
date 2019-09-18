@@ -12,7 +12,16 @@ public class FieldEntity {
     private String field;
     private String type;
     private String comment;
+    private String tableName;
 
+    public FieldEntity(){
+
+    }
+
+    public FieldEntity(String filed,String comment){
+        this.field = filed;
+        this.comment = comment;
+    }
     public String getField() {
         return field;
     }
@@ -35,6 +44,14 @@ public class FieldEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
     @Override
