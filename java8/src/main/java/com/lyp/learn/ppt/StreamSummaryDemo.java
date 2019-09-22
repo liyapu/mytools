@@ -72,6 +72,14 @@ public class StreamSummaryDemo {
                 .collect(Collectors.maxBy(Comparator.comparing(Apple::getWeight)));
         System.out.println(weightApple.isPresent() ? weightApple.get() : "err");
 
+        Optional<Apple> weightApple3 = inventory.stream()
+                .collect(Collectors.maxBy((a1, a2) -> a1.getWeight().compareTo(a2.getWeight())));
+        System.out.println(weightApple3.isPresent() ? weightApple3.get() : "err");
+
+        Optional<Apple> weightApple4 = inventory.stream()
+                .collect(Collectors.maxBy((a1, a2) -> Integer.compare(a1.getWeight(), a2.getWeight())));
+        System.out.println(weightApple4.isPresent() ? weightApple4.get() : "err");
+
         Optional<Apple> weightApple2 = inventory.stream()
                                                 .max(Comparator.comparingInt(Apple::getWeight));
         System.out.println(weightApple2.isPresent() ? weightApple2.get() : "err");
@@ -91,6 +99,11 @@ public class StreamSummaryDemo {
                                             .mapToInt(Apple::getWeight)
                                             .max();
         System.out.println(wightMax3.orElse(0));
+
+        Optional<Integer> weightMax4 = inventory.stream()
+                .map(Apple::getWeight)
+                .collect(Collectors.maxBy(Integer::compareTo));
+        System.out.println(weightMax4.orElse(0));
 
 
     }
