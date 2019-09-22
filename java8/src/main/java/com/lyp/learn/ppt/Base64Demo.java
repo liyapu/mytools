@@ -1,6 +1,6 @@
 package com.lyp.learn.ppt;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.Base64;
 
@@ -79,6 +79,10 @@ public class Base64Demo {
         System.out.println("Base64 编码字符串 (基本) 解码后 :" + new String(base64decodedBytes, "utf-8"));
     }
 
+    /**
+     * url编码
+     * @throws Exception
+     */
     @Test
     public void test20() throws Exception{
         String encodeStr = "java 8 AA ZZ aa xyz 88 99 00";
@@ -111,6 +115,10 @@ public class Base64Demo {
 
     }
 
+    /**
+     * mime 编码
+     * @throws Exception
+     */
     @Test
     public void test30() throws Exception{
         String encodeStr = "java 8 AA ZZ aa xyz 88 99 00";

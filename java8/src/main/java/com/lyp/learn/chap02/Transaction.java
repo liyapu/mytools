@@ -1,5 +1,8 @@
 package com.lyp.learn.chap02;
 
+/**
+ * 交易，业务
+ */
 public class Transaction {
     private final Trader trader;
     private final int year;

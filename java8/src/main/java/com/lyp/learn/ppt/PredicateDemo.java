@@ -3,6 +3,7 @@ package com.lyp.learn.ppt;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -154,5 +155,23 @@ public class PredicateDemo {
         boolean boo2 = Predicate.isEqual("aa").test("bb");
         System.out.println(boo2);
 
+    }
+
+    @Test
+    public void test8(){
+        List<String> list = Arrays.asList("java","a","hi","lambda");
+        List<String> result = filterStr(list,(x)-> x.length() > 3 );
+        result.forEach(System.out::println);
+    }
+
+
+    public List<String> filterStr(List<String> list,Predicate<String> predicate){
+        List<String> result = new ArrayList<>();
+        for(String s : list){
+            if(predicate.test(s)){
+                result.add(s);
+            }
+        }
+        return result;
     }
 }

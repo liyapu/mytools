@@ -1,6 +1,7 @@
 package com.lyp.learn.ppt;
 
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;

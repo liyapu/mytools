@@ -1,7 +1,5 @@
 package com.lyp.learn.thread.test2;
 
-import org.junit.Test;
-
 /**
  * @Author: liyapu
  * @Description:
