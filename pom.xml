@@ -16,6 +16,7 @@
         <module>java8</module>
         <module>json</module>
         <module>tools</module>
+        <module>open-tools</module>
     </modules>
 
     <properties>
