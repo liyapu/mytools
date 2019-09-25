@@ -420,7 +420,7 @@ public class MySqlMetaDataUtil {
 
         Collections.sort(fieldEntities,(FieldEntity fe1,FieldEntity fe2) -> Collator.getInstance(Locale.CHINESE).compare(fe1.getComment(),fe2.getComment()));
 
-        //fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "  =======  " + fe.getField() + " ====== " + fe.getTableName()));
+//        fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "=======" + fe.getField() + "======" + fe.getTableName()));
         //System.out.println("----------fieldEntities size = " + fieldEntities.size());
         return fieldEntities;
     }
@@ -436,6 +436,8 @@ public class MySqlMetaDataUtil {
             fieldEntityOrigin = listAllTablesComment();
             fieldEntityOriginGlobal = fieldEntityOrigin;
         }
+        List<FieldEntity> manualTranslates = manualTranslate();
+        fieldEntities.addAll(manualTranslates);
 
         Pattern p = Pattern.compile("^f\\d+[dvn]$");
         for(FieldEntity fe : fieldEntityOrigin){
@@ -499,30 +501,234 @@ public class MySqlMetaDataUtil {
                 continue;
             }
             for(FieldEntity fet : fieldEntityTrans){
-                if(fet.getComment().equals(feo.getComment()) || fet.getComment().equals(feo.getComment() + " 单位：元")){
+                if(isMatchComment(feo, fet)){
                     Matcher m = pn.matcher(feo.getType());
                     if(m.find()){
-//                        System.out.println(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
-                        sqls.add(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
+                        System.out.println(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
+//                        sqls.add(String.format(sql,tableName,feo.getField(),fet.getField(),m.group(1),feo.getComment()));
                     }
                     break;
                 }
             }
         }
-        executeBatchSql(sqls);
+//        executeBatchSql(sqls);
     }
+
+    private static boolean isMatchComment(FieldEntity feo, FieldEntity fet) {
+        String originComment = feo.getComment().trim();
+        String waitComment = fet.getComment().trim();
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+        String unitYuan = "单位：元";
+        originComment = originComment.replaceAll(unitYuan,"").trim();
+        waitComment = waitComment.replaceAll(unitYuan,"").trim();
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+        String among = "其中";
+        originComment = originComment.replaceAll(among,"").trim();
+        waitComment = waitComment.replaceAll(among,"").trim();
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+        String unitStock = "单位：股";
+        originComment = originComment.replaceAll(unitStock,"").trim();
+        waitComment = waitComment.replaceAll(unitStock,"").trim();
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+        String unitPercent = "单位：%";
+        originComment = originComment.replaceAll(unitPercent,"").trim();
+        waitComment = waitComment.replaceAll(unitPercent,"").trim();
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+
+        String specialChar = "[:|：|\\_|,|;|、|\\(|\\)|\\（|\\）|1|2|3|4|5|6|7|8|9|一|二|三|四|五|六|七|八|九|十|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩]";
+        originComment = originComment.replaceAll(specialChar,"").trim();
+        waitComment = waitComment.replaceAll(specialChar,"").trim();
+//        System.out.println("waitComment ="+waitComment);
+        if(originComment.equals(waitComment)){
+            return true;
+        }
+
+        return  false;
+    }
+
+
 
     /**
      * 自己手工翻译，可以让多个表使用这个源，达到一个翻译词，更新多个表的工能
      * @return
      */
-    public List<FieldEntity> manualTranslate(){
+    public static List<FieldEntity> manualTranslate(){
         List<FieldEntity> fieldEntities = new ArrayList<>();
-        fieldEntities.add(new FieldEntity("defer_tax_decrease","递延所得税资产减少"));
+//        fieldEntities.add(new FieldEntity("avarage_10","10日平均（MA10）"));
+//        fieldEntities.add(new FieldEntity("avarage_120","120日均价"));
+        fieldEntities.add(new FieldEntity("net_profit_cash_flow","1、将净利润调节为经营活动现金流量："));
+        fieldEntities.add(new FieldEntity("major_invest_activity","2、不涉及现金收支的重大投资和筹资活动："));
+//        fieldEntities.add(new FieldEntity("avarage_30","30日平均（MA30）"));
+        fieldEntities.add(new FieldEntity("cash_net_change","现金及现金等价物净变动情况"));
+        fieldEntities.add(new FieldEntity("avarage_week_52","52周均价（360日）均价"));
+        fieldEntities.add(new FieldEntity("avarge_5","5日平均（MA5）"));
+        fieldEntities.add(new FieldEntity("ev_ebitda","EV/EBITDA"));
+        fieldEntities.add(new FieldEntity("isin_code","ISIN代码"));
+        fieldEntities.add(new FieldEntity("peg","PEG"));
+        fieldEntities.add(new FieldEntity("a_share_count","Ａ股户数"));
+        fieldEntities.add(new FieldEntity("b_share_count","Ｂ股户数"));
+        fieldEntities.add(new FieldEntity("h_share_count","Ｈ股户数"));
+        fieldEntities.add(new FieldEntity("office_address","办公地址"));
+        fieldEntities.add(new FieldEntity("insurance_income","保险业务收入"));
+        fieldEntities.add(new FieldEntity("report_date","报告年度 YYYY-03-31为一季度，YYYY-06-30为中报，YYYY-09-30为三季报，YYYY-12-31为年报"));
+        fieldEntities.add(new FieldEntity("current_profit_upper","本期净利润上限"));
+        fieldEntities.add(new FieldEntity("current_profit_lower","本期净利润下限"));
+        fieldEntities.add(new FieldEntity("current_net_profit_upper","本期净利润增减幅上限"));
+        fieldEntities.add(new FieldEntity("current_net_profit_lower","本期净利润增减幅下限"));
+        fieldEntities.add(new FieldEntity("today_security_repay","本日融券偿还量"));
+        fieldEntities.add(new FieldEntity("today_security_sell","本日融券卖出量"));
+        fieldEntities.add(new FieldEntity("",""));
+        fieldEntities.add(new FieldEntity("",""));
+
+//        未翻译数据：：：：f027n,varchar(20),本日融券余量,quote_data
+//        未翻译数据：：：：f026n,varchar(20),本日融资偿还额,quote_data
+//        未翻译数据：：：：f025n,varchar(20),本日融资买入额,quote_data
+//        未翻译数据：：：：f024n,varchar(20),本日融资余额,quote_data
+//        未翻译数据：：：：f013n,varchar(10),变动后持股数量 单位：股,shareholder_stock_change
+//        未翻译数据：：：：f014n,varchar(10),变动后持有流通股数量 单位：股,shareholder_stock_change
+//        未翻译数据：：：：f006n,varchar(10),变动后占比 单位：%,shareholder_stock_change
+//        未翻译数据：：：：f004n,varchar(10),变动数量 单位：股,shareholder_stock_change
+//        未翻译数据：：：：f005n,varchar(10),变动数量占总股本比例 单位：%;,shareholder_stock_change
+//        未翻译数据：：：：f016v,varchar(10),城市 ,stock_basic
+//        未翻译数据：：：：f008n,varchar(20),成交金额,quote_data
+//        未翻译数据：：：：f007n,varchar(15),成交数量,quote_data
+//        未翻译数据：：：：f064n,varchar(20),持续经营净利润 2018年新增科目,financial_profit_y2007
+//        未翻译数据：：：：f034v,varchar(20),董秘传真 ,stock_basic
+//        未翻译数据：：：：f033v,varchar(20),董秘电话 ,stock_basic
+//        未翻译数据：：：：f035v,varchar(100),董秘邮箱 ,stock_basic
+//        未翻译数据：：：：f029v,varchar(10),董事长 ,stock_basic
+//        未翻译数据：：：：f032v,varchar(20),董事会秘书 ,stock_basic
+//        未翻译数据：：：：f030v,varchar(50),独立董事 ,stock_basic
+//        未翻译数据：：：：f026n,varchar(20),二、营业支出,financial_profit_y2007
+//        未翻译数据：：：：f013n,varchar(15),发行总股本,quote_data
+//        未翻译数据：：：：f021v,varchar(20),公司传真 ,stock_basic
+//        未翻译数据：：：：f020v,varchar(20),公司电话 ,stock_basic
+//        未翻译数据：：：：f022v,varchar(100),公司电子邮件地址 ,stock_basic
+//        未翻译数据：：：：f014v,varchar(2000),公司简介 ,stock_basic
+//        未翻译数据：：：：f023v,varchar(255),公司网站 ,stock_basic
+//        未翻译数据：：：：f023n,varchar(20),公允价值变动收益,financial_profit_y2007
+//        未翻译数据：：：：f003v,varchar(10),股东ID ,shareholder_stock_change
+//        未翻译数据：：：：f009n,varchar(10),股东持股比例,shareholding_concentration
+//        未翻译数据：：：：f010n,varchar(10),股东持股比例比上报告期增减,shareholding_concentration
+//        未翻译数据：：：：f008n,varchar(15),股东持股数量,shareholding_concentration
+//        未翻译数据：：：：f001n,varchar(10),股东总户数,shareholding_concentration
+//        未翻译数据：：：：f043n,varchar(10),股息率LYR,quote_data
+//        未翻译数据：：：：f044n,varchar(10),股息率TTM,quote_data
+//        未翻译数据：：：：f006n,varchar(10),户均持股比例 单位：‰  户均持股比例=1*1000%/股东人数,shareholding_concentration
+//        未翻译数据：：：：f005n,varchar(10),户均持股 户均持股：同期总股本/同期股东户数,shareholding_concentration
+//        未翻译数据：：：：f016n,varchar(10),换手率,quote_data
+//        未翻译数据：：：：f037v,varchar(50),会计师事务所 ,stock_basic
+//        未翻译数据：：：：f050n,varchar(20),基本获利能力(EBIT),quarter_financial_indicator
+//        未翻译数据：：：：f019n,varchar(20),减：分出保费,financial_profit_y2007
+//        未翻译数据：：：：f031n,varchar(20),减：摊回保险责任准备金,financial_profit_y2007
+//        未翻译数据：：：：f037n,varchar(20),减：摊回分保费用,financial_profit_y2007
+//        未翻译数据：：：：f029n,varchar(20),减：摊回赔付支出,financial_profit_y2007
+//        未翻译数据：：：：f001d,varchar(10),交易日期,quote_data
+//        未翻译数据：：：：f002v,varchar(20),交易所,quote_data
+//        未翻译数据：：：：f003n,varchar(10),今日开盘价,quote_data
+//        未翻译数据：：：：f006n,varchar(5),控股比例 ,shareholder_controller
+//        未翻译数据：：：：f005n,varchar(10),控股数量(万股) ,shareholder_controller
+//        未翻译数据：：：：f008v,varchar(10),控制类型 包括：家族控制、单独控制、一致行动人；选择时程序自动同时将名称填入,shareholder_controller
+//        未翻译数据：：：：f007v,varchar(6),控制类型编码 ,shareholder_controller
+//        未翻译数据：：：：f014n,varchar(15),流通股本,quote_data
+//        未翻译数据：：：：f038v,varchar(50),律师事务所 ,stock_basic
+//        未翻译数据：：：：f010n,varchar(10),目标价格（上限）,investment_rating
+//        未翻译数据：：：：f009n,varchar(10),目标价格（下限）,investment_rating
+//        未翻译数据：：：：f028n,varchar(20),赔付支出,financial_profit_y2007
+//        未翻译数据：：：：f007v,varchar(5),评级变化,investment_rating
+//        未翻译数据：：：：f051n,varchar(20),其他收益,quarter_financial_profit
+//        未翻译数据：：：：f051n,varchar(20),其他收益,ttm_financial_profit
+//        未翻译数据：：：：f039n,varchar(20),其他业务成本,financial_profit_y2007
+//        未翻译数据：：：：f025n,varchar(20),其他业务收入,financial_profit_y2007
+//        未翻译数据：：：：f062n,varchar(20),其它收益 根据最新会计准则，2017年11月28日增加此字段,financial_profit_y2007
+//        未翻译数据：：：：f015n,varchar(20),其中:委托客户管理资产业务净收入,financial_profit_y2007
+//        未翻译数据：：：：f018n,varchar(20),其中：分保费收入,financial_profit_y2007
+//        未翻译数据：：：：f007v,varchar(100),前十大股东,shareholding_concentration
+//        未翻译数据：：：：f008v,varchar(5),前一次投资评级,investment_rating
+//        未翻译数据：：：：f030n,varchar(20),融券余量金额,quote_data
+//        未翻译数据：：：：f031n,varchar(20),融资融券余额,quote_data
+//        未翻译数据：：：：f002d,varchar(10),上市日期 ,stock_basic
+//        未翻译数据：：：：f004v,varchar(10),上市状态 ,stock_basic
+//        未翻译数据：：：：f027v,varchar(20),申万行业二级名称 ,stock_basic
+//        未翻译数据：：：：f028v,varchar(20),申万行业三级名称 ,stock_basic
+//        未翻译数据：：：：f026v,varchar(10),申万行业一级名称 ,stock_basic
+//        未翻译数据：：：：f015v,varchar(10),省份 ,stock_basic
+//        未翻译数据：：：：f003v,varchar(20),实际控制人ID ,shareholder_controller
+//        未翻译数据：：：：f014v,varchar(10),实际控制人类型 自然人、国有、集体、国企、外企,shareholder_controller
+//        未翻译数据：：：：f004v,varchar(20),实际控制人名称 ,shareholder_controller
+//        未翻译数据：：：：f006v,varchar(10),是否首次评级,investment_rating
+//        未翻译数据：：：：f036n,varchar(10),市净率LF,quote_data
+//        未翻译数据：：：：f039n,varchar(10),市现率LYR（经营）,quote_data
+//        未翻译数据：：：：f041n,varchar(10),市现率LYR（总）,quote_data
+//        未翻译数据：：：：f040n,varchar(10),市现率TTM（经营）,quote_data
+//        未翻译数据：：：：f042n,varchar(10),市现率TTM（总）,quote_data
+//        未翻译数据：：：：f037n,varchar(10),市销率LYR,quote_data
+//        未翻译数据：：：：f038n,varchar(10),市销率TTM,quote_data
+//        未翻译数据：：：：f015n,varchar(10),市盈率,quote_data
+//        未翻译数据：：：：f032n,varchar(10),市盈率LYR,quote_data
+//        未翻译数据：：：：f034n,varchar(10),市盈率LYR（扣非）,quote_data
+//        未翻译数据：：：：f033n,varchar(10),市盈率TTM,quote_data
+//        未翻译数据：：：：f035n,varchar(10),市盈率TTM（扣非）,quote_data
+//        未翻译数据：：：：f006n,varchar(10),收盘价,quote_data
+//        未翻译数据：：：：f030n,varchar(20),提取保险责任准备金,financial_profit_y2007
+//        未翻译数据：：：：f020n,varchar(20),提取未到期责任准备金,financial_profit_y2007
+//        未翻译数据：：：：f004v,varchar(5),投资评级,investment_rating
+//        未翻译数据：：：：f005v,varchar(5),投资评级（经调整）,investment_rating
+//        未翻译数据：：：：f002v,varchar(10),研究机构简称,investment_rating
+//        未翻译数据：：：：f003v,varchar(50),研究员名称,investment_rating
+//        未翻译数据：：：：f005v,varchar(1000),业绩变化原因,performance_expectation
+//        未翻译数据：：：：f003v,varchar(10),业绩类型 包括：业绩小幅增长（50%以下）；业绩大幅增长（50%以上）；业绩预盈；业绩小幅下降（50%以下）；业绩大幅下降（50%以上）；业绩预亏；业绩持平；不确定；选择时程序自动将名称同时填入,performance_expectation
+//        未翻译数据：：：：f002v,varchar(10),业绩类型编码 通过公共编码表选择采集，对应的总类编码为035,performance_expectation
+//        未翻译数据：：：：f004v,varchar(255),业绩预告内容,performance_expectation
+//        未翻译数据：：：：f036n,varchar(20),业务及管理费,financial_profit_y2007
+//        未翻译数据：：：：f008v,varchar(50),英文简称 ,stock_basic
+//        未翻译数据：：：：f007v,varchar(10),增（减）持价格上限 ,shareholder_stock_change
+//        未翻译数据：：：：f005d,varchar(10),摘牌日期 ,stock_basic
+//        未翻译数据：：：：f009n,varchar(10),涨跌,quote_data
+//        未翻译数据：：：：f010n,varchar(10),涨跌幅,quote_data
+//        未翻译数据：：：：f025v,varchar(50),证监会二级行业名称 ,stock_basic
+//        未翻译数据：：：：f024v,varchar(50),证监会一级行业名称 ,stock_basic
+//        未翻译数据：：：：f001v,varchar(10),证券类别 ,stock_basic
+//        未翻译数据：：：：f036v,varchar(10),证券事务代表 ,stock_basic
+//        未翻译数据：：：：f001v,varchar(20),直接持有人ID ,shareholder_controller
+//        未翻译数据：：：：f002v,varchar(100),直接持有人名称 ,shareholder_controller
+//        未翻译数据：：：：f012v,varchar(50),直接控制人ID ,shareholder_controller
+//        未翻译数据：：：：f013v,varchar(100),直接控制人名称 实际控制人可能直接或间接控制该上市公司。当实际控制人直接控制该上市公司时，实际控制人的下一层级单位仍为实际控制人本身，当实际控制人间接通过其他公司持有该上市公司股票时，实际控制人的下一层级单位为实际控制人直接持股的公司名称。当同时存在直接或间接持股该上市公司时，每条关系链上的下一层级均要列出。,shareholder_controller
+//        未翻译数据：：：：f065n,varchar(20),终止经营净利润 2018年新增科目,financial_profit_y2007
+//        未翻译数据：：：：f012v,varchar(255),主营业务 ,stock_basic
+//        未翻译数据：：：：f017v,varchar(255),注册地址 ,stock_basic
+//        未翻译数据：：：：f063n,varchar(20),资产处置收益 2018年新增科目,financial_profit_y2007
+//        未翻译数据：：：：f012n,varchar(10),总笔数,quote_data
+//        未翻译数据：：：：f031v,varchar(30),总经理 ,stock_basic
+//        未翻译数据：：：：f005n,varchar(10),最低成交价,quote_data
+//        未翻译数据：：：：f004n,varchar(10),最高成交价,quote_data
+//        未翻译数据：：：：f011n,varchar(10),昨收盘价,quote_data
         return fieldEntities;
     }
 
     public static void main(String[] args) {
+//        FieldEntity feo = new FieldEntity();
+////        feo.setComment("固定资产折旧、油气资产折耗、生产性生物资产折旧 单位：元");
+////        feo.setComment("手续费及佣金支出");
+////        feo.setComment("每股收益");
+//        feo.setComment("10日平均（MA10）");
+//        FieldEntity fet = new FieldEntity();
+//////        fet.setComment("固定资产折旧、油气资产折耗、生产性生物资产折旧");
+//////        fet.setComment("其中:手续费及佣金支出");
+//////        fet.setComment("六、每一股份的一三五期间收1益：一三五七");
+//        fet.setComment("30日平均（MA30） ");
+//        System.out.println(isMatchComment(feo,fet));
+
         try {
             //获取所有的数据库
 //            List<String> databases = showAllDatabases();
@@ -568,9 +774,9 @@ public class MySqlMetaDataUtil {
 //            tableNames.add("table_show_field");
 //            List<String> createTables = getCreateTableByTableName(tableNames);
 //            createTables.stream().forEach(s -> System.out.println(s));
-//            listAllTablesTranslated();
+            //listAllTablesTranslated();
 
-            System.out.println("start--------");
+//            System.out.println("start--------");
 //            translateTableField("financial_cash_flow_y2007");
 //            translateTableField("financial_profit_y2007");
 //            translateTableField("investment_rating");
@@ -585,10 +791,10 @@ public class MySqlMetaDataUtil {
 //            translateTableField("stock_basic");
 //            translateTableField("ttm_cash_flow");
 //            translateTableField("ttm_financial_profit");
-            System.out.println("done------");
-              listAllTablesNoTranslate();
+//            System.out.println("done------");
+//              listAllTablesNoTranslate();
 //            List<FieldEntity> fieldEntities = listAllTablesTranslated();
-//            fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "  =======  " + fe.getField() + " ====== " + fe.getTableName()));
+//            fieldEntities.forEach((FieldEntity fe) -> System.out.println(fe.getComment() + "=======" + fe.getField() + "======" + fe.getTableName()));
 //            String str = "varchar(20)";
 //            Pattern p = Pattern.compile("\\((\\d*)\\)");
 //            Matcher m1 = p.matcher(str);
