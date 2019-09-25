@@ -1,5 +1,8 @@
 package com.lyp.learn.chap02;
 
+/**
+ * 商人，交易者
+ */
 public class Trader {
     private final String name;
     private final String city;

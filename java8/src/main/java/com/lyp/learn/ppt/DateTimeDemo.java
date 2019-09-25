@@ -9,6 +9,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
+import java.util.Set;
 
 public class DateTimeDemo {
         /**
@@ -246,13 +247,19 @@ public class DateTimeDemo {
     /**
      * Instant
      * 机器的日期和时间格式
+     * 时间戳(以Unix元年：1970年1月1日 00:00:00 到某个时间之间的毫秒数)
      */
     @Test
     public void test4(){
         Instant instant = Instant.now();
-        System.out.println("instant" + instant);
+        System.out.println("instant : " + instant); //默认获取 UTC 时区
         System.out.println("instant.getEpochSecond() 获取秒：" + instant.getEpochSecond());
         System.out.println(instant.getNano());
+
+        OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));
+        System.out.println(offsetDateTime);
+        System.out.println(offsetDateTime.toEpochSecond()); //返回时间戳
+        System.out.println(offsetDateTime.toLocalDateTime());
         System.out.println();
 
         Instant instant1 = Instant.ofEpochSecond(30);
@@ -262,6 +269,7 @@ public class DateTimeDemo {
         Instant instant2 = Instant.ofEpochSecond(86400);
         System.out.println("instant2 : " + instant2);
         System.out.println();
+
     }
 
 
@@ -282,6 +290,7 @@ public class DateTimeDemo {
         System.out.println("duration2 : " + duration2);
         System.out.println("duration2.getSeconds() : " + duration2.getSeconds());
         System.out.println("duration2.getNano() : " + duration2.getNano());
+        System.out.println("duration2.toNanos() : " + duration2.toNanos());
 
 
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -294,6 +303,7 @@ public class DateTimeDemo {
         Instant instant1 = instant.plusMillis(1000);
         Duration duration4 = Duration.between(instant,instant1);
         System.out.println("duration4 : " + duration4);
+        System.out.println("duration4 : " + duration4.getNano());
         System.out.println();
     }
 
@@ -337,7 +347,28 @@ public class DateTimeDemo {
     }
 
     /**
+     * 时间校正器
+     * TemporalAdjuster
+     */
+    @Test
+    public void testTemporalAdjuster(){
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt);
+
+        LocalDateTime ldt1 = ldt.with(TemporalAdjusters.firstDayOfMonth());
+        System.out.println(ldt1);
+
+        //下一个周日
+        LocalDateTime ldt2 = ldt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+        System.out.println(ldt2);
+    }
+
+    /**
+     * 时间格式化
      * 打印输出及解析日期-时间对象
+     *
+     * 时间.format(DateTimeFormatter实例)
+     * DateTimeFormatter实例.format(时间)
      */
     @Test
     public void test8(){
@@ -364,6 +395,7 @@ public class DateTimeDemo {
 
         LocalDateTime localDateTimeNow = LocalDateTime.now();
         DateTimeFormatter chinaDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
+        System.out.println("chinaDateTimeFormatter " + chinaDateTimeFormatter.format(localDateNow));
 
         DateTimeFormatter chinaDateTimeFormatterCustom = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()
@@ -391,8 +423,17 @@ public class DateTimeDemo {
         System.out.println();
     }
 
+    /**
+     * 带时区的
+     * ZoneDate ZoneTime ZoneDateTime
+     */
     @Test
     public  void test9(){
+        System.out.println("-----------支持的所有时区-----------------");
+        Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();
+        for(String s : availableZoneIds){
+            System.out.println(s);
+        }
         System.out.println("------------------时区-----------------------------");
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
         System.out.println("zonedDateTime : " + zonedDateTime);
@@ -405,4 +446,6 @@ public class DateTimeDemo {
         System.out.println("localDateTime.atZone(zoneId) : " + localDateTime.atZone(zoneId));
 
     }
+
+
 }

@@ -171,6 +171,10 @@ public class TransactionDemo {
                                                                 .min(Comparator.comparing(Transaction::getValue));
         System.out.println(transactionMin3.isPresent() ? transactionMin3.get() :"not find");
 
+        Optional<Transaction> transactionMin4 = transactions.stream()
+                                        .min((t1, t2) -> Integer.compare(t1.getValue(), t2.getValue()));
+        System.out.println(transactionMin4.isPresent() ? transactionMin4.get() : "not find");
+
 
     }
 }

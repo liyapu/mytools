@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lyp.mt.entity.FieldEntity;
 import com.lyp.mt.entity.yapi.*;
 import com.lyp.mt.entity.yapi.business.TableShowFieldVo;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

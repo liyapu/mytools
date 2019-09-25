@@ -17,6 +17,16 @@ public class FunctionDemo {
         System.out.println(result);
     }
 
+    @Test
+    public void test11(){
+        String result = strHandler("aabb我们",x -> x.toUpperCase());
+        System.out.println(result);
+    }
+
+    public String strHandler(String str,Function<String,String> function){
+       return function.apply(str);
+    }
+
     /**
      * compose
      * compose方法接收一个Function参数before，该方法说明是返回一个组合的函数，

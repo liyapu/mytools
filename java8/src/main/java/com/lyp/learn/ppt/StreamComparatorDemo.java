@@ -134,6 +134,26 @@ public class StreamComparatorDemo {
     }
 
     /**
+     * 按多个字段进行排序
+     * 先按颜色排序，颜色相同再按重量排序
+     */
+    @Test
+    public void test100(){
+        List<Apple> colorWeightList = new ArrayList<>(inventory);
+        Collections.sort(colorWeightList,(a1,a2)->{
+            if(a1.getColor().equals(a2.getColor())){
+                //正排序
+//                return Integer.compare(a1.getWeight(),a2.getWeight());
+                //倒排序
+                return -Integer.compare(a1.getWeight(),a2.getWeight());
+            }else{
+                return a1.getColor().compareTo(a2.getColor());
+            }
+        });
+        colorWeightList.forEach(System.out::println);
+    }
+
+    /**
      * thenComparing
      * thenComparingInt
      * 按多个字段进行排序

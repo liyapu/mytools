@@ -62,12 +62,12 @@ public class StreamGroupByDemo {
     @Test
     public void test2(){
         Map<String,List<Apple>> appleColorList = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor));
+                                .collect(Collectors.groupingBy(Apple::getColor));
         System.out.println(appleColorList);
 
         //映射为Set
         Map<String,Set<Apple>> appleColorSet = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor,Collectors.toSet()));
+                              .collect(Collectors.groupingBy(Apple::getColor,Collectors.toSet()));
         System.out.println(appleColorSet);
     }
 

@@ -510,4 +510,13 @@ public class RegexExample {
         }
     }
 
+
+    @Test
+    public void testStart(){
+        String numStartReg = "^\\s*[①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩|1|2|3|4|5|6|7|8|9|一|二|三|四|五|六|七|八|九|十]*\\s*[、|：|;|,]";
+        String str = " 1 、我们 一   ";
+        System.out.println(str);
+        System.out.println(str.replaceAll(numStartReg,""));
+    }
+
 }
