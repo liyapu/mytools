@@ -1,10 +1,15 @@
 package com.lyp.learn.guava.base;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableMap;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Joiner
@@ -13,6 +18,12 @@ import java.util.*;
  */
 
 public class JoinerTest {
+
+    public static final List<String> strList = Arrays.asList( "aa", "bb", "11", "22", "33");
+    public static final List<String> strListWithNullValue = Arrays.asList( "aa", "bb",null, "11", "22", null,"33");
+    public static final String [] strArr = new String [] {"aa", "bb", "11", "22", "33"};
+    public static final String [] strArrWithNullValue = new String [] {"aa", "bb", null, "11", "22", null, "33"};
+    public static final Map<String,String> strMap = ImmutableMap.of("aa","11","bb","22","cc","33");
 
     /**
      * 用分隔符把字符串序列连接起来也可能会遇上不必要的麻烦。
@@ -59,6 +70,28 @@ public class JoinerTest {
         System.out.println(stringBuilder.toString());
     }
 
+    @Test
+    public void test32() {
+        Joiner joiner = Joiner.on(",").skipNulls();
+        StringBuilder sb = new StringBuilder();
+        sb.append("start").append(",");
+        StringBuilder stringBuilder = joiner.appendTo(sb, "aa", "bb", null, 11, 22, null, 33);
+        System.out.println(stringBuilder.toString());
+    }
+
+    @Test
+    public void test33() {
+        Joiner joiner = Joiner.on(",").skipNulls();
+        StringBuilder sb = new StringBuilder();
+        sb.append("start").append(",");
+        String [] arrs = new String [] {"aa", "bb", null, "11", "22", null, "33"};
+
+        StringBuilder stringBuilder = joiner.appendTo(sb, arrs);
+        System.out.println(stringBuilder.toString());
+
+        System.out.println(sb == stringBuilder);
+    }
+
 
     /**
      * 拼接数组,列表
@@ -90,6 +123,68 @@ public class JoinerTest {
 
         String join = joiner.join(sets);
         System.out.println(join);
+    }
+
+    /**
+     * 自己实现 skipNulls
+     */
+    @Test
+    public void testSkipNullsImplement(){
+        String str1 = strListWithNullValue.stream()
+                .filter(w -> w != null && !w.isEmpty())
+                .collect(Collectors.joining());
+
+        System.out.println(str1);
+
+        String str2 = strListWithNullValue.stream()
+                .filter(w -> StringUtils.isNotBlank(w))
+                .collect(Collectors.joining(";"));
+        System.out.println(str2);
+
+    }
+
+    /**
+     * 自己实现 useForNull
+     */
+    @Test
+    public void testUseForNUllImplement(){
+        String str1 = strListWithNullValue.stream()
+                .map(w -> w == null || w.isEmpty() ? "null" : w)
+                .collect(Collectors.joining());
+
+        System.out.println(str1);
+
+        String str2 = strListWithNullValue.stream()
+                .map(w -> StringUtils.isBlank(w) ? "null" : w)
+                .collect(Collectors.joining(";"));
+        System.out.println(str2);
+
+    }
+
+    /**
+     * 写进文件
+     * appendTo
+     */
+    @Test
+    public void testJoinerFileWriter1() throws Exception {
+        String targetFileName = JoinerTest.class.getResource("/").getPath() + "aa.txt";
+        try(FileWriter fileWriter = new FileWriter(new File(targetFileName))) {
+            Joiner joiner = Joiner.on(";").skipNulls();
+
+            joiner.appendTo(fileWriter,strList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * MapJoiner
+     */
+    @Test
+    public void testMapJoiner(){
+        String str1 = Joiner.on('#').withKeyValueSeparator("=").join(strMap);
+        System.out.println(str1);
     }
 
 }
