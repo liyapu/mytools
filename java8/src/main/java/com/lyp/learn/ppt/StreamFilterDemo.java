@@ -1,9 +1,10 @@
 package com.lyp.learn.ppt;
 
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -246,9 +247,80 @@ public class StreamFilterDemo {
         List<String> strList2 = stream2.collect(Collectors.toList());
         strList2.forEach(System.out::println);
 
-
-
     }
 
+    /**
+     * list 转 map
+     * key 中没有重复值
+     */
+    @Test
+    public void testListToMap1(){
+        Map<Integer, String> map = inventory.stream()
+                                    .collect(Collectors.toMap(Apple::getWeight, Apple::getAddress));
+        for(Map.Entry<Integer,String> entry : map.entrySet()){
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
 
+    /**
+     * key中含有重复值
+     * 在list转为map时，作为key的值有可能重复，
+     * 这时候流的处理会抛出个异常：Java.lang.IllegalStateException:Duplicate key。
+     *
+     * 这时候就要在toMap方法中指定当key冲突时key的选择。(这里是选择第二个key覆盖第一个key)
+     */
+    @Test
+    public void testListToMap2(){
+        Map<String, String> map = inventory.stream()
+                //下面这句有异常
+//                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress));
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress,(k1,k2) -> k2));
+
+       for(Map.Entry<String,String> entry : map.entrySet()){
+           System.out.println(entry.getKey() + "=" + entry.getValue());
+       }
+    }
+
+    /**
+     * 合并冲突key的结果
+     */
+    @Test
+    public void testListToMap3(){
+        Map<String, String> map = inventory.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress,(k1,k2) -> k1 + "," + k2));
+
+        for(Map.Entry<String,String> entry : map.entrySet()){
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
+
+    /**
+     * 收集对象实体本身
+     * 在开发过程中我们也需要有时候对自己的list中的实体按照其中的一个字段进行分组（比如 id ->List），
+     * 这时候要设置map的value值是实体本身。
+     */
+    @Test
+    public void testListToMap4(){
+        Map<Integer, Apple> map = inventory.stream()
+                .collect(Collectors.toMap(Apple::getWeight, apple -> apple));
+
+        for(Map.Entry<Integer,Apple> entry : map.entrySet()){
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
+
+    /**
+     * 收集对象实体本身
+     * apple -> apple 是一个返回本身的lambda表达式，
+     * 其实还可以使用Function接口中的一个默认方法 Function.identity()，这个方法返回自身对象，更加简洁
+     */
+    @Test
+    public void testListToMap5(){
+        Map<Integer, Apple> map = inventory.stream()
+                .collect(Collectors.toMap(Apple::getWeight, Function.identity()));
+
+        for(Map.Entry<Integer,Apple> entry : map.entrySet()){
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
 }

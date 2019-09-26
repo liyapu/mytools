@@ -209,8 +209,10 @@ public class StreamGroupByDemo {
     }
 
     /**
-     * partitioningBy方法接收一个Predicate作为分区判断的依据，满足条件的元素放在key为true的集合中，
-     * 反之放在key为false的集合中
+     * partitioningBy 可以理解为特殊的 groupingBy，key值为true和false，
+     *
+     * partitioningBy方法接收一个Predicate作为分区判断的依据 （用于判断的函数式接口）
+     * 满足条件的元素放在key为true的集合中，反之放在key为false的集合中
      */
     @Test
     public void test12(){
