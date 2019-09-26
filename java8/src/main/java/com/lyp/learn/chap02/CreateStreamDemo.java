@@ -19,12 +19,33 @@ import java.util.stream.Stream;
 public class CreateStreamDemo {
 
     /**
-     * 由值创建流
+     * 由个别值创建流
+     */
+    @Test
+    public void testStr(){
+        Stream<String> strStream = Stream.of("aa","bb","ff","bb","gg");
+        strStream.forEach(s -> System.out.print(s +", "));
+    }
+
+    /**
+     * 有 值产生流
+     * 对于基本数值型，目前有三种对应的包装类型 Stream：IntStream、LongStream、DoubleStream
+     *
+     * 当然我们也可以用 Stream<Integer>、Stream<Long> >、Stream<Double>，但是 boxing 和 unboxing 会很耗时，
+     * 所以特别为这三种基本数值型提供了对应的 Stream。
      */
     @Test
     public void testNum(){
-        Stream<String> strStream = Stream.of("aa","bb","ff","bb","gg");
-        strStream.forEach(s -> System.out.print(s +", "));
+        IntStream.of(new int[] {1,3,9})
+                    .forEach(System.out::println);
+        System.out.println("-------------");
+
+        IntStream.range(1,3)
+                .forEach(System.out::println);
+        System.out.println("------------");
+
+        IntStream.rangeClosed(1,3)
+                .forEach(System.out::println);
     }
 
     /**
