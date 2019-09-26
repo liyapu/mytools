@@ -1,5 +1,6 @@
 package com.lyp.learn.ppt;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -208,6 +209,28 @@ public class StreamSummaryDemo {
         LongSummaryStatistics longSummaryStatistics = inventory.stream()
                                             .collect(Collectors.summarizingLong(Apple::getWeight));
         System.out.println(longSummaryStatistics);
+    }
+
+    List<Apple> apples = Arrays.asList(
+            new Apple("green",80,"黄土高原"),
+            new Apple("green",200,"黄河故道"),
+            new Apple("red",null,"渤海湾"),
+            new Apple("yellow",20,"渤海湾")
+    );
+    /**
+     * 含有null 值求和
+     */
+    @Test
+    public void testSumNull(){
+        Integer sum1 = apples.stream()
+                            .map(a ->  Objects.isNull(a.getWeight()) ? 0 : a.getWeight().intValue())
+                            .reduce(0,Integer::sum);
+        System.out.println(sum1);
+
+        Integer sum2 = apples.stream()
+                            .map(a -> NumberUtils.toInt(a.getWeight() + "", 0))
+                            .reduce(0, Integer::sum);
+        System.out.println(sum2);
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.lyp.learn.ppt;
 
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +31,14 @@ import java.util.Optional;
  *
  * 使用 Optional 时尽量不直接调用 Optional.get() 方法, Optional.isPresent() 更应该被视为一个私有方法,
  * 应依赖于其他像 Optional.orElse(), Optional.orElseGet(), Optional.map() 等这样的方法
+ *------------------------------------------------------------------------------
+ * Null的含糊语义让人很不舒服。Null很少可以明确地表示某种语义，
+ * 例如，Map.get(key)返回Null时，可能表示map中的值是null，亦或map中没有key对应的值。
+ * Null可以表示失败、成功或几乎任何情况。使用Null以外的特定值，会让你的逻辑描述变得更清晰。
+ *
+ * Guava用Optional<T>表示可能为null的T类型引用。
+ * 一个Optional实例可能包含非null的引用（我们称之为引用存在），也可能什么也不包括（称之为引用缺失）。
+ * 它从不说包含的是null值，而是用存在或缺失来表示。但Optional从不会包含null值引用。
  */
 
 public class OptionalDemo {
