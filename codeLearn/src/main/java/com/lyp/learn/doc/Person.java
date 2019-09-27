@@ -11,6 +11,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class Person {
+    private String id;
     private String name;
     private Integer age;
     private String address;
@@ -19,7 +20,8 @@ public class Person {
 
     }
 
-    public Person(String name, Integer age, String address) {
+    public Person(String id,String name, Integer age, String address) {
+        this.id  = id;
         this.name = name;
         this.age = age;
         this.address = address;

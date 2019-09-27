@@ -25,6 +25,55 @@ public class DocUtils {
      * 简单输出
      */
     @Test
+    public void test00(){
+        try {
+            Map<String,Object> dataMap = new HashMap<>();
+            dataMap.put("companyName", "北京启迪区块链");
+            dataMap.put("companyAddress", "五道口搜狐大厦");
+            dataMap.put("companyCapital","100w");
+
+            List<Person> persons = new ArrayList<>();
+            persons.add(new Person("1","张三",28,"天津市"));
+            persons.add(new Person("2","李四",18,"洛阳市"));
+            persons.add(new Person("3","王五",16,"商丘市"));
+            persons.add(new Person("4","赵六",20,"郑州市"));
+            persons.add(new Person("5","张三",10,"西安市"));
+            dataMap.put("persons",persons);
+
+            Map<String,String> userMap = new HashMap<>();
+            userMap.put("1","李世民");
+            userMap.put("2","唐国强");
+            userMap.put("3","毛泽东");
+            dataMap.put("userMap",userMap);
+
+            Configuration configuration = new Configuration(Configuration.getVersion());
+            configuration.setDefaultEncoding("utf-8");
+            String targetTemplate = DocUtils.class.getClassLoader().getResource("").getPath().toString();
+            String targetOutput = DocUtils.class.getClassLoader().getResource("").getPath().toString() + "平凡世界.doc";
+            System.out.println(targetTemplate);
+            System.out.println(targetOutput);
+            configuration.setDirectoryForTemplateLoading(new File(targetTemplate));
+
+            // 输出文档路径及名称
+            File outFile = new File(targetOutput);
+//            outFile.deleteOnExit();
+            //以utf-8的编码读取ftl文件
+            Template t =  configuration.getTemplate("平凡的世界.xml","utf-8");
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"),10240);
+            t.process(dataMap, out);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 简单输出
+     */
+    @Test
     public void test01(){
         try {
             Map<String,String> dataMap = new HashMap<String,String>();
@@ -35,10 +84,14 @@ public class DocUtils {
             Configuration configuration = new Configuration(Configuration.getVersion() );
             configuration.setDefaultEncoding("utf-8");
             //指定模板路径的第二种方式,我的路径是D:/ 还有其他方式
+            String targetTemplate = DocUtils.class.getClassLoader().getResource("").getPath().toString();
+            String targetOutput = DocUtils.class.getClassLoader().getResource("").getPath().toString() + "firstt.doc";
+            System.out.println(targetTemplate);
+            System.out.println(targetOutput);
             configuration.setDirectoryForTemplateLoading(new File("/Users/liyapu/myGitRepository/mytools/codeLearn/src/main/resources/"));
 
             // 输出文档路径及名称
-            File outFile = new File("/Users/liyapu/test/doc/first.doc");
+            File outFile = new File(targetOutput);
             //以utf-8的编码读取ftl文件
             Template t =  configuration.getTemplate("第1版.ftl","utf-8");
             Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"),10240);
@@ -59,10 +112,10 @@ public class DocUtils {
         try {
             Map<String,Object> dataMap = new HashMap<>();
             List<Person> persons = new ArrayList<>();
-            persons.add(new Person("张三",20,"北京"));
-            persons.add(new Person("李四",18,"上海"));
-            persons.add(new Person("王五",25,"长安"));
-            persons.add(new Person("赵柳",19,"南京"));
+//            persons.add(new Person("张三",20,"北京"));
+//            persons.add(new Person("李四",18,"上海"));
+//            persons.add(new Person("王五",25,"长安"));
+//            persons.add(new Person("赵柳",19,"南京"));
             dataMap.put("persons",persons);
 
             Configuration configuration = new Configuration();
