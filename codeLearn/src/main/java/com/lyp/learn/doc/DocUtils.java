@@ -46,6 +46,45 @@ public class DocUtils {
             userMap.put("3","毛泽东");
             dataMap.put("userMap",userMap);
 
+            List<Branch> branches = new ArrayList<>();
+            branches.add(new Branch("5d5500fc1623dd0006518883","北京分支"));
+            branches.add(new Branch("5d380b3714718e6c0382ba44","湖南分支"));
+            branches.add(new Branch("5d5a922ac59e8b000799f598","海南分支"));
+            branches.add(new Branch("5d39440214718e71ce1a80b9","商丘分支"));
+            dataMap.put("branches",branches);
+
+            Map<String,Object> branchSonMap = new HashMap<>();
+            Map<String,Object> map5d5500fc1623dd0006518883 = new HashMap<>();
+            map5d5500fc1623dd0006518883.put("branchUnit","万元");
+            map5d5500fc1623dd0006518883.put("branchTotalCapital","12334.433");
+            map5d5500fc1623dd0006518883.put("branchPerson",new Person("100","张三分支",28,"天津市分支"));
+            dataMap.put("map5d5500fc1623dd0006518883",map5d5500fc1623dd0006518883);
+            branchSonMap.put("map5d5500fc1623dd0006518883",map5d5500fc1623dd0006518883);
+
+            Map<String,Object> map5d380b3714718e6c0382ba44 = new HashMap<>();
+            map5d380b3714718e6c0382ba44.put("branchUnit","万元");
+            map5d380b3714718e6c0382ba44.put("branchTotalCapital","200000.200");
+            map5d380b3714718e6c0382ba44.put("branchPerson",new Person("200","利斯市分支",28,"陕西市分支"));
+            dataMap.put("map5d380b3714718e6c0382ba44",map5d380b3714718e6c0382ba44);
+            branchSonMap.put("map5d380b3714718e6c0382ba44",map5d380b3714718e6c0382ba44);
+
+            Map<String,Object> map5d5a922ac59e8b000799f598 = new HashMap<>();
+            map5d5a922ac59e8b000799f598.put("branchUnit","万元");
+            map5d5a922ac59e8b000799f598.put("branchTotalCapital","200000.200");
+            map5d5a922ac59e8b000799f598.put("branchPerson",new Person("300","利斯市分支",28,"陕西市分支"));
+            dataMap.put("map5d5a922ac59e8b000799f598",map5d5a922ac59e8b000799f598);
+            branchSonMap.put("map5d5a922ac59e8b000799f598",map5d5a922ac59e8b000799f598);
+
+            Map<String,Object> map5d39440214718e71ce1a80b9 = new HashMap<>();
+            map5d39440214718e71ce1a80b9.put("branchUnit","万亿元");
+            map5d39440214718e71ce1a80b9.put("branchTotalCapital","300000.200");
+            map5d39440214718e71ce1a80b9.put("branchPerson",new Person("400","商海分支",28,"商丘市啊分支"));
+            dataMap.put("map5d39440214718e71ce1a80b9",map5d39440214718e71ce1a80b9);
+            branchSonMap.put("map5d39440214718e71ce1a80b9",map5d39440214718e71ce1a80b9);
+
+            dataMap.put("branchSonMap",branchSonMap);
+
+
             Configuration configuration = new Configuration(Configuration.getVersion());
             configuration.setDefaultEncoding("utf-8");
             String targetTemplate = DocUtils.class.getClassLoader().getResource("").getPath().toString();

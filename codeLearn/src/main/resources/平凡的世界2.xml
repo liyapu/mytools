@@ -588,6 +588,14 @@
                         <#list persons as person>
                         <w:tr>
                             <w:tblPrEx>
+                                <w:tblBorders>
+                                    <w:top w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                    <w:left w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                    <w:bottom w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                    <w:right w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                    <w:insideH w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                    <w:insideV w:val="single" w:color="auto" w:sz="4" w:space="0"/>
+                                </w:tblBorders>
                                 <w:tblLayout w:type="fixed"/>
                             </w:tblPrEx>
                             <w:tc>
@@ -799,6 +807,7 @@
                             </w:t>
                         </w:r>
                     </w:p>
+
                     <w:p>
                         <w:pPr>
                             <w:jc w:val="left"/>
@@ -848,7 +857,7 @@
                         <w:pPr>
                             <w:jc w:val="left"/>
                             <w:rPr>
-                                <w:rFonts w:hint="default"/>
+                                <w:rFonts w:hint="eastAsia"/>
                                 <w:sz w:val="30"/>
                                 <w:szCs w:val="30"/>
                             </w:rPr>
@@ -864,171 +873,6 @@
                                  ${value}
                                 </#list>
                             </w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:pStyle w:val="3"/>
-                            <w:numPr>
-                                <w:ilvl w:val="0"/>
-                                <w:numId w:val="1"/>
-                            </w:numPr>
-                            <w:ind w:left="0" w:leftChars="0" w:firstLine="601" w:firstLineChars="200"/>
-                            <w:rPr>
-                                <w:rFonts w:hint="eastAsia"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>列表类型和键值对类型混合输出</w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>这是个一种混合输出，先看看</w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>混合一：
-                                <#list branches as branch>
-                                     ${branch?counter},${branch.eid},${branch.name}
-                                </#list>
-                            </w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>混合二：
-                                <#list branches as branch>
-                                     ${branch?counter},${branch.eid},${branch.name},
-                                        <w:br/>
-                                        <#list map5d5500fc1623dd0006518883?keys as key>
-                                          key:${key}--value:${map5d5500fc1623dd0006518883["${key}"]}
-                                         <w:br/>
-                                        </#list>
-                                        <w:br/>
-
-                            </#list>
-                            </w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>混合三：
-                                <#list branches as branch>
-                                    ${branch?counter},${branch.eid},${branch.name},
-                                    <w:br/>
-                                    <#assign branchEidKey="map" + branch.eid/>
-                                        ${branchEidKey}
-                                        <w:br/>
-                                        <#list branchSonMap[branchEidKey]?keys as key>
-                                          key:${key}--value:${branchSonMap[branchEidKey]["${key}"]}
-                                        <w:br/>
-                                        </#list>
-                                    <w:br/>
-                                </#list>
-                            </w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>混合四：
-                                    <#list branches as branch>
-                                    ${branch?counter},${branch.eid},${branch.name},
-                                    <w:br/>
-                                    <#assign branchEidMap=branchSonMap["map" + branch.eid]/>
-                                    <w:br/>
-                                    <#list branchEidMap?keys as key>
-                                      key:${key}--value:${branchEidMap["${key}"]}
-                                    <w:br/>
-                                    </#list>
-                                    <w:br/>
-                                </#list>
-                            </w:t>
-                        </w:r>
-                    </w:p>
-                    <w:p>
-                        <w:pPr>
-                            <w:rPr>
-                                <w:rFonts w:hint="eastAsia"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                        </w:pPr>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>混合五：</w:t>
                         </w:r>
                         <w:bookmarkStart w:id="0" w:name="_GoBack"/>
                         <w:bookmarkEnd w:id="0"/>
@@ -1113,7 +957,7 @@
                 <dcterms:created xsi:type="dcterms:W3CDTF">2019-09-27T13:30:00Z</dcterms:created>
                 <dc:creator>liyapu</dc:creator>
                 <cp:lastModifiedBy>liyapu</cp:lastModifiedBy>
-                <dcterms:modified xsi:type="dcterms:W3CDTF">2019-09-27T16:14:51Z</dcterms:modified>
+                <dcterms:modified xsi:type="dcterms:W3CDTF">2019-09-27T15:02:58Z</dcterms:modified>
                 <cp:revision>1</cp:revision>
             </cp:coreProperties>
         </pkg:xmlData>
@@ -1345,17 +1189,14 @@
                     <w:rsid w:val="4DCB6576"/>
                     <w:rsid w:val="69E8D4ED"/>
                     <w:rsid w:val="72FDB01D"/>
-                    <w:rsid w:val="77EEBE9D"/>
                     <w:rsid w:val="7BEF89FD"/>
                     <w:rsid w:val="7EFF0F48"/>
                     <w:rsid w:val="7EFF39C3"/>
                     <w:rsid w:val="7FBD7787"/>
-                    <w:rsid w:val="901F1CC4"/>
                     <w:rsid w:val="BF75B835"/>
                     <w:rsid w:val="CFEFABAB"/>
                     <w:rsid w:val="E561AD93"/>
                     <w:rsid w:val="EF7FF248"/>
-                    <w:rsid w:val="F8E7AFF3"/>
                     <w:rsid w:val="FAFECC68"/>
                     <w:rsid w:val="FCFF1E5E"/>
                     <w:rsid w:val="FDFF92EA"/>
