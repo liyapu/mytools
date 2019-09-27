@@ -2,11 +2,12 @@ package com.lyp.learn.guava.base;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author: liyapu
@@ -35,13 +36,15 @@ import java.util.List;
  */
 public class SplitterTest {
 
+    public static String strWithEmpty = "a,   b  , c,,,d , 1 1 , 2 ";
+    public static String strMapOrigin = "aa=11,    bb   = 22,  cc  =   33  ,,dd=44";
     /**
      * 原生结果，不做处理
      */
     @Test
     public void test1(){
         Iterable<String> split = Splitter.on(",")
-                                        .split("a,   b  , c,,,d , 1 1 , 2 ");
+                                        .split(strWithEmpty);
         Iterator<String> iterator = split.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());
@@ -56,35 +59,59 @@ public class SplitterTest {
         Iterable<String> split = Splitter.on(",")
                                         .trimResults()
                                         .omitEmptyStrings()
-                                        .split("a,   b  , c,,,d , 1 1 , 2 ");
+                                        .split(strWithEmpty);
         Iterator<String> iterator = split.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());
         }
     }
-
     /**
-     * 返回List 结果
+     * 返回List  结果
      */
     @Test
     public void test3(){
-        Iterable<String> split = Splitter.on(",")
-                                        .trimResults()
-                                        .omitEmptyStrings()
-                                        .split("a,   b  , c,,,d , 1 1 , 2 ");
+        List<String> strList = Splitter.on(",")
+                                .trimResults()
+                                .omitEmptyStrings()
+                                .splitToList(strWithEmpty);
 
-        List<String> list = Lists.newArrayList(split);
-        for(String str : list){
+        for(String str : strList){
             System.out.println(str);
         }
     }
 
+    /**
+     * 拆分成map
+     */
+    @Test
+    public void testMap(){
+        Map<String, String> map = Splitter.on(",")
+                                            .trimResults()
+                                            .omitEmptyStrings()
+                                            .withKeyValueSeparator("=")
+                                            .split(strMapOrigin);
+        for(Map.Entry<String,String> entry : map.entrySet()){
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+    }
     /**
      * 固定长度拆分
      */
     @Test
     public void testFixLength(){
         List<String> list = Splitter.fixedLength(2).splitToList("1234567     89");
+        for(String str : list){
+            System.out.println(str);
+        }
+    }
+
+    /**
+     * limit
+     * 表示一共拆分成几个
+     */
+    @Test
+    public void testLimit(){
+        List<String> list = Splitter.fixedLength(2).limit(3).splitToList("1234567     89");
         for(String str : list){
             System.out.println(str);
         }
@@ -101,4 +128,27 @@ public class SplitterTest {
                                         .split("foo,;bar,quux.aa.  bb ;");
         split.forEach(System.out::println);
     }
+
+
+    /**
+     * pattern
+     * 正则表达式
+     */
+    @Test
+    public void testPattern(){
+        String originStr = "aa|bb| cc |dd|ee";
+        List<String> strList1 = Splitter.onPattern("\\|").trimResults().splitToList(originStr);
+        for(String str : strList1){
+            System.out.println(str);
+        }
+
+        System.out.println("-------");
+        Pattern p = Pattern.compile("\\|");
+        Splitter.on(p).trimResults()
+                .splitToList(originStr)
+                .stream()
+                .forEach(System.out::println);
+    }
+
 }
+
