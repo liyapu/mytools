@@ -1594,7 +1594,7 @@
                     <w:szCs w:val="30"/>
                     <w:vertAlign w:val="baseline"/>
                 </w:rPr>
-                <w:t>${branchEidMap.branchPerson.name!""}</w:t>
+                <w:t>${(branchEidMap.branchPerson.name)!""}</w:t>
             </w:r>
         </w:p>
     </w:tc>
@@ -1647,7 +1647,7 @@
                     <w:szCs w:val="30"/>
                     <w:vertAlign w:val="baseline"/>
                 </w:rPr>
-                <w:t>${branchEidMap.branchPerson.age!""}</w:t>
+                <w:t>${(branchEidMap.branchPerson.age)!""}</w:t>
             </w:r>
         </w:p>
     </w:tc>
@@ -1700,7 +1700,7 @@
                     <w:szCs w:val="30"/>
                     <w:vertAlign w:val="baseline"/>
                 </w:rPr>
-                <w:t>${branchEidMap.branchPerson.address!""}</w:t>
+                <w:t>${(branchEidMap.branchPerson.address)!""}</w:t>
             </w:r>
         </w:p>
     </w:tc>
@@ -1823,7 +1823,7 @@
         </w:p>
     </w:tc>
 </w:tr>
-<#assign branchChanges = branchEidMap.changes />
+<#assign branchChanges = (branchEidMap.changes)![] />
 <#list branchChanges as  branchChange>
 
 <w:tr>

@@ -62,14 +62,14 @@ public class DocUtils {
 
             Map<String,Object> branchSonMap = new HashMap<>();
             Map<String,Object> map5d5500fc1623dd0006518883 = new HashMap<>();
-            map5d5500fc1623dd0006518883.put("branchUnit","万元");
-            map5d5500fc1623dd0006518883.put("branchTotalCapital","12334.433");
-            map5d5500fc1623dd0006518883.put("branchPerson",new Person("100","张三分支",28,"天津市分支"));
-            List<Change> changes5d5500fc1623dd0006518883 = new ArrayList<>();
-            changes5d5500fc1623dd0006518883.add(new Change("放假了三，张三分支变更信息显示看看",new Date()));
-            changes5d5500fc1623dd0006518883.add(new Change("收购企业，张三分支产权重组",new Date()));
-            changes5d5500fc1623dd0006518883.add(new Change("人员调整，张三分支大变动",new Date()));
-            map5d5500fc1623dd0006518883.put("changes",changes5d5500fc1623dd0006518883);
+//            map5d5500fc1623dd0006518883.put("branchUnit","万元");
+//            map5d5500fc1623dd0006518883.put("branchTotalCapital","12334.433");
+//            map5d5500fc1623dd0006518883.put("branchPerson",new Person("100","张三分支",28,"天津市分支"));
+//            List<Change> changes5d5500fc1623dd0006518883 = new ArrayList<>();
+//            changes5d5500fc1623dd0006518883.add(new Change("放假了三，张三分支变更信息显示看看",new Date()));
+//            changes5d5500fc1623dd0006518883.add(new Change("收购企业，张三分支产权重组",new Date()));
+//            changes5d5500fc1623dd0006518883.add(new Change("人员调整，张三分支大变动",new Date()));
+//            map5d5500fc1623dd0006518883.put("changes",changes5d5500fc1623dd0006518883);
             branchSonMap.put("map5d5500fc1623dd0006518883",map5d5500fc1623dd0006518883);
 
             Map<String,Object> map5d380b3714718e6c0382ba44 = new HashMap<>();
