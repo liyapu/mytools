@@ -1,8 +1,12 @@
 package com.lyp.learn.guava.base;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.ComparisonChain;
 import com.lyp.learn.bean.Person;
 import org.junit.jupiter.api.Test;
+
+import java.util.Calendar;
 
 /**
  * @author: liyapu
@@ -48,5 +52,101 @@ public class ObjectsTest {
         System.out.println(java.util.Objects.hashCode(person));
         System.out.println(java.util.Objects.hash(person));
         System.out.println(java.util.Objects.hash(person.getName(),person.getAddress(),person.getAge()));
+    }
+
+
+    static class Guava implements Comparable<Guava> {
+        private String manufactory;
+        private String version;
+        private Calendar releaseDate;
+
+        public Guava(String manufactory, String version, Calendar releaseDate) {
+            this.manufactory = manufactory;
+            this.version = version;
+            this.releaseDate = releaseDate;
+        }
+
+        @Override
+        public int compareTo(Guava o) {
+            return ComparisonChain.start()
+                    .compare(this.manufactory,o.manufactory)
+                    .compare(this.version,o.version)
+                    .compare(this.releaseDate,o.releaseDate)
+                    .result();
+        }
+
+        /**
+         * idea 给生成的 equals,hashCode,toString 方法
+         */
+//        @Override
+//        public boolean equals(Object o) {
+//            if (this == o) return true;
+//            if (o == null || getClass() != o.getClass()) return false;
+//            Guava guava = (Guava) o;
+//            return manufactory.equals(guava.manufactory) &&
+//                    version.equals(guava.version) &&
+//                    releaseDate.equals(guava.releaseDate);
+//        }
+//
+//        @Override
+//        public int hashCode() {
+//            return java.util.Objects.hash(manufactory, version, releaseDate);
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "Guava{" +
+//                    "manufactory='" + manufactory + '\'' +
+//                    ", version='" + version + '\'' +
+//                    ", releaseDate=" + releaseDate +
+//                    '}';
+//        }
+
+        /**
+         * 也可以自己写，或者用第三方的写
+         */
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(manufactory, version, releaseDate);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if(this == o) return true;
+            if(o == null || getClass() != o.getClass()) return false;
+            Guava guava = (Guava) o;
+            return Objects.equal(this.manufactory,guava.manufactory)
+                    && Objects.equal(this.version,guava.version)
+                    && Objects.equal(this.releaseDate,guava.releaseDate);
+         }
+        @Override
+        public String toString() {
+            return MoreObjects.toStringHelper(this).omitNullValues()
+                    .add("manufactory",this.manufactory)
+                    .add("version",this.version)
+                    .add("releaseDate",this.releaseDate)
+                    .toString();
+        }
+    }
+
+    @Test
+    public void testGuava(){
+        Calendar calendar1 = Calendar.getInstance();
+        Guava guava1 = new Guava("google","27",calendar1);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.add(Calendar.YEAR,1);
+        Guava guava2 = new Guava("google","27",calendar2);
+
+        System.out.println("-----guava1-----");
+        System.out.println(guava1.toString());
+        System.out.println(guava1.hashCode());
+
+        System.out.println("----guava2-----");
+        System.out.println(guava2.toString());
+        System.out.println(guava2.hashCode());
+
+        System.out.println("-----------------");
+        System.out.println(guava1.compareTo(guava2));
     }
 }

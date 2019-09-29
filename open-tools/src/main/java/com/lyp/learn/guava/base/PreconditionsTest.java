@@ -1,8 +1,11 @@
 package com.lyp.learn.guava.base;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.lyp.learn.bean.Person;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 /**
  * @author: liyapu
@@ -30,18 +33,52 @@ import org.junit.jupiter.api.Test;
  */
 public class PreconditionsTest {
 
+    /**
+     * 只抛出异常的
+     * NullPointerException 异常
+     */
     @Test
-    public void test01(){
-//        methodPerson(null);
-        methodPerson(new Person());
+    public void testCheckNotNull(){
+//        methodCheckNotNull(null);
+        methodCheckNotNull(new Person());
     }
 
-    public static void methodPerson(Person person){
+    public static void methodCheckNotNull(Person person){
+        Preconditions.checkNotNull(person);
+        System.out.println("methodPerson.......");
+    }
+
+    /**
+     * 抛出异常，和异常信息
+     */
+    @Test
+    public void testCheckNotNullWithMessage(){
+//        methodCheckNotNullWithMessage(null);
+        methodCheckNotNullWithMessage(new Person());
+    }
+    public static void methodCheckNotNullWithMessage(Person person){
         Preconditions.checkNotNull(person,"param person can not is null");
         System.out.println("methodPerson.......");
     }
 
+    /**
+     * 抛出异常，和格式化异常信息
+     */
+    @Test
+    public void testCheckNotNullWithFormatMessage(){
+//        methodCheckNotNullWithFormatMessage(null);
+        methodCheckNotNullWithFormatMessage(new Person());
+    }
 
+    public static void methodCheckNotNullWithFormatMessage(Person person){
+        Preconditions.checkNotNull(person,"param person can not is null,格式化 %s 个参数",2);
+        System.out.println("methodPerson.......");
+    }
+
+
+    /**
+     * IllegalArgumentException 异常
+     */
     @Test
     public void test02(){
 //        methodNum(-100);
@@ -64,5 +101,42 @@ public class PreconditionsTest {
         System.out.println("methodNumber....");
     }
 
+    /**
+     * 校验下标
+     * IndexOutOfBoundsException 异常
+     */
+    @Test
+    public void testIndex(){
+        List<String> list = ImmutableList.of();
+        Preconditions.checkElementIndex(10,list.size());
+    }
+
+    /**
+     * 校验状态
+     * IllegalStateException 异常
+     */
+    @Test
+    public void testState(){
+        String state = "INIT";
+        Preconditions.checkState(state.equals("FINAL"));
+    }
+
+    /**
+     * java 提供的 语法糖，支持简单断言
+     */
+    @Test
+    public void testAssert(){
+        List<String> list = null;
+        assert list != null;
+    }
+
+    /**
+     * 断言 + message
+     */
+    @Test
+    public void testAssertWithMessage(){
+        List<String> list = null;
+        assert  list != null : "list must not be null";
+    }
 
 }
