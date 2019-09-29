@@ -1221,15 +1221,14 @@
                                 <w:sz w:val="30"/>
                                 <w:szCs w:val="30"/>
                             </w:rPr>
-                            <w:t>多</w:t>
-                        </w:r>
-                        <w:r>
-                            <w:rPr>
-                                <w:rFonts w:hint="default"/>
-                                <w:sz w:val="30"/>
-                                <w:szCs w:val="30"/>
-                            </w:rPr>
-                            <w:t>合一：</w:t>
+                            <w:t>多合一：${sonChanges.sonName},${sonChanges.sonAge}
+                                <w:br/>
+                                <#list sonChanges["changes"] as  sonChange>
+                                ${sonChange?counter},${sonChange.reason},${sonChange.time?string('yyyy-MM-dd hh:mm:ss')}
+                                <w:br/>
+                            </#list>
+
+                        </w:t>
                         </w:r>
                     </w:p>
                     <w:p>
@@ -1246,7 +1245,14 @@
                                 <w:sz w:val="30"/>
                                 <w:szCs w:val="30"/>
                             </w:rPr>
-                            <w:t>多合二：</w:t>
+                            <w:t>多合二：
+                                ${sonChanges.sonName},${sonChanges.sonAge}
+                                <w:br/>
+                                <#list sonChanges.changes as  ziChange>
+                                ${ziChange?counter},${ziChange.reason},${ziChange.time?string('yyyy-MM-dd hh:mm:ss')}
+                                <w:br/>
+                                </#list>
+                            </w:t>
                         </w:r>
                     </w:p>
                     <w:p>
@@ -1817,7 +1823,9 @@
                                 </w:p>
                             </w:tc>
                         </w:tr>
-                        <#list branchEidMap[changes] as branchChange>
+                        <#assign branchChanges = branchEidMap.changes />
+                        <#list branchChanges as  branchChange>
+
                         <w:tr>
                             <w:tblPrEx>
                                 <w:tblLayout w:type="fixed"/>
@@ -1842,7 +1850,7 @@
                                             <w:szCs w:val="30"/>
                                             <w:vertAlign w:val="baseline"/>
                                         </w:rPr>
-                                        <w:t> ${branchChange?counter}</w:t>
+                                        <w:t>${branchChange?counter}</w:t>
                                     </w:r>
                                 </w:p>
                             </w:tc>
@@ -1890,12 +1898,12 @@
                                             <w:szCs w:val="30"/>
                                             <w:vertAlign w:val="baseline"/>
                                         </w:rPr>
-                                        <w:t>zz</w:t>
+                                        <w:t>${branchChange.time?string('yyyy-MM-dd hh:mm:ss')}</w:t>
                                     </w:r>
                                 </w:p>
                             </w:tc>
                         </w:tr>
-                        </#list>
+                         </#list>
 
                     </w:tbl>
                     <w:p>
