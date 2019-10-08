@@ -26,7 +26,7 @@ public class DocUtils {
         try {
             Map<String,Object> dataMap = new HashMap<>();
             dataMap.put("companyName", "北京启迪区块链");
-            dataMap.put("companyAddress", "五道口搜狐大厦");
+            dataMap.put("companyAddress", "");
             dataMap.put("companyCapital","100w");
 
             List<Person> persons = new ArrayList<>();

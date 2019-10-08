@@ -345,6 +345,9 @@ public class StreamMethodDemo {
      * flatMap
      * 把多个流，汇集成一个流
      *
+     * flatMap 把 input Stream 中的层级结构扁平化，就是将最底层元素抽出来放到一起，
+     * 最终 output 的新 Stream 里面已经没有 List 了，都是直接的数字。
+     *
      * flatMap方法。使用流时，flatMap方法接受一个函数作为参数，这个函数的返回值是另一个流。
      * 这个方法会应用到流中的每一个元素，最终形成一个新的流的流。
      * 但是flagMap会用流的内容替 换每个新生成的流。

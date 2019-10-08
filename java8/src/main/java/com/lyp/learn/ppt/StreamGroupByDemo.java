@@ -211,6 +211,9 @@ public class StreamGroupByDemo {
     /**
      * partitioningBy 可以理解为特殊的 groupingBy，key值为true和false，
      *
+     * partitioningBy 其实是一种特殊的 groupingBy，它依照条件测试的是否两种结果来构造返回的数据结构，
+     * get(true) 和 get(false) 能即为全部的元素对象。
+     *
      * partitioningBy方法接收一个Predicate作为分区判断的依据 （用于判断的函数式接口）
      * 满足条件的元素放在key为true的集合中，反之放在key为false的集合中
      */

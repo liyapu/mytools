@@ -64,6 +64,12 @@ public class CreateStreamDemo {
         IntStream intStream = Arrays.stream(intArr);
         int intSum = intStream.sum();
         System.out.println(intSum);
+
+        System.out.println();
+
+        String [] strArr = new String[] {"aa","bb","cc"};
+        Stream<String> strStream = Stream.of(strArr);
+        strStream.forEach(System.out::println);
     }
 
     /**

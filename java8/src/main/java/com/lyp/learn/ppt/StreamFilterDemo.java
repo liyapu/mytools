@@ -179,11 +179,17 @@ public class StreamFilterDemo {
     //collect 规约，收集元素
     @Test
     public void test10(){
-        //ArrayList 收集
+        //List 收集
         List<String> listColors = inventory.stream()
                                             .map(Apple::getColor)
                                             .collect(Collectors.toList());
         System.out.println(listColors);
+
+        //ArrayList 收集
+        List<String> listColors2 = inventory.stream()
+                                            .map(Apple::getColor)
+                                            .collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(listColors2);
 
         //HashSet 收集
         Set<String> setColors = inventory.stream()
@@ -212,11 +218,27 @@ public class StreamFilterDemo {
                                         .toArray(String[]::new);
         System.out.println(Arrays.toString(arrayColors));
 
+        Integer[] intWeights = inventory.stream()
+                                        .map(Apple::getWeight)
+                                        .filter(w -> w%80 == 0)
+                                        .toArray(Integer[]::new);
+        System.out.println(intWeights);
+
         //String 类型输出
         String appleColorStr = inventory.stream()
                 .map(Apple::getColor)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining());
         System.out.println(appleColorStr);
+
+        String appleColorStr2 = inventory.stream()
+                .map(Apple::getColor)
+                .collect(Collectors.joining(","));
+        System.out.println(appleColorStr2);
+
+        String appleColorStr3 = inventory.stream()
+                .map(Apple::getColor)
+                .collect(Collectors.joining(",","^^^^","$$$$"));
+        System.out.println(appleColorStr3);
     }
 
     /**
@@ -313,6 +335,8 @@ public class StreamFilterDemo {
      * 收集对象实体本身
      * apple -> apple 是一个返回本身的lambda表达式，
      * 其实还可以使用Function接口中的一个默认方法 Function.identity()，这个方法返回自身对象，更加简洁
+     *
+     * Function.identity()返回一个输出跟输入一样的Lambda表达式对象，等价于形如t -> t形式的Lambda表达式。
      */
     @Test
     public void testListToMap5(){
