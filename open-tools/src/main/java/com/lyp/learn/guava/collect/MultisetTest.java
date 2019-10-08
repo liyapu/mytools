@@ -68,6 +68,10 @@ public class MultisetTest {
         System.out.println(wordsMap.get("me"));
     }
 
+    /**
+     * boolean	add(E element) 向其中添加单个元素.
+     * int	add(E element, int occurrences) 增加给定元素在Multiset中的计数
+     */
     @Test
     public void testCount(){
         Multiset multiset = HashMultiset.create();
@@ -131,6 +135,32 @@ public class MultisetTest {
     }
 
     /**
+     * 遍历
+     */
+    @Test
+    public void testElementSet(){
+        Multiset<String> multiset = HashMultiset.create(words);
+        Set<String> stringSet = multiset.elementSet();
+        for(String str : stringSet){
+//            System.out.println(str);
+            System.out.println(str + " : " + multiset.count(str));
+        }
+    }
+
+    /**
+     * entrySet()
+     * 和Map的entrySet类似，返回Set<multiset.entry>，其中包含的Entry支持getElement()和getCount()方法
+     */
+    @Test
+    public void testEntrySet(){
+        Multiset<String> multiset = HashMultiset.create(words);
+        Set<Multiset.Entry<String>> entries = multiset.entrySet();
+        for(Multiset.Entry<String> entry : entries){
+            System.out.println(entry.getElement() + ":" + entry.getCount());
+        }
+
+    }
+    /**
      * Multiset 支持添加、删除元素，设置元素出现的次数 setCount(elem, 0) 相当于移除elem的所有元素；
      */
     @Test
@@ -147,6 +177,46 @@ public class MultisetTest {
         System.out.println();
         multiset.setCount("apple",5);
         multiset.setCount("you",0);
+        System.out.println(multiset);
+    }
+
+    /**
+     * boolean	remove(@Nullable Object element) 移除一个元素，其count值 会响应减少.
+     * int	remove(@Nullable Object element, int occurrences) 减少给定元素在Multiset中的计数
+     * boolean	removeAll(Collection<?> c) 去除出现给给定集合参数的所有的元素.
+     */
+    @Test
+    public void testRemove(){
+        Multiset<String> multiset = HashMultiset.create(words);
+        System.out.println(multiset);
+
+        System.out.println();
+        multiset.remove("i");
+        System.out.println(multiset);
+
+        System.out.println();
+        multiset.remove("like");
+        System.out.println(multiset);
+
+        System.out.println();
+        multiset.remove("you",2);
+        System.out.println(multiset);
+
+        System.out.println();
+        multiset.remove("me",10);
+        System.out.println(multiset);
+
+    }
+
+    @Test
+    public void testRemoveAll(){
+        Multiset<String> multiset = HashMultiset.create(words);
+        System.out.println(multiset);
+
+        System.out.println();
+        List<String> strList = Arrays.asList("i","like","you");
+
+        multiset.removeAll(strList);
         System.out.println(multiset);
     }
 
