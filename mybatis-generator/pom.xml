@@ -76,6 +76,22 @@
         </dependency>
         <!-- junit 5 单元测试依赖 end     -->
 
+        <!--  ======== 生成字段注释需要的依赖  开始  ===-->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.7</version>
+        </dependency>
+        <!--  ======= 生成字段注释需要的依赖  结束 =====  -->
+
+        <!-- ======  生成字段注释，需要引用的包 =======     -->
+<!--        <dependency>-->
+<!--            <groupId>com.lyp.mt</groupId>-->
+<!--            <artifactId>mybatis-generator-helperr</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+        <!--  生成字段注释      -->
+
 
     </dependencies>
 
@@ -100,9 +116,26 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.17</version>
+                        <version>8.0.16</version>
+<!--                        <version>5.1.47</version>-->
+                    </dependency>
+
+                    <!-- ======  生成字段注释，需要引用的包 =======     -->
+<!--                    <dependency>-->
+<!--                        <groupId>com.lyp.mt</groupId>-->
+<!--                        <artifactId>mybatis-generator-helperr</artifactId>-->
+<!--                        <version>1.0-SNAPSHOT</version>-->
+<!--                    </dependency>-->
+                    <!--  生成字段注释      -->
+
+                    <!--自定义注解必须放到插件自身的依赖里才能访问到，因此需要先把当前项目打包到本地，否则会报找不到Class的错误-->
+                    <dependency>
+                        <groupId>com.lyp.mt</groupId>
+                        <artifactId>mybatis-generator</artifactId>
+                        <version>1.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

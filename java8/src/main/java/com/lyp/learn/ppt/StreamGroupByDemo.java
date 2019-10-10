@@ -40,6 +40,7 @@ public class StreamGroupByDemo {
 
     /**
      * 按颜色分类苹果
+     * 旧的写法
      */
     public static Map<String,List<Apple>> getApplesByColors(List<Apple> inventory){
         Map<String,List<Apple>> applesByColors = new HashMap<>();

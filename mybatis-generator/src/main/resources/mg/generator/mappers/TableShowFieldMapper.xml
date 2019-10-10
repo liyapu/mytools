@@ -1,0 +1,2056 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyp.mt.mg.generator.dao.TableShowFieldMapper">
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_show" jdbcType="VARCHAR" property="fieldShow" />
+    <result column="field_order" jdbcType="INTEGER" property="fieldOrder" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+  <resultMap id="BaseResultMap" type="com.lyp.mt.mg.generator.pojo.TableShowField">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="table_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_show" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="field_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="valid" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    insert into table_show_field (id, table_name, field_name, 
+      field_show, field_order, valid, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldShow,jdbcType=VARCHAR}, #{fieldOrder,jdbcType=INTEGER}, #{valid,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lyp.mt.mg.generator.pojo.TableShowField">
+    update table_show_field
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_show = #{fieldShow,jdbcType=VARCHAR},
+      field_order = #{fieldOrder,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, table_name, field_name, field_show, field_order, valid, create_time, update_time
+    from table_show_field
+  </select>
+</mapper>

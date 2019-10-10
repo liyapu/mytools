@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="/Users/liyapu/.m2/repository/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"/>
+    <context id="generator" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+<!--        <plugin type="com.blackcowx.mybatis.generator.plugins.CommentPlugin"/>-->
+<!--        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin">-->
+<!--            <property name="hasLombok" value="true"/>-->
+<!--        </plugin>-->
+        <commentGenerator type="com.lyp.mt.mg.utils.MySQLCommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+            <property name="author" value="ZanXus"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 连接数据库时需要设置UTF-8编码，否则中文注释乱码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.94.211.209:8306/golden_palm?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root"
+                        password="Tusdao@mysql2019*">
+            <property name="useInformationSchema" value="true"></property>
+        </jdbcConnection>
+
+        <!--
+        <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection>
+        -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.zanxus.bean"
+                            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <!--<sqlMapGenerator targetPackage="cn.itcast.ssm.mapper"-->
+        <!--targetProject=".\src\main\java">-->
+        <!--&lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;-->
+        <!--<property name="enableSubPackages" value="false"/>-->
+        <!--</sqlMapGenerator>-->
+
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <!--<javaClientGenerator type="XMLMAPPER"-->
+        <!--targetPackage="cn.itcast.ssm.mapper"-->
+        <!--targetProject=".\src\main\java">-->
+        <!--&lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;-->
+        <!--<property name="enableSubPackages" value="false"/>-->
+        <!--</javaClientGenerator>-->
+
+        <!-- 指定数据库表 -->
+        <!--<table tableName="financial_indicator_industry_ranking"></table>-->
+        <!--<table tableName="report_indicator"></table>-->
+        <!--<table tableName="financial_indicator_industry_ranking_original"></table>-->
+        <!--<table tableName="report_indicator_original"></table>-->
+        <!--<table tableName="industry_category"></table>-->
+        <!--<table tableName="industry_category_sec"></table>-->
+        <!--<table tableName="finance_table_info"></table>-->
+        <!--<table tableName="enterprise_aic_penalty"></table>-->
+        <!--<table tableName="enterprise_credit_penalty"></table>-->
+        <!--<table tableName="enterprise_investment"></table>-->
+        <!--<table tableName="enterprise_executive"></table>-->
+        <!--<table tableName="report_balance"></table>-->
+        <!--<table tableName="report_balance_origin"></table>-->
+        <!--<table tableName="report_cash_flow"></table>-->
+        <!--<table tableName="report_cash_flow_origin"></table>-->
+        <!--<table tableName="report_profit"></table>-->
+        <!--<table tableName="report_profit_origin"></table>-->
+        <table tableName="stock_basic"></table>
+        <table tableName="stock_basic_origin"></table>
+
+
+
+        <!--有些表的字段需要指定java类型-->
+        <!--
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table>
+        -->
+    </context>
+</generatorConfiguration>
