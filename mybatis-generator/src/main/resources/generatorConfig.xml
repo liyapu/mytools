@@ -3,9 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <!--
-    1.基础的纯净的配置
-      生成的字段，getter,setter,toString,hashCode方法无注释
-    2.通过javaClientGenerator 配置项，控制sql是生成在bean上还是单独的xml文件中
+    1.添加lombak注解的，只有字段和注释的
 -->
 <generatorConfiguration>
     <!--导入属性配置-->
@@ -46,9 +44,9 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <!-- JavaBean 实现 序列化 接口  -->
-<!--        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>-->
+        <!--        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>-->
         <!-- genenat entity时,生成toString -->
-<!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+        <!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
         <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
         <!--<plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" />-->
         <!-- 自定义查询指定字段  -->
@@ -57,7 +55,7 @@
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
         -->
         <!-- generate entity时，生成hashcode和equals方法-->
-<!--        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
+        <!--        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
         <plugin type="com.lyp.mt.mg.lomback.LombokPlugin" >
             <property name="hasLombok" value="true"/>
         </plugin>
@@ -83,7 +81,7 @@
         <!--</plugin>-->
 
         <!--optional,旨在创建class时，对注释进行控制, 这里的type里写的是你的实现类的类全类名,注：如果不配置type属性,则会使用默认的CommentGenerator实现类DefaultCommentGenerator -->
-<!--        <commentGenerator type="com.lyp.mgh.comment.define.MyCommentGenerator">-->
+        <!--        <commentGenerator type="com.lyp.mgh.comment.define.MyCommentGenerator">-->
         <commentGenerator type="com.lyp.mt.mg.comments.MyCommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="false" />
@@ -95,7 +93,7 @@
             <property name="useInformationSchema" value="true"></property>
         </commentGenerator>
 
-        
+
         <!--jdbc的数据库连接-->
         <jdbcConnection driverClass="${db.driverClassName}"
                         connectionURL="${db.url}"
@@ -130,7 +128,7 @@
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
             <!-- 是否对modal添加构造函数 -->
-<!--            <property name="constructorBased" value="true" />-->
+            <!--            <property name="constructorBased" value="true" />-->
             <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
             <property name="trimStrings" value="true" />
             <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
@@ -145,7 +143,7 @@
         </javaModelGenerator>
 
         <!-- targetPackage 和 targetProject：生成的 xml mapper 文件的包和位置,在java目录下-->
-<!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.generator.mappers" targetProject="src/main/java">-->
+        <!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.generator.mappers" targetProject="src/main/java">-->
         <!--   xml mapper 在 resources 目录下    -->
         <sqlMapGenerator targetPackage="mg.generator.mappers" targetProject="src/main/resources">
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
@@ -159,9 +157,9 @@
             type="MIXEDMAPPER",生成基于注解的Java Model和相应的Mapper对象
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
+        <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
         <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
+            <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
@@ -205,13 +203,14 @@
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- 比较干净简洁的，没有Example相关的实体与crud      -->
-<!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
-<!--            &lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
-<!--            &lt;!&ndash; <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>&ndash;&gt;-->
-<!--        </table>-->
-<!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+        <!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
+        <!--            &lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--            &lt;!&ndash; <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>&ndash;&gt;-->
+        <!--        </table>-->
+        <!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
 
-        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表      -->
+        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
+            ignoreColumn 指定忽略的数据列 -->
         <table tableName="%" >
             <ignoreColumn column="valid"/>
             <ignoreColumn column="create_time"/>
@@ -219,7 +218,7 @@
         </table>
 
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
-<!--        <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
-<!--        <table tableName="table_show_field" domainObjectName="tableShowField" ></table>-->
+        <!--        <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
+        <!--        <table tableName="table_show_field" domainObjectName="tableShowField" ></table>-->
     </context>
 </generatorConfiguration>

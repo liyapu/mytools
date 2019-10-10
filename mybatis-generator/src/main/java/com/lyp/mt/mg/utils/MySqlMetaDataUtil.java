@@ -480,7 +480,7 @@ public class MySqlMetaDataUtil {
             String fieldName = fieldEntities.get(i).getField();
             sb.append(fieldName);
             if(fieldName.contains("_")){
-                sb.append(" ").append("AS").append(" ").append(FieldUtil.lineToHump(fieldName));
+                sb.append(" ").append("AS").append(" ").append(FieldUtils.lineToHump(fieldName));
             }
         }
         return sb.toString();

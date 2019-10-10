@@ -238,8 +238,6 @@ public class MyCommentGenerator implements CommentGenerator {
         if(StringUtils.isBlank(remarks)){
             remarks = tableComments.get(tableName);
         }
-        System.out.println("=========="+introspectedTable.getFullyQualifiedTableNameAtRuntime());
-        System.out.println(tableComments);
         topLevelClass.addJavaDocLine("/**");
         if(StringUtils.isNotBlank(remarks)){
             topLevelClass.addJavaDocLine(" * " + remarks);

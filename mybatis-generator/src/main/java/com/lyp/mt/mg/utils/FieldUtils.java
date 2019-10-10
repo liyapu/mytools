@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @description: 驼峰命名和下划线命名转换
  * @date 2019-09-06 20:25
  */
-public class FieldUtil {
+public class FieldUtils {
 
     private static Pattern linePattern = Pattern.compile("_(\\w)");
     private static Pattern humpPattern = Pattern.compile("[A-Z]");

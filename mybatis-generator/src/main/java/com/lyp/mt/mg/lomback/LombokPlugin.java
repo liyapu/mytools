@@ -25,7 +25,6 @@ public class LombokPlugin extends PluginAdapter {
     public LombokPlugin() {
         dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
         dataAnnotation = new FullyQualifiedJavaType("lombok.EqualsAndHashCode");
-        dataAnnotation = new FullyQualifiedJavaType("lombok.ToString");
     }
 
     @Override
@@ -124,7 +123,6 @@ public class LombokPlugin extends PluginAdapter {
         topLevelClass.addImportedType(dataAnnotation);
         topLevelClass.addAnnotation("@Data");
         topLevelClass.addAnnotation("@EqualsAndHashCode");
-        topLevelClass.addAnnotation("@ToString");
     }
 
 }

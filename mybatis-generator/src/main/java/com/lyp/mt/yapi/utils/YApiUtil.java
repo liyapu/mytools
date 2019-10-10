@@ -1,9 +1,8 @@
 package com.lyp.mt.yapi.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lyp.mt.mg.utils.FieldUtil;
-import com.lyp.mt.mg.utils.MyFileUtil;
 import com.lyp.mt.mg.utils.MySqlMetaDataUtil;
+import com.lyp.mt.mg.utils.FieldUtils;
 import com.lyp.mt.yapi.entity.FieldEntity;
 import com.lyp.mt.yapi.entity.*;
 import com.lyp.mt.yapi.entity.business.TableShowFieldVo;
@@ -161,7 +160,7 @@ public class YApiUtil {
         List<FieldEntity> fieldEntities = MySqlMetaDataUtil.listByTableNameSql("table_show_field");
         //System.out.println(fieldEntities);
         for (FieldEntity fe : fieldEntities) {
-            String fieldName = FieldUtil.lineToHump(fe.getField());
+            String fieldName = FieldUtils.lineToHump(fe.getField());
             String comment = fe.getComment();
             if (excludeFields.contains(fieldName)) {
                 continue;
@@ -193,7 +192,7 @@ public class YApiUtil {
         List<FieldEntity> fieldEntities = MySqlMetaDataUtil.listByTableNameSql("report_indicator");
         //System.out.println(fieldEntities);
         for (FieldEntity fe : fieldEntities) {
-            String fieldName = FieldUtil.lineToHump(fe.getField());
+            String fieldName = FieldUtils.lineToHump(fe.getField());
             String comment = fe.getComment();
             if (excludeFields.contains(fieldName)) {
                 continue;

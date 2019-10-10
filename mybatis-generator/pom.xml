@@ -31,6 +31,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -84,14 +90,6 @@
         </dependency>
         <!--  ======= 生成字段注释需要的依赖  结束 =====  -->
 
-        <!-- ======  生成字段注释，需要引用的包 =======     -->
-<!--        <dependency>-->
-<!--            <groupId>com.lyp.mt</groupId>-->
-<!--            <artifactId>mybatis-generator-helperr</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
-        <!--  生成字段注释      -->
-
 
     </dependencies>
 
@@ -120,13 +118,6 @@
 <!--                        <version>5.1.47</version>-->
                     </dependency>
 
-                    <!-- ======  生成字段注释，需要引用的包 =======     -->
-<!--                    <dependency>-->
-<!--                        <groupId>com.lyp.mt</groupId>-->
-<!--                        <artifactId>mybatis-generator-helperr</artifactId>-->
-<!--                        <version>1.0-SNAPSHOT</version>-->
-<!--                    </dependency>-->
-                    <!--  生成字段注释      -->
 
                     <!--自定义注解必须放到插件自身的依赖里才能访问到，因此需要先把当前项目打包到本地，否则会报找不到Class的错误-->
                     <dependency>

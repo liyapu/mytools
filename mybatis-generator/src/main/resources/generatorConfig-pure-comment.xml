@@ -2,7 +2,11 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
+<!--
+    1.基础的纯净的配置
+      生成的字段，getter,setter,toString,hashCode方法无注释
+    2.通过javaClientGenerator 配置项，控制sql是生成在bean上还是单独的xml文件中
+-->
 <generatorConfiguration>
     <!--导入属性配置-->
     <properties resource="datasource.properties"></properties>
@@ -12,6 +16,7 @@
     <!-- 通过 plugins下的dependency 指定驱动包之后，此处就不需要了    -->
 <!--    <classPathEntry location="${db.driverLocation}" />-->
 
+    <!-- 配置一个代码生成操作，如果生成的目录或是数据库不一样，只需要参考增加一个context节点即可 -->
     <!--
     context:生成一组对象的环境,逆向工程的主要配置信息
     id:必选，上下文id，起个名字,用于在生成错误时提示
@@ -25,17 +30,6 @@
     introspectedColumnImpl：类全限定名，用于扩展MBG
       -->
     <context id="default" targetRuntime="MyBatis3Simple">
-
-        <property name="javaFileEncoding" value="UTF-8"/>
-
-        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin">
-            <property name="hasLombok" value="true"/>
-        </plugin>
-        <commentGenerator type="com.zanxus.MySQLCommentGenerator">
-            <property name="suppressAllComments" value="false"/>
-            <property name="suppressDate" value="true"/>
-            <property name="author" value="ZanXus"/>
-        </commentGenerator>
 
         <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
         一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖
@@ -51,13 +45,46 @@
         <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
+        <!-- JavaBean 实现 序列化 接口  -->
+<!--        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>-->
+        <!-- genenat entity时,生成toString -->
+<!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+        <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
+        <!--<plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" />-->
+        <!-- 自定义查询指定字段  -->
+        <!--<plugin type="org.mybatis.generator.plugins.field.FieldsPlugin" />-->
+        <!-- 开启支持内存分页   可生成 支持内存分布的方法及参数
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        -->
+        <!-- generate entity时，生成hashcode和equals方法-->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
 
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
+        <!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+        <!--<property name="searchString" value="Example$" />-->
+        <!--<!– 替换后  -->
+        <!--<property name="replaceString" value="Criteria" />    -->
+        <!--–>-->
+        <!--<property name="replaceString" value="Query" />-->
+        <!--</plugin>-->
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
 
-        <!--optional,旨在创建class时，对注释进行控制-->
-        <commentGenerator>
-            <property name="suppressDate" value="true" />
+        <!--<!– 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  –>-->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper$" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
+
+        <!--optional,旨在创建class时，对注释进行控制, 这里的type里写的是你的实现类的类全类名,注：如果不配置type属性,则会使用默认的CommentGenerator实现类DefaultCommentGenerator -->
+        <commentGenerator type="com.lyp.mt.mg.comments.MyCommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true" />
+            <property name="suppressAllComments" value="false" />
+            <!--生成的注释包含时间戳-->
+            <property name="suppressDate" value="true"/>
         </commentGenerator>
 
         <!--jdbc的数据库连接-->
@@ -89,12 +116,12 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，生成的实体类所在的硬盘位置,指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="com.lyp.mt.mg.pojo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
-            <!-- 是否对modal添加构造函数 -->
-            <property name="constructorBased" value="true" />
+            <!-- 是否对modal添加构造函数 ,mapper.xml的resultMap是constructor-->
+<!--            <property name="constructorBased" value="true" />-->
             <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
             <property name="trimStrings" value="true" />
             <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
@@ -109,9 +136,9 @@
         </javaModelGenerator>
 
         <!-- targetPackage 和 targetProject：生成的 xml mapper 文件的包和位置,在java目录下-->
-<!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.mappers" targetProject="src/main/java">-->
+<!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.generator.mappers" targetProject="src/main/java">-->
         <!--   xml mapper 在 resources 目录下    -->
-        <sqlMapGenerator targetPackage="mg.mappers" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mg.generator.mappers" targetProject="src/main/resources">
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
@@ -123,9 +150,9 @@
             type="MIXEDMAPPER",生成基于注解的Java Model和相应的Mapper对象
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
-        <javaClientGenerator  targetPackage="com.lyp.mt.mg.dao" targetProject="src/main/java" type="XMLMAPPER">
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
+<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
+        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">
+<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>

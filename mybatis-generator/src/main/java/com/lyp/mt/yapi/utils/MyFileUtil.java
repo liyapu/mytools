@@ -1,4 +1,4 @@
-package com.lyp.mt.mg.utils;
+package com.lyp.mt.yapi.utils;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
@@ -27,3 +27,4 @@ public class MyFileUtil {
         }
     }
 }
+
