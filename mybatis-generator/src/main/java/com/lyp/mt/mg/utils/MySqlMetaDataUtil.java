@@ -11,21 +11,23 @@ import java.text.Collator;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class MySqlMetaDataUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(MySqlMetaDataUtil.class);
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Root$123";
-
-
 //    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
 //    private static final String USERNAME = "root";
-//    private static final String PASSWORD = "";
+//    private static final String PASSWORD = "Root$123";
+
+
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Tusdao@mysql2019*";
+
 
     /**
      * 获取数据库连接
@@ -853,7 +855,49 @@ public class MySqlMetaDataUtil {
         return fieldEntities;
     }
 
+    /**
+     * 获取以 _origin 结尾的表名
+     * @return
+     */
+    public List<String> getOriginEndTables(){
+        List<String> currentDbTables = getCurrentDbTables();
+        List<String> originTables = currentDbTables.stream()
+                .filter(s -> s.endsWith("origin"))
+                .collect(Collectors.toList());
+        return originTables;
+    }
+
+    /**
+     * 获取以 _origin 结尾的表名
+     * 然后去掉 _origin 的表集合
+     * @return
+     */
+    public List<String> getOriginEndTablesOfRemoveOrigin(){
+        List<String> currentDbTables = getCurrentDbTables();
+
+        List<String> originTables = currentDbTables.stream()
+                .filter(s -> s.endsWith("_origin"))
+                .collect(Collectors.toList());
+
+        List<String> originOfRemoveTables = originTables.stream()
+                .map(s -> s.replace("_origin", ""))
+                .collect(Collectors.toList());
+        return originOfRemoveTables;
+    }
+
+
+    @Test
+    public void getOriginEndTable(){
+        System.out.println(getOriginEndTablesOfRemoveOrigin());
+    }
+
     public static void main(String[] args) {
+
+        List<String> currentDbTables = getCurrentDbTables();
+        for(String originTableName : currentDbTables){
+            System.out.println(originTableName);
+        }
+
 //        FieldEntity feo = new FieldEntity();
 ////        feo.setComment("固定资产折旧、油气资产折耗、生产性生物资产折旧 单位：元");
 ////        feo.setComment("手续费及佣金支出");
