@@ -6,6 +6,9 @@
     1.基础的纯净的配置
       生成的字段，getter,setter,toString,hashCode方法无注释
     2.通过javaClientGenerator 配置项，控制sql是生成在bean上还是单独的xml文件中
+    3.targetRuntime 是MyBatis3 或者MyBatis3Simple ，对生成的 sql语句影响很大
+      MyBatis3:会有 where判断，Base_Column_List，update if
+      MyBatis3Simple : 相对简单 简洁一些
 -->
 <generatorConfiguration>
     <!--导入属性配置-->

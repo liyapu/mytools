@@ -54,6 +54,9 @@ public class MyCommentGenerator implements CommentGenerator {
     }
 
     /**
+     * 实体类对应的mapper.xml注释是addComment(XmlElement xmlElement)方法，
+     * 这里没有加入任何注释，如有需要参考 DefaultCommentGenerator
+     *
      * Adds a suitable comment to warn users that the element was generated, and
      * when it was generated.
      */
@@ -190,7 +193,7 @@ public class MyCommentGenerator implements CommentGenerator {
     }
 
     /**
-     * 设置字段注释
+     * 实体类字段注解
      */
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
         if (suppressAllComments) {
@@ -199,7 +202,7 @@ public class MyCommentGenerator implements CommentGenerator {
         // 获取列注释
         String remarks = introspectedColumn.getRemarks();
         if (StringUtils.isBlank(remarks)) {
-            field.addJavaDocLine("\n");
+//            field.addJavaDocLine("\n");
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -212,6 +215,9 @@ public class MyCommentGenerator implements CommentGenerator {
 
     }
 
+    /**
+     * 实体类静态属性字段的方法名和上一个方法名一样，只是参数不同
+     */
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
         if (suppressAllComments) {
             return;
@@ -249,6 +255,9 @@ public class MyCommentGenerator implements CommentGenerator {
 
     }
 
+    /**
+     * 实体类toString方法
+     */
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
 //        if (suppressAllComments) {
 //            return;
@@ -259,7 +268,7 @@ public class MyCommentGenerator implements CommentGenerator {
     }
 
     /**
-     * 设置getter方法注释
+     * 实体类getter方法注释
      */
     public void addGetterComment(Method method, IntrospectedTable introspectedTable,
                                  IntrospectedColumn introspectedColumn) {
@@ -295,7 +304,7 @@ public class MyCommentGenerator implements CommentGenerator {
     }
 
     /**
-     * 设置setter方法注释
+     * 实体类setter注释
      */
     public void addSetterComment(Method method, IntrospectedTable introspectedTable,
                                  IntrospectedColumn introspectedColumn) {

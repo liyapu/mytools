@@ -1,0 +1,34 @@
+HELP.md
+/target/
+*/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+src/main/java/com/lyp/mt/mg/generator/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.DS_Store
+img/.DS_Store
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+### VS Code ###
+.vscode/

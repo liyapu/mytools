@@ -10,12 +10,9 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import java.util.List;
 
 /**
- *
- *  @Author: GuiRunning 郭贵荣
+ *  https://github.com/GuoGuiRong/mybatis-generator-lombok-plugin
  *
  *  @Description: 整合Lombok
- *
- *  @Date: 2018/7/14 1:52
  *
  */
 public class LombokPlugin extends PluginAdapter {
