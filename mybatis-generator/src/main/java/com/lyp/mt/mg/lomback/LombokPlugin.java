@@ -7,7 +7,10 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *  https://github.com/GuoGuiRong/mybatis-generator-lombok-plugin
@@ -17,11 +20,11 @@ import java.util.List;
  */
 public class LombokPlugin extends PluginAdapter {
 
-    private FullyQualifiedJavaType dataAnnotation;
+    private Set<FullyQualifiedJavaType> lombokAnnotations = new HashSet<>();
 
     public LombokPlugin() {
-        dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
-        dataAnnotation = new FullyQualifiedJavaType("lombok.EqualsAndHashCode");
+        lombokAnnotations.add(new FullyQualifiedJavaType("lombok.Data"));
+        lombokAnnotations.add(new FullyQualifiedJavaType("lombok.EqualsAndHashCode"));
     }
 
     @Override
@@ -117,7 +120,7 @@ public class LombokPlugin extends PluginAdapter {
      * @param topLevelClass
      */
     protected void addDataAnnotation(TopLevelClass topLevelClass) {
-        topLevelClass.addImportedType(dataAnnotation);
+        topLevelClass.addImportedTypes(lombokAnnotations);
         topLevelClass.addAnnotation("@Data");
         topLevelClass.addAnnotation("@EqualsAndHashCode");
     }

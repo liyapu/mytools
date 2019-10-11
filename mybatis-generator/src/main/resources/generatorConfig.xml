@@ -69,16 +69,16 @@
         <!--<property name="replaceString" value="Query" />-->
         <!--</plugin>-->
         <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
-        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">-->
-        <!--<property name="searchString" value="Mapper" />-->
-        <!--<property name="replaceString" value="Dao" />-->
-        <!--</plugin>-->
+<!--        <plugin type="com.lyp.mt.mg.rename.RenameSqlMapperPlugin">-->
+<!--            <property name="searchString" value="Mapper" />-->
+<!--            <property name="replaceString" value="Dao" />-->
+<!--        </plugin>-->
 
         <!--<!– 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  –>-->
-        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">-->
-        <!--<property name="searchString" value="Mapper$" />-->
-        <!--<property name="replaceString" value="Dao" />-->
-        <!--</plugin>-->
+        <plugin type="com.lyp.mt.mg.rename.RenameJavaMapperPlugin">
+        <property name="searchString" value="Mapper$" />
+        <property name="replaceString" value="Dao" />
+        </plugin>
 
         <!--optional,旨在创建class时，对注释进行控制, 这里的type里写的是你的实现类的类全类名,注：如果不配置type属性,则会使用默认的CommentGenerator实现类DefaultCommentGenerator -->
         <!--        <commentGenerator type="com.lyp.mgh.comment.define.MyCommentGenerator">-->
@@ -158,7 +158,7 @@
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
-        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">
             <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
@@ -202,23 +202,200 @@
          -->
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <!-- 比较干净简洁的，没有Example相关的实体与crud      -->
-        <!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
-        <!--            &lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
-        <!--            &lt;!&ndash; <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>&ndash;&gt;-->
-        <!--        </table>-->
-        <!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+        <!-- 比较干净简洁的，没有Example相关的实体与crud-->
+<!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
+            <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
+<!--             <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>-->
+<!--        </table>-->
+<!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+        <!-- 下面这种只写一个表名，也可以生成简洁的bean和mapper,让targetRuntime指定为 MyBatis3Simple ，MyBatis3Simple默认的一些enable****ByExample都是false -->
+<!--        <table tableName="enterprise_basic"></table>-->
+<!--        <table tableName="keyword">-->
+<!--                <ignoreColumn column="valid"/>-->
+<!--                <ignoreColumn column="create_time"/>-->
+<!--                <ignoreColumn column="update_time"/>-->
+<!--        </table>-->
 
-        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
-            ignoreColumn 指定忽略的数据列 -->
-        <table tableName="%" >
+
+        <table tableName="company_initial_stock">
             <ignoreColumn column="valid"/>
             <ignoreColumn column="create_time"/>
             <ignoreColumn column="update_time"/>
         </table>
 
+        <table tableName="company_share_impl">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="company_share_plan">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="company_stock_change">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="company_stock_impl">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="company_stock_plan">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="dividend_indicator">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="executive_stock_change">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="financial_balance_y2007">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="financial_cash_flow_y2007">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="financial_profit_y2007">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="investment_rating">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="performance_expectation">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="quarter_cash_flow">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="quarter_financial_indicator">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="quarter_financial_profit">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="quote_data">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="report_balance">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="report_cash_flow">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="report_profit">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="shareholder_controller">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="shareholder_stock_change">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="shareholding_concentration">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="stock_basic">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="ttm_cash_flow">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table tableName="ttm_financial_profit">
+            <ignoreColumn column="valid"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+
+
+        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
+            ignoreColumn 指定忽略的数据列 -->
+<!--        <table tableName="%" >-->
+<!--            <ignoreColumn column="valid"/>-->
+<!--            <ignoreColumn column="create_time"/>-->
+<!--            <ignoreColumn column="update_time"/>-->
+<!--        </table>-->
+
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
         <!--        <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
         <!--        <table tableName="table_show_field" domainObjectName="tableShowField" ></table>-->
+
+        <!-- ===================== 表名称对应修改 ======================== -->
+        <!-- 有些表的字段需要指定java类型
+               order 生成目录
+            <table schema="" tableName="t_items" domainObjectName="order.items">
+                包装清单 大字段映射
+               <columnOverride column="package_list" javaType="String" jdbcType="VARCHAR" />
+           </table>
+        -->
+<!--        <table schema="" tableName="user" domainObjectName="User"/>-->
+
     </context>
 </generatorConfiguration>

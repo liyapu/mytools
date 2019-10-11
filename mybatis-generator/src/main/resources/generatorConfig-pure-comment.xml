@@ -68,13 +68,13 @@
         <!--<property name="replaceString" value="Query" />-->
         <!--</plugin>-->
         <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
-        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">-->
+        <!--<plugin type="com.lyp.mt.mg.rename.RenameSqlMapperPlugin">-->
         <!--<property name="searchString" value="Mapper" />-->
         <!--<property name="replaceString" value="Dao" />-->
         <!--</plugin>-->
 
         <!--<!– 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  –>-->
-        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">-->
+        <!--<plugin type="com.lyp.mt.mg.rename.RenameJavaMapperPlugin">-->
         <!--<property name="searchString" value="Mapper$" />-->
         <!--<property name="replaceString" value="Dao" />-->
         <!--</plugin>-->

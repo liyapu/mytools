@@ -885,10 +885,38 @@ public class MySqlMetaDataUtil {
         return originOfRemoveTables;
     }
 
+    @Test
+    public void outputOriginEndTableGeneratorConfig(){
+        List<String> originEndTables = getOriginEndTables();
+        for(String tableName : originEndTables){
+            String template = " <table tableName=\""+ tableName +"\">\n" +
+                    "                <ignoreColumn column=\"valid\"/>\n" +
+                    "                <ignoreColumn column=\"create_time\"/>\n" +
+                    "                <ignoreColumn column=\"update_time\"/>\n" +
+                    "        </table>\n" +
+                    "        ";
+            System.out.println(template);
+        }
+    }
+
+    @Test
+    public void outputOriginEndRemoveOriginTableGeneratorConfig(){
+        List<String> originEndTables = getOriginEndTablesOfRemoveOrigin();
+        for(String tableName : originEndTables){
+            String template = "<table tableName=\""+ tableName +"\">\n" +
+                    "      <ignoreColumn column=\"valid\"/>\n" +
+                    "      <ignoreColumn column=\"create_time\"/>\n" +
+                    "      <ignoreColumn column=\"update_time\"/>\n" +
+                    "</table>\n" +
+                    "  ";
+            System.out.println(template);
+        }
+    }
 
     @Test
     public void getOriginEndTable(){
-        System.out.println(getOriginEndTablesOfRemoveOrigin());
+        List<String> stockBasic = getTableOriginField("stock_basic");
+        System.out.println(stockBasic);
     }
 
     public static void main(String[] args) {
