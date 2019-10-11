@@ -203,181 +203,24 @@
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- 比较干净简洁的，没有Example相关的实体与crud-->
-<!--        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >-->
-            <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
+        <table tableName="file_mapping" domainObjectName="fileMapping" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" >
+        <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉-->
 <!--             <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>-->
-<!--        </table>-->
-<!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
+        </table>
+        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>
         <!-- 下面这种只写一个表名，也可以生成简洁的bean和mapper,让targetRuntime指定为 MyBatis3Simple ，MyBatis3Simple默认的一些enable****ByExample都是false -->
-<!--        <table tableName="enterprise_basic"></table>-->
-<!--        <table tableName="keyword">-->
-<!--                <ignoreColumn column="valid"/>-->
-<!--                <ignoreColumn column="create_time"/>-->
-<!--                <ignoreColumn column="update_time"/>-->
-<!--        </table>-->
-
-
-        <table tableName="company_initial_stock">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
+        <table tableName="enterprise_basic"></table>
+        <table tableName="keyword">
+                <ignoreColumn column="valid"/>
+                <ignoreColumn column="create_time"/>
+                <ignoreColumn column="update_time"/>
         </table>
-
-        <table tableName="company_share_impl">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="company_share_plan">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="company_stock_change">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="company_stock_impl">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="company_stock_plan">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="dividend_indicator">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="executive_stock_change">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="financial_balance_y2007">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="financial_cash_flow_y2007">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="financial_profit_y2007">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="investment_rating">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="performance_expectation">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="quarter_cash_flow">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="quarter_financial_indicator">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="quarter_financial_profit">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="quote_data">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="report_balance">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="report_cash_flow">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="report_profit">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="shareholder_controller">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="shareholder_stock_change">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="shareholding_concentration">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="stock_basic">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="ttm_cash_flow">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
-        <table tableName="ttm_financial_profit">
-            <ignoreColumn column="valid"/>
-            <ignoreColumn column="create_time"/>
-            <ignoreColumn column="update_time"/>
-        </table>
-
 
 
         <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
             ignoreColumn 指定忽略的数据列 -->
 <!--        <table tableName="%" >-->
+<!--            <ignoreColumn column="id"/>-->
 <!--            <ignoreColumn column="valid"/>-->
 <!--            <ignoreColumn column="create_time"/>-->
 <!--            <ignoreColumn column="update_time"/>-->

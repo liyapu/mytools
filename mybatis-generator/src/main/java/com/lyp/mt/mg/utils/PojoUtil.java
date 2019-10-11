@@ -16,6 +16,19 @@ import java.util.stream.Stream;
  */
 public class PojoUtil {
 
+    /**
+     * 从当前系统中获取换行符，默认是"\n"
+     *
+     * 不要随便用 \n\r    \n    \r，因为他们在不同操作系统有不同的表示。
+     * 如果在java代码中把它们写死了，那么java跨平台运行的特性就没有了
+     *
+     * 或者使用
+     * bufferedWriter.newLine();
+     * 由于BufferedReader的rendLIne()是不读入换行符的，所以写入换行时须用 bufferedWriter.newLine() 方法
+     */
+    public static final String NEW_LINE_SEPARATOR = System.getProperty("line.separator", "\n");
+
+
     public static void createDir() throws IOException {
         String currentRoot = PojoUtil.class.getResource("/").getPath();
         System.out.println("currentRoot = " + currentRoot );
@@ -34,7 +47,7 @@ public class PojoUtil {
             System.out.println(p.getFileName());
             try {
                 List<String> allLines = Files.readAllLines(p);
-                String desFile = pathBak.toString() + "/" + p.getFileName();
+                String desFile = pathBak.toString() + File.separator + p.getFileName();
                 System.out.println("desFile = " + desFile);
                 BufferedWriter bw =new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(desFile)), "UTF-8"));
                 for(String line : allLines){
@@ -42,9 +55,9 @@ public class PojoUtil {
                         line = line.substring(0,8) + "com.lyp.mt.mg.generator.bak;";
                     }
                     if(line.startsWith("public class")){
-                        line = line.replace("{"," extends BaseBean {");
+                        line = line.replace("{","extends BaseBean {");
                     }
-                    bw.write(line + "\n");
+                    bw.write(line + NEW_LINE_SEPARATOR);
                 }
                 bw.flush();
                 bw.close();

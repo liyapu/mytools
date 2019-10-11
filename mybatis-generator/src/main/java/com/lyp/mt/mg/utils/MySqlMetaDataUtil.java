@@ -17,16 +17,17 @@ public class MySqlMetaDataUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(MySqlMetaDataUtil.class);
 
-//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-//    private static final String USERNAME = "root";
-//    private static final String PASSWORD = "Root$123";
-
-
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+//    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
+    private static final String URL = "jdbc:mysql://localhost:3306/golden_palm?serverTimezone=UTC&characterEncoding=utf8";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Tusdao@mysql2019*";
+    private static final String PASSWORD = "Root$123";
+
+
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "Tusdao@mysql2019*";
 
 
     /**
@@ -889,12 +890,13 @@ public class MySqlMetaDataUtil {
     public void outputOriginEndTableGeneratorConfig(){
         List<String> originEndTables = getOriginEndTables();
         for(String tableName : originEndTables){
-            String template = " <table tableName=\""+ tableName +"\">\n" +
-                    "                <ignoreColumn column=\"valid\"/>\n" +
-                    "                <ignoreColumn column=\"create_time\"/>\n" +
-                    "                <ignoreColumn column=\"update_time\"/>\n" +
-                    "        </table>\n" +
-                    "        ";
+            String template = "<table tableName=\""+ tableName +"\">\n" +
+                    "      <ignoreColumn column=\"id\"/>\n" +
+                    "      <ignoreColumn column=\"valid\"/>\n" +
+                    "      <ignoreColumn column=\"create_time\"/>\n" +
+                    "      <ignoreColumn column=\"update_time\"/>\n" +
+                    "</table>\n" +
+                    "  ";
             System.out.println(template);
         }
     }
@@ -904,6 +906,7 @@ public class MySqlMetaDataUtil {
         List<String> originEndTables = getOriginEndTablesOfRemoveOrigin();
         for(String tableName : originEndTables){
             String template = "<table tableName=\""+ tableName +"\">\n" +
+                    "      <ignoreColumn column=\"id\"/>\n" +
                     "      <ignoreColumn column=\"valid\"/>\n" +
                     "      <ignoreColumn column=\"create_time\"/>\n" +
                     "      <ignoreColumn column=\"update_time\"/>\n" +

@@ -36,6 +36,9 @@ import org.mybatis.generator.api.IntrospectedTable;
  *
  * @author Jeff Butler
  *
+ * 逆向工程增强版
+ * https://github.com/nbdoc/maven-mybatis-lombok-plugin
+ * https://blog.csdn.net/qq_21434959/article/details/83120250
  */
 public class RenameJavaMapperPlugin extends PluginAdapter {
     private String searchString;
