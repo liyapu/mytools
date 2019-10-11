@@ -118,8 +118,17 @@
 <!--                        <version>5.1.47</version>-->
                     </dependency>
 
-
-                    <!--自定义注解必须放到插件自身的依赖里才能访问到，因此需要先把当前项目打包到本地，否则会报找不到Class的错误-->
+                    <!--
+                    注意：
+                    1、所有引用的外部插件(比如分页插件)或者jar包，必须指定依赖
+                       比如这里依赖了自己的jar：mf-dao
+                       在generator之前，必须先生成jar并存放在本地仓库或私服
+                    2、depences下，每个依赖的jar必须指定version
+                    3、如果generatorConfig.xml文件使用了自定义的插件，在指定依赖前，请先编译，确定生成了jar包（不然会报错提示无法初始化该对象）
+                    4、如果generatorConfig.xml没有放在resources下，请指定generatorConfig.xml配置文件的路径
+                    -->
+                    <!--自定义注解必须放到插件自身的依赖里才能访问到，因此需要先把当前项目打包到本地，否则会报找不到Class的错误
+                    mybatis-generator 的plugin有自己的classpath，我们在项目中直接继承的类和plugin不属于同一个classpath。这一点在官方文档有一点提到-->
                     <dependency>
                         <groupId>com.lyp.mt</groupId>
                         <artifactId>mybatis-generator</artifactId>
