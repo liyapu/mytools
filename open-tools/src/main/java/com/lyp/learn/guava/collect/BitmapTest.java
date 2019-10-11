@@ -28,8 +28,13 @@ public class BitmapTest {
         biMap.put("k1","v1");
         biMap.put("k2","v2");
         biMap.put("k3","v3");
-        biMap.put("k4","v1");
+//        biMap.put("k4","v1");
         System.out.println(biMap.get("k2"));
         System.out.println(biMap);
+    }
+
+    @Test
+    public void test(){
+        System.out.println("aa");
     }
 }
