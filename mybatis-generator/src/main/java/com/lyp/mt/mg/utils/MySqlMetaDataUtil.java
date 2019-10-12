@@ -29,6 +29,20 @@ public class MySqlMetaDataUtil {
 //    private static final String USERNAME = "root";
 //    private static final String PASSWORD = "Tusdao@mysql2019*";
 
+    //排除的字段
+    static List<String> excludeFields = new ArrayList<>();
+
+    static {
+        excludeFields.add("id");
+        excludeFields.add("valid");
+        excludeFields.add("createTime");
+        excludeFields.add("updateTime");
+        excludeFields.add("tableName");
+        excludeFields.add("create_time");
+        excludeFields.add("update_time");
+        excludeFields.add("table_name");
+    }
+
 
     /**
      * 获取数据库连接
@@ -915,6 +929,29 @@ public class MySqlMetaDataUtil {
             System.out.println(template);
         }
     }
+
+    /**
+     * 构造插入 table_show_field 表sql
+     */
+    @Test
+    public void buildInsertTableShowField(){
+        String dbTableName = "report_balance";
+        List<FieldEntity> fieldEntities = listByTableNameSql(dbTableName);
+        int order = 0;
+        for(FieldEntity fe : fieldEntities){
+            String fieldName = FieldUtils.lineToHump(fe.getField());
+            String comment = fe.getComment();
+
+            if(excludeFields.contains(fieldName)){
+                continue;
+            }
+            order += 5;
+            String sql = "INSERT INTO `table_show_field` (`table_name`,`field_name`,`field_show`,`field_order`,`valid`,`create_time`,`update_time`) VALUES ('"+dbTableName+"','"+fieldName+"','"+comment+"',"+order+",1,now(),now());";
+            System.out.println(sql);
+        }
+
+    }
+
 
     @Test
     public void getOriginEndTable(){
