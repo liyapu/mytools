@@ -1,6 +1,7 @@
 package com.lyp.learn.guava.collect;
 
 import com.google.common.base.Function;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -41,10 +42,6 @@ import java.util.List;
  * 我们还可以将两个（或三个）类型相同的数据存放在一个list中，这样可以传入到只有一个参数的函数或者需要减少参数的函数中，这些函数如下：
  * asList(E first, E[] rest)    返回一个不可变的List，其中包含指定的第一个元素和附加的元素数组组成，修改这个数组将反映到返回的List上.
  * asList(E first, E second, E[] rest)  返回一个不可变的List，其中包含指定的第一个元素、第二个元素和附加的元素数组组成，修改这个数组将反映到返回的List上.
- *
- * Lists 类中 transform 函数可以根据传进来的 function 对 fromList 进行相应的处理，并将处理得到的结果存入到新的list对象中，
- * 这样有利于我们进行分析，函数接口如下：
- * transform(List<F> fromList, Function<? super F,? extends T> function)    根据传进来的function对fromList进行相应的处理，并将处理得到的结果存入到新的list对象中返回.
  *
  */
 public class ListsTest {
@@ -170,10 +167,13 @@ public class ListsTest {
     /**
      * transform：根据传进来的function对fromList进行相应的处理
      * 并将处理得到的结果存入到新的list对象中返回
+     * 这样有利于我们进行分析，函数接口如下：
+     * transform(List<F> fromList, Function<? super F,? extends T> function)
      */
     @Test
     public void testTransform(){
-        ArrayList<String> list = Lists.newArrayList("a", "B", "c");
+        ArrayList<String> list = Lists.newArrayList("aaa", "Bb", "c","dd");
+
         List<Object> transformList = Lists.transform(list, new Function<String, Object>() {
             @Override
             public Object apply(@Nullable String input) {
@@ -181,6 +181,36 @@ public class ListsTest {
             }
         });
         System.out.println(transformList);
+        System.out.println();
+
+        Function<String, Integer> strlen = new Function<String, Integer>() {
+            public Integer apply(String from) {
+                Preconditions.checkNotNull(from);
+                return from.length();
+            }
+        };
+
+        List<Integer> to = Lists.transform(list, strlen);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.printf("%s has length %d\n", list.get(i), to.get(i));
+        }
+    }
+
+    /**
+     * cartesianProduct(List<? extends B>... lists)
+     * 返回通过从各给定集中选择一个元素所形成每一个可能的集合.
+     *
+     * cartesianProduct(List<? extends List<? extends B>> lists)
+     * 返回通过从各给定集中选择一个元素所形成每一个可能的集合.
+     */
+    @Test
+    public void testCartesianProduct(){
+        List<String> list1 = Lists.newArrayList("1", "2", "3");
+        List<String> list2 = Lists.newArrayList(new String[]{"aa", "bb"});
+
+        List<List<String>> cartesianProduct = Lists.cartesianProduct(list1, list2);
+        cartesianProduct.stream()
+                .forEach(System.out::println);
     }
 
 }
