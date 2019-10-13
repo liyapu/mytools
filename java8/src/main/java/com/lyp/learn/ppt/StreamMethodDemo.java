@@ -129,6 +129,19 @@ public class StreamMethodDemo {
     }
 
     /**
+     * foreach 输出map
+     */
+    @Test
+    public void testForeachMap(){
+        Map<String,String> map = new HashMap<>();
+        map.put("A","11");
+        map.put("B","22");
+        map.put("C","33");
+
+        map.forEach((k,v) -> System.out.println(k + ":" + v));
+    }
+
+    /**
      * foreEachOrdered
      * 表示严格按照顺序取数据
      *
