@@ -4,6 +4,7 @@ import com.google.common.base.CharMatcher;
 import org.junit.jupiter.api.Test;
 
 /**
+ * CharMatcher 提供了各种方法来处理各种 JAVA char 类型值。
  * CharMatcher像java版的正则表达式
  *
  * 两种操作:
@@ -59,7 +60,7 @@ import org.junit.jupiter.api.Test;
  * String trimLeadingFrom(CharSequence sequence): 删除首部匹配到的字符
  * String trimTrailingFrom(CharSequence sequence): 删除尾部匹配到的字符
  * String collapseFrom(CharSequence sequence, char replacement): 将匹配到的组(连续匹配的字符)替换成replacement 
- * String trimAndCollapseFrom(CharSequence sequence, char replacement): 先trim在replace
+ * String trimAndCollapseFrom(CharSequence sequence, char replacement): 先trim再replace 即：去掉两边空格，然后执行 collapseFrom 操作
  */
 public class CharMatcherTest {
 

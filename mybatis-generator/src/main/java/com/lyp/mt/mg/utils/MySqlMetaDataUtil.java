@@ -935,7 +935,12 @@ public class MySqlMetaDataUtil {
      */
     @Test
     public void buildInsertTableShowField(){
-        String dbTableName = "report_balance";
+//        String dbTableName = "report_balance";
+//        String dbTableName = "report_profit";
+//        String dbTableName = "report_cash_flow";
+//        String dbTableName = "financial_balance_y2007";
+//        String dbTableName = "financial_cash_flow_y2007";
+        String dbTableName = "financial_profit_y2007";
         List<FieldEntity> fieldEntities = listByTableNameSql(dbTableName);
         int order = 0;
         for(FieldEntity fe : fieldEntities){
@@ -944,6 +949,15 @@ public class MySqlMetaDataUtil {
 
             if(excludeFields.contains(fieldName)){
                 continue;
+            }
+            if(comment.contains("单位：元")){
+                comment = comment.replace("单位：元","(元)").trim();
+            }
+            if(comment.contains("quarterly:一季报 three_quarterly:三季报 semi_annual:半年报 annual:年报")){
+                comment = comment.replace("quarterly:一季报 three_quarterly:三季报 semi_annual:半年报 annual:年报","").trim();
+            }
+            if(comment.contains("2017/2018/2019")){
+                comment = comment.replace("2017/2018/2019","").trim();
             }
             order += 5;
             String sql = "INSERT INTO `table_show_field` (`table_name`,`field_name`,`field_show`,`field_order`,`valid`,`create_time`,`update_time`) VALUES ('"+dbTableName+"','"+fieldName+"','"+comment+"',"+order+",1,now(),now());";

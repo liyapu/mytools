@@ -10,13 +10,16 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilesTest {
 
-    public static final String SOURCE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\source.txt";
-    public static final String TARGET_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\target.txt";
+//    public static final String SOURCE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\source.txt";
+    public static final String SOURCE_FILE =  Paths.get("","src","main","resources","io","sources.txt").toAbsolutePath().toString();
+//    public static final String TARGET_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\target.txt";
+    public static final String TARGET_FILE =  Paths.get("","src","main","resources","io","target.txt").toAbsolutePath().toString();
     public static final String MOVE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\move.txt";
     public static final String WRITE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\write.txt";
     public static final String TOUCH_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\touch_new.txt";

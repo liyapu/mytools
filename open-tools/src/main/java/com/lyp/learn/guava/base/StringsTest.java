@@ -3,10 +3,15 @@ package com.lyp.learn.guava.base;
 import com.google.common.base.Strings;
 import org.junit.jupiter.api.Test;
 
+/**
+ * String 或 CharSequence 实例有关的静态实用程序方法。
+ *
+ */
 public class StringsTest {
 
     /**
-     *  如果为null 转为""
+     *  1、如果为null 转为""
+     *  2、不为空或null 返回当前值
      */
     @Test
     public void testNullToEmpty(){
@@ -17,6 +22,8 @@ public class StringsTest {
 
     /**
      * 如果为"" 转为null
+     * 1、如果为空或null 就返回 null
+     * 2、不为空或null 返回当前值
      */
     @Test
     public void testEmptyToNull(){
