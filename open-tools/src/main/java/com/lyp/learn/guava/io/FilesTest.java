@@ -17,12 +17,13 @@ import java.util.List;
 public class FilesTest {
 
 //    public static final String SOURCE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\source.txt";
-    public static final String SOURCE_FILE =  Paths.get("","src","main","resources","io","sources.txt").toAbsolutePath().toString();
+    public static final String SOURCE_FILE =  Paths.get("","src","main","resources","io","source.txt").toAbsolutePath().toString();
 //    public static final String TARGET_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\target.txt";
     public static final String TARGET_FILE =  Paths.get("","src","main","resources","io","target.txt").toAbsolutePath().toString();
-    public static final String MOVE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\move.txt";
-    public static final String WRITE_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\write.txt";
-    public static final String TOUCH_FILE = "D:\\myGitRepository\\mytools\\open-tools\\src\\main\\resources\\io\\touch_new.txt";
+    public static final String MOVE_FILE = Paths.get("","src","main","resources","io","move.txt").toAbsolutePath().toString();
+    public static final String WRITE_FILE = Paths.get("","src","main","resources","io","write.txt").toAbsolutePath().toString();
+    public static final String TOUCH_FILE = Paths.get("","src","main","resources","io","touch_new.txt").toAbsolutePath().toString();
+
 
     /**
      * 复制文件
@@ -44,6 +45,10 @@ public class FilesTest {
     /**
      * 创建父目录
      * 不会创建文件
+     *
+     * createParentDirs(File file)
+     * 需要注意的，如果最终创建失败，不能保证的是没有任何文件夹创建，
+     * 也许在他的父目录路径上已经有某些文件夹被创建了.
      */
     @Test
     public void testCreateParentDir() throws IOException {
@@ -87,6 +92,7 @@ public class FilesTest {
 
     /**
      * 读取文件到一个字符串中
+     * 文件整体读取
      * @throws IOException
      */
     @Test
@@ -96,6 +102,7 @@ public class FilesTest {
     }
     /**
      * 对文件做 hash,得到一个文件hash码，
+     * 在文件对比时候，可以看两个文件等hashCode 是否相等，比如拷贝文件后是否有损
      * 后续可以用于判断文件是否被篡改，或者文件是否修改了
      */
     @Test
@@ -150,6 +157,9 @@ public class FilesTest {
         Files.touch(new File(TOUCH_FILE));
     }
 
+    /**
+     * 递归文件
+     */
     @Test
     public void testRecursiveFile(){
         File root = new File("D:\\myGitRepository\\mytools\\open-tools\\src\\main");
@@ -200,18 +210,30 @@ public class FilesTest {
         }
     }
 
+    /**
+     * 递归文件
+     *
+     * 1、 breadthFirst 为【广度优先遍历】
+     *
+     * 2、depthFirstPreOrder 和 depthFirstPostOrder 为【深度优先遍历】
+     *
+     * 广度优先、深度优先 参考文章：https://www.jishux.com/p/7dbaf8611d052037
+     * */
     @Test
-    public void testDepthFirstPreOrder(){
-        File root = new File("D:\\myGitRepository\\mytools\\open-tools\\src\\main");
-        Iterable<File> files = Files.fileTraverser().depthFirstPreOrder(root);
+    public void test9() throws Exception {
+        String path =   Paths.get("","src","main").toAbsolutePath().toString();
+
+//        Iterable<File> files = Files.fileTraverser().breadthFirst(new File(path));
+//        files.forEach(System.out::println);
+
+        // 第一次访问到节点的顺序（Pre-order）
+//        Iterable<File> files = Files.fileTraverser().depthFirstPreOrder(new File(path));
+//        files.forEach(System.out::println);
+
+        // 访问到最后，然后回退访问节点的顺序（Post-order）
+        Iterable<File> files = Files.fileTraverser().depthFirstPostOrder(new File(path));
         files.forEach(System.out::println);
     }
 
 
-    @Test
-    public void testBreadthFirst(){
-        File root = new File("D:\\myGitRepository\\mytools\\open-tools\\src\\main");
-        Iterable<File> files = Files.fileTraverser().breadthFirst(root);
-        files.forEach(System.out::println);
-    }
 }
