@@ -1,4 +1,4 @@
-package com.lyp.learn.bean;
+package com.lyp.learn.guava.bean;
 
 /**
  * @author: liyapu

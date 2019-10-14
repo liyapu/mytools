@@ -4,8 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
-import com.google.common.hash.PrimitiveSink;
-import com.lyp.learn.bean.Person;
+import com.lyp.learn.guava.bean.Person;
 import org.junit.jupiter.api.Test;
 
 /**
