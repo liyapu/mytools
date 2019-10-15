@@ -9,9 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author: liyapu
- * @description:
- * @date 2019-10-09 09:35
  *
  * 在 Java 集合类库中有个 Map，它的特点是存放的键（Key）是唯一的，而值（Value）可以不唯一，
  * 如果我们需要键（Key）和值（Value）都唯一，该怎么实现？
@@ -30,6 +27,14 @@ import java.util.Set;
  *      HashBiMap：key 集合与 value 集合都有 HashMap 实现
  *      EnumBiMap：key 与 value 都必须是 enum 类型
  *      ImmutableBiMap：不可修改的 BiMap
+ *
+ *  BiMap的各种实现
+ *   键–值实现	     值–键实现	     对应的BiMap实现
+ *   HashMap	     HashMap	      HashBiMap
+ *   ImmutableMap	 ImmutableMap	  ImmutableBiMap
+ *   EnumMap	     EnumMap	      EnumBiMap
+ *   EnumMap	     HashMap	      EnumHashBiMap
+ *   注：Maps类中还有一些诸如synchronizedBiMap的BiMap工具方法.
  */
 public class BitmapTest {
 
