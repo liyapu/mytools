@@ -43,9 +43,9 @@ public class HashingTest {
     @Test
     public void test() {
         String input = "hello, world";
-        // 计算MD5
-        System.out.println(Hashing.md5().hashBytes(input.getBytes()).toString());
-        System.out.println(Hashing.md5().hashUnencodedChars(input).toString());
+        // 计算MD5  已过时
+//        System.out.println(Hashing.md5().hashBytes(input.getBytes()).toString());
+//        System.out.println(Hashing.md5().hashUnencodedChars(input).toString());
 
         System.out.println(Hashing.farmHashFingerprint64().hashBytes(input.getBytes()));
         System.out.println(Hashing.farmHashFingerprint64().hashUnencodedChars(input).toString());

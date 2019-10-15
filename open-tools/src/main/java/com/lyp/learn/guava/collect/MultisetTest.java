@@ -19,6 +19,18 @@ import java.util.*;
  *  事实上，Multiset 并没有实现 java.util.Set 接口，它更像是一个 Bag。
  *  普通的 Set 就像这样：[car, ship, bike]，而 Multiset 会是这样：[car x 2, ship x 6, bike x 3]
  *
+ *  可以用两种方式看待Multiset：
+ *  ·没有元素顺序限制的ArrayList<E>
+ *  ·Map<E, Integer>，键为元素，值为计数
+ *
+ * Multiset不是Map
+ * 请注意，Multiset<E>不是Map<E, Integer>，虽然Map可能是某些Multiset实现的一部分。准确来说Multiset是一种Collection类型，并履行了Collection接口相关的契约。
+ * 关于Multiset和Map的显著区别还包括：
+ * 1、Multiset中的元素计数只能是正数。任何元素的计数都不能为负，也不能是0。elementSet()和entrySet()视图中也不会有这样的元素。
+ * 2、multiset.size()返回集合的大小，等同于所有元素计数的总和。对于不重复元素的个数，应使用elementSet().size()方法。（因此，add(E)把multiset.size()增加1）
+ * 3、multiset.iterator()会迭代重复元素，因此迭代长度等于multiset.size()。
+ * 4、Multiset支持直接增加、减少或设置元素的计数。setCount(elem, 0)等同于移除所有elem。
+ * 5、对multiset 中没有的元素，multiset.count(elem)始终返回0。
  *
  * 常用的实现了 Multiset 接口的类有：
  * HashMultiset：元素存放于 HashMap
@@ -136,6 +148,7 @@ public class MultisetTest {
 
     /**
      * 遍历
+     * 返回所有不重复元素的Set<E>，和Map的keySet()类似
      */
     @Test
     public void testElementSet(){

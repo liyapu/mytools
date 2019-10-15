@@ -13,7 +13,10 @@ public class Person {
     public Person(){
 
     }
-
+    public Person(String name,Integer age){
+        this.name = name;
+        this.age = age;
+    }
     public Person(String name, String address, Integer age) {
         this.name = name;
         this.address = address;
