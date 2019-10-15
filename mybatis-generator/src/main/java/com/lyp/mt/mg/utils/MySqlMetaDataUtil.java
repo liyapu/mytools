@@ -940,7 +940,20 @@ public class MySqlMetaDataUtil {
 //        String dbTableName = "report_cash_flow";
 //        String dbTableName = "financial_balance_y2007";
 //        String dbTableName = "financial_cash_flow_y2007";
-        String dbTableName = "financial_profit_y2007";
+//        String dbTableName = "financial_profit_y2007";
+//        String dbTableName = "quarter_cash_flow";
+//        String dbTableName = "quarter_financial_indicator";
+//        String dbTableName = "quarter_financial_profit";
+//        String dbTableName = "ttm_cash_flow";
+//        String dbTableName = "ttm_financial_profit";
+//        String dbTableName = "company_initial_stock";
+//        String dbTableName = "company_share_plan";
+//        String dbTableName = "company_share_impl";
+//        String dbTableName = "company_stock_plan";
+//        String dbTableName = "company_stock_impl";
+//        String dbTableName = "dividend_indicator";
+//        String dbTableName = "performance_expectation";
+        String dbTableName = "investment_rating";
         List<FieldEntity> fieldEntities = listByTableNameSql(dbTableName);
         int order = 0;
         for(FieldEntity fe : fieldEntities){
@@ -958,6 +971,9 @@ public class MySqlMetaDataUtil {
             }
             if(comment.contains("2017/2018/2019")){
                 comment = comment.replace("2017/2018/2019","").trim();
+            }
+            if(comment.contains("  q1th:一季度；q2nd:二季度；q3rd:三季度；q4th:四季度;")){
+                comment = comment.replace("  q1th:一季度；q2nd:二季度；q3rd:三季度；q4th:四季度;","").trim();
             }
             order += 5;
             String sql = "INSERT INTO `table_show_field` (`table_name`,`field_name`,`field_show`,`field_order`,`valid`,`create_time`,`update_time`) VALUES ('"+dbTableName+"','"+fieldName+"','"+comment+"',"+order+",1,now(),now());";

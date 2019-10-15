@@ -13,6 +13,9 @@ import java.util.Set;
  * 通常来说，当你想使用多个键做索引的时候，你可能会用类似 Map<FirstName, Map<LastName, Person>> 的实现，这种方式很丑陋，使用上也不友好。
  * Guava为此提供了新集合类型 Table，它有两个支持所有类型的键：”行”和”列”，类似效果：Map --> Table --> rowKey+columnKye+value
  *
+ * Table支持 row、column、value  我们把定义的Map<String,Map<String,String>>结构想象成一张数据表就可以了：
+ * Table<R,C,V> == Map<R,Map<C,V>>
+ *
  * Table 有如下几种实现：
  *      HashBasedTable：本质上用 HashMap<R, HashMap<C, V>> 实现；
  *      TreeBasedTable：本质上用 TreeMap<R, TreeMap<C,V>> 实现；
