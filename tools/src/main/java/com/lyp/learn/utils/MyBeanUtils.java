@@ -15,6 +15,10 @@ import java.time.LocalDate;
  */
 public class MyBeanUtils {
 
+    public MyBeanUtils(){
+
+    }
+
     /**
      * 复制相同字段的source对象到target对象中
      * 或者直接使用 spring的  BeanUtils.copyProperties(source,target);
