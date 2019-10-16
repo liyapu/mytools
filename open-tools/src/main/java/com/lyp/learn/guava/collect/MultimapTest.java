@@ -61,6 +61,52 @@ import java.util.stream.Collectors;
  *   请注意，并非所有的Multimap都和上面列出的一样，使用Map<K, Collection<V>>来实现（特别是，一些Multimap实现用了自定义的hashTable，以最小化开销）
  *   
  *   如果你想要更大的定制化，请用Multimaps.newMultimap(Map, Supplier<Collection>)或list和 set版本，使用自定义的Collection、List或Set实现Multimap。
+ *
+ * ======= ArrayListMultiMap.java =============
+ * Multimap <I>
+ * |
+ * |
+ * AbstractMultimap <A>                  Serializable <I>
+ * |__________________________________________|
+ * |
+ * AbstractMapBasedMultimap <A>
+ * |
+ * |
+ * AbstractListMultimap <A>              ListMultimap <I>
+ * |__________________________________________|
+ * |
+ * ArrayListMultiMap
+ *
+ * =====   LinkedListMultiMap.java  =================
+ * Multimap <I>
+ * |
+ * |
+ * AbstractMultimap <A>              ListMultimap <I>                 Serializable <I>
+ * |__________________________________________|______________________________|
+ * |
+ * LinkedListMultimap
+ *
+ * ======= TreeMultimap.java ====================
+ *Multimap <I>
+ * |
+ * |
+ * AbstractMultimap <A>                  Serializable <I>
+ * |__________________________________________|
+ * |
+ * AbstractMapBasedMultimap <A>          SetMultimap <I>
+ * |__________________________________________|
+ * |
+ * AbstractSetMultimap <A>              SortedSetMultimap <I>
+ * |__________________________________________|
+ * |
+ * AbstractSortedSetMultimap <A>
+ * |
+ * |
+ * AbstractSortedKeySortedSetMultimap <A>
+ * |
+ * |
+ * TreeMultimap
+ *
  */
 public class MultimapTest {
     @Test
@@ -479,6 +525,79 @@ public class MultimapTest {
         System.out.println(arrayListMultimap.removeAll("c"));
         System.out.println(arrayListMultimap);
     }
+
+    /**
+     * key重复时，相同key的key-value pair 的value值是放在同一个数组中，相同的value会去重:
+     */
+    @Test
+    public void testHashMultimap(){
+        Multimap<Integer, Integer> map = HashMultimap.create();
+        map.put(4, 2);
+        map.put(4, 7);
+
+        map.put(1, 4);
+        map.put(1, 5);
+        map.put(1, 3);
+
+        map.put(2, 3);
+        map.put(2, 9);
+        map.put(2, 7);
+
+        map.put(1,5);
+        map.put(4, 5);
+
+        System.out.println(map.toString());
+    }
+
+    /**
+     * LinkedHashMultimap类操作方法与HashMultimap类一致，
+     * 唯一的区别是LinkedHashMultimap保存了记录的插入顺序，循环遍历时 先放入Multimap中的数据先输出。
+     * 注意：这个顺序对key／value都有效
+     */
+    @Test
+    public void testLinkedHashMultimap(){
+        Multimap<Integer, Integer> map = LinkedHashMultimap.create();
+        map.put(4, 2);
+        map.put(4, 7);
+
+        map.put(1, 4);
+        map.put(1, 5);
+        map.put(1, 3);
+
+        map.put(2, 3);
+        map.put(2, 9);
+        map.put(2, 7);
+
+        map.put(1,5);
+        map.put(4, 5);
+
+        System.out.println(map.toString());
+    }
+
+    /**
+     * TreeMultimap类操作方法与HashMultimap类一致，
+     * 但是TreeMultimap同时实现了SortedSetMultimap接口，将存入的数据按照自然排序，默认是升序，同样是对Key／Value生效
+     */
+    @Test
+    public void testTreeMultimap(){
+        Multimap<Integer, Integer> map = TreeMultimap.create();
+        map.put(4, 2);
+        map.put(4, 7);
+
+        map.put(1, 4);
+        map.put(1, 5);
+        map.put(1, 3);
+
+        map.put(2, 3);
+        map.put(2, 9);
+        map.put(2, 7);
+
+        map.put(1,5);
+        map.put(4, 5);
+
+        System.out.println(map.toString());
+    }
+
 
 
     /**

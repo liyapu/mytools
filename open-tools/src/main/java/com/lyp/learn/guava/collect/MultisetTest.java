@@ -1,8 +1,6 @@
 package com.lyp.learn.guava.collect;
 
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Multiset;
-import com.google.common.collect.Multisets;
+import com.google.common.collect.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -231,6 +229,28 @@ public class MultisetTest {
 
         multiset.removeAll(strList);
         System.out.println(multiset);
+    }
+
+    /**
+     * SortedMultiset是Multiset的变体，增加了针对元素次数的排序功能，接口实现类为TreeMultiset
+     * 不过这个SortedMultiset是针对元素进行排序的，而不是元素次数
+     */
+    @Test
+    public void testSortedMultiset(){
+        SortedMultiset<Integer> sortedMultiset = TreeMultiset.create();
+        sortedMultiset.add(2,50);
+        sortedMultiset.add(3,20);
+        sortedMultiset.add(4,10);
+        sortedMultiset.add(1,30);
+
+        System.out.println(sortedMultiset);
+        SortedMultiset<Integer> descendingMultiset = sortedMultiset.descendingMultiset();
+        System.out.println(descendingMultiset);
+        System.out.println();
+
+        System.out.println(sortedMultiset.firstEntry().getElement());
+        SortedMultiset<Integer> subMultiset = sortedMultiset.subMultiset(2, BoundType.CLOSED, 3, BoundType.CLOSED);
+        System.out.println(subMultiset);
     }
 
 }

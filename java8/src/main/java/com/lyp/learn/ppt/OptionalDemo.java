@@ -39,9 +39,104 @@ import java.util.Optional;
  * Guava用Optional<T>表示可能为null的T类型引用。
  * 一个Optional实例可能包含非null的引用（我们称之为引用存在），也可能什么也不包括（称之为引用缺失）。
  * 它从不说包含的是null值，而是用存在或缺失来表示。但Optional从不会包含null值引用。
+ *
+ * 若T类型数据可以为null，Optional<T>是用来以非空值替代T数据类型的一种方法。
+ * 一个Optional对象可以包含一个非空的T引用（这种情况下我们称之为“存在的”）或者不包含任何东西（这种情况下我们称之为“空缺的”）。
+ * 但Optional从来不会包含对null值的引用。
+ *
+ * Optional<T>的最常用价值在于，
+ * 例如，假设一个方法返回某一个数据类型，调用这个方法的代码来根据这个方法的返回值来做下一步的动作，
+ * 若该方法可以返回一个null值表示成功，或者表示失败，在这里看来都是意义含糊的，所以使用Optional<T>作为返回值，
+ * 则后续代码可以通过isPresent()来判断是否返回了期望的值（原本期望返回null或者返回不为null，其意义不清晰），并且可以使用get()来获得实际的返回值。
+ *
+ * 容器类型与null：
+ *   List：允许重复元素，可以加入任意多个null。
+ *   Set：不允许重复元素，最多可以加入一个null。
+ *   Map：Map的key最多可以加入一个null，value字段没有限制。
+ *   数组：基本类型数组，定义后，如果不给定初始值，则java运行时会自动给定值。引用类型数组，不给定初始值，则所有的元素值为null。
+ *
+ * null的其他作用
+ *   1、判断一个引用类型数据是否null。 用==来判断。
+ *   2、释放内存，让一个非null的引用类型变量指向null。这样这个对象就不再被任何对象应用了。等待JVM垃圾回收机制去回收。
+ *
+ * null的使用建议：
+ * 　1、在Set或者Map中使用null作为键值指向的value，千万别这么用。很显然，在Set和Map的查询操作中，将null作为特殊的例子可以使查询结果更浅显易懂。
+ * 　2、在Map中包含value是null值的键值对，你应该把这种键值对移出map，使用一个独立的Set来包含所有null或者非null的键。
+ *     很容易混淆的是，一个Map是不是包含value是　null的key，还是说这个Map中没有这样的键值对。
+ *     最好的办法就是把这类key值分立开来，并且好好想想到底一个value是null的键值对对于你的程序来说到底意味着什么。
+ * 　3、在列表中使用null，并且这个列表的数据是稀疏的，或许你最好应该使用一个Map<Integer,E>字典来代替这个列表。
+ *     因为字典更高效，并且也许更加精确的符合你潜意识里对程序的需求。
+ * 　4、想象一下如果有一种自然的“空对象”可以使用，比方说对于枚举类型，添加一个枚举常数实例，这个实例用来表示你想用null值所表示的情形。
+ *    比如：Java.math.RoundingMode有一个常数实例UNNECESSARY来表示“不需要四舍五入”，
+ *    任何精度计算的方法若传以RoundingMode.UNNECESSARY为参数来计算，必然抛出一个异常来表示不需要舍取精度。
+ *
  */
 
 public class OptionalDemo {
+    /**
+     *  我们需要来了解一下Java中null。
+     *  因为，只有我们深入的了解了null的相关知识，我们才能更加深入体会领悟到Optional设计和使用上的优雅和简单。
+     *
+     *  null代表不确定的对象：
+     * 　　Java中，null是一个关键字，用来标识一个不确定的对象。因此可以将null赋给引用类型变量，但不可以将null赋给基本类型变量。
+     *
+     * 　　Java中，变量的使用都遵循一个原则：先定义，并且初始化后，才可以使用。
+     *    例如如下代码中，我们不能定义int age后，不给age指定值，就去打印age的值。
+     *    这条对对于引用类型变量也是适用的（String name也同样适用），在编译的时候就会提示为初始化。
+     */
+    @Test
+    public void testNull(){
+        int age;
+//        System.out.println("user age :"+age);
+
+        Integer sum;
+//        System.out.println("sum is :" + sum);
+
+        long money;
+        money = 10L;
+        System.out.println("user money :"+money);
+
+        String name;
+//        System.out.println("user name :"+name);
+    }
+
+    /**
+     * 在Java中，Java默认给变量赋值：在定义变量的时候，如果定义后没有给变量赋值，则Java在运行时会自动给变量赋值。
+     * 赋值原则是整数类型int、byte、short、long的自动赋值为0，
+     * 带小数点的float、double自动赋值为0.0，
+     * boolean的自动赋值为false，
+     * 其他各供引用类型变量自动赋值为null
+     * 上面代码会变为如下可运行代码：
+     */
+    @Test
+    public  void testNullRun(){
+        int age = 0;
+        System.out.println("user age :"+age);
+
+        Integer sum = null;
+        System.out.println("sum is :" + sum);
+
+        long money;
+        money = 10L;
+        System.out.println("user money :"+money);
+
+        String name = null;
+        System.out.println("user name :"+name);
+    }
+
+    /**
+     * null本身不是对象，也不是Objcet的实例：
+     * 　　null只是一个关键字，用来标识一个不确定的对象，他既不是对象，也不是Objcet对象的实例。
+     * 下面我们通过代码确定一下
+     */
+    @Test
+    public static void testNullObject() {
+        if (null instanceof java.lang.Object) {
+            System.out.println("null属于java.lang.Object类型");
+        } else {
+            System.out.println("null不属于java.lang.Object类型");
+        }
+    }
 
     /**
      * of

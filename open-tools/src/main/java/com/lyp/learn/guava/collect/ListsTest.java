@@ -50,6 +50,11 @@ public class ListsTest {
      * 比如你创建一个List<Map<String,Map<String,Object>> 这样子的list，如果你要用new的话得还得费很大劲去敲键盘，
      * 其实用guava去声明只需要使用重载方法就行了：
      * List<Map<String,Map<String,Object>>> list = Lists.newArrayList();
+     *
+     *  List<String> test = new ArrayList<String>();
+     *  List<String> test2 = Lists.newArrayList();
+     *  List<String> test3 = Lists.newArrayList("1","2","3","4");
+     *  List<String> test4 = Lists.newArrayList(test);
      */
     @Test
     public void test1(){

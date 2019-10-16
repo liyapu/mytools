@@ -953,7 +953,13 @@ public class MySqlMetaDataUtil {
 //        String dbTableName = "company_stock_impl";
 //        String dbTableName = "dividend_indicator";
 //        String dbTableName = "performance_expectation";
-        String dbTableName = "investment_rating";
+//        String dbTableName = "investment_rating";
+//        String dbTableName = "shareholding_concentration";
+//        String dbTableName = "shareholder_controller";
+//        String dbTableName = "company_stock_change";
+//        String dbTableName = "executive_stock_change";
+//        String dbTableName = "shareholder_stock_change";
+        String dbTableName = "stock_basic";
         List<FieldEntity> fieldEntities = listByTableNameSql(dbTableName);
         int order = 0;
         for(FieldEntity fe : fieldEntities){
