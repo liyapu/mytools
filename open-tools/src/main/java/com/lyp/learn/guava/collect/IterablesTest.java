@@ -10,8 +10,18 @@ import java.util.*;
 import static java.util.Arrays.asList;
 
 /**
+ * Iterables
+ * 在可能的情况下，Guava提供的工具方法更偏向于接受Iterable而不是Collection类型。
+ * 在Google，对于不存放在主存的集合——比如从数据库或其他数据中心收集的结果集，
+ * 因为实际上还没有攫取全部数据，这类结果集都不能支持类似size()的操作 ——通常都不会用Collection类型来表示。
+ *
+ * 因此，很多你期望的支持所有集合的操作都在Iterables类中。
+ * 大多数Iterables方法有一个在Iterators类中的对应版本，用来处理Iterator。
+ *
  * Iterables使用FluentIterable类进行了补充，它包装了一个Iterable实例，并对许多操作提供了”fluent”（链式调用）语法。
  * 推荐更多的使用java8 Stream 方法实现
+ *
+ *
  */
 public class IterablesTest {
 

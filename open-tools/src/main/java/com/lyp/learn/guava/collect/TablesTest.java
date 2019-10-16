@@ -35,6 +35,9 @@ public class TablesTest {
      *
      * transformValues(Table<R,C,V1> fromTable, Function<? super V1,V2> function)
      * 返回表的视图，其中每个值都由函数转换。
+     *
+     * transpose(Table<R, C, V>)方法允许你把Table<C, R, V>转置成Table<R, C, V>。
+     * 例如，如果你在用Table构建加权有向图，这个方法就可以把有向图反转。
      */
     @Test
     public void test_transpose() {

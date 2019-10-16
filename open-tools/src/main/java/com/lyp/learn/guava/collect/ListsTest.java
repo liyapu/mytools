@@ -169,6 +169,9 @@ public class ListsTest {
     /**
      * reverse(List<T> list)
      * 返回一个传入List内元素倒序后的List.
+     *
+     * 返回给定List的反转视图。
+     * 注: 如果List是不可变的，考虑改用ImmutableList.reverse()。
      */
     @Test
     public void testReverse(){

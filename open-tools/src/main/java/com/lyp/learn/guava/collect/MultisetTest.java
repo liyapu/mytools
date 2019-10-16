@@ -231,6 +231,42 @@ public class MultisetTest {
         System.out.println(multiset);
     }
 
+    @Test
+    public void testContains(){
+        Multiset<String> multiset1 = HashMultiset.create();
+        multiset1.add("a", 2);
+
+        Multiset<String> multiset2 = HashMultiset.create();
+        multiset2.add("a", 5);
+
+        System.out.println(multiset1.contains("a"));
+        System.out.println(multiset1.contains("b"));
+        System.out.println(multiset1.containsAll(multiset2));
+        System.out.println();
+
+        System.out.println(multiset2.containsAll(multiset1));
+        System.out.println();
+
+        System.out.println(Multisets.containsOccurrences(multiset1, multiset2));
+        System.out.println(Multisets.containsOccurrences(multiset2, multiset1));
+
+    }
+
+    /**
+     * copyHighestCountFirst(Multiset)
+     * 返回Multiset的不可变拷贝，并将元素按重复出现的次数做降序排列
+     */
+    @Test
+    public void testCopyHighestCountFirst(){
+        Multiset<String> multiset = HashMultiset.create();
+        multiset.add("a", 3);
+        multiset.add("b", 5);
+        multiset.add("c", 1);
+
+        ImmutableMultiset highestCountFirst = Multisets.copyHighestCountFirst(multiset);
+        System.out.println(highestCountFirst);
+        //highestCountFirst，包括它的entrySet和elementSet，按{"b", "a", "c"}排列元素
+    }
     /**
      * SortedMultiset是Multiset的变体，增加了针对元素次数的排序功能，接口实现类为TreeMultiset
      * 不过这个SortedMultiset是针对元素进行排序的，而不是元素次数

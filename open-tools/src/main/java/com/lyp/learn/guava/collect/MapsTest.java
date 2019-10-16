@@ -89,12 +89,22 @@ public class MapsTest {
         differencePrint(map1, map2);
     }
 
+    /**
+     * Maps.difference(Map, Map)用来比较两个Map以获取所有不同点。
+     * 该方法返回MapDifference对象，把不同点的维恩图分解为：
+     * entriesOnlyOnLeft()	键只存在于左边Map的映射项
+     * entriesOnlyOnRight()	键只存在于右边Map的映射项
+     * entriesInCommon()	两个Map中都有的映射项，包括匹配的键与值
+     * entriesDiffering()	键相同但是值不同值映射项。返回的Map的值类型为MapDifference.ValueDifference，以表示左右两个不同的值
+     *
+     *
+     */
     private void differencePrint(Map<String, String> map1, Map<String, String> map4) {
         MapDifference<String, String> difference = Maps.difference(map1, map4);
         System.out.println("areEqual :" + difference.areEqual());
-        System.out.println("entriesInCommon :" + difference.entriesInCommon());
         System.out.println("entriesOnlyOnLeft :" + difference.entriesOnlyOnLeft());
         System.out.println("entriesOnlyOnRight ：" + difference.entriesOnlyOnRight());
+        System.out.println("entriesInCommon :" + difference.entriesInCommon());
         System.out.println("difference :" + difference);
         Map<String, MapDifference.ValueDifference<String>> stringValueDifferenceMap = difference.entriesDiffering();
         for(Map.Entry<String, MapDifference.ValueDifference<String>> entry : stringValueDifferenceMap.entrySet()){
@@ -224,5 +234,34 @@ public class MapsTest {
         //注意下面是：function 的值做 Key
         List<String> values = Lists.newArrayList("a", "b", "c", "d");
         System.out.println(Maps.uniqueIndex(values, function));     // {A=a, B=b, C=c, D=d}
+    }
+
+    /**
+     * Maps.uniqueIndex(Iterable,Function)通常针对的场景是：
+     * 有一组对象，它们在某个属性上分别有独一无二的值，而我们希望能够按照这个属性值查找对象——
+     * 译者注：这个方法返回一个Map，键为Function返回的属性值，值为Iterable中相应的元素，
+     * 因此我们可以反复用这个Map进行查找操作。
+     *
+     * 比方说，我们有一堆字符串，这些字符串的长度都是独一无二的，而我们希望能够按照特定长度查找字符串
+     *
+     * 如果字符串长度不是独一无二的，会有异常如下
+     * ImmutableSet<String> digits = ImmutableSet.of("aaaa", "bb", "c", "ddddd","ff");
+     * java.lang.IllegalArgumentException: Multiple entries with same key: 2=ff and 2=bb.
+     * To index multiple values under a key, use Multimaps.index.
+     *
+     * 如果索引值不是独一无二的，请参见下面的Multimaps.index方法。
+     */
+    @Test
+    public void testUniqueIndex(){
+//        ImmutableSet<String> digits = ImmutableSet.of("aaaa", "bb", "c", "ddddd","ff");
+        ImmutableSet<String> digits = ImmutableSet.of("aaaa", "bb", "c", "ddddd");
+        Function<String, Integer> lengthFunction = new Function<String, Integer>() {
+            public Integer apply(String string) {
+                return string.length();
+            }
+        };
+
+        ImmutableMap<Integer, String> integerStringImmutableMap = Maps.uniqueIndex(digits, lengthFunction);
+        System.out.println(integerStringImmutableMap);
     }
 }

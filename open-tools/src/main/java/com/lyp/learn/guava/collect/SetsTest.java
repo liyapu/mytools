@@ -46,6 +46,11 @@ public class SetsTest {
         System.out.println(Sets.filter(set, input -> input.contains("l")));     // [i like u, i love u]
     }
 
+    @Test
+    public void test111(){
+    }
+
+
     /**
      * difference：返回两个set集合的差的不可修改SetView
      * A，B是两个集合，则所有属于A且不属于B的元素构成的集合，叫做A与B的差集
@@ -92,6 +97,7 @@ public class SetsTest {
 
     /**
      * cartesianProduct：返回通过从各给定集中选择一个元素所形成每一个可能的集合
+     * 返回所有集合的笛卡儿积
      */
     @Test
     public void testCartesianProduct() {
@@ -102,7 +108,8 @@ public class SetsTest {
     }
 
     /**
-     * powerSet：返回一个set，包含给定set的所有可能父级集合
+     * powerSet：返回一个set，包含给定set的所有可能子类集合
+     * 返回给定集合的所有子集
      */
     @Test
     public void testPowerSet() {
