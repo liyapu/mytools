@@ -45,7 +45,12 @@ import java.util.List;
  *
  */
 public class ListsTest {
-
+    /**
+     * 可能有人疑问我用Lists.newArrayList(xxx)和直接new ArrayList<?>()有什么区别，其实就是省点打字的功夫。
+     * 比如你创建一个List<Map<String,Map<String,Object>> 这样子的list，如果你要用new的话得还得费很大劲去敲键盘，
+     * 其实用guava去声明只需要使用重载方法就行了：
+     * List<Map<String,Map<String,Object>>> list = Lists.newArrayList();
+     */
     @Test
     public void test1(){
         List<String> list1 = Lists.newArrayList();
@@ -139,6 +144,10 @@ public class ListsTest {
     /**
      * partition(List<T> list, int size)
      * 根据size传入的List进行切割，切割成符合要求的小的List，并将这些小的List存入一个新的List对象中返回.
+     *
+     *
+     * 当你需要请求别人的API传入参数时对方的入参数量有限制，或者分批操作时，可以先拆分然后顺序请求获得结果。
+     * RandomAccess意思是加快访问速度，不保证顺序但是可以让所有元素都常量时间拿到
      */
     @Test
     public void testPartition(){

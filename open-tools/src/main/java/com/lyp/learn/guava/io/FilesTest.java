@@ -8,8 +8,7 @@ import com.google.common.io.Files;
 import com.google.common.io.LineProcessor;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +156,18 @@ public class FilesTest {
         Files.touch(new File(TOUCH_FILE));
     }
 
+    /**
+     * 获得一个BufferedReader/bufferedwriter,
+     * 简单就是从file->fileinputstream->inputstreamreader-bufferedreader，一路生成过去：
+     */
+    @Test
+    public void testBufferReaderWrite() throws FileNotFoundException {
+        File sourceFile = new File(SOURCE_FILE);
+        BufferedReader bufferedReader = Files.newReader(sourceFile, Charsets.UTF_8);
+
+        File targetFile = new File(TARGET_FILE);
+        BufferedWriter bufferedWriter = Files.newWriter(targetFile, Charsets.UTF_8);
+    }
     /**
      * 递归文件
      */
