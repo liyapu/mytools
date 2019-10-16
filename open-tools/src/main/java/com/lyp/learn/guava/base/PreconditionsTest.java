@@ -30,6 +30,9 @@ import java.util.List;
  *
  * 索引值常用来查找列表、字符串或数组中的元素，如List.get(int), String.charAt(int)
  * 位置值和位置范围常用来截取列表、字符串或数组，如List.subList(int，int), String.substring(int)
+ *
+ * 在静态导入后, 方法很明确无歧义, checkNotNull可以清楚地告诉你它是干什么的, 它会抛出怎样的异常.
+ * checkNotNull在验证通过后直接返回, 可以这样方便地写代码: this.field = checkNotNull(field).
  */
 public class PreconditionsTest {
 

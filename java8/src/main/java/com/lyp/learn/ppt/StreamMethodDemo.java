@@ -1,7 +1,10 @@
 package com.lyp.learn.ppt;
 
 import com.alibaba.fastjson.JSON;
+import com.lyp.learn.bean.QuarterEnum;
+import com.lyp.learn.bean.QuarterVo;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +37,15 @@ public class StreamMethodDemo {
         //第二种 通过Arrays类的stream方法，实际上第一种of方法底层也是调用的Arrays.stream(values);
         String[] array = new String[]{"hello","world","helloworld"};
         Stream<String> stream2 = Arrays.stream(array);
+
+        List<QuarterVo> quarterVoList = Arrays.stream(QuarterEnum.values())
+                                              .map(qe -> {
+                                                QuarterVo qv = new QuarterVo();
+                                                BeanUtils.copyProperties(qe, qv);
+                                                qv.setName(qe.getValue());
+                                                return qv;
+                                              }).collect(Collectors.toList());
+        System.out.println("quarterVoList :" + quarterVoList);
 
         //第三种 通过集合的stream方法，该方法是Collection接口的默认方法，所有集合都继承了该方法
         //通过Collection得Stream（）方法（串行流）

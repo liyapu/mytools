@@ -1,7 +1,11 @@
 package com.lyp.learn.ppt;
 
 import com.alibaba.fastjson.JSON;
+import com.lyp.learn.bean.User;
+import com.lyp.learn.bean.UserVo;
+import com.lyp.learn.utils.MyBeanUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 
 import java.util.*;
 import java.util.function.Function;
@@ -62,6 +66,54 @@ public class StreamComparatorDemo {
         System.out.println(weightList);
         weightList.sort((Apple a1,Apple a2) -> a1.getWeight().compareTo(a2.getWeight()));
         System.out.println(weightList);
+    }
+
+    public static List<User> users = new ArrayList<>();
+    {
+        users.add(new User(1,"张三",20,"13211112222"));
+        users.add(new User(4,"jack",15,"13266668888"));
+        users.add(new User(3,"李四",60,"13299999999"));
+        users.add(new User(2,"jack",10,"1323333444"));
+    }
+
+    @Test
+    public void testSort1(){
+        List<UserVo> userVoList = users.stream()
+                .map(u -> MyBeanUtils.copyProperties(u, UserVo.class))
+                .sorted(Comparator.comparingInt(UserVo::getAge))
+                .collect(Collectors.toList());
+
+        userVoList.stream()
+                  .forEach(System.out::println);
+    }
+
+    @Test
+    public void testSort2(){
+        List<UserVo> userVoList = users.stream()
+                .map(u -> {
+                    UserVo uv = new UserVo();
+                    BeanUtils.copyProperties(u, uv);
+                    uv.setPhone(u.getTelephone());
+                    return uv;
+                }).sorted(Comparator.comparingInt(UserVo::getAge))
+                .collect(Collectors.toList());
+
+        userVoList.stream()
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void testSort3(){
+        List<UserVo> userVoList = users.stream()
+                .map(u -> {
+                    UserVo uv = MyBeanUtils.copyProperties(u, UserVo.class);
+                    uv.setPhone(u.getTelephone());
+                    return uv;
+                }).sorted(Comparator.comparingInt(UserVo::getAge))
+                .collect(Collectors.toList());
+
+        userVoList.stream()
+                .forEach(System.out::println);
     }
 
     /**
