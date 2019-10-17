@@ -74,16 +74,22 @@ public class MapUtilsTest {
 
     @Test
     public void testIsEmpty(){
+        Map map1 = null;
+        Map<String,String> map2 = null;
         Map<String,String> nullMap = new HashMap<>();
         Map<String,String> strMap = new HashMap<>();
         strMap.put("a","11");
         strMap.put("b","22");
 
+        System.out.println(MapUtils.isEmpty(map1));
+        System.out.println(MapUtils.isEmpty(map2));
         System.out.println(MapUtils.isEmpty(nullMap));
         System.out.println(MapUtils.isEmpty(strMap));
 
         System.out.println();
 
+        System.out.println(MapUtils.isNotEmpty(map1));
+        System.out.println(MapUtils.isNotEmpty(map2));
         System.out.println(MapUtils.isNotEmpty(nullMap));
         System.out.println(MapUtils.isNotEmpty(strMap));
     }
