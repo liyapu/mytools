@@ -25,14 +25,34 @@ public class IntrospectorTest {
     @Test
     public void test01() throws IntrospectionException {
         BeanInfo beanInfo = Introspector.getBeanInfo(User.class);
-        BeanDescriptor beanDescriptor = beanInfo.getBeanDescriptor();
 
+
+        System.out.println("----------beanDescriptor------------");
+        BeanDescriptor beanDescriptor = beanInfo.getBeanDescriptor();
         System.out.println(beanDescriptor.getBeanClass());
         System.out.println(beanDescriptor.getName());
         System.out.println(beanDescriptor.getDisplayName());
         System.out.println(beanDescriptor.getShortDescription());
-        System.out.println("--------------------");
+        System.out.println();
 
+        System.out.println("---------methodDescriptors-----------");
+        MethodDescriptor[] methodDescriptors = beanInfo.getMethodDescriptors();
+        for(MethodDescriptor methodDescriptor : methodDescriptors){
+            System.out.println(methodDescriptor.getDisplayName());
+            System.out.println(methodDescriptor.getName());
+            System.out.println(methodDescriptor.getMethod());
+
+            ParameterDescriptor[] parameterDescriptors = methodDescriptor.getParameterDescriptors();
+            if(parameterDescriptors != null && parameterDescriptors.length > 0){
+                for(ParameterDescriptor parameterDescriptor : parameterDescriptors){
+                    System.out.println(parameterDescriptor.getName());
+                    System.out.println(parameterDescriptor.getDisplayName());
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("-------------propertyDescriptors-------------------");
         PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
             Method readMethod = propertyDescriptor.getReadMethod();
@@ -41,16 +61,51 @@ public class IntrospectorTest {
             System.out.println(propertyDescriptor.getName());
             System.out.println(propertyDescriptor.getDisplayName());
             System.out.println(propertyDescriptor.getShortDescription());
+            System.out.println(propertyDescriptor.getPropertyType());
             System.out.println(readMethod);
             System.out.println(writeMethod);
+            System.out.println("----------------");
         }
-    }
 
+    }
 
     @Test
-    public void test(){
-        Integer a1 = new Integer(126);
-        Integer a2 = new Integer(126);
-        System.out.println(a1 == 126);
+    public  void setProperty()throws Exception{
+        User user = new User();
+        user.setId(100);
+        user.setName("张三");
+        user.setAge(18);
+        user.setAddress("河南省 商丘市");
+        user.setTelephone("13566668888");
+        user.setHeight(170);
+        user.setWeight(62);
+
+        String address = "address";
+        String addressValue = "北京";
+
+        PropertyDescriptor propDesc =new PropertyDescriptor(address,User.class);
+        Method writeMethodAddress = propDesc.getWriteMethod();
+        writeMethodAddress.invoke(user, addressValue);
+        System.out.println("set address :" + user.getAddress());
     }
+
+    @Test
+    public void getProperty()throws Exception{
+        User user = new User();
+        user.setId(100);
+        user.setName("张三");
+        user.setAge(18);
+        user.setAddress("河南省 商丘市");
+        user.setTelephone("13566668888");
+        user.setHeight(170);
+        user.setWeight(62);
+
+        String address = "address";
+
+        PropertyDescriptor proDescriptor =new PropertyDescriptor(address,User.class);
+        Method methodGetAddress = proDescriptor.getReadMethod();
+        Object userAddress = methodGetAddress.invoke(user);
+        System.out.println("get address :" + userAddress.toString());
+    }
+
 }
