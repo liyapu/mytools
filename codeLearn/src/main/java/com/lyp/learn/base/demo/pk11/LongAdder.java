@@ -52,7 +52,9 @@ public class LongAdder extends Striped64 implements Serializable {
                     !(uncontended = a.cas(v = a.value, v + x)))
                 //或者cell表为null，或者定位到的cell为null，或者尝试失败，
                 // 都会调用下面的Striped64中定义的longAccumulate方法。
+            {
                 longAccumulate(x, null, uncontended);
+            }
         }
     }
 
@@ -107,8 +109,9 @@ public class LongAdder extends Striped64 implements Serializable {
              **/
             if (as == null || (m = as.length - 1) < 0 ||
                     (a = as[getProbe() & m]) == null ||
-                    !(uncontended = a.cas(v = a.value, v + x)))
+                    !(uncontended = a.cas(v = a.value, v + x))) {
                 longAccumulate(x, null, uncontended);
+            }
         }
     }
 
@@ -174,8 +177,9 @@ public class LongAdder extends Striped64 implements Serializable {
                                 cellsBusy = 0;
                             }
                             //生成成功，跳出循环
-                            if (created)
+                            if (created) {
                                 break;
+                            }
                             //如果created为false，说明上面指定的cells数组的位置
                             // cells[m%cells.length]已经有其它线程设置了cell了，继续执行循环。
                             continue;
@@ -191,27 +195,33 @@ public class LongAdder extends Striped64 implements Serializable {
                      */
                 } else if (!wasUncontended)
                     //设置未竞争标志位true，继续执行，后面会算一个新的probe值，然后重新执行循环。
+                {
                     wasUncontended = true;
+                }
                 /**
                  *内部小分支三：新的争用线程参与争用的情况：处理刚进入当前方法时threadLocalRandomProbe=0的情况，
                  *            也就是当前线程第一次参与cell争用的cas失败，这里会尝试将x值
                  *            加到cells[m%cells.length]的value ，如果成功直接退出
                  */
-                else if (a.cas(v = a.value, ((fn == null) ? v + x : fn.applyAsLong(v, x))))
+                else if (a.cas(v = a.value, ((fn == null) ? v + x : fn.applyAsLong(v, x)))) {
                     break;
+                }
                 /**
                  *内部小分支四：分支3处理新的线程争用执行失败了，这时如果cells数组的长度已经到了最大值（大于等于cup数量），
                  *               或者是当前cells已经做了扩容，则将collide设置为false，后面重新计算prob的值
                  */
-                else if (n >= NCPU || cells != as)
-                 collide = false;
+                else if (n >= NCPU || cells != as) {
+                    collide = false;
+                }
                  /**
                  *内部小分支五：如果发生了冲突collide=false，则设置其为true；会在最后重新计算hash值后，进入下一次for循环
                  */
                 else if (!collide)
                     //设置冲突标志，表示发生了冲突，需要再次生成hash，重试。
                     // 如果下次重试任然走到了改分支此时collide=true，!collide条件不成立，则走后一个分支
+                {
                     collide = true;
+                }
                 /**
                  *内部小分支六：扩容cells数组，新参与cell争用的线程两次均失败，且符合扩容条件，会执行该分支
                  */
@@ -220,8 +230,9 @@ public class LongAdder extends Striped64 implements Serializable {
                         //检查cells是否已经被扩容
                         if (cells == as) {      // Expand table unless stale
                             Cell[] rs = new Cell[n << 1];
-                            for (int i = 0; i < n; ++i)
+                            for (int i = 0; i < n; ++i) {
                                 rs[i] = as[i];
+                            }
                             cells = rs;
                         }
                     } finally {
@@ -249,15 +260,17 @@ public class LongAdder extends Striped64 implements Serializable {
                     cellsBusy = 0;
                 }
                 //如果init为true说明初始化成功，跳出循环
-                if (init)
+                if (init) {
                     break;
+                }
             }
             /**
              *如果以上操作都失败了，则尝试将值累加到base上；
              */
             else if (casBase(v = base, ((fn == null) ? v + x :
-                    fn.applyAsLong(v, x))))
+                    fn.applyAsLong(v, x)))) {
                 break;                          // Fall back on using base
+            }
         }
     }
 
@@ -293,8 +306,9 @@ public class LongAdder extends Striped64 implements Serializable {
         long sum = base;
         if (as != null) {
             for (int i = 0; i < as.length; ++i) {
-                if ((a = as[i]) != null)
+                if ((a = as[i]) != null) {
                     sum += a.value;
+                }
             }
         }
         return sum;
@@ -312,8 +326,9 @@ public class LongAdder extends Striped64 implements Serializable {
         base = 0L;
         if (as != null) {
             for (int i = 0; i < as.length; ++i) {
-                if ((a = as[i]) != null)
+                if ((a = as[i]) != null) {
                     a.value = 0L;
+                }
             }
         }
     }
@@ -347,6 +362,7 @@ public class LongAdder extends Striped64 implements Serializable {
      * 返回 sum()的String表示 形式 。
      * @return the String representation of the {@link #sum}
      */
+    @Override
     public String toString() {
         return Long.toString(sum());
     }
@@ -355,6 +371,7 @@ public class LongAdder extends Striped64 implements Serializable {
      *相当于 sum() 。
      * @return the sum
      */
+    @Override
     public long longValue() {
         return sum();
     }
@@ -362,6 +379,7 @@ public class LongAdder extends Striped64 implements Serializable {
     /**
      * 在 缩小原始 int后返回 sum()作为int。
      */
+    @Override
     public int intValue() {
         return (int)sum();
     }
@@ -369,6 +387,7 @@ public class LongAdder extends Striped64 implements Serializable {
     /**
      * 返回 sum()为 float一个宽元转换后。
      */
+    @Override
     public float floatValue() {
         return (float)sum();
     }
@@ -376,6 +395,7 @@ public class LongAdder extends Striped64 implements Serializable {
     /**
      * 返回 sum()为 double一个宽元转换后。
      */
+    @Override
     public double doubleValue() {
         return (double)sum();
     }

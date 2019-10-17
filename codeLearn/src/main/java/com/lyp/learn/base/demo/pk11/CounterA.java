@@ -11,6 +11,7 @@ public class CounterA {
         //开启30个线程进行累加操作
         for(int i=0;i<30;i++){
             new Thread(){
+                @Override
                 public void run(){
                     for(int j=0;j<10000;j++){
                         num++;//自加操作

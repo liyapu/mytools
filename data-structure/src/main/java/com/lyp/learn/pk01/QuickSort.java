@@ -58,14 +58,24 @@ public class QuickSort {
     }
 
     public static void quickSort2(int[] array, int start, int end) {
-        if (array == null || start >= end) return;
+        if (array == null || start >= end) {
+            return;
+        }
         int i = start, j = end;
         int pivotKey = array[start];
         while (i < j) {
-            while (i < j && array[j] >= pivotKey) j--;
-            if (i < j) array[i++] = array[j];
-            while (i < j && array[i] <= pivotKey) i++;
-            if (i < j) array[j--] = array[i];
+            while (i < j && array[j] >= pivotKey) {
+                j--;
+            }
+            if (i < j) {
+                array[i++] = array[j];
+            }
+            while (i < j && array[i] <= pivotKey) {
+                i++;
+            }
+            if (i < j) {
+                array[j--] = array[i];
+            }
         }
         array[i] = pivotKey;
         quickSort(array, start, i - 1);

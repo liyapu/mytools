@@ -15,6 +15,7 @@ public class City extends Country {
         name = "河南";
     }
 
+    @Override
     public void  printName(){
         System.out.println("City 类 printName : name :" + name);
         super.printName();

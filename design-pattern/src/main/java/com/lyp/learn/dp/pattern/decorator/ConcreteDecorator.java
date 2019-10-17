@@ -12,6 +12,7 @@ public class ConcreteDecorator extends Decorator {
     }
 
     //重写 operation 方法
+    @Override
     public void operation(){
         this.decoratorMethod();
         super.operation();

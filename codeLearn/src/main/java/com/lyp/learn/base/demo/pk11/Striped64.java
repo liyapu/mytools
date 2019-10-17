@@ -283,8 +283,9 @@ abstract class Striped64 extends Number {
                                 cellsBusy = 0;
                             }
                             //创建成功跳出，否则重试
-                            if (created)
+                            if (created) {
                                 break;
+                            }
                             //说明上面指定的cell的位置上有cell了，继续尝试。
                             continue;           // Slot is now non-empty
                         }
@@ -298,23 +299,29 @@ abstract class Striped64 extends Number {
                 else if (!wasUncontended)       // CAS already known to fail
                     //如果之前的CAS失败，说明已经发生竞争，
                     //这里会设置未竞争标志位true，然后再次算一个probe值，然后重试。
+                {
                     wasUncontended = true;      // Continue after rehash
+                }
                     //尝试去修改a上的计数，
                     //a为Cell数组中index位置上的cell
                     //这里尝试将x值加到a的value上。
                 else if (a.cas(v = a.value, ((fn == null) ? v + x : fn.applyAsLong(v, x))))
                     //如果尝试成功，跳出循环，方法退出。
+                {
                     break;
+                }
                     //cell数组最大为cpu的数量，
                     //cells != as表明cells数组已经被更新了
                     //标记为最大状态或者说是过期状态
                 else if (n >= NCPU || cells != as)
                     //如果cell表的size已经最大，或者cell表已经发生变化(as是一个过时的)。
+                {
                     collide = false;            // At max size or stale
-
-                else if (!collide)
+                } else if (!collide)
                     //设置冲突标志，表示发生了冲突，重试。
+                {
                     collide = true;
+                }
                     //尝试获取cellsBusy锁。
                     //尝试获取锁之后扩大Cells
                 else if (cellsBusy == 0 && casCellsBusy()) {
@@ -323,8 +330,9 @@ abstract class Striped64 extends Number {
                         if (cells == as) {      // Expand table unless stale
                             //Cell数组扩容，每次扩容为原来的两倍
                             Cell[] rs = new Cell[n << 1];
-                            for (int i = 0; i < n; ++i)
+                            for (int i = 0; i < n; ++i) {
                                 rs[i] = as[i];
+                            }
                             cells = rs;
                         }
                     } finally {
@@ -354,13 +362,15 @@ abstract class Striped64 extends Number {
                     cellsBusy = 0;
                 }
                 //初始化cell表成功后，退出方法。
-                if (init)
+                if (init) {
                     break;
+                }
             }
             //如果创建cell表由于竞争导致失败，尝试将x累加到base上。
             //此处表明Cells为空，并且初始化的时候获取锁失败，直接在base上进行CAS
-            else if (casBase(v = base, ((fn == null) ? v + x : fn.applyAsLong(v, x))))
+            else if (casBase(v = base, ((fn == null) ? v + x : fn.applyAsLong(v, x)))) {
                 break;                          // Fall back on using base
+            }
         }
     }
 
@@ -395,30 +405,33 @@ abstract class Striped64 extends Number {
                             } finally {
                                 cellsBusy = 0;
                             }
-                            if (created)
+                            if (created) {
                                 break;
+                            }
                             continue;           // Slot is now non-empty
                         }
                     }
                     collide = false;
                 }
                 else if (!wasUncontended)       // CAS already known to fail
+                {
                     wasUncontended = true;      // Continue after rehash
-                else if (a.cas(v = a.value, ((fn == null) ?
+                } else if (a.cas(v = a.value, ((fn == null) ?
                         Double.doubleToRawLongBits(Double.longBitsToDouble(v) + x) :
                                 Double.doubleToRawLongBits(fn.applyAsDouble(Double.longBitsToDouble(v), x))
-                )))
+                ))) {
                     break;
-                else if (n >= NCPU || cells != as)
+                } else if (n >= NCPU || cells != as) {
                     collide = false;            // At max size or stale
-                else if (!collide)
+                } else if (!collide) {
                     collide = true;
-                else if (cellsBusy == 0 && casCellsBusy()) {
+                } else if (cellsBusy == 0 && casCellsBusy()) {
                     try {
                         if (cells == as) {      // Expand table unless stale
                             Cell[] rs = new Cell[n << 1];
-                            for (int i = 0; i < n; ++i)
+                            for (int i = 0; i < n; ++i) {
                                 rs[i] = as[i];
+                            }
                             cells = rs;
                         }
                     } finally {
@@ -441,8 +454,9 @@ abstract class Striped64 extends Number {
                 } finally {
                     cellsBusy = 0;
                 }
-                if (init)
+                if (init) {
                     break;
+                }
             }
             else if (casBase(v = base,
                              ((fn == null) ?
@@ -450,8 +464,9 @@ abstract class Striped64 extends Number {
                               (Double.longBitsToDouble(v) + x) :
                               Double.doubleToRawLongBits
                               (fn.applyAsDouble
-                               (Double.longBitsToDouble(v), x)))))
+                               (Double.longBitsToDouble(v), x))))) {
                 break;                          // Fall back on using base
+            }
         }
     }
 

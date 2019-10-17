@@ -99,8 +99,9 @@ public final class Unsafe {
     @CallerSensitive
     public static Unsafe getUnsafe() {
         Class<?> caller = Reflection.getCallerClass();
-        if (!VM.isSystemDomainLoader(caller.getClassLoader()))
+        if (!VM.isSystemDomainLoader(caller.getClassLoader())) {
             throw new SecurityException("Unsafe");
+        }
         return theUnsafe;
     }
 
@@ -689,10 +690,11 @@ public final class Unsafe {
      */
     @Deprecated
     public int fieldOffset(Field f) {
-        if (Modifier.isStatic(f.getModifiers()))
+        if (Modifier.isStatic(f.getModifiers())) {
             return (int) staticFieldOffset(f);
-        else
+        } else {
             return (int) objectFieldOffset(f);
+        }
     }
 
     /**

@@ -9,7 +9,8 @@ public class DateFormatThreadLocal {
 	
 	private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>(){
 		
-		protected DateFormat initialValue(){
+		@Override
+        protected DateFormat initialValue(){
 			return new SimpleDateFormat("yyyyMMdd");
 		}
 		

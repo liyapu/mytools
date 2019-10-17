@@ -23,6 +23,7 @@ public class MultimapsTest {
     public void testIndex(){
         ImmutableSet digits = ImmutableSet.of("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
         Function<String, Integer> lengthFunction = new Function<String, Integer>() {
+            @Override
             public Integer apply(String string) {
                 return string.length();
             }

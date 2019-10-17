@@ -7,6 +7,7 @@ public class SequenceThread extends Thread {
         this.sn = sn;
     }
     // 线程产生序列号
+    @Override
     public void run() {
         for (int i = 0; i < 3; i++) {
             System.out.println(Thread.currentThread().getName()   + ", sn = " + sn.getNextNum());

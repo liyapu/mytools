@@ -55,7 +55,7 @@ public class TransactionDemo {
         //(3) 查找所有来自于剑桥的交易员，并按姓名排序
         System.out.println("---------(3) 查找所有来自于剑桥的交易员，并按姓名排序--------");
         List<String> nameList = transactions.stream()
-                                                .filter(t -> t.getTrader().getCity().equals("Cambridge"))
+                                                .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
                                                 .map(t -> t.getTrader().getName())
                                                 .distinct()
                                                 .sorted()
@@ -64,7 +64,7 @@ public class TransactionDemo {
 
         List<Trader> traderList3 = transactions.stream()
                                                     .map(t -> t.getTrader())
-                                                    .filter(t -> t.getCity().equals("Cambridge"))
+                                                    .filter(t -> "Cambridge".equals(t.getCity()))
                                                     .distinct()
                                                     .sorted(Comparator.comparing(Trader::getName))
                                                     .collect(Collectors.toList());
@@ -120,14 +120,14 @@ public class TransactionDemo {
         //(5) 有没有交易员是在米兰工作的
         System.out.println("----------(5) 有没有交易员是在米兰工作的-------------");
         boolean resultBoolean5 = transactions.stream()
-                                                .anyMatch(t -> t.getTrader().getCity().equals("Milan"));
+                                                .anyMatch(t -> "Milan".equals(t.getTrader().getCity()));
         System.out.println(resultBoolean5);
         System.out.println();
 
         //(6) 打印生活在剑桥的交易员的所有交易额
         System.out.println("-----------(6) 打印生活在剑桥的交易员的所有交易额-----------");
         List<Integer> transactionList6 = transactions.stream()
-                                                            .filter(t -> t.getTrader().getCity().equals("Cambridge"))
+                                                            .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
                                                             .map(t -> t.getValue())
                                                             .collect(Collectors.toList());
         System.out.println(transactionList6);

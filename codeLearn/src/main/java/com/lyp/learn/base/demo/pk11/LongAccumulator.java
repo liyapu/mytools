@@ -58,7 +58,9 @@ public class LongAccumulator extends Striped64 implements Serializable {
                   (r = function.applyAsLong(v = a.value, x)) == v ||
                   a.cas(v, r)))
                 //cells为null,或者长度为0，在cells上不存在，尝试更新失败，都执行下面的函数
+            {
                 longAccumulate(x, function, uncontended);
+            }
         }
     }
 
@@ -72,8 +74,9 @@ public class LongAccumulator extends Striped64 implements Serializable {
         long result = base;
         if (as != null) {
             for (int i = 0; i < as.length; ++i) {
-                if ((a = as[i]) != null)
+                if ((a = as[i]) != null) {
                     result = function.applyAsLong(result, a.value);
+                }
             }
         }
         return result;
@@ -89,8 +92,9 @@ public class LongAccumulator extends Striped64 implements Serializable {
         base = identity;
         if (as != null) {
             for (int i = 0; i < as.length; ++i) {
-                if ((a = as[i]) != null)
+                if ((a = as[i]) != null) {
                     a.value = identity;
+                }
             }
         }
     }
@@ -116,22 +120,27 @@ public class LongAccumulator extends Striped64 implements Serializable {
         return result;
     }
 
+    @Override
     public String toString() {
         return Long.toString(get());
     }
 
+    @Override
     public long longValue() {
         return get();
     }
 
+    @Override
     public int intValue() {
         return (int)get();
     }
 
+    @Override
     public float floatValue() {
         return (float)get();
     }
 
+    @Override
     public double doubleValue() {
         return (double)get();
     }

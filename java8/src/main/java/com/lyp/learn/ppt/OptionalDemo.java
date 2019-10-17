@@ -341,7 +341,7 @@ public class OptionalDemo {
         }
 
          Optional.ofNullable(str1)
-                .filter(s -> s.equals("hello"))
+                .filter(s -> "hello".equals(s))
                 .ifPresent(x -> System.out.println("新的写法，str1 自动检测null"));
 
         System.out.println("---------------");
@@ -351,7 +351,7 @@ public class OptionalDemo {
         }
 
         Optional.ofNullable(str2)
-                .filter(s -> s.equals("hello"))
+                .filter(s -> "hello".equals(s))
                 .ifPresent(x -> System.out.println("新的写法，str2 自动检测null"));
 
         System.out.println("---------------");

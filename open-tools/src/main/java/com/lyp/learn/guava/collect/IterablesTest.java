@@ -419,7 +419,7 @@ public class IterablesTest {
         boolean removeIf = Iterables.removeIf(list, new Predicate<String>() {
             @Override
             public boolean apply(@Nullable String input) {
-                return input.equals("b") || input.equals("s");
+                return "b".equals(input) || "s".equals(input);
             }
         });
 

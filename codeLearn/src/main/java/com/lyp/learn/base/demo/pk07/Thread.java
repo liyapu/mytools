@@ -317,17 +317,19 @@ class Thread implements Runnable {
          */
         this.daemon = parent.isDaemon();
         this.priority = parent.getPriority();
-        if (security == null || isCCLOverridden(parent.getClass()))
+        if (security == null || isCCLOverridden(parent.getClass())) {
             this.contextClassLoader = parent.getContextClassLoader();
-        else
+        } else {
             this.contextClassLoader = parent.contextClassLoader;
+        }
         this.inheritedAccessControlContext =
                 acc != null ? acc : AccessController.getContext();
         this.target = target;
         setPriority(priority);
-        if (inheritThreadLocals && parent.inheritableThreadLocals != null)
+        if (inheritThreadLocals && parent.inheritableThreadLocals != null) {
             this.inheritableThreadLocals =
                     ThreadLocal.createInheritedMap(parent.inheritableThreadLocals);
+        }
         /* Stash the specified stack size in case the VM cares */
         this.stackSize = stackSize;
 
@@ -473,8 +475,9 @@ class Thread implements Runnable {
          *  0 表示线程NEW状态
          *  如果线程不是"就绪状态"，则抛出异常！
          */
-        if (threadStatus != 0)
+        if (threadStatus != 0) {
             throw new IllegalThreadStateException();
+        }
 
         /* 将线程添加到ThreadGroup中
         通知线程组此线程启动，所以可以加到此线程的线程组，此线程组中未启动的数量减一
@@ -615,8 +618,9 @@ class Thread implements Runnable {
      * 中断一个“已终止的线程”不会产生任何操作。
      */
     public void interrupt() {
-        if (this != Thread.currentThread())
+        if (this != Thread.currentThread()) {
             checkAccess();
+        }
 
         synchronized (blockerLock) {
             Interruptible b = blocker;
@@ -944,6 +948,7 @@ class Thread implements Runnable {
     /**
      * 返回此线程的字符串表示，包括线程的名称，优先级和线程组。
      */
+    @Override
     public String toString() {
         ThreadGroup group = getThreadGroup();
         if (group != null) {
@@ -960,8 +965,9 @@ class Thread implements Runnable {
      */
     @CallerSensitive
     public ClassLoader getContextClassLoader() {
-        if (contextClassLoader == null)
+        if (contextClassLoader == null) {
             return null;
+        }
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
             ClassLoader.checkClassLoaderPermission(contextClassLoader,
@@ -1093,8 +1099,9 @@ class Thread implements Runnable {
      * "enableContextClassLoaderOverride" RuntimePermission is checked.
      */
     private static boolean isCCLOverridden(Class<?> cl) {
-        if (cl == Thread.class)
+        if (cl == Thread.class) {
             return false;
+        }
 
         processQueue(Caches.subclassAuditsQueue, Caches.subclassAudits);
         WeakClassKey key = new WeakClassKey(cl, Caches.subclassAuditsQueue);
@@ -1115,6 +1122,7 @@ class Thread implements Runnable {
     private static boolean auditSubclass(final Class<?> subcl) {
         Boolean result = AccessController.doPrivileged(
                 new PrivilegedAction<Boolean>() {
+                    @Override
                     public Boolean run() {
                         for (Class<?> cl = subcl;
                              cl != Thread.class;
@@ -1389,8 +1397,9 @@ class Thread implements Runnable {
          */
         @Override
         public boolean equals(java.lang.Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
 
             if (obj instanceof WeakClassKey) {
                 java.lang.Object referent = get();

@@ -121,7 +121,7 @@ public class PreconditionsTest {
     @Test
     public void testState(){
         String state = "INIT";
-        Preconditions.checkState(state.equals("FINAL"));
+        Preconditions.checkState("FINAL".equals(state));
     }
 
     /**

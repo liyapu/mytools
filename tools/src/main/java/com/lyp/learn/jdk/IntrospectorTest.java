@@ -45,4 +45,12 @@ public class IntrospectorTest {
             System.out.println(writeMethod);
         }
     }
+
+
+    @Test
+    public void test(){
+        Integer a1 = new Integer(126);
+        Integer a2 = new Integer(126);
+        System.out.println(a1 == 126);
+    }
 }

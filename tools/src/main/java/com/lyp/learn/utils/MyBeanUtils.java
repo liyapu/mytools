@@ -98,7 +98,7 @@ public class MyBeanUtils {
                     return  new Date(s);
                 }
                 if(target.equals(BigDecimal.class)){
-                    if(!StringUtils.isEmpty(s)&&!s.equals("NaN")){
+                    if(!StringUtils.isEmpty(s)&&!"NaN".equals(s)){
                         return  new BigDecimal(s);
                     }
                 }
@@ -241,7 +241,7 @@ public class MyBeanUtils {
             String key = property.getName();
 
             // 过滤class属性
-            if (!key.equals("class")) {
+            if (!"class".equals(key)) {
                 // 得到property对应的getter方法
                 Method getter = property.getReadMethod();
                 Object value = getter.invoke(obj);

@@ -27,6 +27,7 @@ class ChildClass extends FatherClass {
     /**
      * 在子类ChildClass里面重写了从父类继承下来的f()方法里面的实现，即重写了f()方法的方法体。
      */
+    @Override
     public void f() {
         super.f();//使用super作为父类对象的引用对象来调用父类对象里面的f()方法
         value = 200;//这个value是子类自己定义的那个value，不是从父类继承下来的那个value

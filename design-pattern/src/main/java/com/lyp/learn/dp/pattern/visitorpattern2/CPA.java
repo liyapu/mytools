@@ -11,7 +11,7 @@ public class CPA implements AccountBookView {
     @Override
     public void view(ConsumerBill consumerBill) {
         consumeCount++;
-        if (consumerBill.getItem().equals("消费")) {
+        if ("消费".equals(consumerBill.getItem())) {
             System.out.println("第" + consumeCount + "个单子消费了：" + consumerBill.getAmount());
         }
     }
@@ -20,7 +20,7 @@ public class CPA implements AccountBookView {
     @Override
     public void view(IncomeBill incomeBill) {
         incomeCount++;
-        if (incomeBill.getItem().equals("收入")) {
+        if ("收入".equals(incomeBill.getItem())) {
             System.out.println("第" + incomeCount + "个单子收入了：" + incomeBill.getAmount());
         }
     }

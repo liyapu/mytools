@@ -31,7 +31,9 @@ public class ABCCondition {
                 lock.lock();
                 for (int i = 0; i < 10; i++) {
                     while (count % 3 != 0)//注意这里是不等于0，也就是说在count % 3为0之前，当前线程一直阻塞状态
+                    {
                         A.await(); // A释放lock锁
+                    }
                     System.out.print("A");
                     count++;
                     B.signal(); // A执行完唤醒B线程
@@ -49,8 +51,9 @@ public class ABCCondition {
             try {
                 lock.lock();
                 for (int i = 0; i < 10; i++) {
-                    while (count % 3 != 1)
+                    while (count % 3 != 1) {
                         B.await();// B释放lock锁，当前面A线程执行后会通过B.signal()唤醒该线程
+                    }
                     System.out.print("B");
                     count++;
                     C.signal();// B执行完唤醒C线程
@@ -68,8 +71,9 @@ public class ABCCondition {
             try {
                 lock.lock();
                 for (int i = 0; i < 10; i++) {
-                    while (count % 3 != 2)
+                    while (count % 3 != 2) {
                         C.await();// C释放lock锁，当前面B线程执行后会通过C.signal()唤醒该线程
+                    }
                     System.out.print("C");
                     count++;
                     A.signal();// C执行完唤醒A线程

@@ -13,6 +13,7 @@ class Father{
 
 public class Son extends Father{
 
+    @Override
     public void eat(){
         System.out.println("儿子吃了");
     }

@@ -8,6 +8,7 @@ public abstract class Decorator implements Component {
         this.component = component;
     }
 
+    @Override
     public void operation(){
         component.operation();
     }

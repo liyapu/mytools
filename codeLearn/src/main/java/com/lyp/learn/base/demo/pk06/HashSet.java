@@ -107,6 +107,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      * 可见HashSet中的元素，只是存放在了底层HashMap的key上，
      * value使用一个static final的Object对象标识。
      */
+    @Override
     public Iterator<E> iterator() {
         return map.keySet().iterator();
     }
@@ -117,6 +118,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      * 底层实际调用HashMap的size()方法返回Entry的数量，就得到该Set中元素的个数。
      * @return 此set中的元素的数量（set的容量）。
      */
+    @Override
     public int size() {
         return map.size();
     }
@@ -126,6 +128,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      *
      * 底层实际调用HashMap的isEmpty()判断该HashSet是否为空。
      */
+    @Override
     public boolean isEmpty() {
         return map.isEmpty();
     }
@@ -136,6 +139,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      *
      * 底层实际调用HashMap的containsKey判断是否包含指定key。
      */
+    @Override
     public boolean contains(Object o) {
         return map.containsKey(o);
     }
@@ -155,6 +159,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      * @param e 将添加到此set中的元素。
      * @return 如果此set尚未包含指定元素，则返回true。
      */
+    @Override
     public boolean add(E e) {
         return map.put(e, PRESENT)==null;
     }
@@ -171,6 +176,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      * @param o 如果存在于此set中则需要将其移除的对象。
      * @return 如果set包含指定元素，则返回true。
      */
+    @Override
     public boolean remove(Object o) {
         return map.remove(o)==PRESENT;
     }
@@ -180,6 +186,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      *
      * 底层实际调用HashMap的clear方法清空Entry中所有元素
      */
+    @Override
     public void clear() {
         map.clear();
     }
@@ -189,6 +196,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
      *
      * 底层实际调用HashMap的clone()方法，获取HashMap的浅表副本，并设置到HashSet中。
      */
+    @Override
     @SuppressWarnings("unchecked")
     public Object clone() {
         try {
@@ -217,8 +225,9 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
         s.writeInt(map.size());
 
         // Write out all elements in the proper order.
-        for (E e : map.keySet())
+        for (E e : map.keySet()) {
             s.writeObject(e);
+        }
     }
 
     /**
@@ -278,6 +287,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 
     /**
      */
+    @Override
     public Spliterator<E> spliterator() {
         return new HashMap.KeySpliterator<E,Object>(map, 0, -1, 0, 0);
     }

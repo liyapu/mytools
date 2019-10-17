@@ -100,8 +100,12 @@ public class Testss {
      * @return 每次返回两个链表中，比较的两个结点中的小结点
      */
     public Node mergeListRecursion(Node l1, Node l2) {
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
 
         Node head = null;
         if (l1.val <= l2.val){

@@ -248,6 +248,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
     /**
      * 返回当前值的String表示形式
      */
+    @Override
     public String toString() {
         return Long.toString(get());
     }
@@ -255,6 +256,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
     /**
      * 返回当前值对应的int值
      */
+    @Override
     public int intValue() {
         return (int)get();
     }
@@ -262,6 +264,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
     /**
      * 获取当前值对应的long值
      */
+    @Override
     public long longValue() {
         return get();
     }
@@ -269,6 +272,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
     /**
      * 以 float 形式返回当前值
      */
+    @Override
     public float floatValue() {
         return (float)get();
     }
@@ -276,6 +280,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
     /**
      *  以 double 形式返回当前值
      */
+    @Override
     public double doubleValue() {
         return (double)get();
     }

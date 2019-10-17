@@ -20,6 +20,7 @@ public class Mail implements Cloneable {
     }
 
     //克隆方法
+    @Override
     public Mail clone(){
         Mail mail = null;
         try {

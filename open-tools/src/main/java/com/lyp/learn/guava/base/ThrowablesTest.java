@@ -53,7 +53,9 @@ public class ThrowablesTest {
     }
 
     public double sqrt(double input) throws InvalidInputException {
-        if (input < 0) throw new InvalidInputException();
+        if (input < 0) {
+            throw new InvalidInputException();
+        }
         return Math.sqrt(input);
     }
 

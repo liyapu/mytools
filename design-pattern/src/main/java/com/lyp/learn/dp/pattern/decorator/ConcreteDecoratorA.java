@@ -10,6 +10,7 @@ public class ConcreteDecoratorA extends Decorator{
         System.out.println("听着音乐 工作......");
     }
 
+    @Override
     public void operation(){
         music();
         super.operation();

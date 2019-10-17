@@ -17,6 +17,7 @@ public class Trader {
         return this.city;
     }
 
+    @Override
     public String toString(){
         return "Trader:"+this.name + " in " + this.city;
     }

@@ -256,6 +256,7 @@ public class MapsTest {
 //        ImmutableSet<String> digits = ImmutableSet.of("aaaa", "bb", "c", "ddddd","ff");
         ImmutableSet<String> digits = ImmutableSet.of("aaaa", "bb", "c", "ddddd");
         Function<String, Integer> lengthFunction = new Function<String, Integer>() {
+            @Override
             public Integer apply(String string) {
                 return string.length();
             }

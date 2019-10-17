@@ -84,6 +84,7 @@ public class ScopeDemo {
             }
         };
 
+        @Override
         public String toString(){
             return "Hello, world anonymous";
         }
@@ -98,6 +99,7 @@ public class ScopeDemo {
         Runnable r1 = () -> { System.out.println(this); };
         Runnable r2 = () -> { System.out.println(toString()); };
 
+        @Override
         public String toString(){
             return "Hello, world lambda";
         }

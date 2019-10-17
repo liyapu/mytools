@@ -201,6 +201,7 @@ public class ListsTest {
         System.out.println();
 
         Function<String, Integer> strlen = new Function<String, Integer>() {
+            @Override
             public Integer apply(String from) {
                 Preconditions.checkNotNull(from);
                 return from.length();

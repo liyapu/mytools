@@ -68,7 +68,7 @@ public class ArrayListDemo {
         while (strListIter.hasNext()){
             String s  = strListIter.next();
             System.out.println(s);
-            if(s.equals("h")){
+            if("h".equals(s)){
                 //使用 iterator 迭代器，可以调用remove方法，在遍历时进行删除元素和添加元素
                 strListIter.remove();
                 strListIter.add("aaaaaaaaaa");
@@ -79,7 +79,7 @@ public class ArrayListDemo {
         System.out.println("--------for---------------");
         for(String s : strList){
             System.out.println(s);
-            if(s.equals("g")){
+            if("g".equals(s)){
                 //ConcurrentModificationException
                // strList.remove(s);
             }

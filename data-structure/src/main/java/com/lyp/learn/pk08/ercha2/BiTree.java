@@ -251,8 +251,9 @@ public class BiTree {
             }
 
             //找不到需要删除的节点，直接返回
-            if (current == null)
+            if (current == null) {
                 return false;
+            }
         }
 
         //分情况考虑

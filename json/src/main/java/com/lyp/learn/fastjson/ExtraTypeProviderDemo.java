@@ -7,11 +7,13 @@ import com.alibaba.fastjson.parser.deserializer.ExtraTypeProvider;
 import java.lang.reflect.Type;
 
 class MyExtraTypeProvider implements ExtraProcessor, ExtraTypeProvider {
+    @Override
     public void processExtra(Object object, String key, Object value) {
         VO vo = (VO) object;
         vo.getAttributes().put(key, value);
     }
 
+    @Override
     public Type getExtraType(Object object, String key) {
         if ("value".equals(key)) {
             return int.class;

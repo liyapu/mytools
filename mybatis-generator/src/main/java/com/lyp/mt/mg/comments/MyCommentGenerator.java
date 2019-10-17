@@ -46,6 +46,7 @@ public class MyCommentGenerator implements CommentGenerator {
         nowTime = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date());
     }
 
+    @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
         if (suppressAllComments) {
             return;
@@ -60,10 +61,12 @@ public class MyCommentGenerator implements CommentGenerator {
      * Adds a suitable comment to warn users that the element was generated, and
      * when it was generated.
      */
+    @Override
     public void addComment(XmlElement xmlElement) {
         return;
     }
 
+    @Override
     public void addRootComment(XmlElement rootElement) {
         // add no document level comments by default
         return;
@@ -94,6 +97,7 @@ public class MyCommentGenerator implements CommentGenerator {
 
     }
 
+    @Override
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
         suppressDate = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_DATE));
@@ -149,6 +153,7 @@ public class MyCommentGenerator implements CommentGenerator {
         return result;
     }
 
+    @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
 //        if (suppressAllComments) {
 //            return;
@@ -163,6 +168,7 @@ public class MyCommentGenerator implements CommentGenerator {
 //        innerClass.addJavaDocLine(" */");
     }
 
+    @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
 //        if (suppressAllComments) {
 //            return;
@@ -180,6 +186,7 @@ public class MyCommentGenerator implements CommentGenerator {
 //        innerClass.addJavaDocLine(" */");
     }
 
+    @Override
     public void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable) {
         if (suppressAllComments) {
             return;
@@ -195,6 +202,7 @@ public class MyCommentGenerator implements CommentGenerator {
     /**
      * 实体类字段注解
      */
+    @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
         if (suppressAllComments) {
             return;
@@ -218,6 +226,7 @@ public class MyCommentGenerator implements CommentGenerator {
     /**
      * 实体类静态属性字段的方法名和上一个方法名一样，只是参数不同
      */
+    @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
         if (suppressAllComments) {
             return;
@@ -258,6 +267,7 @@ public class MyCommentGenerator implements CommentGenerator {
     /**
      * 实体类toString方法
      */
+    @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
 //        if (suppressAllComments) {
 //            return;
@@ -270,6 +280,7 @@ public class MyCommentGenerator implements CommentGenerator {
     /**
      * 实体类getter方法注释
      */
+    @Override
     public void addGetterComment(Method method, IntrospectedTable introspectedTable,
                                  IntrospectedColumn introspectedColumn) {
 //        if (suppressAllComments) {
@@ -306,6 +317,7 @@ public class MyCommentGenerator implements CommentGenerator {
     /**
      * 实体类setter注释
      */
+    @Override
     public void addSetterComment(Method method, IntrospectedTable introspectedTable,
                                  IntrospectedColumn introspectedColumn) {
 //        if (suppressAllComments) {

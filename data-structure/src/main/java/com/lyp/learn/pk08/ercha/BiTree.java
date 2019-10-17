@@ -366,8 +366,9 @@ public class BiTree {
      * 层次遍历(递归)
      */
     public void levelOrder(List<BiTreeNode> nodeList){
-        if(nodeList == null || nodeList.size() == 0)
+        if(nodeList == null || nodeList.size() == 0) {
             return;
+        }
         List<BiTreeNode> childList = new LinkedList<>();
         for (BiTreeNode node : nodeList){
             System.out.print(node.getData());
@@ -410,8 +411,9 @@ public class BiTree {
      * 非递归，利用队列的先进先出特性实现
      */
     public void levelOrder(){
-        if(root == null)
+        if(root == null) {
             return;
+        }
         Queue<BiTreeNode> queue = new LinkedList<>();
         queue.offer(root);
         BiTreeNode node = null;
@@ -682,8 +684,9 @@ public class BiTree {
         queue.offer(root);
         while (!queue.isEmpty()){
             int size = queue.size();
-            if(level == currentLevel)
+            if(level == currentLevel) {
                 return size;
+            }
             for(int i=0;i<size;i++){
                 BiTreeNode node = queue.poll();
                 if(node.getLchild() != null){

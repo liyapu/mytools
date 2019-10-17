@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * @description:
  * @date 2019-10-17 09:47
  */
+@SuppressWarnings("AlibabaAvoidApacheBeanUtilsCopy")
 public class CommonsBeanUtilsPropertiesCopier implements PropertiesCopier {
     @Override
     public void copyProperties(Object source, Object target) throws Exception {

@@ -49,6 +49,7 @@ public class RenameJavaMapperPlugin extends PluginAdapter {
     public RenameJavaMapperPlugin() {
     }
 
+    @Override
     public boolean validate(List<String> warnings) {
 
         searchString = properties.getProperty("searchString"); //$NON-NLS-1$

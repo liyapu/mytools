@@ -102,6 +102,7 @@ public class AtomicBoolean implements java.io.Serializable {
     /**
      * 返回当前值的String表示形式。
      */
+    @Override
     public String toString() {
         return Boolean.toString(get());
     }

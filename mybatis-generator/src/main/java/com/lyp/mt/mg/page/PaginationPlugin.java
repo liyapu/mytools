@@ -131,6 +131,7 @@ public class PaginationPlugin extends PluginAdapter {
     /**
      * This plugin is always valid - no properties are required
      */
+    @Override
     public boolean validate(List<String> warnings) {
         return true;
     }

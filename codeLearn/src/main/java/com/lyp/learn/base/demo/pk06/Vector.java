@@ -84,8 +84,9 @@ public class Vector<E>
      */
     public Vector(int initialCapacity, int capacityIncrement) {
         super();
-        if (initialCapacity < 0)
+        if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
+        }
         this.elementData = new Object[initialCapacity];
         this.capacityIncrement = capacityIncrement;
     }
@@ -115,8 +116,9 @@ public class Vector<E>
         elementData = c.toArray();
         elementCount = elementData.length;
         // c.toArray might (incorrectly) not return Object[] (see 6260652)
-        if (elementData.getClass() != Object[].class)
+        if (elementData.getClass() != Object[].class) {
             elementData = Arrays.copyOf(elementData, elementCount, Object[].class);
+        }
     }
 
     /**
@@ -162,8 +164,9 @@ public class Vector<E>
      */
     private void ensureCapacityHelper(int minCapacity) {
         // overflow-conscious code
-        if (minCapacity - elementData.length > 0)
+        if (minCapacity - elementData.length > 0) {
             grow(minCapacity);
+        }
     }
 
     /**
@@ -181,16 +184,20 @@ public class Vector<E>
         // overflow-conscious code
         int oldCapacity = elementData.length;
         int newCapacity = oldCapacity + ((capacityIncrement > 0) ? capacityIncrement : oldCapacity);
-        if (newCapacity - minCapacity < 0)
+        if (newCapacity - minCapacity < 0) {
             newCapacity = minCapacity;
-        if (newCapacity - MAX_ARRAY_SIZE > 0)
+        }
+        if (newCapacity - MAX_ARRAY_SIZE > 0) {
             newCapacity = hugeCapacity(minCapacity);
+        }
         elementData = Arrays.copyOf(elementData, newCapacity);
     }
 
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
+        {
             throw new OutOfMemoryError();
+        }
         return (minCapacity > MAX_ARRAY_SIZE) ?
                 Integer.MAX_VALUE :
                 MAX_ARRAY_SIZE;
@@ -226,6 +233,7 @@ public class Vector<E>
      * 即实际保存的元素个数
      * @return 该向量中的元素数量
      */
+    @Override
     public synchronized int size() {
         return elementCount;
     }
@@ -236,6 +244,7 @@ public class Vector<E>
      * @return true当且仅当该向量没有组件时，即其大小为零;
      *         false否则。
      */
+    @Override
     public synchronized boolean isEmpty() {
         return elementCount == 0;
     }
@@ -248,10 +257,12 @@ public class Vector<E>
         return new Enumeration<E>() {
             int count = 0;
 
+            @Override
             public boolean hasMoreElements() {
                 return count < elementCount;
             }
 
+            @Override
             public E nextElement() {
                 synchronized (Vector.this) {
                     if (count < elementCount) {
@@ -267,6 +278,7 @@ public class Vector<E>
      * 如果此向量包含指定的元素，则返回true 。
      * 更正式地，返回true当且仅当该向量包含至少一个元素e使得(o==null ? e==null : o.equals(e)) 。
      */
+    @Override
     public boolean contains(Object o) {
         return indexOf(o, 0) >= 0;
     }
@@ -285,6 +297,7 @@ public class Vector<E>
      * @param o 要搜索的元素
      * @return 该向量中指定元素的第一次出现的索引，如果此向量不包含元素，则为-1
      */
+    @Override
     public int indexOf(Object o) {
         return indexOf(o, 0);
     }
@@ -304,13 +317,17 @@ public class Vector<E>
      */
     public synchronized int indexOf(Object o, int index) {
         if (o == null) {
-            for (int i = index ; i < elementCount ; i++)
-                if (elementData[i]==null)
+            for (int i = index ; i < elementCount ; i++) {
+                if (elementData[i]==null) {
                     return i;
+                }
+            }
         } else {
-            for (int i = index ; i < elementCount ; i++)
-                if (o.equals(elementData[i]))
+            for (int i = index ; i < elementCount ; i++) {
+                if (o.equals(elementData[i])) {
                     return i;
+                }
+            }
         }
         return -1;
     }
@@ -324,6 +341,7 @@ public class Vector<E>
      * @param o 要搜索的元素
      * @return 该向量中指定元素的最后一次出现的索引，如果此向量不包含元素，则为-1
      */
+    @Override
     public synchronized int lastIndexOf(Object o) {
         return lastIndexOf(o, elementCount-1);
     }
@@ -340,17 +358,22 @@ public class Vector<E>
      * @throws IndexOutOfBoundsException 如果指定的索引大于或等于此向量的当前大小
      */
     public synchronized int lastIndexOf(Object o, int index) {
-        if (index >= elementCount)
+        if (index >= elementCount) {
             throw new IndexOutOfBoundsException(index + " >= "+ elementCount);
+        }
 
         if (o == null) {
-            for (int i = index; i >= 0; i--)
-                if (elementData[i]==null)
+            for (int i = index; i >= 0; i--) {
+                if (elementData[i]==null) {
                     return i;
+                }
+            }
         } else {
-            for (int i = index; i >= 0; i--)
-                if (o.equals(elementData[i]))
+            for (int i = index; i >= 0; i--) {
+                if (o.equals(elementData[i])) {
                     return i;
+                }
+            }
         }
         return -1;
     }
@@ -505,8 +528,9 @@ public class Vector<E>
     public synchronized void removeAllElements() {
         modCount++;
         // Let gc do its work
-        for (int i = 0; i < elementCount; i++)
+        for (int i = 0; i < elementCount; i++) {
             elementData[i] = null;
+        }
 
         elementCount = 0;
     }
@@ -515,6 +539,7 @@ public class Vector<E>
      * 返回此向量的克隆。
      * 该副本将包含对内部数据数组的克隆的引用，而不是对该Vector对象的原始内部数据数组的引用。
      */
+    @Override
     public synchronized Object clone() {
         try {
             @SuppressWarnings("unchecked")
@@ -531,6 +556,7 @@ public class Vector<E>
     /**
      * 以正确的顺序返回一个包含此Vector中所有元素的数组。
      */
+    @Override
     public synchronized Object[] toArray() {
         return Arrays.copyOf(elementData, elementCount);
     }
@@ -548,15 +574,18 @@ public class Vector<E>
      * @throws NullPointerException 如果给定的数组为空
      * @since 1.2
      */
+    @Override
     @SuppressWarnings("unchecked")
     public synchronized <T> T[] toArray(T[] a) {
-        if (a.length < elementCount)
+        if (a.length < elementCount) {
             return (T[]) Arrays.copyOf(elementData, elementCount, a.getClass());
+        }
 
         System.arraycopy(elementData, 0, a, 0, elementCount);
 
-        if (a.length > elementCount)
+        if (a.length > elementCount) {
             a[elementCount] = null;
+        }
 
         return a;
     }
@@ -571,9 +600,11 @@ public class Vector<E>
     /**
      * 返回此向量中指定位置的元素。
      */
+    @Override
     public synchronized E get(int index) {
-        if (index >= elementCount)
+        if (index >= elementCount) {
             throw new ArrayIndexOutOfBoundsException(index);
+        }
 
         return elementData(index);
     }
@@ -586,9 +617,11 @@ public class Vector<E>
      * @return  在指定位置上的以前的元素值
      * @throws ArrayIndexOutOfBoundsException 如果索引超出范围（ index < 0 || index >= size() ）
      */
+    @Override
     public synchronized E set(int index, E element) {
-        if (index >= elementCount)
+        if (index >= elementCount) {
             throw new ArrayIndexOutOfBoundsException(index);
+        }
 
         E oldValue = elementData(index);
         elementData[index] = element;
@@ -598,6 +631,7 @@ public class Vector<E>
     /**
      * 将指定的元素追加到此Vector的末尾。
      */
+    @Override
     public synchronized boolean add(E e) {
         modCount++;
         ensureCapacityHelper(elementCount + 1);
@@ -609,6 +643,7 @@ public class Vector<E>
      * 删除此向量中指定元素的第一个出现,如果Vector不包含元素，则它不会更改。
      * 更正式地，删除具有最低索引i的元素，使得(o==null ? get(i)==null : o.equals(get(i))) （如果这样的元素存在）。
      */
+    @Override
     public boolean remove(Object o) {
         return removeElement(o);
     }
@@ -617,6 +652,7 @@ public class Vector<E>
      * 在此Vector中的指定位置插入指定的元素。
      * 将当前位于该位置的元素（如果有）和任何后续元素（向其索引添加一个）移动。
      */
+    @Override
     public void add(int index, E element) {
         insertElementAt(element, index);
     }
@@ -626,15 +662,18 @@ public class Vector<E>
      * 将任何后续元素移动到左侧（从其索引中减去一个元素）。
      * 返回从Vector中删除的元素。
      */
+    @Override
     public synchronized E remove(int index) {
         modCount++;
-        if (index >= elementCount)
+        if (index >= elementCount) {
             throw new ArrayIndexOutOfBoundsException(index);
+        }
         E oldValue = elementData(index);
 
         int numMoved = elementCount - index - 1;
-        if (numMoved > 0)
+        if (numMoved > 0) {
             System.arraycopy(elementData, index+1, elementData, index, numMoved);
+        }
         elementData[--elementCount] = null; // Let gc do its work
 
         return oldValue;
@@ -643,6 +682,7 @@ public class Vector<E>
     /**
      * 从此Vector中删除所有元素。 此调用返回后，Vector将为空（除非引发异常）。
      */
+    @Override
     public void clear() {
         removeAllElements();
     }
@@ -655,6 +695,7 @@ public class Vector<E>
      * @return true 如果此向量包含指定集合中的所有元素，则为true
      * @throws NullPointerException  如果指定的集合为空
      */
+    @Override
     public synchronized boolean containsAll(Collection<?> c) {
         return super.containsAll(c);
     }
@@ -668,6 +709,7 @@ public class Vector<E>
      * @return {@code true} true如果此向量由于调用而更改
      * @throws NullPointerException 如果指定的集合为空
      */
+    @Override
     public synchronized boolean addAll(Collection<? extends E> c) {
         modCount++;
         Object[] a = c.toArray();
@@ -681,6 +723,7 @@ public class Vector<E>
     /**
      * 从此Vector中删除指定集合中包含的所有元素。
      */
+    @Override
     public synchronized boolean removeAll(Collection<?> c) {
         return super.removeAll(c);
     }
@@ -689,6 +732,7 @@ public class Vector<E>
      * 仅保留此向量中包含在指定集合中的元素。
      * 换句话说，从此Vector中删除所有不包含在指定集合中的元素。
      */
+    @Override
     public synchronized boolean retainAll(Collection<?> c) {
         return super.retainAll(c);
     }
@@ -704,18 +748,21 @@ public class Vector<E>
      * 根据numMoved 判断是否需要移动元素
      * 在指定位置插入指定数量的元素
      */
+    @Override
     public synchronized boolean addAll(int index, Collection<? extends E> c) {
         modCount++;
-        if (index < 0 || index > elementCount)
+        if (index < 0 || index > elementCount) {
             throw new ArrayIndexOutOfBoundsException(index);
+        }
 
         Object[] a = c.toArray();
         int numNew = a.length;
         ensureCapacityHelper(elementCount + numNew);
 
         int numMoved = elementCount - index;
-        if (numMoved > 0)
+        if (numMoved > 0) {
             System.arraycopy(elementData, index, elementData, index + numNew, numMoved);
+        }
 
         System.arraycopy(a, 0, elementData, index, numNew);
         elementCount += numNew;
@@ -729,6 +776,7 @@ public class Vector<E>
      *
      * 换句话说，如果两个列表以相同的顺序包含相同的元素，则它们被定义为相等。
      */
+    @Override
     public synchronized boolean equals(Object o) {
         return super.equals(o);
     }
@@ -736,6 +784,7 @@ public class Vector<E>
     /**
      * 返回此Vector的哈希码值。
      */
+    @Override
     public synchronized int hashCode() {
         return super.hashCode();
     }
@@ -743,6 +792,7 @@ public class Vector<E>
     /**
      * 返回此Vector的字符串表示形式，其中包含每个元素的String表示形式。
      */
+    @Override
     public synchronized String toString() {
         return super.toString();
     }
@@ -767,6 +817,7 @@ public class Vector<E>
      * @throws IndexOutOfBoundsException 如果端点索引值超出范围 (fromIndex < 0 || toIndex > size)
      * @throws IllegalArgumentException 如果端点索引 (fromIndex > toIndex)
      */
+    @Override
     public synchronized List<E> subList(int fromIndex, int toIndex) {
         return Collections.synchronizedList(super.subList(fromIndex, toIndex), this);
     }
@@ -777,6 +828,7 @@ public class Vector<E>
      * 此调用会通过(toIndex - fromIndex)元素(toIndex - fromIndex)列表。
      * （如果toIndex==fromIndex ，此操作无效）
      */
+    @Override
     protected synchronized void removeRange(int fromIndex, int toIndex) {
         modCount++;
         int numMoved = elementCount - toIndex;
@@ -784,8 +836,9 @@ public class Vector<E>
 
         // Let gc do its work
         int newElementCount = elementCount - (toIndex-fromIndex);
-        while (elementCount != newElementCount)
+        while (elementCount != newElementCount) {
             elementData[--elementCount] = null;
+        }
     }
 
     /**
@@ -809,9 +862,11 @@ public class Vector<E>
      * 指定的索引表示初始调用next将返回的第一个元素。 对previous的初始调用将返回指定索引减1的元素。
      * 返回的列表迭代器是fail-fast 。
      */
+    @Override
     public synchronized ListIterator<E> listIterator(int index) {
-        if (index < 0 || index > elementCount)
+        if (index < 0 || index > elementCount) {
             throw new IndexOutOfBoundsException("Index: "+index);
+        }
         return new ListItr(index);
     }
 
@@ -819,6 +874,7 @@ public class Vector<E>
      * 返回列表中的列表迭代器（按适当的顺序）。
      * 返回的列表迭代器是fail-fast 。
      */
+    @Override
     public synchronized ListIterator<E> listIterator() {
         return new ListItr(0);
     }
@@ -827,6 +883,7 @@ public class Vector<E>
      * 以正确的顺序返回该列表中的元素的迭代器。
      * 返回的迭代器是fail-fast 。
      */
+    @Override
     public synchronized Iterator<E> iterator() {
         return new Itr();
     }
@@ -839,26 +896,31 @@ public class Vector<E>
         int lastRet = -1; // index of last element returned; -1 if no such
         int expectedModCount = modCount;
 
+        @Override
         public boolean hasNext() {
             // Racy but within spec, since modifications are checked
             // within or after synchronization in next/previous
             return cursor != elementCount;
         }
 
+        @Override
         public E next() {
             synchronized (Vector.this) {
                 checkForComodification();
                 int i = cursor;
-                if (i >= elementCount)
+                if (i >= elementCount) {
                     throw new NoSuchElementException();
+                }
                 cursor = i + 1;
                 return elementData(lastRet = i);
             }
         }
 
+        @Override
         public void remove() {
-            if (lastRet == -1)
+            if (lastRet == -1) {
                 throw new IllegalStateException();
+            }
             synchronized (Vector.this) {
                 checkForComodification();
                 Vector.this.remove(lastRet);
@@ -893,8 +955,9 @@ public class Vector<E>
         }
 
         final void checkForComodification() {
-            if (modCount != expectedModCount)
+            if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
+            }
         }
     }
 
@@ -907,38 +970,46 @@ public class Vector<E>
             cursor = index;
         }
 
+        @Override
         public boolean hasPrevious() {
             return cursor != 0;
         }
 
+        @Override
         public int nextIndex() {
             return cursor;
         }
 
+        @Override
         public int previousIndex() {
             return cursor - 1;
         }
 
+        @Override
         public E previous() {
             synchronized (Vector.this) {
                 checkForComodification();
                 int i = cursor - 1;
-                if (i < 0)
+                if (i < 0) {
                     throw new NoSuchElementException();
+                }
                 cursor = i;
                 return elementData(lastRet = i);
             }
         }
 
+        @Override
         public void set(E e) {
-            if (lastRet == -1)
+            if (lastRet == -1) {
                 throw new IllegalStateException();
+            }
             synchronized (Vector.this) {
                 checkForComodification();
                 Vector.this.set(lastRet, e);
             }
         }
 
+        @Override
         public void add(E e) {
             int i = cursor;
             synchronized (Vector.this) {
@@ -1070,6 +1141,7 @@ public class Vector<E>
             return hi;
         }
 
+        @Override
         public Spliterator<E> trySplit() {
             int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
             return (lo >= mid) ? null :
@@ -1077,27 +1149,32 @@ public class Vector<E>
                             expectedModCount);
         }
 
+        @Override
         @SuppressWarnings("unchecked")
         public boolean tryAdvance(Consumer<? super E> action) {
             int i;
-            if (action == null)
+            if (action == null) {
                 throw new NullPointerException();
+            }
             if (getFence() > (i = index)) {
                 index = i + 1;
                 action.accept((E)array[i]);
-                if (list.modCount != expectedModCount)
+                if (list.modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
+                }
                 return true;
             }
             return false;
         }
 
+        @Override
         @SuppressWarnings("unchecked")
         public void forEachRemaining(Consumer<? super E> action) {
             int i, hi; // hoist accesses and checks from loop
             Vector<E> lst; Object[] a;
-            if (action == null)
+            if (action == null) {
                 throw new NullPointerException();
+            }
             if ((lst = list) != null) {
                 if ((hi = fence) < 0) {
                     synchronized(lst) {
@@ -1106,22 +1183,27 @@ public class Vector<E>
                         hi = fence = lst.elementCount;
                     }
                 }
-                else
+                else {
                     a = array;
+                }
                 if (a != null && (i = index) >= 0 && (index = hi) <= a.length) {
-                    while (i < hi)
+                    while (i < hi) {
                         action.accept((E) a[i++]);
-                    if (lst.modCount == expectedModCount)
+                    }
+                    if (lst.modCount == expectedModCount) {
                         return;
+                    }
                 }
             }
             throw new ConcurrentModificationException();
         }
 
+        @Override
         public long estimateSize() {
             return (long) (getFence() - index);
         }
 
+        @Override
         public int characteristics() {
             return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED;
         }

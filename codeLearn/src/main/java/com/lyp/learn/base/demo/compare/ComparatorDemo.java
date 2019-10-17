@@ -87,7 +87,7 @@ public class ComparatorDemo {
          */
         System.out.println("----旧的写法------许多条件组合排序---------");
         studentList.sort((s1,s2) ->{
-            if(s1.getAge() != s2.getAge()){
+            if(!s1.getAge().equals(s2.getAge())){
                 return s1.getAge() - s2.getAge();
             }else{
                 return s1.getName().compareTo(s2.getName());

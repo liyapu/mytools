@@ -69,9 +69,9 @@ public class StringDemo {
         String strr = "aBc";
         System.out.println("strr : " + strr);
         //将此字符串与指定的对象比较
-        System.out.println("strr.equals(abc): " + strr.equals("abc"));
+        System.out.println("strr.equals(abc): " + "abc".equals(strr));
         //将此 String 与另一个 String 比较，不考虑大小写
-        System.out.println("strr.equalsIgnoreCase(abc) : " + strr.equalsIgnoreCase("abc"));
+        System.out.println("strr.equalsIgnoreCase(abc) : " + "abc".equalsIgnoreCase(strr));
         //int compareTo(String other)
         //按照字典顺序
         // 如果字符串位于 other 之前， 返回一个负数；
