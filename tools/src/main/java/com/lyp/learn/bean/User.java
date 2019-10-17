@@ -2,6 +2,7 @@ package com.lyp.learn.bean;
 
 
 import lombok.Data;
+import org.springframework.cglib.core.DebuggingClassWriter;
 
 @Data
 public class User {
@@ -16,6 +17,8 @@ public class User {
     private int weight;
 
     public User(){
+        //关于如何查看生成的class文件，在代码里加入
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/liyapu/myGitRepository/mytools/tools/src/main/java/com/lyp/learn/bean");
 
     }
 
@@ -24,5 +27,9 @@ public class User {
         this.name = name;
         this.age = age;
         this.telephone = telephone;
+        //关于如何查看生成的class文件，在代码里加入
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/liyapu/myGitRepository/mytools/tools/src/main/java/com/lyp/learn/bean");
     }
+
+
 }

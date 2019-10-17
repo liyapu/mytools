@@ -140,12 +140,12 @@
         </dependency>
 
         <!-- JUnit4 单元测试框架 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>junit</groupId>-->
+<!--            <artifactId>junit</artifactId>-->
+<!--            <version>4.12</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
         <!-- junit 5 单元测试依赖 start     -->
         <dependency>
@@ -187,6 +187,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
 
     </dependencies>
