@@ -40,7 +40,6 @@ public class MultiKeyMapTest {
 
     @Test
     public void test01(){
-
         MultiKeyMap<String, String> multiKeyMap = new MultiKeyMap();
         multiKeyMap.put("1","2","12");
         multiKeyMap.put("1","2","3","123");

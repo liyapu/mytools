@@ -3,8 +3,7 @@ package com.lyp.learn.apachecommons.collections4;
 import org.apache.commons.collections4.MapUtils;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: liyapu
@@ -75,22 +74,64 @@ public class MapUtilsTest {
     @Test
     public void testIsEmpty(){
         Map map1 = null;
-        Map<String,String> map2 = null;
-        Map<String,String> nullMap = new HashMap<>();
+        Map<String,String> nullMap = null;
+        Map<String,String> emptyMap = new HashMap<>();
         Map<String,String> strMap = new HashMap<>();
         strMap.put("a","11");
         strMap.put("b","22");
 
         System.out.println(MapUtils.isEmpty(map1));
-        System.out.println(MapUtils.isEmpty(map2));
         System.out.println(MapUtils.isEmpty(nullMap));
+        System.out.println(MapUtils.isEmpty(emptyMap));
         System.out.println(MapUtils.isEmpty(strMap));
 
         System.out.println();
 
         System.out.println(MapUtils.isNotEmpty(map1));
-        System.out.println(MapUtils.isNotEmpty(map2));
         System.out.println(MapUtils.isNotEmpty(nullMap));
+        System.out.println(MapUtils.isNotEmpty(emptyMap));
         System.out.println(MapUtils.isNotEmpty(strMap));
+    }
+
+    @Test
+    public void testEmptyIfNull(){
+
+        Map<String,String> nullMap = null;
+        Map<String,String> emptyMap = new HashMap<>();
+
+
+        System.out.println(MapUtils.isEmpty(nullMap));
+        System.out.println("null == nullMap : " + (null == nullMap));
+        if(null == nullMap){
+            System.out.println("Collections.emptyMap() : " + Collections.emptyMap());
+        }
+        System.out.println("emptyIfNull : " + MapUtils.emptyIfNull(nullMap));
+
+        System.out.println("-------------------");
+        System.out.println(MapUtils.isEmpty(emptyMap));
+        System.out.println("null == emptyMap : " + (null == emptyMap));
+        if(null == emptyMap){
+            System.out.println("Collections.emptyMap() : " + Collections.emptyMap());
+        }
+        //下面这一行判断，等价于上面的三行
+        System.out.println("emptyIfNull : " + MapUtils.emptyIfNull(emptyMap));
+    }
+
+    /**
+     * 对调key和value的值
+     */
+    @Test
+    public void testInvertMap(){
+        Map<String,String> map = new HashMap<>();
+        map.put("k1","v1");
+        map.put("k2","v2");
+        map.put("k3","v3");
+        map.put("k4","v4");
+        System.out.println(map);
+
+        Map<String, String> invertMap = MapUtils.invertMap(map);
+        System.out.println(invertMap);
+
+
     }
 }
