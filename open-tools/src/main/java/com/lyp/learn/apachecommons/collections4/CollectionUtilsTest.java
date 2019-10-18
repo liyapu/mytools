@@ -57,11 +57,12 @@ public class CollectionUtilsTest {
         h.add(1);
         h.add(2);
         h.add(3);
+        h.add(4);
         List<Integer> i = new ArrayList<>();
-        i.add(3);
-        i.add(3);
+        i.add(2);
         i.add(4);
-        i.add(5);
+        i.add(6);
+        i.add(8);
 
         //并集
         System.out.println(CollectionUtils.union(i,h));
