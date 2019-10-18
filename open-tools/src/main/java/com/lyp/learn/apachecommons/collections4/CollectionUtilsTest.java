@@ -1,9 +1,11 @@
 package com.lyp.learn.apachecommons.collections4;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -36,42 +38,102 @@ public class CollectionUtilsTest {
         System.out.println(CollectionUtils.isNotEmpty(c));
     }
 
+    /**
+     * 测试集合是否相等（顺序无关）
+     */
     @Test
-    public void testOperator(){
-        //两个集合间的操作
-        List<Integer> e = new ArrayList<>();
-        e.add(2);
-        e.add(1);
-        List<Integer> f = new ArrayList<>();
-        f.add(1);
-        f.add(2);
-        List<Integer> g = new ArrayList<>();
-        g.add(12);
+    public void testEqual(){
+        List<String> list1 = new ArrayList<String>(){{
+            add("a");
+            add("b");
+            add("c");
+        }};
 
-        //比较两集合值
-        System.out.println(CollectionUtils.isEqualCollection(e,f));
-        System.out.println(CollectionUtils.isEqualCollection(e,g));
+        List<String> list2 = new ArrayList<String>(){{
+            add("b");
+            add("a");
+            add("c");
+        }};
+
+        List<String> list3 = new ArrayList<String>(){{
+            add("b");
+            add("c");
+        }};
+
+        List<String> list4 = new ArrayList<String>(){{
+            add("a");
+            add("b");
+            add("c");
+            add("d");
+        }};
+
+        List<String> list5 = new ArrayList<String>(){{
+            add("a");
+            add("b");
+            add("c");
+            add("d");
+        }};
+
+        List<String> list6 = new ArrayList<String>(){{
+            add("a");
+            add("b");
+            add("b");
+            add("b");
+            add("c");
+        }};
+
+        System.out.println("is11 : " + CollectionUtils.isEqualCollection(list1,list1));
+        System.out.println("is12 : " + CollectionUtils.isEqualCollection(list1,list2));
         System.out.println();
 
-        List<Integer> h = new ArrayList<>();
-        h.add(1);
-        h.add(2);
-        h.add(3);
-        h.add(4);
-        List<Integer> i = new ArrayList<>();
-        i.add(2);
-        i.add(4);
-        i.add(6);
-        i.add(8);
+        System.out.println("is13 : " + CollectionUtils.isEqualCollection(list1,list3));
+        System.out.println("is14 : " + CollectionUtils.isEqualCollection(list1,list4));
+        System.out.println("is15 : " + CollectionUtils.isEqualCollection(list1,list5));
 
-        //并集
-        System.out.println(CollectionUtils.union(i,h));
-        //交集
-        System.out.println(CollectionUtils.intersection(i,h));
-        //交集的补集
-        System.out.println(CollectionUtils.disjunction(i,h));
-        //i与h的差
-        System.out.println(CollectionUtils.subtract(h,i));
-        System.out.println(CollectionUtils.subtract(i,h));
+        System.out.println();
+        System.out.println("list1 : " + list1);
+        System.out.println("list6 : " + list6);
+        System.out.println("is16 : " + CollectionUtils.isEqualCollection(list1,list6));
+    }
+
+    /**
+     * union(A,B)
+     * 返回A,B的并集
+     *
+     * intersection(A,B)
+     * 返回A，B的交集
+     *
+     * subtract(A,B)
+     * 在A中不在B的集合
+     *
+     * disjunction(A,B)
+     * 在A中不在B中的 + 在B中不在A中的
+     */
+    @Test
+    public void testOperator(){
+        List<String> list1 = new ArrayList<>();
+        list1.add("a");
+        list1.add("b");
+        list1.add("c");
+        list1.add("d");
+
+        List<String> list2 = new ArrayList<>();
+        list2.add("c");
+        list2.add("d");
+        list2.add("e");
+        list2.add("f");
+
+        Collection<String> union = CollectionUtils.union(list1, list2);
+        System.out.println(union);
+
+        Collection<String> intersection = CollectionUtils.intersection(list1, list2);
+        System.out.println(intersection);
+
+        Collection<String> subtract = CollectionUtils.subtract(list1, list2);
+        System.out.println(subtract);
+
+        Collection<String> disjunction = CollectionUtils.disjunction(list1, list2);
+        System.out.println(disjunction);
+
     }
 }
