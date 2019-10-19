@@ -1,6 +1,7 @@
 package com.lyp.learn.pk11.lianjietable;
 
-import com.lyp.learn.DataStructure.pk11.GraphKind;
+
+import com.lyp.learn.pk11.GraphKind;
 
 public class ALGraphTest {
     public static void main(String[] args) {

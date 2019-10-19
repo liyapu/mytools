@@ -108,6 +108,12 @@ public class MethodReferenceDemo {
         inventory.sort(apple::compareByWeight);
         System.out.println(inventory);
 
+        List<String> appleColors = new ArrayList<>();
+        inventory.stream()
+                 .map(Apple::getColor)
+                 .forEach(appleColors::add);
+
+        System.out.println(appleColors);
     }
 
 

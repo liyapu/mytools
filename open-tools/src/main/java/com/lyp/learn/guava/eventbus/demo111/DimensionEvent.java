@@ -1,13 +1,13 @@
-package com.lyp.learn.guava.eventbus.demo1;
+package com.lyp.learn.guava.eventbus.demo111;
 
 import java.util.List;
 
 /**
  * @author: liyapu
  * @description: 自定义事件内容
- * @date 2019-10-16 15:00
+ * @date 2019-10-16 15:04
  */
-public class PromoEvent {
+public class DimensionEvent {
     private int activityId;
     private List<Long> productIds;
     private Long currentTime;
@@ -19,7 +19,7 @@ public class PromoEvent {
      * @param currentTime
      * @param triedTimes
      */
-    public PromoEvent(int activityId, List<Long> productIds, Long currentTime, Long triedTimes) {
+    public DimensionEvent(int activityId, List<Long> productIds, Long currentTime, Long triedTimes) {
         super();
         this.activityId = activityId;
         this.productIds = productIds;
@@ -61,7 +61,7 @@ public class PromoEvent {
 
     @Override
     public String toString() {
-        return "EventTest PromoEvent [activityId=" + activityId + ", productIds=" + productIds + ", currentTime=" + currentTime + ", triedTimes=" + triedTimes
+        return "EventTest DimensionEvent [activityId=" + activityId + ", productIds=" + productIds + ", currentTime=" + currentTime + ", triedTimes=" + triedTimes
                 + "]";
     }
 }

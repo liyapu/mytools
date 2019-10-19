@@ -1,4 +1,4 @@
-package com.lyp.learn.guava.eventbus.demo1;
+package com.lyp.learn.guava.eventbus.demo111;
 
 import com.google.common.eventbus.DeadEvent;
 import com.google.common.eventbus.Subscribe;
