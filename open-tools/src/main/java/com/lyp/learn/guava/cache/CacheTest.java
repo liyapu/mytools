@@ -1,13 +1,12 @@
 package com.lyp.learn.guava.cache;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.cache.RemovalListener;
+import com.google.common.base.CharMatcher;
+import com.google.common.cache.*;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.lyp.learn.guava.bean.Employee;
+import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -16,7 +15,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
+import java.util.concurrent.atomic.AtomicInteger;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 /**
  * http://www.ibloger.net/article/3345.html
  * Guava 通过接口 LoadingCache 提供了一个非常强大的基于内存的 LoadingCache<K，V>。
@@ -57,8 +58,171 @@ import java.util.concurrent.TimeUnit;
  */
 public class CacheTest {
 
+    /**
+     * get : 发现没有，就再次去拿
+     * getIfPresent : 如果存在就拿，不存在就算了
+     */
     @Test
-    public void test1() {
+    public void test1() throws ExecutionException {
+        LoadingCache<String,Employee> cache = CacheBuilder.newBuilder()
+                .expireAfterAccess(10,TimeUnit.SECONDS)
+                .build(new CacheLoader<String,Employee>() {
+
+                    @Override
+                    public Employee load(String key) throws Exception {
+                        return findEmployeeByName(key);
+                    }
+                });
+
+        Employee tom = cache.get("tom");
+        System.out.println(tom);
+        System.out.println();
+
+        Employee tom1 = cache.get("tom");
+        System.out.println(tom1);
+        System.out.println(tom == tom1);
+
+        System.out.println();
+        try {
+            TimeUnit.SECONDS.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Employee tom2 = cache.get("tom");
+        System.out.println(tom2);
+    }
+
+    public static Employee findEmployeeByName(String name){
+        System.out.println("findEmployeeByName name =" + name +"  from db");
+        return new Employee(name,name,name);
+    }
+
+
+    @Test
+    public void testMaxSize() throws ExecutionException {
+        LoadingCache<String,Employee> cache = CacheBuilder.newBuilder()
+                .maximumSize(3L)
+                .build(new CacheLoader<String,Employee>() {
+
+                    @Override
+                    public Employee load(String key) throws Exception {
+                        return findEmployeeByName(key);
+                    }
+                });
+
+        Employee tom = cache.getUnchecked("tom");
+        Employee jack = cache.getUnchecked("jack");
+        Employee lisa = cache.get("lisa");
+        Employee kang = cache.get("kang");
+
+        System.out.println();
+        cache.get("tom");
+        cache.get("lisa");
+    }
+
+    @Test
+    public void testCacheRefresh() throws InterruptedException {
+        AtomicInteger counter = new AtomicInteger(0);
+        CacheLoader<String,Long> cacheLoader = CacheLoader.from(k ->{
+            counter.incrementAndGet();
+            return System.currentTimeMillis();
+        });
+
+        LoadingCache<String,Long> cache = CacheBuilder.newBuilder()
+                .refreshAfterWrite(2,TimeUnit.SECONDS)
+                .build(cacheLoader);
+
+        Long result1 = cache.getUnchecked("tom");
+        TimeUnit.SECONDS.sleep(3);
+        Long result2 = cache.getUnchecked("tom");
+        assertThat(counter.get(),equalTo(2));
+    }
+
+    /**
+     * 缓存预加载
+     */
+    @Test
+    public void testCachePreload(){
+        CacheLoader<String,String> cacheLoader = CacheLoader.from(String::toUpperCase);
+        LoadingCache<String,String> cache = CacheBuilder.newBuilder().build(cacheLoader);
+
+        Map<String,String> map = new HashMap<String,String>(){
+            {
+                put("a","a");
+                put("b","b");
+                put("c","c");
+            }
+        };
+        cache.putAll(map);
+
+        assertThat(cache.size(),equalTo(3L));
+    }
+
+    /**
+     * 缓存移除 监听器
+     */
+    @Test
+    public void testRemovalNotification() throws ExecutionException {
+        CacheLoader<String,String> cacheLoader = CacheLoader.from(String::toUpperCase);
+        RemovalListener<String,String> removalListener = notification -> {
+            if(notification.wasEvicted()){
+                RemovalCause cause = notification.getCause();
+                System.out.println("evict ...... " + notification.getKey() + ":" + notification.getValue());
+                assertThat(cause, is(RemovalCause.SIZE));
+                assertThat(notification.getKey(), equalTo("a"));
+            }
+        };
+
+        LoadingCache<String,String> cache = CacheBuilder.newBuilder()
+                .maximumSize(3)
+                .removalListener(removalListener)
+                .build(cacheLoader);
+
+        String a = cache.get("a");
+        String b = cache.get("b");
+        String c = cache.get("c");
+        String d = cache.get("d");
+
+    }
+
+    /**
+     * 缓存命中率等统计信息
+     */
+    @Test
+    public void testStat() throws ExecutionException {
+        CacheLoader<String,String> cacheLoader = CacheLoader.from(String::toUpperCase);
+        LoadingCache<String,String> cache = CacheBuilder.newBuilder()
+                .recordStats().build(cacheLoader);
+
+        String a = cache.get("a");
+        CacheStats stats = cache.stats();
+        System.out.println(stats);
+
+        cache.get("a");
+        cache.get("b");
+        CacheStats stats1 = cache.stats();
+        System.out.println(stats1);
+    }
+
+    /**
+     * 通过配置的方式
+     */
+    @Test
+    public void testCacheSpec() throws ExecutionException {
+        String specStr = "maximumSize=5,recordStats";
+        CacheBuilderSpec spec = CacheBuilderSpec.parse(specStr);
+        CacheLoader<String, String> cacheLoader = CacheLoader.from(String::toUpperCase);
+        LoadingCache<String, String> cache = CacheBuilder.from(spec)
+                .build(cacheLoader);
+        String a = cache.get("a");
+//        System.out.println(cache.stats());
+        cache.get("a");
+//        System.out.println(cache.stats());
+
+    }
+
+    @Test
+    public void test20() {
         // 根据员工ID为员工创建缓存
         // 移除监听器
         LoadingCache<String, Object> employeeCache = CacheBuilder.newBuilder()

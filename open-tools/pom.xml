@@ -62,6 +62,12 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- junit 5 单元测试依赖 end     -->
 
 
