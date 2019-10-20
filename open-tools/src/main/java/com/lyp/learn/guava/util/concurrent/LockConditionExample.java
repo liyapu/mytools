@@ -1,13 +1,13 @@
 package com.lyp.learn.guava.util.concurrent;
 
-import org.apache.commons.math3.analysis.function.Max;
-
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class SynchronizedExample {
-    static final Synchronized sync = new Synchronized();
+public class LockConditionExample {
+    static final LockCondition lc = new LockCondition();
     static final AtomicInteger COUNT = new AtomicInteger(0);
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class SynchronizedExample {
                 while (true){
                     int data = COUNT.getAndIncrement();
                     System.out.println(Thread.currentThread().getName() + " offer " + data);
-                    sync.offer(data);
+                    lc.offer(data);
                     try {
                         TimeUnit.SECONDS.sleep(2);
                     } catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class SynchronizedExample {
         for(int i = 0; i < 2; i++){
             new Thread(()->{
                 while (true){
-                    int data = sync.take();
+                    int data = lc.take();
                     System.out.println(Thread.currentThread().getName() + " take " + data);
                     try {
                         TimeUnit.SECONDS.sleep(1);
@@ -44,38 +44,50 @@ public class SynchronizedExample {
         }
     }
 
-    static class Synchronized{
+    static class LockCondition{
          final LinkedList<Integer> queue = new LinkedList<>();
          final Integer MAX = 10;
+         private ReentrantLock lock = new ReentrantLock();
+         private Condition FULL_CONDITION = lock.newCondition();
+         private Condition EMPTY_CONDITION = lock.newCondition();
+
         //生产数据
         public void offer(Integer num){
-            synchronized (queue){
+            try {
+                lock.lock();
                 //这里要使用while
                 while (queue.size() > MAX){
                     try {
-                        queue.wait();
+                        FULL_CONDITION.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 queue.addLast(num);
-                queue.notifyAll();
+                //这里使用signalAll
+                //产生数据了，通知空的
+                EMPTY_CONDITION.signalAll();
+            }finally {
+                lock.unlock();
             }
         }
 
         //拿走，消费数据
         public int take(){
-            synchronized (queue){
-                while (queue.isEmpty()){
+            try {
+                lock.lock();
+                while(queue.isEmpty()){
                     try {
-                        queue.wait();
+                        EMPTY_CONDITION.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 Integer first = queue.removeFirst();
-                queue.notifyAll();
+                FULL_CONDITION.signalAll();
                 return first;
+            }finally {
+                lock.unlock();
             }
         }
 

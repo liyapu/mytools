@@ -1,13 +1,13 @@
 package com.lyp.learn.guava.util.concurrent;
 
+import com.google.common.util.concurrent.Monitor;
+
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
-public class LockConditionExample {
-    static final LockCondition lc = new LockCondition();
+public class MonitorGuardExample {
+    static final MonitorGuard mg = new MonitorGuard();
     static final AtomicInteger COUNT = new AtomicInteger(0);
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class LockConditionExample {
                 while (true){
                     int data = COUNT.getAndIncrement();
                     System.out.println(Thread.currentThread().getName() + " offer " + data);
-                    lc.offer(data);
+                    mg.offer(data);
                     try {
                         TimeUnit.SECONDS.sleep(2);
                     } catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class LockConditionExample {
         for(int i = 0; i < 2; i++){
             new Thread(()->{
                 while (true){
-                    int data = lc.take();
+                    int data = mg.take();
                     System.out.println(Thread.currentThread().getName() + " take " + data);
                     try {
                         TimeUnit.SECONDS.sleep(1);
@@ -44,50 +44,36 @@ public class LockConditionExample {
         }
     }
 
-    static class LockCondition{
+    static class MonitorGuard{
          final LinkedList<Integer> queue = new LinkedList<>();
          final Integer MAX = 10;
-         private ReentrantLock lock = new ReentrantLock();
-         private Condition FULL_CONDITION = lock.newCondition();
-         private Condition EMPTY_CONDITION = lock.newCondition();
+
+         private Monitor monitor = new Monitor();
+         private Monitor.Guard canOffer = monitor.newGuard(() -> queue.size() < MAX);
+         private Monitor.Guard canTake = monitor.newGuard(() -> !queue.isEmpty());
 
         //生产数据
         public void offer(Integer num){
             try {
-                lock.lock();
-                //这里要使用while
-                while (queue.size() > MAX){
-                    try {
-                        FULL_CONDITION.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                monitor.enterWhen(canOffer);
                 queue.addLast(num);
-                //这里使用signalAll
-                //产生数据了，通知空的
-                EMPTY_CONDITION.signalAll();
-            }finally {
-                lock.unlock();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                monitor.leave();
             }
         }
 
         //拿走，消费数据
         public int take(){
             try {
-                lock.lock();
-                while(queue.isEmpty()){
-                    try {
-                        EMPTY_CONDITION.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                monitor.enterWhen(canTake);
                 Integer first = queue.removeFirst();
-                FULL_CONDITION.signalAll();
                 return first;
-            }finally {
-                lock.unlock();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
+                monitor.leave();
             }
         }
 
