@@ -6,6 +6,9 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
+/**
+ * 无需接口都可使用该代理
+ */
 public class ProxyCglib implements MethodInterceptor {
 
     private Object target;
