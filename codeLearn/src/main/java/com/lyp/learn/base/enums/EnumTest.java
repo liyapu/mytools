@@ -1,5 +1,6 @@
 package com.lyp.learn.base.enums;
 
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -33,5 +34,15 @@ public class EnumTest {
         System.out.println(red.getCode());
         System.out.println(red.getDesc());
         System.out.println(red.ordinal());
+    }
+
+
+    @Test
+    public void testEnumAbstract(){
+        EnumAbstract[] values = EnumAbstract.values();
+        for(EnumAbstract ea : values){
+            String str = ea.getInfo();
+            System.out.println(str);
+        }
     }
 }
