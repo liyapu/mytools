@@ -31,5 +31,12 @@ public class User {
         System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/liyapu/myGitRepository/mytools/tools/src/main/java/com/lyp/learn/bean");
     }
 
+    public User(String name,int age){
+        this.name = name;
+        this.age = age;
+        //关于如何查看生成的class文件，在代码里加入
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/liyapu/myGitRepository/mytools/tools/src/main/java/com/lyp/learn/bean");
+    }
+
 
 }
