@@ -2,12 +2,11 @@ package com.lyp.learn.base.enums;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-
 public enum Color {
     RED("red","红灯停"),
     GREEN("green","绿灯行"),
-    YELLOW("yellow","黄灯亮了等一等");
+    YELLOW("yellow","黄灯亮了等一等"),
+    BLUE("blue","等");
 
     private String code;
     private String desc;

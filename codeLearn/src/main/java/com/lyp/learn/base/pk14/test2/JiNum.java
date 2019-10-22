@@ -9,8 +9,8 @@ public class JiNum implements Runnable {
 
     private TwoThread twoThread;
 
-    public JiNum(TwoThread twoThread){
-        this.twoThread = twoThread;
+    public JiNum(TwoThread th){
+        twoThread = th;
     }
 
 

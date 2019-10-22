@@ -9,8 +9,8 @@ public class OuNum implements Runnable {
 
     private TwoThread twoThread;
 
-    public OuNum(TwoThread twoThread){
-        this.twoThread = twoThread;
+    public OuNum(TwoThread tw){
+        twoThread = twoThread;
     }
 
 
