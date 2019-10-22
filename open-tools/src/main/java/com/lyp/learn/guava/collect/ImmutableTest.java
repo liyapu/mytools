@@ -90,7 +90,16 @@ public class ImmutableTest {
                                             .addAll(personList)
                                             .add(new Person("王五",15))
                                             .build();
+
         System.out.println(immutableSet3);
+
+        ImmutableList<Integer> intImmutable = ImmutableList.<Integer>builder()
+                                            .add(5)
+                                            .add(20,10,80)
+                                            .addAll(Arrays.asList(1, 3))
+                                            .add(8)
+                                            .build();
+        System.out.println(intImmutable);
 
     }
 
