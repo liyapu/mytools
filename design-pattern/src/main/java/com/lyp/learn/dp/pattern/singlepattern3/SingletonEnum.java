@@ -10,6 +10,10 @@ package com.lyp.learn.dp.pattern.singlepattern3;
  *  同时，编译器是不允许任何对这种序列化机制的定制的并禁用了writeObject、readObject、readObjectNoData、writeReplace和readResolve等方法，
  *  从而保证了枚举实例的唯一性
  *
+ * 枚举实现的单例可轻松地解决两个问题：
+ * 1.线程安全问题。因为Java虚拟机在加载枚举类的时候，会使用ClassLoader的loadClass方法，这个方法使用了同步代码块来保证线程安全。
+ * 2.避免反序列化破坏单例。因为枚举的反序列化并不通过反射实现。
+ *
  *  关于单例，我们总是应该记住：线程安全，延迟加载，序列化与反序列化安全，反射安全是很重重要的
  */
 public enum SingletonEnum {

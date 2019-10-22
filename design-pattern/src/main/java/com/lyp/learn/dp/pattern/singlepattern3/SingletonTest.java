@@ -25,6 +25,8 @@ public class SingletonTest {
                         cyclicBarrier.await();
                         SingletonEnum singletonEnum = SingletonEnum.getInstance();
                         set.add(singletonEnum.toString());
+                        //直接通过类名访问单列对象也可以
+                        set.add(SingletonEnum.SINGLETON.toString());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (BrokenBarrierException e) {
