@@ -1,6 +1,5 @@
 package com.lyp.learn.base.enums;
 
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -36,7 +35,9 @@ public class EnumTest {
         System.out.println(red.ordinal());
     }
 
-
+    /**
+     * 枚举实现抽象方法测试
+     */
     @Test
     public void testEnumAbstract(){
         EnumAbstract[] values = EnumAbstract.values();
@@ -45,4 +46,16 @@ public class EnumTest {
             System.out.println(str);
         }
     }
+
+    @Test
+    public void testFood(){
+        Food food = Food.Appetizer.SALAD;
+        food = Food.MainCourse.LASAGNE;
+        Food.MainCourse padThai = Food.MainCourse.PAD_THAI;
+        food  = Food.MainCourse.PAD_THAI;
+        food = Food.Dessert.GELATO;
+        food = Food.Coffee.CAPPUCCINO;
+    }
+
+
 }
