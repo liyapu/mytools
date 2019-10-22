@@ -65,4 +65,16 @@ public class RangeMapTest {
             System.out.println(next.getKey()+":"+next.getValue());
         }
     }
+
+    @Test
+    public void testTreeRangeMap(){
+        TreeRangeMap<Integer,String> treeRangeMap = TreeRangeMap.create();
+        treeRangeMap.put(Range.closed(0,60),"不及格");
+        treeRangeMap.put(Range.closed(61,90),"良好");
+        treeRangeMap.put(Range.closed(91,100),"优秀");
+
+        System.out.println(treeRangeMap.get(50));
+        System.out.println(treeRangeMap.get(70));
+        System.out.println(treeRangeMap.get(98));
+    }
 }

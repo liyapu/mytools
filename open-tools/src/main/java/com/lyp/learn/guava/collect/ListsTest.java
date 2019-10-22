@@ -23,7 +23,7 @@ import java.util.List;
  * newArrayList(Iterator<? extends E> elements)   构造一个可变的包含传入元素elements的ArrayList实例.
  *
  * 以下两个函数在构造 ArrayList 对象的时候给出了需要分配空间的大小:
- * newArrayListWithCapacity(int initialArraySize)   构造一个分配指定空间大小的ArrayList实例。.
+ * newArrayListWithCapacity(int initialArraySize)   构造一个分配指定空间大小的ArrayList实例，初始化大小
  * newArrayListWithExpectedSize(int estimatedSize)  构造一个期望长度为estimatedSize的ArrayList实例.
  *
  * 如果你事先知道元素的个数，可以用 newArrayListWithCapacity 函数；
@@ -217,6 +217,7 @@ public class ListsTest {
     /**
      * cartesianProduct(List<? extends B>... lists)
      * 返回通过从各给定集中选择一个元素所形成每一个可能的集合.
+     * 笛卡尔乘积
      *
      * cartesianProduct(List<? extends List<? extends B>> lists)
      * 返回通过从各给定集中选择一个元素所形成每一个可能的集合.

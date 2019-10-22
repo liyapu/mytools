@@ -120,4 +120,5 @@ public class SetsTest {
 //        }
         System.out.println(Arrays.toString(sets.toArray()));    // [[], [A], [B], [A, B], [C], [A, C], [B, C], [A, B, C]]
     }
+
 }

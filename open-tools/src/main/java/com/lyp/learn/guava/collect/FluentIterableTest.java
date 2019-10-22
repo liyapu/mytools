@@ -1,4 +1,4 @@
-package com.lyp.learn.apachecommons.collections4;
+package com.lyp.learn.guava.collect;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.FluentIterable;
@@ -59,6 +59,21 @@ public class FluentIterableTest {
         Optional<String> optional = fit.firstMatch(e -> e != null && e.length() == 5);
         assertThat(optional.isPresent(),is(true));
         assertThat(optional.get(),equalTo("guava"));
+    }
+
+    @Test
+    public void testFirst$Last(){
+        FluentIterable<String> fit = build();
+
+        Optional<String> first = fit.first();
+        assertThat(first.isPresent(),is(true));
+        assertThat(first.get(),equalTo("java"));
+
+
+        Optional<String> last = fit.last();
+        assertThat(last.isPresent(),is(true));
+        assertThat(last.get(),equalTo("scala"));
+
     }
 
 }
