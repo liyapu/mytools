@@ -10,6 +10,8 @@ public class ReflectBean {
     private String address;
     private Integer age;
 
+    private static String STATIC_FIELD;
+
     public ReflectBean() {
     }
 
@@ -41,6 +43,15 @@ public class ReflectBean {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+
+    public static String getStaticField() {
+        return STATIC_FIELD;
+    }
+
+    public static void setStaticField(String staticField) {
+        STATIC_FIELD = staticField;
     }
 
     public String getInfo(String msg){
