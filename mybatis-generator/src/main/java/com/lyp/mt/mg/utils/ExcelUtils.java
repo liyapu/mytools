@@ -27,7 +27,7 @@ import java.util.List;
 public class ExcelUtils {
     @Test
     public void testObtainProvince() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1022.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型
@@ -70,7 +70,7 @@ public class ExcelUtils {
 
     @Test
     public void testObtainArea() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1022.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型
@@ -115,7 +115,7 @@ public class ExcelUtils {
 
     @Test
     public void poiTestMethod() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1022.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型

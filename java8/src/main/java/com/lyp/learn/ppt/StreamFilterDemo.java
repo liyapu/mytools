@@ -212,6 +212,11 @@ public class StreamFilterDemo {
                                                 .collect(Collectors.toCollection(TreeSet::new));
         System.out.println(treeSetColors);
 
+        //TreeMap 收集  使用指定类型的集合收集
+        TreeMap<String, String> sonTreeMap = inventory.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k2, TreeMap::new));
+        System.out.println("sonTreeMap ::" + sonTreeMap);
+
         //使用数组 收集
         String[] arrayColors = inventory.stream()
                                         .map(Apple::getColor)

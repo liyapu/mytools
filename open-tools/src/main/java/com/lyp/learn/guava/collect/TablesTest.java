@@ -1,5 +1,6 @@
 package com.lyp.learn.guava.collect;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Function;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
@@ -65,6 +66,19 @@ public class TablesTest {
             }
         });
         transformValues.cellSet().forEach(c -> System.out.println(c.getRowKey() + "-" + c.getColumnKey() + " : " + c.getValue()));
+    }
+
+    @Test
+    public void test_transpose2() {
+        Table<String, String, String> table = HashBasedTable.create();
+        table.put("A", "1", "A1");
+        table.put("A", "2", "A2");
+        table.put("A", "3", "A3");
+        table.put("B", "1", "B1");
+        table.put("B", "5", "B5");
+
+        System.out.println(JSONObject.toJSONString(table));
+
     }
 
 }
