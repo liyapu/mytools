@@ -231,8 +231,8 @@
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
         <!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
 <!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
-        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" ></table>
-        <table tableName="city_dict" domainObjectName="CityDict" ></table>
+<!--        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" ></table>-->
+        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>
 <!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
 
         <!-- ===================== 表名称对应修改 ======================== -->

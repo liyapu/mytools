@@ -22,7 +22,8 @@ import java.util.List;
  *
  * INSERT INTO `test`.`business_const` (`id`, `type`, `name`) VALUES ('1', '1', '北京市');
  * INSERT INTO `test`.`business_const` (`id`,`type`, `code`, `name`) VALUES ('1','2', '西南地区', '河南');
- * INSERT INTO `tusdao_child_hospital`.`control_organ_info` (`organ_name`, `organ_classify`, `organ_nature`, `province`, `hemopathy`, `solid_tumor`, `national_point`, `foton_center`, `organ_status`, `organ_parent_id`, `create_user`, `create_time`) VALUES ('北京市卫生健康委员会', '监测点', '管理机构', '山西省', '0', '0', '1', '1', '1', '-1', '1', '2019-11-01 13:36:55');
+ *
+ * INSERT INTO `tusdao_child_hospital`.`control_organ_info` (`organ_id_show`, `organ_name`, `organ_classify`, `organ_nature`, `organ_province`, `hemopathy`, `solid_tumor`, `national_point`, `foton_center`, `organ_status`, `create_user`, `create_time`) VALUES ('gogan_id_show', '医院名称', 'classify', 'nature', 'province', 'hem', 'solid', 'poin', 'fotoncenter', '1', '1', '2019-11-01 13:36:55');
  */
 public class ExcelUtils {
     @Test
@@ -114,6 +115,19 @@ public class ExcelUtils {
 
 
     @Test
+    public void testOrganProvinceMap(){
+        String str = "330000: 浙江省,340000: 安徽省,350000: 福建省,360000: 江西省,370000: 山东省,410000: 河南省,420000: 湖北省,430000: 湖南省,440000: 广东省,450000: 广西壮族自治区,460000: 海南省,500000: 重庆市,510000: 四川省,520000: 贵州省,530000: 云南省,540000: 西藏自治区,610000: 陕西省,620000: 甘肃省,630000: 青海省,640000: 宁夏回族自治区,650000: 新疆维吾尔自治区,710000: 台湾,810000: 香港特别行政区,820000: 澳门特别行政区,900000: 钓鱼岛";
+        String[] splitArr = str.split(",");
+        for(String split : splitArr){
+            String[] arr = split.split(":");
+            String code = arr[0].trim();
+            String name = arr[1].trim();
+            String sql = "INSERT INTO `test`.`organ_province_map` (`code`, `name`) VALUES ('"+code+"', '"+name+"');";
+            System.out.println(sql);
+        }
+    }
+
+    @Test
     public void poiTestMethod() throws Exception {
         String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
@@ -127,11 +141,11 @@ public class ExcelUtils {
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
         HashMap<String,String> provinces = new HashMap<>();
-        String provinceStr = "北京市:1;天津市:2;河北省:3;山西省:4;内蒙古自治区:5;辽宁省:6;吉林省:7;黑龙江省:8;上海市:9;江苏省:10;浙江省:11;安徽省:12;福建省:13;江西省:14;山东省:15;河南省:16;湖北省:17;湖南省:18;广东省:19;广西壮族自治区:20;海南省:21;重庆市:22;四川省:23;贵州省:24;云南省:25;西藏自治区:26;陕西省:27;甘肃省:28;青海省:29;宁夏回族自治区:30;新疆维吾尔自治区:31;新疆生产建设兵团:32;新疆维吾尔族自治区:33";
-        String[] splitArr = provinceStr.split(";");
+        String provinceStr = "110000: 北京市,120000: 天津市,130000: 河北省,140000: 山西省,150000: 内蒙古自治区,210000: 辽宁省,220000: 吉林省,230000: 黑龙江省,310000: 上海市,320000: 江苏省,330000: 浙江省,340000: 安徽省,350000: 福建省,360000: 江西省,370000: 山东省,410000: 河南省,420000: 湖北省,430000: 湖南省,440000: 广东省,450000: 广西壮族自治区,460000: 海南省,500000: 重庆市,510000: 四川省,520000: 贵州省,530000: 云南省,540000: 西藏自治区,610000: 陕西省,620000: 甘肃省,630000: 青海省,640000: 宁夏回族自治区,650000: 新疆维吾尔自治区,710000: 台湾,810000: 香港特别行政区,820000: 澳门特别行政区,900000: 钓鱼岛";
+        String[] splitArr = provinceStr.split(",");
         for(String str : splitArr){
             String[] split = str.split(":");
-            provinces.put(split[0],split[1]);
+            provinces.put(split[1].trim(),split[0].trim());
         }
         System.out.println("provinces size :" + provinces.size());
 
@@ -150,14 +164,14 @@ public class ExcelUtils {
 //                // 调用toString方法获取内容
 //                System.out.print(cell + "\t");
 //            }
-
+            String organIdShow = sheetRow.getCell(0).toString().trim();
             String organName = sheetRow.getCell(2).toString().trim();
             String provinceName = sheetRow.getCell(3).toString().trim();
-            int provinceCode = 0;
+            String provinceCode = "";
             if("/".equals(provinceName)){
-                provinceCode = 0;
+                provinceCode = "";
             }else{
-                provinceCode =  MapUtils.getInteger(provinces,provinceName);
+                provinceCode =  MapUtils.getString(provinces,provinceName);
             }
 
             String organClassifyName = sheetRow.getCell(6).toString().trim();
@@ -175,8 +189,7 @@ public class ExcelUtils {
             String fotonCenter = sheetRow.getCell(11).toString().trim();
             int fotonCenterCode = BusinessEnum.PropertyStatus.getCodeByDesc(fotonCenter);
 
-            String sql = "INSERT INTO `test`.`control_organ_info` (`organ_name`, `organ_classify`, `organ_nature`, `province`, `hemopathy`, `solid_tumor`, `national_point`, `foton_center`, `organ_status`, `organ_parent_id`, `create_user`, `create_time`) VALUES ('"+organName+"', '"+organClassifyNameCode+"', '"+organNatureNameCode+"', '"+provinceCode+"', '"+hemopathyCode+"', '"+solidTumorCode+"', '"+nationalPointCode+"', '"+fotonCenterCode+"', '1', '-1', '1', '2019-11-01 13:36:55');";
-
+            String sql = "INSERT INTO `test`.`control_organ_info` (`organ_id_show`, `organ_name`, `organ_classify`, `organ_nature`, `organ_province`, `hemopathy`, `solid_tumor`, `national_point`, `foton_center`, `organ_status`, `create_user`, `create_time`, `update_time`) VALUES ('"+organIdShow+"', '"+organName+"', '"+organClassifyNameCode+"', '"+organNatureNameCode+"', '"+provinceCode+"', '"+hemopathyCode+"', '"+solidTumorCode+"', '"+nationalPointCode+"', '"+fotonCenterCode+"', '1', '1', '2019-11-01 13:36:55', '2019-11-01 13:36:55');";
             System.out.println(sql);
         }
     }

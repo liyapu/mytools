@@ -15,7 +15,6 @@ public interface BusinessEnum {
      * 机构分类枚举
      */
      enum OrganClassify{
-         UNKNOWN(0,"未知"),
          NATIONAL_HEALTH_COMMITTEE(1,"国家卫生健康委员会"),
          National_child_Cancer_Monitor(2,"国家儿童肿瘤监测中心"),
          PROVINCIAL_HEALTH_COMMITTEES(3,"省、市级卫健委"),
@@ -52,7 +51,7 @@ public interface BusinessEnum {
                      return oc.getCode();
                  }
              }
-             return UNKNOWN.getCode();
+             return Monitor_point.getCode();
          }
 
          public static String getNameByCode(int code){
@@ -62,7 +61,7 @@ public interface BusinessEnum {
                      return oc.getName();
                  }
              }
-             return UNKNOWN.getName();
+             return Monitor_point.getName();
          }
 
          public static List<String> getAllNames(){
@@ -137,7 +136,7 @@ public interface BusinessEnum {
      * 属性状态枚举值
      */
     enum PropertyStatus{
-         UNKNOWN(0,"未知"),
+         NONE(0,"无"),
          NO(1,"否"),
          YES(2,"是");
 
@@ -171,7 +170,7 @@ public interface BusinessEnum {
                      return ps.getCode();
                  }
              }
-             return UNKNOWN.getCode();
+             return NONE.getCode();
          }
 
          public static String getDescByCode(int code){
@@ -181,7 +180,7 @@ public interface BusinessEnum {
                      return ps.getDesc();
                  }
              }
-             return UNKNOWN.getDesc();
+             return NONE.getDesc();
          }
      }
 }
