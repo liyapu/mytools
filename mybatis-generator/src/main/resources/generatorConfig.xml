@@ -231,9 +231,28 @@
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
         <!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
 <!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
-<!--        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" ></table>-->
-        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>
+        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >
+<!--            <columnOverride column="organ_classify" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="organ_nature" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="hemopathy" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="solid_tumor" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="national_point" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="foton_center" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="organ_status" javaType="java.lang.Integer"/>-->
+
+        </table>
+<!--        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>-->
 <!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
+        <table tableName="city_dict" domainObjectName="CityDict" >
+        <!--  控制生成实体的数据类型:tinyint 处理为 Integer     -->
+<!--            <columnOverride column="depth" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="nature_area" javaType="java.lang.Integer"/>-->
+<!--            <columnOverride column="organ_area" javaType="java.lang.Integer"/>-->
+            <!--     tinyint 处理为 Boolean       -->
+<!--            <columnOverride column="valid" javaType="java.lang.Boolean"/>-->
+<!--            <columnOverride column="valid" javaType="java.lang.Integer"/>-->
+
+        </table>
 
         <!-- ===================== 表名称对应修改 ======================== -->
         <!-- 有些表的字段需要指定java类型
