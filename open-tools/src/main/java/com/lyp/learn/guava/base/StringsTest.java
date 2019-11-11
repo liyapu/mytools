@@ -116,4 +116,18 @@ public class StringsTest {
         System.out.println(Strings.lenientFormat("%s位 %s位 %s 位 %s 位",1,2));
     }
 
+
+    @Test
+    public void testtt(){
+        String organIdShowProvince = "1034";
+//        String organIdShowMonitor = "1034007";
+//        String organIdShowMonitor = "1034999";
+        String organIdShowMonitor = "10341000";
+        String strNum = organIdShowMonitor.substring(organIdShowProvince.length());
+        int num = Integer.parseInt(strNum);
+        num++;
+        String nextOrganIdShowMonitor = Strings.padStart(String.valueOf(num),3, '0');
+        System.out.println(nextOrganIdShowMonitor);
+    }
+
 }

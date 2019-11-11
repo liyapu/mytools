@@ -1,5 +1,6 @@
 package com.lyp.learn.guava.collect;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import org.junit.jupiter.api.Test;
@@ -179,5 +180,13 @@ public class TableTest {
         Collection<String> values = table.values();
         values.stream()
                 .forEach(System.out::println);
+    }
+
+    /**
+     * 测试 table 返回 json
+     */
+    @Test
+    public void testTableJson(){
+        System.out.println(JSONObject.toJSONString(table));
     }
 }

@@ -56,9 +56,9 @@
         -->
         <!-- generate entity时，生成hashcode和equals方法-->
         <!--        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
-        <!--        <plugin type="com.lyp.mt.mg.lomback.LombokPlugin" >-->
-        <!--            <property name="hasLombok" value="true"/>-->
-        <!--        </plugin>-->
+<!--        <plugin type="com.lyp.mt.mg.lomback.LombokPlugin" >-->
+<!--            <property name="hasLombok" value="true"/>-->
+<!--        </plugin>-->
 
         <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
         <!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
@@ -75,10 +75,10 @@
         <!--        </plugin>-->
 
         <!--<!– 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  –>-->
-        <!--        <plugin type="com.lyp.mt.mg.rename.RenameJavaMapperPlugin">-->
-        <!--            <property name="searchString" value="Mapper$" />-->
-        <!--            <property name="replaceString" value="Dao" />-->
-        <!--        </plugin>-->
+<!--        <plugin type="com.lyp.mt.mg.rename.RenameJavaMapperPlugin">-->
+<!--            <property name="searchString" value="Mapper$" />-->
+<!--            <property name="replaceString" value="Dao" />-->
+<!--        </plugin>-->
 
         <!--optional,旨在创建class时，对注释进行控制, 这里的type里写的是你的实现类的类全类名,注：如果不配置type属性,则会使用默认的CommentGenerator实现类DefaultCommentGenerator -->
         <!--        <commentGenerator type="com.lyp.mgh.comment.define.MyCommentGenerator">-->
@@ -86,7 +86,7 @@
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true" />
             <!--生成的注释包含时间戳-->
-            <!--            <property name="suppressDate" value="true"/>-->
+<!--            <property name="suppressDate" value="true"/>-->
             <!-- 抑制警告 -->
             <property name="suppressTypeWarnings" value="true" />
             <!-- 针对mysql数据库 -->
@@ -123,8 +123,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，生成的实体类所在的硬盘位置,指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-<!--        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">-->
-        <javaModelGenerator targetPackage="com.tusdao.control.model.base" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
@@ -159,8 +158,7 @@
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
-<!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">-->
-        <javaClientGenerator  targetPackage="com.tusdao.control.dao.base" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">
             <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
@@ -211,12 +209,12 @@
         <!--        </table>-->
         <!--        <table tableName="table_show_field" domainObjectName="tableShowField" enableSelectByExample="false" selectByExampleQueryId="false"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" ></table>-->
         <!-- 下面这种只写一个表名，也可以生成简洁的bean和mapper,让targetRuntime指定为 MyBatis3Simple ，MyBatis3Simple默认的一些enable****ByExample都是false -->
-        <!--        <table tableName="enterprise_basic"></table>-->
-        <!--        <table tableName="keyword">-->
-        <!--            <ignoreColumn column="valid"/>-->
-        <!--            <ignoreColumn column="create_time"/>-->
-        <!--            <ignoreColumn column="update_time"/>-->
-        <!--        </table>-->
+<!--        <table tableName="enterprise_basic"></table>-->
+<!--        <table tableName="keyword">-->
+<!--            <ignoreColumn column="valid"/>-->
+<!--            <ignoreColumn column="create_time"/>-->
+<!--            <ignoreColumn column="update_time"/>-->
+<!--        </table>-->
 
 
         <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
@@ -229,30 +227,9 @@
         <!--        </table>-->
 
         <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
-        <!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
-<!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
-        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >
-<!--            <columnOverride column="organ_classify" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="organ_nature" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="hemopathy" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="solid_tumor" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="national_point" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="foton_center" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="organ_status" javaType="java.lang.Integer"/>-->
-
-        </table>
-<!--        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>-->
-<!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
-        <table tableName="city_dict" domainObjectName="CityDict" >
-        <!--  控制生成实体的数据类型:tinyint 处理为 Integer     -->
-<!--            <columnOverride column="depth" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="nature_area" javaType="java.lang.Integer"/>-->
-<!--            <columnOverride column="organ_area" javaType="java.lang.Integer"/>-->
-            <!--     tinyint 处理为 Boolean       -->
-<!--            <columnOverride column="valid" javaType="java.lang.Boolean"/>-->
-<!--            <columnOverride column="valid" javaType="java.lang.Integer"/>-->
-
-        </table>
+<!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
+                <table tableName="control_user_info" domainObjectName="controlUserInfo" ></table>
+<!--                <table tableName="students" domainObjectName="students" ></table>-->
 
         <!-- ===================== 表名称对应修改 ======================== -->
         <!-- 有些表的字段需要指定java类型

@@ -13,4 +13,11 @@ public class FirstTest {
     public void testEqual(){
 //        AssertEquals.assertEquals(2, 1+1);
     }
+
+    @Test
+    public void testintByte(){
+        int a = 10;
+        byte b = 10;
+        System.out.println(a == b);
+    }
 }
