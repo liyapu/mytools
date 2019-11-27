@@ -3,55 +3,63 @@ package com.lyp.learn.utils;
 
 import java.io.Serializable;
 
+@SuppressWarnings("unchecked")
 public class WebResult<T> implements Serializable {
+    
+    private static final long serialVersionUID = -8966506048246446398L;
 
-    private static final long serialVersionUID = 1686004323683240269L;
+    public static final int CODE_SUCCESS = 200;
+    public static final int CODE_FAILED = 500;
 
-    public static final int CODE_SUCCESS = 0;
-    public static final int CODE_FAILED = -1;
-
-    public static final String MSG_NONE = "";
+    public static final String MSG_EMPTY = "";
+    public static final String MSG_SUCCESS = "success";
+    public static final String MSG_FAILED = "failed";
 
     private int code = CODE_SUCCESS;
-    private String msg = MSG_NONE;
-    private T data;
+    private String msg = MSG_SUCCESS;
+    private T result;
 
-    public WebResult(int code, String msg, T data) {
+    public WebResult(){
+    }
+    public WebResult(int code, String msg) {
+        this(code,msg,null);
+    }
+    public WebResult(int code, String msg, T result) {
         this.code = code;
         this.msg = msg;
-        this.data = data;
+        this.result = result;
     }
 
     public static  WebResult<String> success(){
         return success(CODE_SUCCESS);
     }
     public static  WebResult<String> success(int code){
-        return success(code,MSG_NONE);
+        return success(code, MSG_SUCCESS);
     }
     public static WebResult<String> success(int code,String msg){
-        return success(code,msg,MSG_NONE);
+        return success(code,msg, MSG_EMPTY);
     }
 
     public static  WebResult<String> success(String msg){
         return success(CODE_SUCCESS,msg);
     }
 
-    public static <T> WebResult<T> success(String msg, T data){
-        return success(CODE_SUCCESS,msg,data);
+    public static <T> WebResult<T> success(String msg, T result){
+        return success(CODE_SUCCESS,msg,result);
     }
-    public static <T> WebResult<T> success(T data){
-        return success(CODE_SUCCESS,MSG_NONE,data);
+    public static <T> WebResult<T> success(T result){
+        return success(CODE_SUCCESS, MSG_SUCCESS,result);
     }
 
-    public static <T> WebResult<T> success(int code, String msg, T data){
-        return  new WebResult(code,msg,data);
+    public static <T> WebResult<T> success(int code, String msg, T result){
+        return  new WebResult(code,msg,result);
     }
 
     public static  WebResult<String> failed(){
         return failed(CODE_FAILED);
     }
     public static  WebResult<String> failed(int code){
-        return failed(code,MSG_NONE);
+        return failed(code, MSG_FAILED);
     }
 
     public static  WebResult<String> failed(String msg){
@@ -59,7 +67,7 @@ public class WebResult<T> implements Serializable {
     }
 
     public static WebResult<String> failed(int code,String msg){
-        return new WebResult(code,msg,MSG_NONE);
+        return new WebResult(code,msg, MSG_EMPTY);
     }
 
 
@@ -79,12 +87,12 @@ public class WebResult<T> implements Serializable {
         this.msg = msg;
     }
 
-    public T getData() {
-        return data;
+    public T getResult() {
+        return result;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setResult(T result) {
+        this.result = result;
     }
 
     @Override
@@ -92,7 +100,7 @@ public class WebResult<T> implements Serializable {
         return "WebResult{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
-                ", data=" + data +
+                ", result=" + result +
                 '}';
     }
 }
