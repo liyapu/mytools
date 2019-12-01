@@ -20,6 +20,7 @@ src/main/java/com/lyp/mt/mg/generator/
 *.iml
 *.ipr
 .DS_Store
+*/.DS_Store
 img/.DS_Store
 
 ### NetBeans ###
