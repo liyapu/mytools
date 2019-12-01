@@ -27,6 +27,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <spring.springframework.version>5.1.9.RELEASE</spring.springframework.version>
+        <httpclient.version>4.5.6</httpclient.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
     </properties>
 
     <dependencies>
@@ -145,6 +147,20 @@
             <version>3.2.10</version>
         </dependency>
 
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
+        <!-- commons-httpclient -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+        </dependency>
+
         <!-- JUnit4 单元测试框架 -->
 <!--        <dependency>-->
 <!--            <groupId>junit</groupId>-->
@@ -253,6 +269,12 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.0.5</version>
         </dependency>
 
 
