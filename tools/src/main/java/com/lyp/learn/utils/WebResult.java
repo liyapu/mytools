@@ -11,12 +11,6 @@ public class WebResult<T> implements Serializable {
     public static final int CODE_SUCCESS = 200;
     public static final int CODE_FAILED = 500;
 
-<<<<<<< HEAD
-    public static final int CODE_SUCCESS = 0;
-    public static final int CODE_FAILED = -1;
-
-=======
->>>>>>> 52a40e8473b84690e4beb482ed2c0327a7a8c7ac
     public static final String MSG_EMPTY = "";
     public static final String MSG_SUCCESS = "success";
     public static final String MSG_FAILED = "failed";
@@ -25,14 +19,11 @@ public class WebResult<T> implements Serializable {
     private String msg = MSG_SUCCESS;
     private T result;
 
-<<<<<<< HEAD
-=======
     public WebResult(){
     }
     public WebResult(int code, String msg) {
         this(code,msg,null);
     }
->>>>>>> 52a40e8473b84690e4beb482ed2c0327a7a8c7ac
     public WebResult(int code, String msg, T result) {
         this.code = code;
         this.msg = msg;
