@@ -1,5 +1,7 @@
 package com.lyp.learn.base.reflect;
 
+import com.lyp.learn.base.threads.pk01.Object;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class ClassDemo4 {
         System.out.println();
 
         Class listClazz = list2.getClass();
-        Method method = listClazz.getMethod("add",Object.class);
+        Method method = listClazz.getMethod("add", Object.class);
         method.invoke(list2,100);
         System.out.println(list2);
 

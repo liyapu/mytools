@@ -1,5 +1,7 @@
 package com.lyp.learn.base.annotation.quserysql;
 
+import com.lyp.learn.base.threads.pk01.Object;
+
 import java.lang.reflect.Field;
 
 /**

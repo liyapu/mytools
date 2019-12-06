@@ -1,5 +1,6 @@
 package com.lyp.learn.doc;
 
+import com.lyp.learn.base.threads.pk01.Object;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class DocUtils {
     @Test
     public void test00(){
         try {
-            Map<String,Object> dataMap = new HashMap<>();
+            Map<String, Object> dataMap = new HashMap<>();
             dataMap.put("companyName", "北京启迪区块链");
             dataMap.put("companyAddress", "");
             dataMap.put("companyCapital","100w");

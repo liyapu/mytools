@@ -1,5 +1,8 @@
 package com.lyp.learn.base.juc;
 
+import com.lyp.learn.base.threads.pk01.Runnable;
+import com.lyp.learn.base.threads.pk01.Thread;
+
 /**
  * volatile 关键字
  *
@@ -25,7 +28,7 @@ public class VolatileTest {
     }
 }
 
-class ThreadDemo implements Runnable{
+class ThreadDemo implements Runnable {
     boolean flag = false;
 //  volatile  boolean  flag = false;
 

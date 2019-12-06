@@ -24,7 +24,7 @@ public class ClassLoaderDemo {
 
 
         //5. 测试 JDK 提供的 Object 类由哪个类加载器负责加载（引导类）
-        classLoader = Class.forName("java.lang.Object")
+        classLoader = Class.forName("com.lyp.learn.base.threads.pk01.Object")
                 .getClassLoader();
         System.out.println(classLoader);
     }
