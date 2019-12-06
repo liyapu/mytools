@@ -1,6 +1,6 @@
 package com.lyp.learn.base.threads.pk02;
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 //如下demo的4个方法展示了不同使用方法下锁对象
 public class SynchronizedDemo {

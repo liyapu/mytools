@@ -1,8 +1,5 @@
 package com.lyp.learn.base.juc;
 
-import com.lyp.learn.base.threads.pk01.Runnable;
-import com.lyp.learn.base.threads.pk01.Thread;
-
 /**
  * volatile 关键字
  *

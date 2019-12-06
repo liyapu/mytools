@@ -1,7 +1,7 @@
 package com.lyp.learn.base.threads.pk03;
 
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 public class NotifyAllTest {
 

@@ -1,22 +1,24 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
  * @Author: liyapu
- * @Description:
+ * @Description: 判断ip 是否属于中国的工具类
  * @create: 2019-01-04 15:37
  */
-public class ChinaIpUtil {
+@Slf4j
+public class ChinaIpUtil3 {
     static  List<IpBlock> ipBlockList = new ArrayList<>();
     //匹配以 空白字符# 开头的
     static Pattern pattern = Pattern.compile("^\\s*#.*");
-
     static{
         try {
             List<String> allLines =  Files.readAllLines(Paths.get(ChinaIpUtil.class.getResource("/chinaIp.txt").toURI()));
@@ -26,79 +28,32 @@ public class ChinaIpUtil {
                 if(pattern.matcher(line).matches()){
                     continue;
                 }
-//                if(line.trim().startsWith("#")) {
-//                    continue;
-//                }
-                //按空白字符分
                 ipArr = line.split("\\s+");
-                //按 tab 键分
-                //ipArr = line.split("\\t");
                 ipBlock = new IpBlock(ipArr[0],convertIpToLong(ipArr[0]),convertIpToLong(ipArr[1]));
                 ipBlockList.add(ipBlock);
             }
-            System.out.println(ipBlockList.size());
+            log.info("ChinaIpUtil has ip =============== size:" + ipBlockList.size());
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
         }
     }
 
-
-    public static void main(String[] args) {
-       // System.out.println(DichotomySearch3.isChinaIp("114.114.114.114"));
-        //System.out.println(DichotomySearch3.isChinaIp("8.8.8.8"));
-        //System.out.println(IpAreaUtils.isInChina("114.114.114.114"));
-        //System.out.println(IpAreaUtils.isInChina("8.8.8.8"));
-
-        System.out.println(isChinaIp("1.0.1.0"));
-        System.out.println(IpAreaUtils.isInChina("1.0.1.0"));
-
-
-        System.out.println(isChinaIp("1.0.2.255"));
-        System.out.println(IpAreaUtils.isInChina("1.0.2.255"));
-
-        List<String> ipList = new ArrayList<>();
-        StringBuilder sb = null;
-        Random random = new Random();
-        for(int i =1 ; i <= 1000000; i++){
-            sb = new StringBuilder();
-            for(int j = 0; j <= 3; j++){
-                if(j != 3){
-                    sb.append(random.nextInt(255)).append(".");
-                }else{
-                    sb.append(random.nextInt(255));
-                }
-            }
-            ipList.add(sb.toString());
+    /**
+     * 二分法查找，判断ip是否属于中国
+     * @param ipStr
+     * @return
+     */
+    public static boolean isInChina(String ipStr){
+        if(ListUtils.isEmpty(ipBlockList) || StringUtils.isBlank(ipStr)){
+            log.warn("ipBlockList is empty!!!!!!!!!");
+            return true;
         }
-        //System.out.println(ipList);
-        int sum = 0;
-        for(String s : ipList){
-            if(IpAreaUtils.isInChina(s).toString().equals(isChinaIp(s)+"")){
-               // System.out.println(s);
-                //System.out.println(IpAreaUtils.isInChina(s));
-                //System.out.println(isChinaIp(s));
-                //System.out.println("*************");
-                sum++;
-            }else{
-                System.out.println("ip not equal : " + s);
-                System.out.println(IpAreaUtils.isInChina(s));
-                System.out.println(isChinaIp(s));
-                System.out.println("-------------");
-            }
-        }
-
-        System.out.println("============");
-        System.out.println(sum);
-
-    }
-
-    public static boolean isChinaIp(String ipStr) {
         Long ipLong = convertIpToLong(ipStr);
         int start = 0;
         int end = ipBlockList.size() - 1;
         IpBlock currentIpBlock = null;
         boolean flag = false;
+
         while (start <= end) {
             int middle = (start + end) / 2;
             currentIpBlock = ipBlockList.get(middle);
@@ -142,10 +97,5 @@ public class ChinaIpUtil {
             this.end = end;
         }
     }
-
-
-
-
-
 
 }

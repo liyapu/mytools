@@ -1,9 +1,10 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
@@ -11,20 +12,23 @@ import java.util.regex.Pattern;
  * @Description:
  * @create: 2019-01-04 15:37
  */
-public class ChinaIpUtil2 {
+public class ChinaIpUtil {
     static  List<IpBlock> ipBlockList = new ArrayList<>();
     //匹配以 空白字符# 开头的
     static Pattern pattern = Pattern.compile("^\\s*#.*");
 
     static{
         try {
-            List<String> allLines =  Files.readAllLines(Paths.get(ChinaIpUtil2.class.getResource("/chinaIp.txt").toURI()));
+            List<String> allLines =  Files.readAllLines(Paths.get(ChinaIpUtil.class.getResource("/chinaIp.txt").toURI()));
             String [] ipArr = null;
             IpBlock ipBlock = null;
             for(String line : allLines){
                 if(pattern.matcher(line).matches()){
                     continue;
                 }
+//                if(line.trim().startsWith("#")) {
+//                    continue;
+//                }
                 //按空白字符分
                 ipArr = line.split("\\s+");
                 //按 tab 键分
@@ -40,8 +44,56 @@ public class ChinaIpUtil2 {
     }
 
 
+    public static void main(String[] args) {
+       // System.out.println(DichotomySearch3.isChinaIp("114.114.114.114"));
+        //System.out.println(DichotomySearch3.isChinaIp("8.8.8.8"));
+        //System.out.println(IpAreaUtils.isInChina("114.114.114.114"));
+        //System.out.println(IpAreaUtils.isInChina("8.8.8.8"));
 
-    public static boolean isInChina(String ipStr) {
+        System.out.println(isChinaIp("1.0.1.0"));
+        System.out.println(IpAreaUtils.isInChina("1.0.1.0"));
+
+
+        System.out.println(isChinaIp("1.0.2.255"));
+        System.out.println(IpAreaUtils.isInChina("1.0.2.255"));
+
+        List<String> ipList = new ArrayList<>();
+        StringBuilder sb = null;
+        Random random = new Random();
+        for(int i =1 ; i <= 1000000; i++){
+            sb = new StringBuilder();
+            for(int j = 0; j <= 3; j++){
+                if(j != 3){
+                    sb.append(random.nextInt(255)).append(".");
+                }else{
+                    sb.append(random.nextInt(255));
+                }
+            }
+            ipList.add(sb.toString());
+        }
+        //System.out.println(ipList);
+        int sum = 0;
+        for(String s : ipList){
+            if(IpAreaUtils.isInChina(s).toString().equals(isChinaIp(s)+"")){
+               // System.out.println(s);
+                //System.out.println(IpAreaUtils.isInChina(s));
+                //System.out.println(isChinaIp(s));
+                //System.out.println("*************");
+                sum++;
+            }else{
+                System.out.println("ip not equal : " + s);
+                System.out.println(IpAreaUtils.isInChina(s));
+                System.out.println(isChinaIp(s));
+                System.out.println("-------------");
+            }
+        }
+
+        System.out.println("============");
+        System.out.println(sum);
+
+    }
+
+    public static boolean isChinaIp(String ipStr) {
         Long ipLong = convertIpToLong(ipStr);
         int start = 0;
         int end = ipBlockList.size() - 1;

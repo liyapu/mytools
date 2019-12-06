@@ -1,8 +1,5 @@
 package com.lyp.learn.base.juc.pk03;
 
-import com.lyp.learn.base.threads.pk01.Runnable;
-import com.lyp.learn.base.threads.pk01.Thread;
-
 class Countt{
     public synchronized void synA(){
         for(int i = 0 ; i <= 5; i++){

@@ -1,8 +1,5 @@
 package com.lyp.learn.base.juc.pk03;
 
-import com.lyp.learn.base.threads.pk01.Runnable;
-import com.lyp.learn.base.threads.pk01.Thread;
-
 public class AccountingSync implements Runnable {
     //共享资源(临界资源) i ,j
     int i  = 0;

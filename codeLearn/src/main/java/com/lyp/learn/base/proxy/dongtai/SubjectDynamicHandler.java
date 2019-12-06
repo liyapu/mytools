@@ -1,6 +1,5 @@
 package com.lyp.learn.base.proxy.dongtai;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,7 +1,6 @@
 
 package com.lyp.learn.base.juc.pk01;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;

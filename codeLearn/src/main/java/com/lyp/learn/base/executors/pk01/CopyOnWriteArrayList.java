@@ -1,7 +1,6 @@
 
 package com.lyp.learn.base.executors.pk01;
 
-import com.lyp.learn.base.threads.pk01.Object;
 import sun.misc.SharedSecrets;
 
 import java.util.*;

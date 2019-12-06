@@ -1,4 +1,4 @@
-package com.lyp.learn.doc;
+package com.lyp.learn.base.doc;
 
 import lombok.Data;
 import lombok.ToString;
@@ -26,4 +26,5 @@ public class Person {
         this.age = age;
         this.address = address;
     }
+
 }

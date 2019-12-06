@@ -1,6 +1,5 @@
 package com.lyp.learn.base.juc.pk02;
 
-import com.lyp.learn.base.threads.pk01.Thread;
 
 import java.util.concurrent.CyclicBarrier;
 

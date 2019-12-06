@@ -1,6 +1,6 @@
 package com.lyp.learn.base.threads.pk03.pk4;
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 import java.util.LinkedList;
 import java.util.concurrent.Semaphore;

@@ -1,6 +1,6 @@
 package com.lyp.learn.base.threads.pk03.pc1;
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 import java.util.LinkedList;
 

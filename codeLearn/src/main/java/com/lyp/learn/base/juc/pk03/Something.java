@@ -1,6 +1,5 @@
 package com.lyp.learn.base.juc.pk03;
 
-import com.lyp.learn.base.threads.pk01.Thread;
 
 public class Something {
     //static修饰的同步方法

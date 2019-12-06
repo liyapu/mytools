@@ -1,6 +1,5 @@
 package com.lyp.learn.base.classs.pack3;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 /**
  * 外部类

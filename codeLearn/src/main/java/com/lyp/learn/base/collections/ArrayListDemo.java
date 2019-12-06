@@ -1,6 +1,5 @@
 package com.lyp.learn.base.collections;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package com.lyp.learn.doc;
+package com.lyp.learn.base.doc;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Branch {
+
     private String eid;
     private String name;
 

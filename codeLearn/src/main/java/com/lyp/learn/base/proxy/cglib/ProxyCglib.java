@@ -1,6 +1,5 @@
 package com.lyp.learn.base.proxy.cglib;
 
-import com.lyp.learn.base.threads.pk01.Object;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

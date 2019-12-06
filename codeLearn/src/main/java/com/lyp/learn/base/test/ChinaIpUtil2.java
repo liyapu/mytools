@@ -1,7 +1,4 @@
-package com.lyp.learn.test;
-
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+package com.lyp.learn.base.test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,51 +8,45 @@ import java.util.regex.Pattern;
 
 /**
  * @Author: liyapu
- * @Description: 判断ip 是否属于中国的工具类
+ * @Description:
  * @create: 2019-01-04 15:37
  */
-@Slf4j
-public class ChinaIpUtilBrowser {
+public class ChinaIpUtil2 {
     static  List<IpBlock> ipBlockList = new ArrayList<>();
     //匹配以 空白字符# 开头的
     static Pattern pattern = Pattern.compile("^\\s*#.*");
+
     static{
         try {
-            List<String> allLines =  Files.readAllLines(Paths.get(ChinaIpUtil.class.getResource("/chinaIp.txt").toURI()));
+            List<String> allLines =  Files.readAllLines(Paths.get(ChinaIpUtil2.class.getResource("/chinaIp.txt").toURI()));
             String [] ipArr = null;
             IpBlock ipBlock = null;
             for(String line : allLines){
                 if(pattern.matcher(line).matches()){
                     continue;
                 }
+                //按空白字符分
                 ipArr = line.split("\\s+");
+                //按 tab 键分
+                //ipArr = line.split("\\t");
                 ipBlock = new IpBlock(ipArr[0],convertIpToLong(ipArr[0]),convertIpToLong(ipArr[1]));
                 ipBlockList.add(ipBlock);
             }
-            //todo
-            log.info("ChinaIpUtil has ip =============== size:" + ipBlockList.size());
+            System.out.println(ipBlockList.size());
         } catch (Exception e) {
-            log.info("chinaIp has err." ,e);
             e.printStackTrace();
+        } finally {
         }
     }
 
-    /**
-     * 二分法查找，判断ip是否属于中国
-     * @param ipStr
-     * @return
-     */
-    public static boolean isInChina(String ipStr){
-        if(ListUtils.isEmpty(ipBlockList) || StringUtils.isBlank(ipStr)){
-            log.warn("ipBlockList is empty!!!!!!!!!");
-            return true;
-        }
+
+
+    public static boolean isInChina(String ipStr) {
         Long ipLong = convertIpToLong(ipStr);
         int start = 0;
         int end = ipBlockList.size() - 1;
         IpBlock currentIpBlock = null;
         boolean flag = false;
-
         while (start <= end) {
             int middle = (start + end) / 2;
             currentIpBlock = ipBlockList.get(middle);
@@ -99,5 +90,10 @@ public class ChinaIpUtilBrowser {
             this.end = end;
         }
     }
+
+
+
+
+
 
 }

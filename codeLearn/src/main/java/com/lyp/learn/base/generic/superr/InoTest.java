@@ -1,6 +1,6 @@
 package com.lyp.learn.base.generic.superr;
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 public class InoTest {
     public static void main(String args[]){

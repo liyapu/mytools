@@ -1,7 +1,6 @@
 
 package com.lyp.learn.base.executors.pk01;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 /**
  * A TimeUnit表示给定的粒度单位的持续时间，

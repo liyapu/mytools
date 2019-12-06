@@ -1,11 +1,10 @@
 package java.util;
 
+import sun.misc.SharedSecrets;
+
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
-
-import com.lyp.learn.base.threads.pk01.Object;
-import sun.misc.SharedSecrets;
 
 /**
  *  可调整大小的数组实现 List 实例。实现所有可选的列表操作，并且允许所有元素，包括 null 元素。

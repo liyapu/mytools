@@ -1,6 +1,6 @@
 package com.lyp.learn.base.threads.pk03.pk3;
 
-import com.lyp.learn.base.threads.pk01.Object;
+
 
 import java.util.concurrent.LinkedBlockingQueue;
 

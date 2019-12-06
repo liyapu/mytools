@@ -1,4 +1,4 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * @create: 2019-01-04 15:37
  */
 @Slf4j
-public class ChinaIpUtil3 {
+public class ChinaIpUtilBrowser {
     static  List<IpBlock> ipBlockList = new ArrayList<>();
     //匹配以 空白字符# 开头的
     static Pattern pattern = Pattern.compile("^\\s*#.*");
@@ -32,8 +32,10 @@ public class ChinaIpUtil3 {
                 ipBlock = new IpBlock(ipArr[0],convertIpToLong(ipArr[0]),convertIpToLong(ipArr[1]));
                 ipBlockList.add(ipBlock);
             }
+            //todo
             log.info("ChinaIpUtil has ip =============== size:" + ipBlockList.size());
         } catch (Exception e) {
+            log.info("chinaIp has err." ,e);
             e.printStackTrace();
         }
     }

@@ -1,4 +1,4 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -11,7 +11,8 @@ import java.util.List;
  * @create: 2018-09-20 19:28
  */
 public class Person {
-private static List<String> ipBlockList = null;
+
+    private static List<String> ipBlockList = null;
     private String name;
     private Integer age;
 

@@ -1,10 +1,8 @@
-
 package java.util;
 
-import java.io.InvalidObjectException;
-
-import com.lyp.learn.base.threads.pk01.Object;
 import sun.misc.SharedSecrets;
+
+import java.io.InvalidObjectException;
 
 /**
  * 此类实现Set接口，由哈希表（实际为HashMap实例）支持。 对集合的迭代次序不作任何保证;

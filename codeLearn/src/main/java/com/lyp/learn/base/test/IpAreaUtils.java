@@ -1,4 +1,4 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

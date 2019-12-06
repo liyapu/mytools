@@ -1,4 +1,4 @@
-package com.lyp.learn.test;
+package com.lyp.learn.base.test;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;

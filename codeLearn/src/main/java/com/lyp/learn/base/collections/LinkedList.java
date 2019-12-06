@@ -1,7 +1,6 @@
 
 package com.lyp.learn.base.collections;
 
-import com.lyp.learn.base.threads.pk01.Object;
 
 import java.util.*;
 import java.util.function.Consumer;

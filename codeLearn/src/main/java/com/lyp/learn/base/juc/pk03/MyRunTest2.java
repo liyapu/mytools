@@ -1,9 +1,5 @@
 package com.lyp.learn.base.juc.pk03;
 
-import com.lyp.learn.base.threads.pk01.Object;
-import com.lyp.learn.base.threads.pk01.Runnable;
-import com.lyp.learn.base.threads.pk01.Thread;
-
 public class MyRunTest2{
     public static void main(String[] args) {
         MyRun2 myRun = new MyRun2();

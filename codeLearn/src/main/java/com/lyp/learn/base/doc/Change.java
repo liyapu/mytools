@@ -1,4 +1,4 @@
-package com.lyp.learn.doc;
+package com.lyp.learn.base.doc;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Change {
+    
     /**
      * 变更类型
      */

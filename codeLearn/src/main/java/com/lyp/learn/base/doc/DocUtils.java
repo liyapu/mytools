@@ -1,6 +1,5 @@
-package com.lyp.learn.doc;
+package com.lyp.learn.base.doc;
 
-import com.lyp.learn.base.threads.pk01.Object;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.junit.jupiter.api.Test;
@@ -31,6 +30,7 @@ public class DocUtils {
             dataMap.put("companyCapital","100w");
 
             List<Person> persons = new ArrayList<>();
+            Person p = new Person();
             persons.add(new Person("1","张三",28,"天津市"));
             persons.add(new Person("2","李四",18,"洛阳市"));
             persons.add(new Person("3","王五",16,"商丘市"));

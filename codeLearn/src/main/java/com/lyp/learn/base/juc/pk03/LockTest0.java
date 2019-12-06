@@ -1,6 +1,5 @@
 package com.lyp.learn.base.juc.pk03;
 
-import com.lyp.learn.base.threads.pk01.Thread;
 
 public class LockTest0 {
     public static void main(String[] args) {
