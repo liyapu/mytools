@@ -258,6 +258,7 @@
 <!--        </table>-->
 
         <table tableName="news_center" domainObjectName="NewsCenter" >
+            <!--  自动获取自增id              -->
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
                     <columnOverride column="type" javaType="java.lang.Integer"/>
@@ -266,6 +267,7 @@
         </table>
 
         <table tableName="news_annex" domainObjectName="NewsAnnex" >
+            <!--  自动获取自增id              -->
             <generatedKey column="annex_id" sqlStatement="MySql" identity="true"/>
             <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
             <columnOverride column="type" javaType="java.lang.Integer"/>
@@ -273,6 +275,7 @@
         </table>
 
         <table tableName="download_area" domainObjectName="DownloadArea" >
+            <!--  自动获取自增id              -->
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
             <columnOverride column="top" javaType="java.lang.Integer"/>
@@ -281,6 +284,7 @@
         </table>
 
         <table tableName="question_answer" domainObjectName="QuestionAnswer" >
+            <!--  自动获取自增id              -->
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
             <columnOverride column="top" javaType="java.lang.Integer"/>
@@ -289,6 +293,7 @@
 
 
             <table tableName="user" domainObjectName="User" >
+                <!--  自动获取自增id              -->
                 <generatedKey column="id" sqlStatement="MySql" identity="true"/>
                 <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
 <!--                    <columnOverride column="top" javaType="java.lang.Integer"/>-->

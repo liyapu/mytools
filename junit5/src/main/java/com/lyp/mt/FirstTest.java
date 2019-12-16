@@ -20,4 +20,11 @@ public class FirstTest {
         byte b = 10;
         System.out.println(a == b);
     }
+
+    @Test
+    public void testintInteger(){
+        int a = 6666;
+        Integer b = 6666;
+        System.out.println(a == b);
+    }
 }

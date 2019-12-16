@@ -1,6 +1,8 @@
 package com.lyp.learn.base.threads.local;
 
 
+import lombok.SneakyThrows;
+
 import java.util.Random;
 
 public class TestThreadLocal2 {
@@ -9,6 +11,7 @@ public class TestThreadLocal2 {
 
             private ThreadLocal<Integer> threadlocal = new ThreadLocal<Integer>();
 
+            @SneakyThrows
             @Override
             public void run() {
                 threadlocal.set(new Random().nextInt(10000));

@@ -1,5 +1,7 @@
 package com.lyp.learn.base.threads.local;
 
+import lombok.SneakyThrows;
+
 import java.util.Random;
 
 public class TestThreadLocal {
@@ -8,14 +10,19 @@ public class TestThreadLocal {
 
             private int count = 0;
 
+            @SneakyThrows
             @Override
             public void run() {
+
                 count = new Random().nextInt(10000);
                 System.out.println(Thread.currentThread().getName() + " : " + count);
             }
         }
 
-        public static void main(String[] args) {
+    /**
+     * count 变量公用，线程打印的都一样
+     */
+    public static void main(String[] args) {
             MyRunnable1 runnable = new MyRunnable1();
 
             Thread thread1 = new Thread(runnable);

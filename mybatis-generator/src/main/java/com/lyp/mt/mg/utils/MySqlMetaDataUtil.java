@@ -25,9 +25,9 @@ public class MySqlMetaDataUtil {
 
 
 //    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://47.94.211.209:8306/golden_palm?allowMultiQueries=true&characterEncoding=utf8";
-//    private static final String USERNAME = "root";
-//    private static final String PASSWORD = "Tusdao@mysql2019*";
+//    private static final String URL = "jdbc:mysql:///golden_palm?allowMultiQueries=true&characterEncoding=utf8";
+//    private static final String USERNAME = "";
+//    private static final String PASSWORD = "";
 
     //排除的字段
     static List<String> excludeFields = new ArrayList<>();

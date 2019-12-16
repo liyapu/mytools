@@ -256,7 +256,8 @@
 <!--        </table>-->
 
 <!--        <table tableName="news_center" domainObjectName="NewsCenter" >-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--  自动获取自增id              -->
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--            &lt;!&ndash;          控制生成实体的数据类型:tinyint 处理为 Integer     &ndash;&gt;-->
 <!--                    <columnOverride column="type" javaType="java.lang.Integer"/>-->
 <!--                    <columnOverride column="top" javaType="java.lang.Integer"/>-->
