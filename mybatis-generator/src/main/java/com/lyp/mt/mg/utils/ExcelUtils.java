@@ -193,6 +193,61 @@ public class ExcelUtils {
             System.out.println(sql);
         }
     }
+
+
+    @Test
+    public void poiTestMethod2() throws Exception {
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/area.xlsx";
+        FileInputStream fis = new FileInputStream(pathStr);
+        /**
+         * 这里根据不同的excel类型
+         * 可以选取不同的处理类：
+         *    1.XSSFWorkbook
+         *    2.HSSFWorkbook
+         */
+        // 获得工作簿
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+        // 获得第一个工作表
+        XSSFSheet sheet = workbook.getSheetAt(2);
+
+        int rows = sheet.getPhysicalNumberOfRows();
+
+        Integer id = null;
+        String cityName;
+        Integer firstParentId = null;
+        Integer secondParentId = null;
+        String sql;
+
+        for (int i = 1; i < rows; i++) {
+            // 获取第i行数据
+            XSSFRow sheetRow = sheet.getRow(i);
+
+            String idStr = sheetRow.getCell(0).toString().trim().replace(".0","");
+            if(StringUtils.isBlank(idStr)){
+                idStr = sheetRow.getCell(2).toString().trim().replace(".0","");
+                if(StringUtils.isBlank(idStr)){
+                    idStr = sheetRow.getCell(4).toString().trim().replace(".0","");
+                    id = Integer.parseInt(idStr);
+                    cityName = sheetRow.getCell(5).toString().trim();
+                    sql = "INSERT INTO `city_dict` (`id`, `city_name`, `parent_id`, `city_code`) VALUES ('"+id+"', '"+cityName+"', '"+secondParentId+"', '');";
+                }else{
+                    id = Integer.parseInt(idStr);
+                    secondParentId = id;
+                    cityName = sheetRow.getCell(3).toString().trim();
+                    sql = "INSERT INTO `city_dict` (`id`, `city_name`, `parent_id`, `city_code`) VALUES ('"+id+"', '"+cityName+"', '"+firstParentId+"', '');";
+
+                }
+            }else{
+                id = Integer.parseInt(idStr);
+                firstParentId = id;
+                cityName = sheetRow.getCell(1).toString().trim();
+                sql = "INSERT INTO `city_dict` (`id`, `city_name`, `parent_id`, `city_code`) VALUES ('"+id+"', '"+cityName+"', '100000', '');";
+            }
+
+            System.out.println(sql);
+        }
+    }
 }
 
 /**

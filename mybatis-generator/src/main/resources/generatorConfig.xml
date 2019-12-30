@@ -115,20 +115,6 @@
                     scale=0;length<5：使用Short；
              -->
             <property name="forceBigDecimals" value="false"/>
-            <!--
-                  在javaTypeResolver结点中加入属性useJSR310Types，
-                  当useJSR310Types为true时，就会jdbc对应的日期类型会转成java8中的LocateDateTime类型，
-                  如果useJSR310Types为false，则还是转成java.util.Date类型
-
-                  一旦mybatis中使用了java8中的日期类型，记得要在项目中引入mybatis-typehandlers-jsr310,这个主要是处理java8中的日期类型
-                    <dependency>
-                        <groupId>org.mybatis</groupId>
-                        <artifactId>mybatis-typehandlers-jsr310</artifactId>
-                        <version>1.0.2</version>
-                    </dependency>
-
-            -->
-            <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
 
 
@@ -137,8 +123,8 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，生成的实体类所在的硬盘位置,指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-<!--        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">-->
-        <javaModelGenerator targetPackage="com.lyp.learn.entity.base" targetProject="src/main/java">
+        <!--        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">-->
+        <javaModelGenerator targetPackage="com.tusdao.control.model.base" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
@@ -173,7 +159,7 @@
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
-        <javaClientGenerator  targetPackage="com.lyp.learn.mapper.base" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator  targetPackage="com.tusdao.control.dao.base" targetProject="src/main/java" type="XMLMAPPER">
             <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
@@ -232,23 +218,63 @@
         <!--        </table>-->
 
 
-        <table tableName="message" domainObjectName="Message" >
-            <!--  自动获取自增id              -->
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
-            <columnOverride column="type" javaType="java.lang.Integer"/>
-            <columnOverride column="valid" javaType="java.lang.Integer"/>
-        </table>
+        <!--  要生成全部的表，可以按如下配置,指定要生成的表名，可以使用SQL通配符匹配多个表
+            ignoreColumn 指定忽略的数据列 -->
+        <!--        <table tableName="%" >-->
+        <!--            <ignoreColumn column="id"/>-->
+        <!--            <ignoreColumn column="valid"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
 
-        <table tableName="user_last" domainObjectName="UserLast" >
-        </table>
+        <!-- 在简洁的基础的，添加了Example相关的实体与crud      -->
+        <!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
+        <!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
+                <table tableName="apply_report" domainObjectName="ApplyReport" ></table>
+<!--        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >-->
+            <!--            原项目 是 byte ,保持不变，下面的转 int 的配置不用-->
+            <!--            <columnOverride column="organ_classify" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="organ_nature" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="hemopathy" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="solid_tumor" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="national_point" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="foton_center" javaType="java.lang.Integer"/>-->
+            <!--            <columnOverride column="organ_status" javaType="java.lang.Integer"/>-->
 
-        <table tableName="user_msg" domainObjectName="UserMsg" >
-            <!--  自动获取自增id              -->
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
-            <columnOverride column="read" javaType="java.lang.Integer"/>
-        </table>
+<!--        </table>-->
+        <!--        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>-->
+        <!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
+        <!--        <table tableName="city_dict" domainObjectName="CityDict" >-->
+        <!--  控制生成实体的数据类型:tinyint 处理为 Integer     -->
+        <!--            <columnOverride column="depth" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="nature_area" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="organ_area" javaType="java.lang.Integer"/>-->
+        <!--     tinyint 处理为 Boolean       -->
+        <!--            <columnOverride column="valid" javaType="java.lang.Boolean"/>-->
+        <!--            <columnOverride column="valid" javaType="java.lang.Integer"/>-->
+
+        <!--        </table>-->
+
+        <!--        <table tableName="news_center" domainObjectName="NewsCenter" >-->
+        <!--  自动获取自增id              -->
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--            &lt;!&ndash;          控制生成实体的数据类型:tinyint 处理为 Integer     &ndash;&gt;-->
+        <!--                    <columnOverride column="type" javaType="java.lang.Integer"/>-->
+        <!--                    <columnOverride column="top" javaType="java.lang.Integer"/>-->
+        <!--                    <columnOverride column="status" javaType="java.lang.Integer"/>-->
+        <!--        </table>-->
+
+        <!--      -->
+
+        <!-- ===================== 表名称对应修改 ======================== -->
+        <!-- 有些表的字段需要指定java类型
+               order 生成目录
+            <table schema="" tableName="t_items" domainObjectName="order.items">
+                包装清单 大字段映射
+               <columnOverride column="package_list" javaType="String" jdbcType="VARCHAR" />
+           </table>
+        -->
+        <!--        <table schema="" tableName="user" domainObjectName="User"/>-->
 
     </context>
 </generatorConfiguration>

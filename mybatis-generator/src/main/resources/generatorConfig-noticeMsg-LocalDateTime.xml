@@ -132,6 +132,7 @@
         </javaTypeResolver>
 
 
+        <!-- ===================== POJO类位置 ======================== -->
         <!-- java模型创建器，是必须要的元素
             负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
@@ -157,6 +158,7 @@
 
         </javaModelGenerator>
 
+        <!-- ===================== mapper.xml 保存路径 ======================== -->
         <!-- targetPackage 和 targetProject：生成的 xml mapper 文件的包和位置,在java目录下-->
         <!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.generator.mappers" targetProject="src/main/java">-->
         <!--   xml mapper 在 resources 目录下    -->
@@ -165,6 +167,7 @@
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
+        <!-- ===================== UserMapper接口名称修改 ======================== -->
         <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
         <!--
             客户端代码，生成易于使用的针对Model对象和XML配置文件的代码
