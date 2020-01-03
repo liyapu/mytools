@@ -129,6 +129,20 @@ public class SplitterTest {
         split.forEach(System.out::println);
     }
 
+    /**
+     * 字符串转数组，支持多个分隔符分隔
+     * @param name
+     * @return
+     */
+    public static String[] strToArray(String name){
+        List<String> nameList = Splitter.on(CharMatcher.anyOf(";,.；，."))
+                .trimResults()
+                .omitEmptyStrings()
+                .splitToList(name);
+        String[] strArr = new String[nameList.size()];
+        nameList.toArray(strArr);
+        return strArr;
+    }
 
     /**
      * pattern

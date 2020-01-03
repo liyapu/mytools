@@ -2,6 +2,7 @@ package com.lyp.mt;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.math.BigDecimal;
 
 /**
@@ -41,5 +42,12 @@ public class FirstTest {
     @Test
     public void testIdNumber(){
         String idNum = "530111197308175070";
+    }
+
+    @Test
+    public void testDot(){
+        String pk = "com.lyp.learn";
+        String newPk = pk.replace(".", File.separator);
+        System.out.println(newPk);
     }
 }
