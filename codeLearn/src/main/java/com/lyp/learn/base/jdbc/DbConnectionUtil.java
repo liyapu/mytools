@@ -54,11 +54,12 @@ public class DbConnectionUtil {
             //建立数据库连接，通过字符串传参，获取到数据库备注信息，有些数据库可能为空
 //             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             //通过下面这种方式，指定获取数据库的备注信息
-            Properties p = new Properties();
-            p.put("user",dbUsername);
-            p.put("password",dbPassword);
-            p.put("remarksReporting","true");//获取数据库的备注信息
-            connection = DriverManager.getConnection(dbUrl,p);
+            Properties pros = new Properties();
+            pros.put("user",dbUsername);
+            pros.put("password",dbPassword);
+            pros.setProperty("remarks", "true"); //设置可以获取remarks信息
+            pros.setProperty("useInformationSchema", "true");//设置可以获取tables remarks信息
+            connection = DriverManager.getConnection(dbUrl,pros);
         } catch (Exception e) {
             System.out.println("获取连接错误 " + e);
         }
