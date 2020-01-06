@@ -11,6 +11,24 @@ import java.util.Properties;
  * @author: liyapu
  * @description:
  * @date 2020-01-05 19:15
+ *
+ * 我是mysql数据库 用DatabaseMetaData时 只有获取表REMARKS获取不到。
+ * 后来查出来说是少了如下配置
+ *
+ * Properties properties = new Properties();
+ * properties.setProperty("remarks", "true");
+ * properties.setProperty("useInformationSchema", "true");
+ *
+ *
+ * 但是我用的是druid，没有设置此项的地方。后来发现原来druid提供了设置的方法
+ *
+ * DruidDataSource ds = DruidDataSourceFactory.createDataSource(properties);
+ * Properties properties = new Properties();
+ * properties.setProperty("remarks", "true");
+ * properties.setProperty("useInformationSchema", "true");
+ * ds.setConnectProperties(properties);
+ *
+ *
  */
 public class DbConnectionUtil {
     //读取数据库连接的参数
