@@ -75,8 +75,13 @@ public class DbConnectionUtil {
             Properties pros = new Properties();
             pros.put("user",dbUsername);
             pros.put("password",dbPassword);
+            //mysql,oracle 公用的
             pros.setProperty("remarks", "true"); //设置可以获取remarks信息
+
+            //mysql获取remark
             pros.setProperty("useInformationSchema", "true");//设置可以获取tables remarks信息
+            //oracle获取remark
+            pros.setProperty("remarksReporting","true");
             connection = DriverManager.getConnection(dbUrl,pros);
         } catch (Exception e) {
             System.out.println("获取连接错误 " + e);
