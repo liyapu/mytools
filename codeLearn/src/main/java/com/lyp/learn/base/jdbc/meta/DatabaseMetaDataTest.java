@@ -170,4 +170,21 @@ public class DatabaseMetaDataTest {
         rs.close();
         connection.close();
     }
+
+    /**
+     * 获取指定表中主键
+     */
+    @Test
+    public void test05() throws SQLException {
+        Connection connection = DbConnectionUtil.getConnection();
+        DatabaseMetaData metaData = connection.getMetaData();
+
+        ResultSet pk = metaData.getPrimaryKeys(null, null, "worker");
+        while (pk.next()){
+            System.out.println(pk.getString("COLUMN_NAME") + " , " + pk.getString("KEY_SEQ") + " , " + pk.getString("PK_NAME"));
+        }
+
+        pk.close();
+        connection.close();
+    }
 }
