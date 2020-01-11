@@ -1,3 +1,5 @@
+### MyBatis Generator 详解
+https://blog.csdn.net/isea533/article/details/42102297
 ### mybatis generator 自动生成点控制
 1. 可以获取到插入数据时的自增id
 2. tinyint 处理为 Integer

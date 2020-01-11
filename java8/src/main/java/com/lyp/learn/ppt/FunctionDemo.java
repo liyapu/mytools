@@ -89,5 +89,6 @@ public class FunctionDemo {
 
     /**
      * identity
+     * 输入什么，就返回什么
      */
 }
