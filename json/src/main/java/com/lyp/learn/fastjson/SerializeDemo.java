@@ -2,6 +2,7 @@ package com.lyp.learn.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -85,6 +86,18 @@ public class SerializeDemo {
         System.out.println(result22);
         System.out.println();
 
+    }
+
+    @Test
+    public void testUrl(){
+        String url = "http://www.baidu.com/aa.img";
+        String name = "张三";
+        Map<String,Object> map = new HashMap<>();
+        map.put("url",url);
+        map.put("name",name);
+
+        String jsonString = JSONObject.toJSONString(map);
+        System.out.println(jsonString);
     }
 
 }

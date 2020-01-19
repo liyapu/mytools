@@ -13,13 +13,13 @@ public class Singleton {
     //私有静态类
     private static class Holder{
         //私有，全局
-        private static Singleton instance = new Singleton();
+        private static final Singleton INSTANCE = new Singleton();
     }
 
     private Singleton(){
     }
 
     public static Singleton getInstance(){
-        return Holder.instance;
+        return Holder.INSTANCE;
     }
 }

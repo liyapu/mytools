@@ -26,6 +26,7 @@ import java.util.List;
 
 /**
  * https://www.cnblogs.com/dintalk/p/10891599.html
+ * https://www.cnblogs.com/dw3306/p/11357258.html
  *
  * Java中常见的用来操作 Excel 的方式有2种：JXL和POI。
  *
@@ -224,7 +225,7 @@ public class ExcelUtil {
         System.out.println("lastRowNum = " + lastRowNum);
 
         //跳过大标题行
-        for(int rowIndex = 1; rowIndex < lastRowNum - 1 ; rowIndex++){
+        for(int rowIndex = 1; rowIndex <= lastRowNum ; rowIndex++){
             Row row = sheet.getRow(rowIndex);
             int cellIndex = 0;
             //5.创建用户对象
@@ -626,6 +627,7 @@ class SheetHandler implements XSSFSheetXMLHandler.SheetContentsHandler {
  * @author Mr.song
  * @date 2019/05/19 20:08
  * 第二步：创建解析器
+ *
  */
  class ExcelParse {
     public void parse (String path) throws Exception {
