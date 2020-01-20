@@ -40,5 +40,16 @@ public class BeanUtilsTest {
         System.out.println(age);
     }
 
+    /**
+     * 克隆对象
+     */
+    @Test
+    public void testCloneBean() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        Person person = new Person("李四","北京",20);
+
+        Person newPerson = (Person) BeanUtils.cloneBean(person);
+        System.out.println(newPerson);
+    }
+
 
 }

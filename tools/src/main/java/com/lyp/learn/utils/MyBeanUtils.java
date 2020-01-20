@@ -208,8 +208,8 @@ public class MyBeanUtils {
 
     /**
      * 拷贝实体集合，sourceList
-     *只支持自定义实体集合拷贝
-     *应用场景：DTO <=> DO 等
+     * 只支持自定义实体集合拷贝
+     * 应用场景：DTO <=> DO 等
      */
     public static void copyPropertiesList(List sourceList, List targetList, Class clazz) throws InstantiationException,IllegalAccessException {
         if (CollectionUtils.isEmpty(sourceList)) {
@@ -254,6 +254,16 @@ public class MyBeanUtils {
     }
 
     /**
+     * Bean --> Map 2
+     *
+     * @param obj
+     */
+    public static Map<String, Object> transBean2Map2(Object obj) throws IntrospectionException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Map map = org.apache.commons.beanutils.BeanUtils.describe(obj);
+        return map;
+    }
+
+    /**
      * Map --> Bean 1:
      * 利用Introspector,PropertyDescriptor实现 Map --> Bean
      *
@@ -286,6 +296,32 @@ public class MyBeanUtils {
             return;
         }
         org.apache.commons.beanutils.BeanUtils.populate(obj, map);
+    }
+
+    /**
+     *  Map --> Bean 3
+     * 把map转换成指定类型的javaBean对象
+     * @param map
+     * @param clazz
+     * @return
+     */
+    public static <T> T transMap2Bean3(Map map, Class<T> clazz) {
+        try {
+            /*
+             * 1. 创建指定类型的javabean对象
+             */
+            T bean = clazz.newInstance();
+            /*
+             * 2. 把数据封装到javabean中
+             */
+            org.apache.commons.beanutils.BeanUtils.populate(bean, map);
+            /*
+             * 返回javabean对象
+             */
+            return bean;
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -364,10 +400,13 @@ public class MyBeanUtils {
     }
 
     @Test
-    public void testTransBean2Map() throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+    public void testTransBean2Map() throws IllegalAccessException, IntrospectionException, InvocationTargetException, NoSuchMethodException {
         User user = getUser();
         Map<String, Object> userMap = transBean2Map(user);
         System.out.println(userMap);
+
+        Map<String, Object> userMap2 = transBean2Map2(user);
+        System.out.println(userMap2);
     }
 
     @Test
@@ -392,4 +431,18 @@ public class MyBeanUtils {
     }
 
 
+    @Test
+    public void testTransMap2Bean3(){
+        Map<String,Object> userMap = new HashMap<>();
+        userMap.put("id",1);
+        userMap.put("name","张三");
+        userMap.put("age",68);
+        userMap.put("address","河南省 商丘市");
+        userMap.put("telephone","13566668888");
+        userMap.put("height",175);
+        userMap.put("weight",62);
+
+        User user = transMap2Bean3(userMap, User.class);
+        System.out.println("user =  " + user);
+    }
 }
