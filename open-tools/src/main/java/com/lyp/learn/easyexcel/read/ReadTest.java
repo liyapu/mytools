@@ -34,8 +34,14 @@ public class ReadTest {
         //指定 sheet
 //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0).doRead();
 
-        //指定 sheet ,指定标题行
-        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0).doRead();
+//        //指定 sheet ,指定标题行
+//        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0)
+//                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
+//                .headRowNumber(1).doRead();
+
+        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet()
+                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
+                .headRowNumber(3).doRead();
     }
 
     private String getFileName() {
@@ -49,7 +55,7 @@ public class ReadTest {
         String fileName = getFileName();
 
         ExcelReader excelReader = EasyExcel.read(fileName, Hospital.class, new HospitalListener()).build();
-        ReadSheet readSheet = EasyExcel.readSheet(0).build();
+        ReadSheet readSheet = EasyExcel.readSheet(0).headRowNumber(3).build();
         excelReader.read(readSheet);
         // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
         excelReader.finish();

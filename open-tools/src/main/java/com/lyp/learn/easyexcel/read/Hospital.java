@@ -1,8 +1,5 @@
 package com.lyp.learn.easyexcel.read;
 
-import com.alibaba.excel.annotation.ExcelProperty;
-import lombok.Data;
-
 /**
  * @author: liyapu
  * @description:
@@ -13,7 +10,7 @@ import lombok.Data;
  *   @ExcelProperty(index = 0)
  * 2.
  */
-@Data
+//@Data
 public class Hospital {
 //    @ExcelProperty(index = 3)
 //    private String organCode;
@@ -29,19 +26,63 @@ public class Hospital {
 //
 ////    private LocalDateTime createTime;
 
+//
+//    @ExcelProperty("医院名称")
+//    private String name;
+//
+//    @ExcelProperty("省份编码")
+//    private Integer provinceCode;
+//
+//
+//    @ExcelProperty("省份名称")
+//    private String provinceName;
+//
+//    @ExcelProperty("组织机构代码")
+//    private String organCode;
+//
 
-    @ExcelProperty("组织机构代码")
-    private String organCode;
 
-    @ExcelProperty("省份编码")
-    private Integer provinceCode;
-
-    @ExcelProperty("医院名称")
     private String name;
 
-    @ExcelProperty("省份名称")
+    private Integer provinceCode;
+
+
     private String provinceName;
+
+    private String organCode;
 
 //    private LocalDateTime createTime;
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(Integer provinceCode) {
+        this.provinceCode = provinceCode;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getOrganCode() {
+        return organCode;
+    }
+
+    public void setOrganCode(String organCode) {
+        this.organCode = organCode;
+    }
 }
