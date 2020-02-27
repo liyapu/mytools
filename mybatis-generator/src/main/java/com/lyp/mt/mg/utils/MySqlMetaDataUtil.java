@@ -19,7 +19,7 @@ public class MySqlMetaDataUtil {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 //    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-    private static final String URL = "jdbc:mysql://localhost:3306/golden_palm?serverTimezone=UTC&characterEncoding=utf8";
+    private static final String URL = "jdbc:mysql://localhost:3306/ncpcs_user?serverTimezone=UTC&characterEncoding=utf8";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Root$123";
 
@@ -51,9 +51,22 @@ public class MySqlMetaDataUtil {
      */
     public static Connection getConnection() {
         Connection conn = null;
+
+        Properties pros = new Properties();
+        pros.put("user",USERNAME);
+        pros.put("password",PASSWORD);
+        //mysql,oracle 公用的
+        pros.setProperty("remarks", "true"); //设置可以获取remarks信息
+
+        //mysql获取remark
+        pros.setProperty("useInformationSchema", "true");//设置可以获取tables remarks信息
+        //oracle获取remark
+        pros.setProperty("remarksReporting","true");
+
+
         try {
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn = DriverManager.getConnection(URL,pros);
         } catch (Exception e) {
             logger.error("get connection failure", e);
         }
@@ -179,10 +192,17 @@ public class MySqlMetaDataUtil {
             DatabaseMetaData metaData = connection.getMetaData();
             //从元数据中获取到所有的表名
             //目录名称; 数据库名; 表名称; 表类型;
-            rs = metaData.getTables(null, null, null, new String[]{"TABLE"});
+//            rs = metaData.getTables(null, null, null, new String[]{"TABLE"});
+            //指定数据库名称
+//            rs = metaData.getTables("test", null, null, new String[]{"TABLE"});
+            rs = metaData.getTables("ncpcs_user", null, null, new String[]{"TABLE"});
             while (rs.next()){
 //                System.out.println("getAllTables :::::" + rs.getString("TABLE_NAME") );
-                tableNames.add(rs.getString("TABLE_NAME"));
+//                tableNames.add(rs.getString("TABLE_NAME")); //表名
+//                tableNames.add(rs.getString("REMARKS")); //表注释
+                tableNames.add(rs.getString("TABLE_NAME") + "|" + rs.getString("REMARKS")); //表名和表注释
+//                System.out.println(rs.getString("TABLE_CAT") + " , " + rs.getString("TABLE_SCHEM") + " , " +  rs.getString("TABLE_NAME") + " , " + rs.getString("TABLE_TYPE") + " , " +  rs.getString("REMARKS") + " , " + rs.getString("TYPE_CAT") + " , " +  rs.getString("TYPE_SCHEM") + " , " + rs.getString("TYPE_NAME") + " , " + rs.getString("SELF_REFERENCING_COL_NAME") + " , " + rs.getString("REF_GENERATION") );
+
             }
         } catch (Exception e) {
             System.out.println("getAllTables error." + e);
@@ -237,7 +257,10 @@ public class MySqlMetaDataUtil {
         try {
             connection = getConnection();
             DatabaseMetaData metaData = connection.getMetaData();
-            ResultSet colRet = metaData.getColumns(null,"%", tableName,"%");
+            //多个数据库中的 tableName 表，
+//            ResultSet colRet = metaData.getColumns("","%", tableName,"%");
+            //指定 数据库catatog 下的表
+            ResultSet colRet = metaData.getColumns("ncpcs_user","%", tableName,"%");
             while(colRet.next()) {
                 fe = new FieldEntity();
                 //列名
@@ -250,9 +273,12 @@ public class MySqlMetaDataUtil {
                 int nullable = colRet.getInt("NULLABLE");
                 //注释
                 String remark = colRet.getString("REMARKS");
+
 //                System.out.println(columnName+" "+columnType+" "+datasize+" "+digits+" "+ nullable + " " +remark );
+
                 fe.setField(columnName);
                 fe.setType(columnType);
+                fe.setTypeSize(datasize+"");
                 fe.setComment(remark);
                 fieldEntities.add(fe);
             }
@@ -997,10 +1023,10 @@ public class MySqlMetaDataUtil {
 
     public static void main(String[] args) {
 
-        List<String> currentDbTables = getCurrentDbTables();
-        for(String originTableName : currentDbTables){
-            System.out.println(originTableName);
-        }
+//        List<String> currentDbTables = getCurrentDbTables();
+//        for(String originTableName : currentDbTables){
+//            System.out.println(originTableName);
+//        }
 
 //        FieldEntity feo = new FieldEntity();
 ////        feo.setComment("固定资产折旧、油气资产折耗、生产性生物资产折旧 单位：元");
@@ -1031,18 +1057,19 @@ public class MySqlMetaDataUtil {
 //                for(FieldEntity fe : fieldEntities){
 //                    System.out.println(fe);
 //                }
-//            //获取当前数据库的所有表名
-////            List<String> tableNames = getCurrentDbTables();
-//            for(String tn : tableNames){
-//                System.out.println(tn);
-//                //listByTableName(tn);
-//                List<FieldEntity> fieldEntities = listByTableName2(tn);
-//                for(FieldEntity fe : fieldEntities){
-//                    System.out.println(fe);
-//                }
-//                System.out.println("---------------");
+            //获取当前数据库的所有表名
+            List<String> tableNames = getAllTables();
+            for(String tn : tableNames){
+                System.out.println(tn);
+                //listByTableName(tn);
+//                List<FieldEntity> fieldEntities = listByTableName(tn);
+                List<FieldEntity> fieldEntities = listByTableName(tn.split("\\|")[0]);
+                for(FieldEntity fe : fieldEntities){
+                    System.out.println(fe);
+                }
+                System.out.println("---------------");
 //                System.out.println();
-//            }
+            }
 
 //            String tableName = "file_mapping";
 //
@@ -1102,11 +1129,11 @@ public class MySqlMetaDataUtil {
 
     @Test
     public void test01(){
-        System.out.println(getTableComments());
-        System.out.println("-------------");
-        System.out.println(getTableComments2());
-        System.out.println();
-        System.out.println(getCurrentDbName());
+//        System.out.println(getTableComments());
+//        System.out.println("-------------");
+//        System.out.println(getTableComments2());
+//        System.out.println();
+//        System.out.println(getCurrentDbName());
 
     }
 

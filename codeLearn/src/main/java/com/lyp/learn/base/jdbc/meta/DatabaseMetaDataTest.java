@@ -1,7 +1,7 @@
 package com.lyp.learn.base.jdbc.meta;
 
 import com.lyp.learn.base.jdbc.DbConnectionUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.sql.*;
 
@@ -106,7 +106,7 @@ public class DatabaseMetaDataTest {
         //获取指定数据中的表信息
         /*
              getTables(String catalog, String schemaPattern,String tableNamePattern, String types[] ）
-                catalog:（目录，目录薄）当前操作的数据库
+                catalog:（目录，目录薄）当前操作的数据库,可以指定操作的数据库名称
                     mysql:
                             3306后指定的数据库 mybatisplus,
                             url中已经指定了，这里可以传null

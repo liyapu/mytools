@@ -11,6 +11,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class FieldEntity {
     private String field;
     private String type;
+    private String typeSize;
     private String comment;
     private String tableName;
 
@@ -44,6 +45,14 @@ public class FieldEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTypeSize() {
+        return typeSize;
+    }
+
+    public void setTypeSize(String typeSize) {
+        this.typeSize = typeSize;
     }
 
     public String getTableName() {
