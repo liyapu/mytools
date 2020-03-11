@@ -20,7 +20,7 @@ import java.util.Properties;
 public class MySqlTabelWordDetailUtils {
 
     // 数据库名称
-    private static final String dbName = "ncpcs_user";
+    private static final String dbName = "ncpcs_statistics";
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/" + dbName + "?serverTimezone=UTC&characterEncoding=utf8";
@@ -175,7 +175,8 @@ public class MySqlTabelWordDetailUtils {
         XWPFDocument doc = new XWPFDocument();
 
         //排除的表名
-        List<String> excludeTable = Arrays.asList("uni_user_info","sm_param_base","organ_province_map");
+//        List<String> excludeTable = Arrays.asList(sm_param_base","organ_province_map");
+        List<String> excludeTable = Arrays.asList();
 
         //获取当前数据库的所有表名
         List<String> tableNames = tableWord.getAllTables();
@@ -189,7 +190,7 @@ public class MySqlTabelWordDetailUtils {
                 tableRemark = tableNameArr[1];
             }
 
-            if(excludeTable.contains(tableName)){
+            if(excludeTable.size() > 0 && excludeTable.contains(tableName)){
                 System.out.println("排除表：" + tableName);
                 continue;
             }
@@ -204,7 +205,7 @@ public class MySqlTabelWordDetailUtils {
 
 
         String filePath = MySqlTabelWordDetailUtils.class.getClassLoader().getResource("").getPath();
-        String filePathName = filePath + "testword7.docx";
+        String filePathName = filePath + "ncpcs_statistics.docx";
         System.out.println(" word 文档生成路径 =============== " + filePathName);
 
         tableWord.saveDocument(doc, filePathName);
