@@ -1,4 +1,4 @@
-package com.lyp.mt;
+package com.lyp.learn.junit;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +13,10 @@ import java.util.regex.Pattern;
  * @date 2019-10-09 13:18
  */
 public class FirstTest {
+
+    /**
+     * 测试上传附件，重命名之后，匹配 uuid 字符串
+     */
     @Test
     public void testUUid2(){
 //        String uuid1 = "在e65deb4c-a110-49c8-a4ef-6e69447968d6";

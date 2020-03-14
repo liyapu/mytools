@@ -1,5 +1,6 @@
-package com.lyp.mt.example01;
+package com.lyp.learn.junit;
 
+import com.lyp.mt.example01.Calculator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
