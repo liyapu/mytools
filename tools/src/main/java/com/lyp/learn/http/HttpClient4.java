@@ -153,7 +153,7 @@ public class HttpClient4 {
             // 从响应对象中获取响应内容
             HttpEntity entity = httpResponse.getEntity();
             result = EntityUtils.toString(entity,"UTF-8");
-            //log.info("HttpClient doPost response.url:{},,result:{}",url,paramMap,result);
+            //log.info("HttpClient doPost response.url:{},params:{},result:{}",url,paramMap,result);
         } catch (ClientProtocolException e) {
             //log.error("HttpClient doPost err.",e);
             e.printStackTrace();
