@@ -24,12 +24,16 @@ public class ObjectsTest {
      */
     @Test
     public void testEqual(){
+        System.out.println(Objects.equal(100,100));
+        System.out.println(Objects.equal(800,800));
         System.out.println(Objects.equal("a","a"));
         System.out.println(Objects.equal("a",null));
         System.out.println(Objects.equal(null,"a"));
         System.out.println(Objects.equal(null,null));
 
         System.out.println("------------------");
+        System.out.println(java.util.Objects.equals(100,100));
+        System.out.println(java.util.Objects.equals(800,800));
         System.out.println(java.util.Objects.equals("a","a"));
         System.out.println(java.util.Objects.equals("a",null));
         System.out.println(java.util.Objects.equals(null,"a"));

@@ -52,7 +52,7 @@ public class SplitterTest {
     }
 
     /**
-     * 对分割结果做 tirm, 忽略空字符串
+     * 对分割结果做 trim, 忽略空字符串
      */
     @Test
     public void test2(){
