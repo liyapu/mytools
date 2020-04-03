@@ -17,7 +17,6 @@
         <module>json</module>
         <module>tools</module>
         <module>open-tools</module>
-        <module>junit5</module>
         <module>compare</module>
         <module>mytest</module>
     </modules>
