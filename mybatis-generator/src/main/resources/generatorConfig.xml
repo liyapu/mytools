@@ -125,8 +125,7 @@
             targetProject：目标项目，生成的实体类所在的硬盘位置,指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
         <!--        <javaModelGenerator targetPackage="com.lyp.mt.mg.generator.pojo" targetProject="src/main/java">-->
-        <!--        <javaModelGenerator targetPackage="com.tusdao.control.model.base" targetProject="src/main/java">-->
-        <javaModelGenerator targetPackage="com.tusdao.entity.base" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.tusdao.control.model.base" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false" />
@@ -148,8 +147,7 @@
         <!-- targetPackage 和 targetProject：生成的 xml mapper 文件的包和位置,在java目录下-->
         <!--        <sqlMapGenerator targetPackage="com.lyp.mt.mg.generator.mappers" targetProject="src/main/java">-->
         <!--   xml mapper 在 resources 目录下    -->
-        <!--        <sqlMapGenerator targetPackage="mg.generator.mappers" targetProject="src/main/resources">-->
-        <sqlMapGenerator targetPackage="mybatis.mapper.official.base" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mg.generator.mappers" targetProject="src/main/resources">
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
@@ -162,8 +160,7 @@
             type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="ANNOTATEDMAPPER">-->
-        <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.dao" targetProject="src/main/java" type="XMLMAPPER">-->
-        <javaClientGenerator  targetPackage="com.tusdao.mapper.base" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator  targetPackage="com.tusdao.control.dao.base" targetProject="src/main/java" type="XMLMAPPER">
             <!--        <javaClientGenerator  targetPackage="com.lyp.mt.mg.generator.mapper" targetProject="src/main/java" type="XMLMAPPER">-->
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
@@ -236,6 +233,7 @@
         <!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
         <!--        <table tableName="apply_report" domainObjectName="ApplyReport" ></table>-->
         <!--        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >-->
+        <!--            原项目 是 byte ,保持不变，下面的转 int 的配置不用-->
         <!--            <columnOverride column="organ_classify" javaType="java.lang.Integer"/>-->
         <!--            <columnOverride column="organ_nature" javaType="java.lang.Integer"/>-->
         <!--            <columnOverride column="hemopathy" javaType="java.lang.Integer"/>-->
@@ -245,6 +243,7 @@
         <!--            <columnOverride column="organ_status" javaType="java.lang.Integer"/>-->
 
         <!--        </table>-->
+        <table tableName="control_role_info" domainObjectName="ControlRoleInfo" ></table>
         <!--        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>-->
         <!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
         <!--        <table tableName="city_dict" domainObjectName="CityDict" >-->
@@ -258,24 +257,16 @@
 
         <!--        </table>-->
 
-        <table tableName="news_annex" domainObjectName="NewsAnnex" >
-            <!--  自动获取自增id              -->
-            <generatedKey column="annex_id" sqlStatement="MySql" identity="true"/>
-            <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
-            <columnOverride column="type" javaType="java.lang.Integer"/>
-            <columnOverride column="status" javaType="java.lang.Integer"/>
-        </table>
+        <!--        <table tableName="news_center" domainObjectName="NewsCenter" >-->
+        <!--  自动获取自增id              -->
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--            &lt;!&ndash;          控制生成实体的数据类型:tinyint 处理为 Integer     &ndash;&gt;-->
+        <!--                    <columnOverride column="type" javaType="java.lang.Integer"/>-->
+        <!--                    <columnOverride column="top" javaType="java.lang.Integer"/>-->
+        <!--                    <columnOverride column="status" javaType="java.lang.Integer"/>-->
+        <!--        </table>-->
 
-        <table tableName="download_area" domainObjectName="DownloadArea" >
-            <!--  自动获取自增id              -->
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <!--          控制生成实体的数据类型:tinyint 处理为 Integer     -->
-            <columnOverride column="top" javaType="java.lang.Integer"/>
-            <columnOverride column="type" javaType="java.lang.Integer"/>
-            <columnOverride column="valid" javaType="java.lang.Integer"/>
-        </table>
-
-
+        <!--      -->
 
         <!-- ===================== 表名称对应修改 ======================== -->
         <!-- 有些表的字段需要指定java类型

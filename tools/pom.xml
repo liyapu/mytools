@@ -50,6 +50,13 @@
         </dependency>
         <!-- junit 5 单元测试依赖 end     -->
 
+<!-- https://gitee.com/airsup/java-generator
+      各种随机生成器，包括身份证号码，银行卡号，姓名，手机号等  -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>java-generator</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

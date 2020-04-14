@@ -232,7 +232,7 @@
         <!--                <table tableName="file_mapping" domainObjectName="fileMapping" ></table>-->
 <!--        <table tableName="control_user_info" domainObjectName="ControlUserInfo" ></table>-->
 <!--        <table tableName="apply_report" domainObjectName="ApplyReport" ></table>-->
-        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >
+<!--        <table tableName="control_organ_info" domainObjectName="ControlOrganInfo" >-->
 <!--            原项目 是 byte ,保持不变，下面的转 int 的配置不用-->
 <!--            <columnOverride column="organ_classify" javaType="java.lang.Integer"/>-->
 <!--            <columnOverride column="organ_nature" javaType="java.lang.Integer"/>-->
@@ -242,7 +242,8 @@
 <!--            <columnOverride column="foton_center" javaType="java.lang.Integer"/>-->
 <!--            <columnOverride column="organ_status" javaType="java.lang.Integer"/>-->
 
-        </table>
+<!--        </table>-->
+        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>
 <!--        <table tableName="organ_province_map" domainObjectName="OrganProvinceMap" ></table>-->
 <!--        <table tableName="business_const" domainObjectName="BusinessConst" ></table>-->
 <!--        <table tableName="city_dict" domainObjectName="CityDict" >-->
