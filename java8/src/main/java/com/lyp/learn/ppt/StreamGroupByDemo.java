@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamGroupByDemo {
@@ -164,11 +165,12 @@ public class StreamGroupByDemo {
     @Test
     public void test10(){
         Map<String,List<Dish>> caloriesDish = menu.stream()
-                .collect(Collectors.groupingBy(StreamGroupByDemo::classifyLevelFood)
-                );
+                .collect(Collectors.groupingBy(StreamGroupByDemo::classifyLevelFood));
         System.out.println(caloriesDish);
         System.out.println(JSON.toJSONString(caloriesDish));
     }
+
+
 
     @Test
     public void test8(){
@@ -207,6 +209,145 @@ public class StreamGroupByDemo {
         System.out.println(typeCaloriesDish);
         System.out.println(JSON.toJSONString(typeCaloriesDish));
         System.out.println();
+    }
+
+    /**
+     * 分组后操作 list
+     */
+    @Test
+    public void test100(){
+        Map<String, List<Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress));
+        System.out.println(collect);
+    }
+
+    // 自定义 key
+    @Test
+    public void test101(){
+        Map<String, List<Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(a -> a.getAddress() + "-" + a.getWeight()));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test102(){
+        Map<String, List<Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.toList()));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test103(){
+        Map<String, Set<Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.toSet()));
+        System.out.println(collect);
+    }
+
+    // 根据 key 对集合进行分组, 并且 value 的集合为指定属性集合而不是对象集合
+    @Test
+    public void test104(){
+        Map<String, List<String>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.toList())));
+        System.out.println(collect);
+    }
+
+
+    /**
+     * 收集List 之后，再次对 List 进行操作
+     *根据 key 进行分组并且将指定属性值进行拼接作为哈希表的 value 值
+     */
+    @Test
+    public void test105(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining("-"))));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test106(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining("-","aa___","___zz"))));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test107(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining(",","[","]"))));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test108(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining(",","[","]"))));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test109(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(a -> a.getColor() + "|" + a.getWeight(), Collectors.joining("-"))));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test110(){
+        Map<String,String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(a ->{
+                    return a.getColor() + "|" + a.getWeight();
+                },Collectors.joining("-"))));
+        System.out.println(collect);
+    }
+
+    //根据 key 进行分组并根据 指定属性进行比较取最大元素
+    @Test
+    public void test111(){
+        Map<String, Optional<Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress, Collectors.maxBy(Comparator.comparing(Apple::getWeight))));
+        System.out.println(collect);
+    }
+
+    // 遍历结果集
+    @Test
+    public void test112(){
+       inventory.stream()
+               .collect(Collectors.groupingBy(Apple::getAddress))
+               .forEach((k,v) ->{
+                   System.out.println(k + " ===== " + v);
+               });
+
+    }
+
+    // List<T> 转 Map<T#Prop, Map<T#Prop2, T#Prop3>>
+    @Test
+    public void test113(){
+        Map<String, Map<String, Integer>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress, Collectors.toMap(Apple::getColor, Apple::getWeight)));
+        System.out.println(collect);
+
+    }
+
+    @Test
+    public void test114(){
+        Map<Integer, Map<String, String>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, Apple::getAddress)));
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test115(){
+        Map<Integer, Map<String, Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, a -> a)));
+        System.out.println(collect);
+    }
+
+
+    @Test
+    public void test116(){
+        Map<Integer, Map<String, Apple>> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, Function.identity())));
+        System.out.println(collect);
     }
 
     /**
