@@ -3,10 +3,12 @@ package com.lyp.learn.base.annotation.fruit;
  * @Author: liyapu
  * @Description: 注解使用
  * @create: 2018-11-02 10:49
+ *
+ *  属性上的注解
  */
 public class Apple {
 
-    @FruitName(value = "Apple")
+    @FruitName(value = "红富士")
     private String appleName;
 
     @FruitColor(fruitColor = FruitColor.Color.YELLOW)
