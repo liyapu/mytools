@@ -7,6 +7,12 @@ import java.lang.reflect.Modifier;
  * @Author: liyapu
  * @Description:
  * @create: 2019-01-11 21:31
+ *
+ *   getFields()：获得某个类的所有的公共（public）的字段，包括父类中的字段
+ *
+ *   getDeclaredFields()：获得某个类的所有声明的字段，即包括public、private和proteced，但是不包括父类的申明字段。
+ *
+ *   同样类似的还有getConstructors()和getDeclaredConstructors()、getMethods()和getDeclaredMethods()，这两者分别表示获取某个类的方法、构造函数。
  */
 public class ClassFieldDemo {
     public static void main(String[] args) throws Exception {

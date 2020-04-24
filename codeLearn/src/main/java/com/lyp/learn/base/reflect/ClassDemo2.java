@@ -8,10 +8,12 @@ public class ClassDemo2 {
         //获得类的加载器
         System.out.println(studentClazz.getClassLoader());
         System.out.println(personClazz.getClassLoader());
+        System.out.println();
 
         //返回一个数组，数组中包含该类中所有公共类和接口类的对象
         System.out.println(studentClazz.getClasses());
         System.out.println(personClazz.getClasses());
+        System.out.println();
 
         System.out.println(studentClazz.getClasses().length);
         System.out.println(personClazz.getClasses().length);

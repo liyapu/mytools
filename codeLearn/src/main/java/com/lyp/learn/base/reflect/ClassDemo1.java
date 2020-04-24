@@ -46,7 +46,7 @@ public class ClassDemo1 {
          * 但可能抛出 ClassNotFoundException 异常
          *
          */
-        Class c3 = Class.forName("com.lyp.learn.reflect.Person");
+        Class c3 = Class.forName("com.lyp.learn.base.reflect.Person");
         System.out.println(c3);
 
         System.out.println();

@@ -22,7 +22,7 @@ public class ClassDemo3 {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         System.out.println();
 
-        Class personClazz = Class.forName("com.lyp.learn.reflect.Person");
+        Class personClazz = Class.forName("com.lyp.learn.base.reflect.Person");
         Constructor personConstructor = personClazz.getConstructor(new Class[]{String.class, String.class, int.class, String.class, String.class, int.class, int.class});
         Person person2 = (Person) personConstructor.newInstance("张三","父爱如山赋值",10,"aaa","bbb",88,99);
         System.out.println(person2.getFather());
