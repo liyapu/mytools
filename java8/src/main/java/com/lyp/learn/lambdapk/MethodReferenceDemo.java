@@ -1,5 +1,6 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.lambdapk;
 
+import com.lyp.learn.bean.Apple;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
@@ -120,6 +121,9 @@ public class MethodReferenceDemo {
     /**
      * 构造器引用
      * 格式：ClassName::new
+     *      与函数式接口相结合，自动与函数式接口中方法兼容。
+     *      可以把构造器引用赋值给定义的方法，
+     *      要求构造器参数列表要与接口中抽象方法的参数列表一致！且方法的返回值即为构造器对应类的对象。
      */
     @Test
     public void test4(){

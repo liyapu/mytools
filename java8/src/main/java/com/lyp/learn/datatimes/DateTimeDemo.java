@@ -1,4 +1,4 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.datatimes;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +48,12 @@ import java.util.Set;
  * 时区是值一个相对于英国格林威治的地理位置，用于计算时间。要了解事件发生的精确时间，还必须知道发生此事件的位置。任何严格的时间计算都必须涉及时区（或相对于 GMT），除非在同一个时区内发生了相对时间计算（即时这样时区也很重要，如果事件对于位于另一个时区的各方存在利益关系的话）。
  *
  * DateTimeZone 是 Joda 库用于封装位置概念的类。许多日期和时间计算都可以在不涉及时区的情况下完成，但是仍然需要了解 DateTimeZone 如何影响 Joda 的操作。默认时间，即从运行代码的机器的系统时钟检索到的时间，在大部分情况下被使用。
+ *
+ *
+ *    LocalDate、LocalTime、LocalDateTime 类是其中较重要的几个类，它们的实例是不可变的对象，
+ *    分别表示使用 ISO-8601日历系统的日期、时间、日期和时间。
+ *    它们提供了简单的本地日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。
+ *    注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
  */
 public class DateTimeDemo {
         /**

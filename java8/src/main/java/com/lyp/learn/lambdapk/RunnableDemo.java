@@ -1,4 +1,4 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.lambdapk;
 
 public class RunnableDemo {
     public static void main(String[] args) {

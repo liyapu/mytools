@@ -1,4 +1,6 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.bean;
+
+import com.lyp.learn.bean.Address;
 
 public class Student {
     private int id;

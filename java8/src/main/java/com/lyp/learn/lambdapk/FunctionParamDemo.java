@@ -1,7 +1,8 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.lambdapk;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.function.*;
 
 public class FunctionParamDemo {
@@ -42,10 +43,11 @@ public class FunctionParamDemo {
         Consumer<String> consumer1 = (String param) -> System.out.println(param);
         consumer1.accept("consumer1 aaaa");
 
+        //数据类型可以省略，因为可由编译器推断得出，称为 "类型推断"
         Consumer<Integer> consumer2 = (num) -> System.out.println("数字 是 " + num);
         consumer2.accept(5);
 
-        //只需要一个参数的时候，”->”左边的括号可以省略
+        //只需要一个参数的时候，”->”左边的小括号可以省略
         Consumer<Integer> consumer3 = num -> System.out.println("num is :" + num);
         consumer3.accept(8);
 
@@ -109,9 +111,21 @@ public class FunctionParamDemo {
         String str1 = biFunction1.apply("java "," Lambda");
         System.out.println(str1);
 
+        // 当lambda体只有一条语句时，return 与 大括号若有，都可以省略
         BiFunction<String,String,String> biFunction2 = (a,b) -> a.concat(b);
         String str2 = biFunction2.apply("hello "," world");
         System.out.println(str2);
+    }
+
+    /**
+     * 两个或以上的参数，多条执行语句，并且可以有返回值
+     */
+    @Test
+    public void testManyParams1(){
+        Comparator<Integer> com = (x,y) -> {
+            System.out.println("实现函数式接口方法");
+            return Integer.compare(x,y);
+        };
     }
 
 

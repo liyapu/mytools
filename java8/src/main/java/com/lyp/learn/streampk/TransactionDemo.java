@@ -1,5 +1,8 @@
-package com.lyp.learn.chap02;
+package com.lyp.learn.streampk;
 
+
+import com.lyp.learn.bean.Trader;
+import com.lyp.learn.bean.Transaction;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.lyp.learn.chap01;
+package com.lyp.learn.lambdapk;
 
 
 public class ThreadDemo {

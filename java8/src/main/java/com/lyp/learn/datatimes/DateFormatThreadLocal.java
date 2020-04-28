@@ -1,4 +1,4 @@
-package com.lyp.learn.day01;
+package com.lyp.learn.datatimes;
 
 import java.text.DateFormat;
 import java.text.ParseException;

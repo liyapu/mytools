@@ -1,4 +1,4 @@
-package com.lyp.learn.chap02;
+package com.lyp.learn.bean;
 
 /**
  * 商人，交易者

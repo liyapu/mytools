@@ -1,7 +1,7 @@
 package com.lyp.learn.streampk;
 
 
-import com.lyp.learn.ppt.Apple;
+import com.lyp.learn.bean.Apple;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -177,7 +177,15 @@ public class StreamFilterDemo {
         IntStream.iterate(0, i -> (i + 1) % 2).limit(6).distinct().forEach(System.out::println);
     }
 
-    //collect 规约，收集元素
+
+    /**
+     *   collect 规约，收集元素
+     *      collect(Collector c)
+     *      将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+     *
+     *   Collector 接口中方法的实现决定了如何对流执行收集的操作(如收集到 List、Set、Map)。
+     *     另外， Collectors 实用类提供了很多静态方法，可以方便地创建常见收集器实例，具体方法与实例如下表：
+     */
     @Test
     public void test10(){
         //List 收集

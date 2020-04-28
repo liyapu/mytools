@@ -1,4 +1,4 @@
-package com.lyp.learn.day01;
+package com.lyp.learn.datatimes;
 
 import org.junit.jupiter.api.Test;
 

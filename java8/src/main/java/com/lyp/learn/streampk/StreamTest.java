@@ -1,19 +1,330 @@
 package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
+import com.lyp.learn.bean.Apple;
+import com.lyp.learn.bean.Dish;
 import com.lyp.learn.bean.QuarterEnum;
 import com.lyp.learn.bean.QuarterVo;
-import com.lyp.learn.ppt.Dish;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class StreamMethodDemo {
+/**
+ *
+ *   Stream到底是什么呢？
+ *     是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
+ *     “集合讲的是数据，Stream讲的是计算！”
+ *
+ *    注意：
+ *       ①Stream 自己不会存储元素。
+ *       ②Stream 不会改变源对象。相反，他们会返回一个持有结果的新Stream。
+ *       ③Stream 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+ *
+ * 一、Stream API 的操作步骤：
+ * 1. 创建 Stream
+ *     一个数据源（如：集合、数组），获取一个流
+ * 2. 中间操作
+ *     一个或多个中间操作链，对数据源的数据进行处理
+ * 3. 终止操作(终端操作)
+ *     一旦执行终止操作，就执行中间操作链，并产生结果。之后，不会再被使用
+ */
+public class StreamTest {
+
+    // 创建 stream 流的几种方式
+
+    /**
+     * 1. 通过集合
+     *   Java8 中的 Collection 接口被扩展，提供了两个获取流的方法：
+     *   Collection 提供了两个方法  stream() 与 parallelStream()
+     *
+     *   default Stream<E> stream() : 返回一个顺序流
+     *   default Stream<E> parallelStream() : 返回一个并行流
+     */
+    @Test
+    public void testCollectionStream(){
+        List<String> list = new ArrayList<>();
+        Stream<String> stream = list.stream(); //获取一个顺序流
+        Stream<String> parallelStream = list.parallelStream(); //获取一个并行流
+    }
+
+    /**
+     *  2. 创建 Stream方式二：由数组创建流
+     *   Java8 中的 Arrays 的静态方法 stream() 可以获取数组流：
+     *
+     *   static <T> Stream<T> stream(T[] array): 返回一个流
+     *
+     *    重载形式，能够处理对应基本类型的数组：
+     *       public static IntStream stream(int[] array)
+     *       public static LongStream stream(long[] array)
+     *      public static DoubleStream stream(double[] array)
+     */
+    @Test
+    public void testArraysStream(){
+        Integer[] nums = new Integer[10];
+        Stream<Integer> stream1 = Arrays.stream(nums);
+
+        int [] intArr = {5,3,2,7,8,3};
+        IntStream intStream = Arrays.stream(intArr);
+        int intSum = intStream.sum();
+        System.out.println(intSum);
+
+        System.out.println();
+
+        String [] strArr = new String[] {"aa","bb","cc"};
+        Stream<String> strStream = Stream.of(strArr);
+        strStream.forEach(System.out::println);
+
+    }
+
+    /**
+     * 3. 通过 Stream 类中静态方法 of()
+     *
+     *   可以调用Stream类静态方法 of(), 通过显示值创建一个流。它可以接收任意数量的参数。
+     *   public static<T> Stream<T> of(T... values) : 返回一个流
+     */
+    @Test
+    public void testStreamOf(){
+        Stream<Integer> stream2 = Stream.of(1, 2, 3, 4, 5, 6);
+
+        Stream<String> strStream = Stream.of("aa","bb","ff","bb","gg");
+        strStream.forEach(s -> System.out.print(s +", "));
+    }
+
+
+    /**
+     * 有 值产生流
+     * 对于基本数值型，目前有三种对应的包装类型 Stream：IntStream、LongStream、DoubleStream
+     *
+     * 当然我们也可以用 Stream<Integer>、Stream<Long> >、Stream<Double>，但是 boxing 和 unboxing 会很耗时，
+     * 所以特别为这三种基本数值型提供了对应的 Stream。
+     */
+    @Test
+    public void testNum(){
+        IntStream.of(new int[] {1,3,9})
+                .forEach(System.out::println);
+        System.out.println("-------------");
+
+        IntStream.range(1,3)
+                .forEach(System.out::println);
+        System.out.println("------------");
+
+        IntStream.rangeClosed(1,3)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * 创建一个空流
+     */
+    public void testEmptyStream(){
+        Stream<String> strStream2 = Stream.empty();
+    }
+
+
+
+    /**
+     *  创建 Stream方式四：创建无限流
+     *   由函数生成流：创建无限流
+     *  可以使用静态方法 Stream.iterate() 和 Stream.generate(), 创建无限流
+     *
+     *    迭代
+     *       public static<T> Stream<T> iterate(final T seed, final UnaryOperator<T> f)
+     *    生成
+     *       public static<T> Stream<T> generate(Supplier<T> s)
+     */
+    @Test
+    public void testFunctionStream(){
+        List<Integer> intList =  Stream.iterate(5, n -> n + 5)
+                .limit(10)
+                .collect(Collectors.toList());
+        System.out.println(intList);
+
+        System.out.println("-----------");
+
+        Stream.generate(Math::random)
+                .limit(5)
+                .forEach(t -> System.out.print(t + " , "));
+
+        //迭代
+        Stream<Integer> stream3 = Stream.iterate(0, (x) -> x + 2).limit(10);
+        stream3.forEach(System.out::println);
+
+        //生成
+        Stream<Double> stream4 = Stream.generate(Math::random).limit(2);
+        stream4.forEach(System.out::println);
+    }
+
+    /**
+     * 由文件生成流
+     */
+    @Test
+    public void  testFileStream(){
+        List<String> uniqueWords = new ArrayList<>();
+        try(Stream<String> lines = Files.lines(Paths.get(Thread.currentThread().getContextClassLoader().getResource("").getPath(),"data.txt"), Charset.forName("utf-8"))) {
+            uniqueWords = lines.flatMap(line -> Arrays.stream(line.split(" ")))
+                    .distinct()
+                    .collect(Collectors.toList());
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+        uniqueWords.forEach(System.out::println);
+    }
+
+    /**
+     * 斐波纳契
+     */
+    @Test
+    public void testFeiBoNaQie(){
+        //斐波纳契数列
+        Stream.iterate(new int [] {0,1},t -> new int [] {t[1],t[0] + t[1]})
+                .limit(10)
+                .map(t -> t[0])
+                .forEach(t -> System.out.print(t + " "));
+
+        System.out.println();
+        //斐波纳契元组序列
+        Stream.iterate(new int [] {0,1}, t -> new int [] {t[1],t[0] + t[1]})
+                .limit(10)
+                .forEach(t -> System.out.print("(" + t[0] + "," + t[1] + ")  " ));
+    }
+
+
+    /**
+     *   2. 中间操作
+     *     多个中间操作可以连接起来形成一个流水线，除非流水线上触发终止操作，否则中间操作不会执行任何的处理！
+     *     而在终止操作时一次性全部处理，称为“惰性求值”
+     */
+    List<Apple> inventory = Arrays.asList(new Apple("green", 80, "黄土高原"),
+            new Apple("green", 200, "黄河故道"),
+            new Apple("red", 160, "渤海湾"),
+            new Apple("yellow", 20, "渤海湾")
+    );
+
+    /**
+     * 筛选与切片
+     * filter——接收 Lambda ， 从流中排除某些元素。
+     * limit——截断流，使其元素不超过给定数量。
+     * skip(n) —— 跳过元素，返回一个扔掉了前 n 个元素的流。若流中元素不足 n 个，则返回一个空流。与 limit(n) 互补
+     * distinct——筛选，通过流所生成元素的 hashCode() 和 equals() 去除重复元素
+     */
+
+    //内部迭代：迭代操作 Stream API 内部完成
+    @Test
+    public void test200() {
+        //所有的中间操作不会做任何的处理
+        Stream<Apple> stream = inventory.stream()
+                .filter((a) -> {
+                    System.out.println("测试中间操作");
+                    return a.getWeight() >= 100;
+                });
+
+        //只有当做终止操作时，所有的中间操作会一次性的全部执行，称为“惰性求值”
+        stream.forEach(System.out::println);
+    }
+
+    //外部迭代
+    @Test
+    public void test201() {
+        Iterator<Apple> it = inventory.iterator();
+
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+
+    @Test
+    public void test202() {
+        inventory.stream()
+                .filter((a) -> {
+                    System.out.println("短路！"); // &&  ||
+                    return a.getWeight() >= 50;
+                }).limit(3)
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void test203() {
+        inventory.parallelStream()
+                .filter((a) -> a.getWeight() >= 50)
+                .skip(2)
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void test204() {
+        inventory.stream()
+                .distinct()
+                .forEach(System.out::println);
+    }
+
+    /**
+     * 流中流
+     * map 返回外层的流
+     * filterCharacter 的返回值是一个流
+     *
+     * 映射
+     * map——接收 Lambda ， 将元素转换成其他形式或提取信息。接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
+     * flatMap——接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流
+     *
+     *     map(Function f)	接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
+     *     mapToDouble(ToDoubleFunction f)	接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 DoubleStream。
+     *     mapToInt(ToIntFunction f)	接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 IntStream。
+     *     mapToLong(ToLongFunction f)	接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 LongStream。
+     *    flatMap(Function f)	接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流
+     */
+    List<String> words = Arrays.asList("aa","bbb","cc");
+    @Test
+    public void testStreamStream(){
+        Stream<Stream<Character>> streamStream = words.stream()
+                .map(StreamTest::filterCharacter);
+
+        streamStream.forEach(stream -> {
+            stream.forEach(System.out::println);
+        });
+    }
+
+    public static Stream<Character> filterCharacter(String str){
+        List<Character> list = new ArrayList<>();
+        for(Character ch : str.toCharArray()){
+            list.add(ch);
+        }
+        return list.stream();
+    }
+
+    @Test
+    public void testFlapMap(){
+        Stream<Character> cs = words.stream()
+                .flatMap(StreamTest::filterCharacter);
+
+        cs.forEach(System.out::println);
+    }
+
+    @Test
+    public void testList(){
+        List numList = new ArrayList<>();
+        numList.add("11");
+        numList.add("22");
+        numList.add(words);
+        numList.add(33);
+        numList.add(44);
+        numList.addAll(words);
+
+        System.out.println(numList);
+    }
+    /**
+	*	sorted()——自然排序,产生一个新流，其中按自然顺序排序
+	*	sorted(Comparator com)——定制排序,产生一个新流，其中按比较器顺序排序
+    */
+
 
     List<Dish> menu = Arrays.asList(
             new Dish("pork", false, 800, Dish.Type.MEAT),
@@ -40,12 +351,12 @@ public class StreamMethodDemo {
         Stream<String> stream2 = Arrays.stream(array);
 
         List<QuarterVo> quarterVoList = Arrays.stream(QuarterEnum.values())
-                                              .map(qe -> {
-                                                QuarterVo qv = new QuarterVo();
-                                                BeanUtils.copyProperties(qe, qv);
-                                                qv.setName(qe.getValue());
-                                                return qv;
-                                              }).collect(Collectors.toList());
+                .map(qe -> {
+                    QuarterVo qv = new QuarterVo();
+                    BeanUtils.copyProperties(qe, qv);
+                    qv.setName(qe.getValue());
+                    return qv;
+                }).collect(Collectors.toList());
         System.out.println("quarterVoList :" + quarterVoList);
 
         //第三种 通过集合的stream方法，该方法是Collection接口的默认方法，所有集合都继承了该方法
@@ -56,15 +367,15 @@ public class StreamMethodDemo {
 
         //第四种 创建无限流(迭代、生成)
         //迭代（需要传入一个种子，也就是起始值，然后传入一个一元操作）
-         Stream<Integer> stream4 = Stream.iterate(2, (x) -> x * 2).limit(5);
-         stream4.forEach(System.out::println);
+        Stream<Integer> stream4 = Stream.iterate(2, (x) -> x * 2).limit(5);
+        stream4.forEach(System.out::println);
         System.out.println();
 
-         //生成(无限产生对象)
-         Stream<Double> stream44 = Stream.generate(() -> Math.random()).limit(3);
-         stream44.forEach(System.out::println);
+        //生成(无限产生对象)
+        Stream<Double> stream44 = Stream.generate(() -> Math.random()).limit(3);
+        stream44.forEach(System.out::println);
 
-         //第五种  通过文件创建流
+        //第五种  通过文件创建流
     }
 
     /**
@@ -75,8 +386,8 @@ public class StreamMethodDemo {
     public void test2(){
         System.out.println("-----------谓词筛选，选出所有素菜---------------------");
         List<Dish> vegetarianDish = menu.stream()
-                                        .filter(Dish::isVegetarian)
-                                        .collect(Collectors.toList());
+                .filter(Dish::isVegetarian)
+                .collect(Collectors.toList());
         System.out.println(vegetarianDish);
         System.out.println();
     }
@@ -92,8 +403,8 @@ public class StreamMethodDemo {
     public void test3(){
         System.out.println("---------------map 映射，取出所有菜名------");
         List<String> dishNames = menu.stream()
-                                        .map(Dish::getName)
-                                        .collect(Collectors.toList());
+                .map(Dish::getName)
+                .collect(Collectors.toList());
         System.out.println(dishNames);
         System.out.println();
     }
@@ -102,9 +413,9 @@ public class StreamMethodDemo {
     public void test4(){
         System.out.println("-------------菜名 长度---------------------");
         List<Integer> dishNames3 = menu.stream()
-                                        .map(Dish::getName)
-                                        .map(String::length)
-                                        .collect(Collectors.toList());
+                .map(Dish::getName)
+                .map(String::length)
+                .collect(Collectors.toList());
         System.out.println(dishNames3);
     }
 
@@ -115,10 +426,10 @@ public class StreamMethodDemo {
     public void test5(){
         System.out.println("---------获取 3个高热量食物的名字------------------");
         List<String> threeHighCaloriesDishName = menu.stream()
-                                                        .filter(dish -> dish.getCalories() > 300)
-                                                        .map(Dish::getName)
-                                                        .limit(3)
-                                                        .collect(Collectors.toList());
+                .filter(dish -> dish.getCalories() > 300)
+                .map(Dish::getName)
+                .limit(3)
+                .collect(Collectors.toList());
         System.out.println(threeHighCaloriesDishName);
         System.out.println();
     }
@@ -127,6 +438,10 @@ public class StreamMethodDemo {
      * forEach 输出
      * Java8操作集合的时候可以直接foreach的原因也是在Iterable接口中也新增了一个默认方法：
      * forEach，该方法功能和 for 循环类似，但是允许 用户使用一个Lambda表达式作为循环体。
+     *
+     *   内部迭代
+     *    使用 Collection 接口需要用户去做迭代，称为外部迭代
+     *    相反，Stream API 使用内部迭代——它帮你把迭代做了
      */
     @Test
     public void test6(){
@@ -303,8 +618,8 @@ public class StreamMethodDemo {
         Stream<Integer> numStream2 = Stream.of(2,4,6,8);
 
         Stream.concat(numStream1,numStream2)
-                    .distinct()
-                    .forEach(System.out::println);
+                .distinct()
+                .forEach(System.out::println);
     }
     /**
      * sort
@@ -315,8 +630,8 @@ public class StreamMethodDemo {
         List<Integer> numList1 = Arrays.asList(1, 4, 2, 6, 2, 8);
         System.out.println("原始列表：numList1 ：" + numList1);
         List<Integer> numList11 = numList1.stream()
-                                            .sorted()
-                                            .collect(Collectors.toList());
+                .sorted()
+                .collect(Collectors.toList());
         System.out.println("排序后 : numList11 : " + numList11);
         System.out.println("原始列表：numList1 ：" + numList1);
         System.out.println();
@@ -325,8 +640,8 @@ public class StreamMethodDemo {
         List<String> strList1 = Arrays.asList("d","f","c","a","x","H","D","A","Y");
         System.out.println("原始列表：strList1 ：" + strList1);
         List<String> strList11 = strList1.stream()
-                                            .sorted()
-                                            .collect(Collectors.toList());
+                .sorted()
+                .collect(Collectors.toList());
         System.out.println("排序后: strList11 : " + strList11);
         System.out.println("原始列表：strList1 ：" + strList1);
     }
@@ -390,7 +705,7 @@ public class StreamMethodDemo {
                 Arrays.asList(2, 3),
                 Arrays.asList(4, 5, 6)
         );
-       String strList =  inputStream1.collect(Collectors.toList()).toString();
+        String strList =  inputStream1.collect(Collectors.toList()).toString();
         System.out.println(strList);
 
 
@@ -400,8 +715,8 @@ public class StreamMethodDemo {
                 Arrays.asList(4, 5, 6)
         );
         List<Integer> integerList = inputStream2.flatMap( childList-> childList.stream())
-                                        .map(i -> i * i)
-                                        .collect(Collectors.toList());
+                .map(i -> i * i)
+                .collect(Collectors.toList());
         //1.首先我们创建了一个Stream对象，Stream中的每个元素都是容器List<Integer>类型，
         // 并使用三个容器list初始化这个Stream对象，
         //2.然后使用flatMap方法将每个容器中的元素映射到一个容器中，
@@ -414,9 +729,9 @@ public class StreamMethodDemo {
         System.out.println("------------单词单个不重复字符---------");
         String[] arrayOfWords1 = {"Hello", "World"};
         List<String[]> wordList1 = Arrays.stream(arrayOfWords1)
-                                        .map(word -> word.split(""))
-                                        .distinct()
-                                        .collect(Collectors.toList());
+                .map(word -> word.split(""))
+                .distinct()
+                .collect(Collectors.toList());
         System.out.println(wordList1);
         System.out.println(JSON.toJSONString(wordList1));
 
@@ -441,7 +756,7 @@ public class StreamMethodDemo {
         list1.stream()
                 .flatMap(
                         item -> list2.stream()
-                                     .map(item2 -> item + " " + item2)
+                                .map(item2 -> item + " " + item2)
 
                 )
                 .collect(Collectors.toList())
@@ -471,37 +786,37 @@ public class StreamMethodDemo {
     public void test10(){
         // 字符串连接，concat1 = "ABCD"
         String concat1 = Stream.of("A", "B", "C", "D")
-                                .reduce("", String::concat);
+                .reduce("", String::concat);
         System.out.println(concat1);
 
         // 过滤，字符串连接，concat = "ace"
         String concat2 = Stream.of("a", "B", "c", "D", "e", "F")
-                        .filter(x -> x.compareTo("Z") > 0)
-                        .reduce("", String::concat);
+                .filter(x -> x.compareTo("Z") > 0)
+                .reduce("", String::concat);
         System.out.println(concat2);
 
         // 求最小值，minValue = -3.0
         double minValue = Stream.of(-1.5, 1.0, -3.0, -2.0)
-                                .reduce(Double.MAX_VALUE, Double::min);
+                .reduce(Double.MAX_VALUE, Double::min);
         System.out.println(minValue);
 
         // 求和，sumValue = 10, 有起始值
         int sumValue = Stream.of(1, 2, 3, 4)
-                                .reduce(0, Integer::sum);
+                .reduce(0, Integer::sum);
         System.out.println(sumValue);
 
         int sumValue2 = Stream.of(10,20,30)
-                              .reduce(0,(x,y) -> x+y);
+                .reduce(0,(x,y) -> x+y);
         System.out.println(sumValue2);
 
         // 求和，sumValue = 10, 无起始值
         sumValue = Stream.of(1, 2, 3, 4)
-                            .reduce(Integer::sum)
-                            .get();
+                .reduce(Integer::sum)
+                .get();
         System.out.println(sumValue);
 
         Optional<Integer> sumValue5 = Stream.of(10,25,30)
-                                               .reduce(Integer::sum);
+                .reduce(Integer::sum);
         System.out.println(sumValue5.orElse(Integer.MIN_VALUE));
     }
 
@@ -515,7 +830,7 @@ public class StreamMethodDemo {
         //从1开始，每个元素比前一个元素大2，最多生成10个元素
         Stream.iterate(1,item -> item + 2).limit(10).forEach(System.out::println);
 
-        }
+    }
     @Test
     public void test12(){
         System.out.println("-----Collectors------joining-------------");
@@ -541,8 +856,8 @@ public class StreamMethodDemo {
     public void test13(){
         System.out.println("----------将数字按质数和非质数分区-----------------------");
         Map<Boolean,List<Integer>> booleanPrime = IntStream.rangeClosed(1,20)
-                                                            .boxed()
-                                                            .collect(Collectors.partitioningBy(condidate -> isPrime(condidate)));
+                .boxed()
+                .collect(Collectors.partitioningBy(condidate -> isPrime(condidate)));
         System.out.println(booleanPrime);
     }
 
@@ -553,6 +868,6 @@ public class StreamMethodDemo {
     private static boolean isPrime(int condidate){
         int sqar = (int)Math.sqrt((double)condidate);
         return IntStream.rangeClosed(2,sqar)
-                            .noneMatch(i -> condidate % i == 0);
+                .noneMatch(i -> condidate % i == 0);
     }
 }
