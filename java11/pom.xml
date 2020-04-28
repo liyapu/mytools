@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>java9</artifactId>
-
+    <artifactId>java11</artifactId>
 
     <dependencies>
         <dependency>
@@ -59,6 +58,6 @@
         </dependency>
         <!-- junit 5 单元测试依赖 end     -->
 
-
     </dependencies>
+
 </project>

@@ -1,13 +1,17 @@
 package com.lyp.learn.bean;
 
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import lombok.Data;
 
 /**
  * @author: liyapu
  * @description:
  * @date 2020-04-27 21:48
  */
+@Data
 public class Person {
-    private MysqlxDatatypes.Scalar.String name;
+    private String name;
+
+    private int age;
+
 }

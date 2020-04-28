@@ -20,7 +20,7 @@ import java.util.Properties;
 public class MySqlTabelWordDetailUtils {
 
     // 数据库名称
-    private static final String dbName = "ncpcs_statistics";
+    private static final String dbName = "aaaaa";
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/" + dbName + "?serverTimezone=UTC&characterEncoding=utf8";
