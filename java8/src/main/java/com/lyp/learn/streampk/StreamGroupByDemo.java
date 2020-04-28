@@ -1,6 +1,8 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
+import com.lyp.learn.ppt.Apple;
+import com.lyp.learn.ppt.Dish;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

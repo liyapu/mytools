@@ -1,8 +1,9 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.QuarterEnum;
 import com.lyp.learn.bean.QuarterVo;
+import com.lyp.learn.ppt.Dish;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
@@ -189,7 +190,11 @@ public class StreamMethodDemo {
      * 并行与串行的流可以相互切换：
      * 通过 stream.sequential() 返回串行的流，
      * 通过 stream.parallel() 返回并行的流。
-     *相比较串行的流，并行的流可以很大程度上提高程序的执行效率。
+     * 相比较串行的流，并行的流可以很大程度上提高程序的执行效率。
+     *
+     *  并行流就是把一个内容(数组或集合)分成多个数据块，并用不同的线程分别处理每个数据块的流，
+     *  这样一来，你就可以自动把给定操作的工作负荷分配给多核处理器的所有内核，让它们都忙起来，
+     *  整个过程无需程序员显示实现优化
      */
     @Test
     public void test93(){

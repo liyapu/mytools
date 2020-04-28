@@ -19,6 +19,7 @@
         <module>open-tools</module>
         <module>compare</module>
         <module>mytest</module>
+        <module>java9</module>
     </modules>
 
     <properties>

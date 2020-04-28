@@ -1,9 +1,8 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.streampk;
 
+import com.lyp.learn.ppt.Apple;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

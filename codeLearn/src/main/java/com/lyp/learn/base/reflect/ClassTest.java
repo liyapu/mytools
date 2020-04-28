@@ -54,6 +54,7 @@ public class ClassTest {
         System.out.println(ClassTest.class.isPrimitive());
         System.out.println(Class.class.isPrimitive());
 
+
         System.out.println("\r\n---------- 基本类型判断 ----getName-------getSimpleName-------getTypeName-------");
         System.out.println(byte.class.getName() + "  " + byte.class.getSimpleName() + "  " + byte.class.getTypeName());
         System.out.println(short.class.getName() + "  " + short.class.getSimpleName() + "  " + short.class.getTypeName());
@@ -112,14 +113,14 @@ public class ClassTest {
          */
 
         System.out.println("\r\n---------- 基本类型判断 ----array getName()-----");
-         byte[] bArr = new byte[] {1,2,3};
-         int[] iArr = new int[] {1,2,3};
-         long[] lArr = new long[] {1,2,3};
-         String[] sArr = new String[] {"a","b","c"};
+        byte[] bArr = new byte[]{1, 2, 3};
+        int[] iArr = new int[]{1, 2, 3};
+        long[] lArr = new long[]{1, 2, 3};
+        String[] sArr = new String[]{"a", "b", "c"};
 
-         Dog[] dogArr = new Dog[2];
-         dogArr[0] = Dog.of("小黑",2);
-         dogArr[1] = Dog.of("警犬",5);
+        Dog[] dogArr = new Dog[2];
+        dogArr[0] = Dog.of("小黑", 2);
+        dogArr[1] = Dog.of("警犬", 5);
 
         System.out.println(bArr.getClass().getName());
         System.out.println(iArr.getClass().getName());
@@ -129,10 +130,10 @@ public class ClassTest {
 
 
         System.out.println("\r\n---------- 包装类型判断 ----array getName()-----");
-        Byte[] bArr2 = new Byte[] {1,2,3};
-        Integer[] iArr2 = new Integer[] {1,2,3};
-        Long[] lArr2 = new Long[] {1L,2L,3L};
-        String[] sArr2 = new String[] {"a","b","c"};
+        Byte[] bArr2 = new Byte[]{1, 2, 3};
+        Integer[] iArr2 = new Integer[]{1, 2, 3};
+        Long[] lArr2 = new Long[]{1L, 2L, 3L};
+        String[] sArr2 = new String[]{"a", "b", "c"};
 
 
         System.out.println(bArr2.getClass().getName());
@@ -141,12 +142,11 @@ public class ClassTest {
         System.out.println(sArr2.getClass().getName());
 
 
-
         System.out.println("\r\n---------- 包装类型判断 ----List getName()-----");
-        List<Integer> intList = Lists.newArrayList(2,3,4);
-        List<Long> longList = Lists.newArrayList(2L,3L,4L);
-        List<String> strList = Lists.newArrayList("aa","bb","cc");
-        List<Dog> dogList = Lists.newArrayList(Dog.of("小黑",2),Dog.of("小花",26));
+        List<Integer> intList = Lists.newArrayList(2, 3, 4);
+        List<Long> longList = Lists.newArrayList(2L, 3L, 4L);
+        List<String> strList = Lists.newArrayList("aa", "bb", "cc");
+        List<Dog> dogList = Lists.newArrayList(Dog.of("小黑", 2), Dog.of("小花", 26));
 
         System.out.println(intList.getClass().getName());
         System.out.println(longList.getClass().getName());
@@ -176,15 +176,17 @@ public class ClassTest {
         System.out.println(dogArr.getClass().getComponentType());
 
 
-
     }
+
+
+
 }
 
-class Dog{
+class Dog {
     private String name;
     private int age;
 
-    public Dog(){
+    public Dog() {
 
     }
 
@@ -193,8 +195,8 @@ class Dog{
         this.age = age;
     }
 
-    public static Dog of(String name,int age){
-        return new Dog(name,age);
+    public static Dog of(String name, int age) {
+        return new Dog(name, age);
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.interfaces;
 
 public interface InterfaceA {
 

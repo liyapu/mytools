@@ -1,4 +1,4 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.interfaces;
 
 import org.junit.jupiter.api.Test;
 
@@ -67,7 +67,7 @@ public class DefaultMethodDemo {
 
 }
 
-class A implements InterfaceA{
+class A implements InterfaceA {
 
 }
 
@@ -78,7 +78,7 @@ class AA implements InterfaceA{
     }
 }
 
-class ClassAB implements InterfaceA,InterfaceB{
+class ClassAB implements InterfaceA, InterfaceB {
 
     @Override
     public void eat() {

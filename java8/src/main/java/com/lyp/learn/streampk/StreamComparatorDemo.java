@@ -1,8 +1,11 @@
-package com.lyp.learn.ppt;
+package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.User;
 import com.lyp.learn.bean.UserVo;
+import com.lyp.learn.ppt.Address;
+import com.lyp.learn.ppt.Apple;
+import com.lyp.learn.ppt.Student;
 import com.lyp.learn.utils.MyBeanUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
