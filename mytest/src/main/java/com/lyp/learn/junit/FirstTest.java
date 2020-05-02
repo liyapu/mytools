@@ -18,6 +18,15 @@ import java.util.regex.Pattern;
  */
 public class FirstTest {
 
+    @Test
+    public void testImg(){
+        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
+        int num = 151;
+        for (int i = 0; i < 300; i++) {
+            System.out.println(String.format(str,num++));
+        }
+    }
+
     /**
      * 测试上传附件，重命名之后，匹配 uuid 字符串
      */
