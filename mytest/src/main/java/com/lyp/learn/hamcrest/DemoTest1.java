@@ -3,8 +3,6 @@ package com.lyp.learn.hamcrest;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 

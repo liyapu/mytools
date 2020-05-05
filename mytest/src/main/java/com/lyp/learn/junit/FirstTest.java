@@ -20,9 +20,11 @@ public class FirstTest {
 
     @Test
     public void testImg(){
-        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
-        int num = 151;
-        for (int i = 0; i < 300; i++) {
+//        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
+//        String str = "\t\t\t<img src=\"img/spring/yc%s.png\"/><br/>";
+        String str = "<img src=\"img/distribution/zk%s.png\"/><br/>";
+        int num = 1;
+        for (int i = 0; i < 100; i++) {
             System.out.println(String.format(str,num++));
         }
     }
