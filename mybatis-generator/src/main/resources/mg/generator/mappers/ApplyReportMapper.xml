@@ -42,6 +42,8 @@
     <result column="stat_dept" jdbcType="VARCHAR" property="statDept" />
     <result column="is_new" jdbcType="INTEGER" property="isNew" />
     <result column="organ_id" jdbcType="BIGINT" property="organId" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -108,7 +110,8 @@
     spaper_mail, head_name, head_dept, head_phone, head_mail, entry_name, entry_ident, 
     entry_phone, entry_mail, entry_dept, audit_name, audit_ident, audit_phone, audit_mail, 
     audit_dept, visit_name, visit_ident, visit_phone, visit_mail, visit_dept, stat_name, 
-    stat_ident, stat_phone, stat_mail, stat_dept, is_new, organ_id, create_time
+    stat_ident, stat_phone, stat_mail, stat_dept, is_new, organ_id, contact, contact_phone, 
+    create_time
   </sql>
   <select id="selectByExample" parameterType="com.tusdao.control.model.base.ApplyReportExample" resultMap="BaseResultMap">
     select
@@ -154,7 +157,8 @@
       visit_phone, visit_mail, visit_dept, 
       stat_name, stat_ident, stat_phone, 
       stat_mail, stat_dept, is_new, 
-      organ_id, create_time)
+      organ_id, contact, contact_phone, 
+      create_time)
     values (#{id,jdbcType=BIGINT}, #{organCode,jdbcType=VARCHAR}, #{organName,jdbcType=VARCHAR}, 
       #{legal,jdbcType=VARCHAR}, #{originalLogo,jdbcType=INTEGER}, #{alreadyOriginal,jdbcType=INTEGER}, 
       #{organProvince,jdbcType=VARCHAR}, #{organProvinceName,jdbcType=VARCHAR}, #{organCity,jdbcType=VARCHAR}, 
@@ -168,7 +172,8 @@
       #{visitPhone,jdbcType=VARCHAR}, #{visitMail,jdbcType=VARCHAR}, #{visitDept,jdbcType=VARCHAR}, 
       #{statName,jdbcType=VARCHAR}, #{statIdent,jdbcType=VARCHAR}, #{statPhone,jdbcType=VARCHAR}, 
       #{statMail,jdbcType=VARCHAR}, #{statDept,jdbcType=VARCHAR}, #{isNew,jdbcType=INTEGER}, 
-      #{organId,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT})
+      #{organId,jdbcType=BIGINT}, #{contact,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.tusdao.control.model.base.ApplyReport">
     insert into apply_report
@@ -292,6 +297,12 @@
       </if>
       <if test="organId != null">
         organ_id,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
       </if>
       <if test="createTime != null">
         create_time,
@@ -417,6 +428,12 @@
       </if>
       <if test="organId != null">
         #{organId,jdbcType=BIGINT},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=BIGINT},
@@ -552,6 +569,12 @@
       <if test="record.organId != null">
         organ_id = #{record.organId,jdbcType=BIGINT},
       </if>
+      <if test="record.contact != null">
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null">
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=BIGINT},
       </if>
@@ -602,6 +625,8 @@
       stat_dept = #{record.statDept,jdbcType=VARCHAR},
       is_new = #{record.isNew,jdbcType=INTEGER},
       organ_id = #{record.organId,jdbcType=BIGINT},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -727,6 +752,12 @@
       <if test="organId != null">
         organ_id = #{organId,jdbcType=BIGINT},
       </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=BIGINT},
       </if>
@@ -774,6 +805,8 @@
       stat_dept = #{statDept,jdbcType=VARCHAR},
       is_new = #{isNew,jdbcType=INTEGER},
       organ_id = #{organId,jdbcType=BIGINT},
+      contact = #{contact,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
