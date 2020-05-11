@@ -1,15 +1,12 @@
 package com.lyp.learn.hamcrest;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-import org.llorllale.cactoos.matchers.RunsInThreads;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -30,9 +27,9 @@ public class BooksThreadSafeTest {
 
     /**
      * 多线程测试
-     *   使用 cyclicBarrier
-     *
-     *   为了使Books类成为线程安全的，我们只需要向其方法add（）中同步添加就可以了
+     * 使用 cyclicBarrier
+     * <p>
+     * 为了使Books类成为线程安全的，我们只需要向其方法add（）中同步添加就可以了
      */
     @Test
     public void test02() throws ExecutionException, InterruptedException {
@@ -79,7 +76,7 @@ public class BooksThreadSafeTest {
 
     /**
      * 多线程测试
-     *   使用 CountDownLatch
+     * 使用 CountDownLatch
      */
     @Test
     public void test03() throws ExecutionException, InterruptedException {
@@ -124,6 +121,39 @@ public class BooksThreadSafeTest {
         System.out.println("books map length = " + books.map.size());
 
         assertThat(books.map.size(), equalTo(threads));
+    }
+
+
+//    private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+    private static CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+
+    @Test
+    public void test4() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            executorService.execute(() -> {
+                try {
+                    play();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+
+    public static void play() throws BrokenBarrierException, InterruptedException {
+        System.out.println(Thread.currentThread().getName() + " 已准备");
+        cyclicBarrier.await();
+        System.out.println(Thread.currentThread().getName() + " 开始执行");
     }
 
 

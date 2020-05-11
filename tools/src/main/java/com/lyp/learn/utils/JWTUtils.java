@@ -221,7 +221,7 @@ public class JWTUtils {
     }
 
     public static void main(String[] args) {
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjOTRiYmE0Ni02ZTFkLTQ4ZTEtYjA4OC02ZTA5ZWUzZWUzNzciLCJ1c2VySWQiOjc4MywidXNlcklkU2hvdyI6IjEwMzYwMDUwMDIiLCJ1c2VyTmFtZSI6IuelluWbveS6riIsInJvbGUiOlsxMzldLCJvcmdhbklkIjoxNTMsIm9yZ2FuSWRTaG93IjoiMTAzNjAwNSIsIm9yZ2FuQ29kZSI6IjQ5MTAxNjAyLTIiLCJvcmdhbk5hbWUiOiLotaPljZfljLvlrabpmaLnrKzkuIDpmYTlsZ7ljLvpmaIiLCJpYXQiOjE1ODg4OTgxMTgsImV4cCI6MTU4ODk4NDUxOCwibmJmIjoxNTg4ODk4MTE4fQ.MviBlPH_dwcwcBR4w3kgEhdV8ZJO595rLHG4gw-_vyw";
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzN2EwZTY1OC0xMGJlLTRlOTMtOTIwOS1jNmI1YjdhOWMxMmEiLCJ1c2VySWQiOjg2NiwidXNlcklkU2hvdyI6IjEwNjUwMTIwMDIiLCJ1c2VyTmFtZSI6IuadqOiTk-iVviIsInJvbGUiOlsxMzldLCJvcmdhbklkIjoyNzIsIm9yZ2FuSWRTaG93IjoiMTA2NTAxMiIsIm9yZ2FuQ29kZSI6IjEyNjUyMzAwNDU3NzUxOTQ3WCIsIm9yZ2FuTmFtZSI6IuaYjOWQieW3nuS6uuawkeWMu-mZoiIsImlhdCI6MTU4OTAyMzA3OCwiZXhwIjoxNTg5MTA5NDc4LCJuYmYiOjE1ODkwMjMwNzh9.dKc82VMIze4ZswnLV4Dxp-FyzGN4qwv3yF7DJdzgA4Y";
 
         UniToken uniToken = validateToken(token);
         System.out.println(uniToken);
