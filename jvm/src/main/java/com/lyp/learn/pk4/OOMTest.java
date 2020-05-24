@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  VM option 设置为  -Xms20m -Xmx20m -XX:+PrintGCDetails
+ *  VM option 设置为  -Xms20m -Xmx20m -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError
  *
  *   Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
  */
