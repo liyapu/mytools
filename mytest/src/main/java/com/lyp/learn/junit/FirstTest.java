@@ -20,11 +20,13 @@ public class FirstTest {
 
     @Test
     public void testImg(){
-        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
+//        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
 //        String str = "\t\t\t<img src=\"img/spring/yc%s.png\"/><br/>";
 //        String str = "<img src=\"img/distribution/zk%s.png\"/><br/>";
-        int num = 450;
-        for (int i = 0; i < 300; i++) {
+
+        String str = "    <img src=\"img/distribution/acmq%s.png\"/><br/>";
+        int num = 0;
+        for (int i = 0; i < 500; i++) {
             System.out.println(String.format(str,num++));
         }
     }
