@@ -8,6 +8,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +18,13 @@ import java.util.regex.Pattern;
  * @date 2019-10-09 13:18
  */
 public class FirstTest {
+
+    @Test
+    public void testInt(){
+        Integer a = 89998;
+        Integer b = 89998;
+        System.out.println(Objects.equals(a,b));
+    }
 
     @Test
     public void testImg(){

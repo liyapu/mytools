@@ -36,7 +36,10 @@
         <spring.springframework.version>5.1.9.RELEASE</spring.springframework.version>
         <httpclient.version>4.5.6</httpclient.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
+        <!--        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>-->
+        <dubbo.version>2.7.6</dubbo.version>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -333,7 +336,54 @@
             <version>2.1.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.6</version>
+        </dependency>
 
+<!--        &lt;!&ndash;    dubbo  apache     &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.dubbo</groupId>-->
+<!--            <artifactId>dubbo</artifactId>-->
+<!--            <version>2.7.6</version>-->
+<!--        </dependency>-->
+
+
+<!--            &lt;!&ndash; Apache Dubbo  &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-dependencies-bom</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; Dubbo Spring Boot Starter &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-spring-boot-starter</artifactId>-->
+<!--                <version>2.7.6</version>-->
+<!--            </dependency>-->
+
+
+
+<!--        &lt;!&ndash;    apache dubbo  zookeeper     &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.dubbo</groupId>-->
+<!--            <artifactId>dubbo</artifactId>-->
+<!--            <version>${dubbo.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.dubbo</groupId>-->
+<!--            <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
+<!--            <version>${dubbo.version}</version>-->
+<!--            <type>pom</type>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -351,4 +401,18 @@
         </plugins>
     </build>
 
+<!--    apache dubbo 个别包不好下，添加如下的配置-->
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>apache.snapshots.https</id>-->
+<!--            <name>Apache Development Snapshot Repository</name>-->
+<!--            <url>https://repository.apache.org/content/repositories/snapshots</url>-->
+<!--            <releases>-->
+<!--                <enabled>false</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 </project>
