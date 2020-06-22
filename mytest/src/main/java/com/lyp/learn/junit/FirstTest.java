@@ -20,6 +20,34 @@ import java.util.regex.Pattern;
 public class FirstTest {
 
     @Test
+    public void testNameLength(){
+        String name = "病例导入模板----@#？*&^<40条数据可成功1阿里佛拉法基阿拉姜色放辣椒失蜡法讲哦我金佛我我讲哦期无日期挖掘时拉卡拉设计逻辑 阿里可交付垃圾法拉进来弗拉上级分类阿拉斯加放辣椒放辣椒水立方进阿里案例可使肌肤垃圾分类卡就是快乐的腹肌啊来介绍了按理说可交付拉设计费拉结束了可交付2.jpg";
+        String other = "病例导入模板----0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据0条数据.xlsx";
+        String other1 = "/data/develop/ncpcs-notify/upload-files/2020/06/病例导入模板----@#？*&^<40条数据可成功1阿里佛拉法基阿拉姜色放辣椒失蜡法讲哦我金佛我我讲哦期无日期挖掘时拉卡拉设计逻辑 阿可交付垃圾法拉进来弗拉上级分类阿拉斯加放辣椒放辣椒水立方进阿里案例可使肌肤垃圾分类卡就是快乐的腹肌啊来介绍了按理说可交付拉设计费拉结束了可交付2_849828f361ff487b9f09151ae7585e32.jpg";
+        String other2 = " /data/develop/ncpcs-notify/upload-files/2020/06/病例导模板条数据可成功1阿里佛拉法基阿拉姜色放辣椒失蜡法讲哦我金佛我我讲哦期无日期挖掘时拉卡拉设计逻辑 阿里可交付垃圾法拉进来弗拉上级分类阿拉斯加放辣椒放辣椒水立方进阿里案例可使肌肤垃圾分类卡就是快乐的腹肌啊来介绍了按理说可交付拉设计费拉结束了可交付2_12f9615864e346e386210de261ed04cc.jpg";
+        String other3= "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890abc";
+        String other4 ="病例导模板条数据可成功1阿里佛拉法基阿拉姜色放辣椒失讲哦设计逻交付垃拉进来弗拉上级分类阿拉斯加放辣椒放辣椒水立方进阿里案例可使肌肤垃圾分类卡就是快乐的腹肌啊来介绍了按理说可交付拉设计费拉结束了可交付2";
+        String  other5 ="abcdef1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+
+        System.out.println("name 长度: " + name.length());
+        System.out.println("other 长度: " + other.length());
+        System.out.println("other1 长度: " + other1.length());
+        System.out.println("other2 长度: " + other2.length());
+        System.out.println("other3 长度: " + other3.length());
+        System.out.println("other4 长度: " + other4.length());
+        System.out.println("other5 长度: " + other5.length());
+    }
+
+    @Test
+    public void test2(){
+        int readNum = 6;
+        int total = 360;
+        int readRate = Math.round((readNum * 100F) / total);
+
+        System.out.println(readRate);
+    }
+
+    @Test
     public void testInt(){
         Integer a = 89998;
         Integer b = 89998;
@@ -31,9 +59,11 @@ public class FirstTest {
 //        String str = "        <img src=\"img/java/jvm%s.png\"/><br/>";
 //        String str = "\t\t\t<img src=\"img/spring/yc%s.png\"/><br/>";
 //        String str = "<img src=\"img/distribution/zk%s.png\"/><br/>";
+//        String str ="<img src=\"img/mysql/mysql%s.png\"/><br/>";
+        String str ="<img src=\"img/mysql/mycat%s.png\"/><br/>";
 
-        String str = "    <img src=\"img/distribution/acmq%s.png\"/><br/>";
-        int num = 0;
+//        String str = "    <img src=\"img/distribution/acmq%s.png\"/><br/>";
+        int num = 1;
         for (int i = 0; i < 500; i++) {
             System.out.println(String.format(str,num++));
         }
