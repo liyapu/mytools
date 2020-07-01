@@ -6,20 +6,23 @@ import java.security.Security;
 import java.util.Base64;
 
 /**
- * @author: liyapu
- * @description:
- * @date 2020-06-29 14:26
+ *  消息摘要算法，为了防止篡改
+ *  常见的摘要算法: md5，sha1,sha256,sha512
  */
 public class DigestDemo {
+
     public static void main(String[] args) throws Exception{
         // 原文
         String input = "aa";
+
         // 算法
         String algorithm = "MD5";
+
 //        Provider[] providers = Security.getProviders();
 //        for (Provider provider : providers) {
 //            System.out.println(provider.getName());
 //        }
+
         // 获取数字摘要对象
         MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
         // 获取消息数字摘要的字节数组
@@ -27,7 +30,7 @@ public class DigestDemo {
         //base64编码
         System.out.println(new String(Base64.getEncoder().encode(digest)));
 
-        //使用在线 md5 加密 ，发现我们生成的值和代码生成的值不一样，
+        // 使用在线 md5 加密 ，发现我们生成的值和代码生成的值不一样，
         // 那是因为消息摘要不是使用base64进行编码的，所以我们需要把值转成16进制
 
         //数字摘要转换成 16 进制
@@ -38,8 +41,9 @@ public class DigestDemo {
         // 创建对象用来拼接
         StringBuilder sb = new StringBuilder();
 
+        //对密文进行迭代
         for (byte b : digest) {
-            // 转成 16进制
+            // 将密文转成 16进制
             String s = Integer.toHexString(b & 0xff);
             //System.out.println(s);
             if (s.length() == 1){

@@ -10,17 +10,25 @@ package com.lyp.learn.ascii;
 public class AsciiDemo {
 
     public static void main(String[] args) {
-//        char a = 'a';
-//        int b = a;
+        char A = 'A';
+        int AInt = A;
+        System.out.println((int)A);
+        System.out.println(AInt);
+        System.out.println((int)'B');
+        System.out.println((int)'C');
+        System.out.println();
+
+        System.out.println((int)'a');
+        System.out.println((int)'b');
+        System.out.println((int)'c');
+        System.out.println();
         // 定义字符串
-        String a = "AaZ";
+        String a = "AaBbCcZz";
         // 需要拆开字符串
         char[] chars = a.toCharArray();
         for (char aChar : chars) {
             int asciicode = aChar;
             System.out.println(asciicode);
         }
-        // 打印b，在zascii当中十进制的数字对应是多少
-//        System.out.println(b);
     }
 }

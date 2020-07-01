@@ -1,4 +1,4 @@
-package com.lyp.learn.symmetry;
+package com.lyp.learn.base64;
 
 import java.util.Base64;
 
@@ -27,7 +27,9 @@ public class Base64Demo {
 
             toString()与new String ()用法区别
                  str.toString是调用了这个object对象的类的toString方法。一般是返回这么一个String：[class name]@[hashCode]
-                 new String(str)是根据parameter是一个字节数组，使用java虚拟机默认的编码格式，将这个字节数组decode为对应的字符。若虚拟机默认的编码格式是ISO-8859-1，按照ascii编码表即可得到字节对应的字符。
+
+                 new String(str)是根据parameter是一个字节数组，使用java虚拟机默认的编码格式，将这个字节数组decode为对应的字符。
+                               若虚拟机默认的编码格式是ISO-8859-1，按照ascii编码表即可得到字节对应的字符。
 
             什么时候用什么方法呢？
                 new String（）一般使用字符转码的时候,byte[]数组的时候

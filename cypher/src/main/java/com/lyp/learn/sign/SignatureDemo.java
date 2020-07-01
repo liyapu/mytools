@@ -6,15 +6,18 @@ import com.lyp.learn.asymmetric.rsa.RSADemo2;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 public class SignatureDemo {
     public static void main(String[] args) throws Exception {
-        String a = "123";
+        String input = "硅谷123 待签名的";
 
-        PublicKey publicKey = RSADemo2.getPublicKey("RSA", "a.pub");
-        PrivateKey privateKey = RSADemo2.getPrivateKey("RSA", "a.pri");
+        PublicKey publicKey = RSADemo2.getPublicKey("a.pub","RSA");
+        PrivateKey privateKey = RSADemo2.getPrivateKey("a.pri","RSA");
 
-        String signaturedData = getSignature(a, "sha256withrsa", privateKey);
+        //生成签名
+        String signaturedData = getSignature(input, "sha256withrsa", privateKey);
+        System.out.println("signaturedData = " + signaturedData);
+        System.out.println();
 
-        boolean b = verifySignature(a, "sha256withrsa", publicKey, signaturedData);
-
+        boolean b = verifySignature(input, "sha256withrsa", publicKey, signaturedData);
+        System.out.println("b = " + b);
     }
 
     /**

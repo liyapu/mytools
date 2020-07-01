@@ -16,6 +16,7 @@ public class RSADemo {
 
         // 加密算法
         String algorithm = "RSA";
+
         //  创建密钥对生成器对象
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(algorithm);
         // 生成密钥对
@@ -37,12 +38,17 @@ public class RSADemo {
 
         // 打印私钥
         System.out.println(privateKeyString);
+        System.out.println();
 
         // 打印公钥
         System.out.println(publicKeyString);
 
+        System.out.println();
+        System.out.println();
         System.out.println("-----------------------");
+
         String input = "硅谷456";
+
         // 创建加密对象
         // 参数表示加密算法
         Cipher cipher = Cipher.getInstance(algorithm);
@@ -50,17 +56,19 @@ public class RSADemo {
         // 第一个参数:加密的模式
         // 第二个参数：使用私钥进行加密
         cipher.init(Cipher.ENCRYPT_MODE,privateKey);
+
         // 私钥加密
         byte[] bytes = cipher.doFinal(input.getBytes());
         String miBase64 = Base64.encode(bytes);
         System.out.println(miBase64);
-
+        System.out.println();
 
         // 私钥进行解密
         cipher.init(Cipher.DECRYPT_MODE,publicKey);
         // 对密文进行解密，不需要使用base64，因为原文不会乱码
         byte[] bytes1 = cipher.doFinal(bytes);
         System.out.println(new String(bytes1));
+        System.out.println();
 
         //因为代码每次执行，都会 重新生成 公钥和私钥，所以无法 复制下面输出的 miBase64，进行解密，只能通过  Base64.decode(miBase64) 进行解密
 //        String mi = "O2VOHKU0DVFWwqYMex/KImXXw67NAFhbK+SK5BZjZQiczlrhOB2HAhDjE03KEb7//KZO4JZO/SooP47DsJDkdrpVvEjFedQ/XKyOMaGL9vnjc9dCfQkjKnLx9D4gWX3oCU5xACeE9RRnYfbIYPeXiqwAxe75iF0TtuNtE6NRILkv/XXC5108/AnrCqBQL51cAGxHg2BE3IizERUqvAhRdK5giuYT+7B5/D2Y4OBiHE0nB69DZMooajIS6TEhQZtMQhmB3kFSoxHUjvYQExBsZkZYKQUePyolqZgCJAQ9SAObys6FsTC7PxWdvN2mGfRdbFBI7w7IvrmFWhz8kGRheA==";
@@ -71,5 +79,6 @@ public class RSADemo {
         cipher.init(Cipher.DECRYPT_MODE,publicKey);
         byte[] bytes2 = cipher.doFinal(decode2);
         System.out.println(new String(bytes2));
+        System.out.println();
     }
 }

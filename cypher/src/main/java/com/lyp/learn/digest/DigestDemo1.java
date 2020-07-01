@@ -4,16 +4,19 @@ import java.security.MessageDigest;
 import java.util.Base64;
 
 /**
- * 其他数字摘要算法
+ *  其他数字摘要算法
+ *    总结
+ *     MD5算法 : 摘要结果16个字节, 转16进制后32个字节
+ *     SHA1算法 : 摘要结果20个字节, 转16进制后40个字节
+ *     SHA256算法 : 摘要结果32个字节, 转16进制后64个字节
+ *     SHA512算法 : 摘要结果64个字节, 转16进制后128个字节
  */
 public class DigestDemo1 {
+
     public static void main(String[] args) throws Exception {
-        // 4124bc0a9335c27f086f24ba207a4912     md5 在线校验
-        // QSS8CpM1wn8IbyS6IHpJEg==             消息摘要使用的是16进制
         // 原文
         String input = "aa";
-        // 算法
-        String algorithm = "MD5";
+
         // 获取数字摘要对象
         String md5 = getDigest(input, "MD5");
         System.out.println(md5);
@@ -33,7 +36,6 @@ public class DigestDemo1 {
         System.out.println();
 
 
-
     }
 
 
@@ -48,7 +50,7 @@ public class DigestDemo1 {
 
     private static String toHex(byte[] digest) throws Exception {
 
-        System.out.println(new String(digest));
+//        System.out.println(new String(digest));
         // base64编码
         System.out.println("base64编码: " + new String(Base64.getEncoder().encode(digest)));
         // 创建对象用来拼接

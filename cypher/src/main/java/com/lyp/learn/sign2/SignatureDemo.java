@@ -1,5 +1,6 @@
 package com.lyp.learn.sign2;
 
+import com.lyp.learn.asymmetric.rsa.RSADemo2;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import java.security.PrivateKey;
@@ -10,14 +11,17 @@ public class SignatureDemo {
     public static void main(String[] args) throws Exception {
         // 6999:表示购物的价格
         // 10:表示购物的数量
-        String a = "6999" + "10";
+        String input = "6999" + "10";
 
-        PublicKey publicKey = RsaDemo.loadPublicKeyFromFile("RSA", "a.pub");
-        PrivateKey privateKey = RsaDemo.loadPrivateKeyFromFile("RSA", "a.pri");
+        //生成签名
+        PublicKey publicKey = RsaDemo.loadPublicKeyFromFile("RSA","a.pub");
+        PrivateKey privateKey = RsaDemo.loadPrivateKeyFromFile("RSA","a.pri");
 
-        String signaturedData = getSignature(a, "sha256withrsa", privateKey);
+        String signaturedData = getSignature(input, "sha256withrsa", privateKey);
+        System.out.println("signaturedData = " + signaturedData);
 
-        System.out.println(signaturedData);
+        boolean b = verifySignature(input, "sha256withrsa", publicKey, signaturedData);
+        System.out.println("b = " + b);
 
     }
 
