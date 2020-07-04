@@ -34,17 +34,21 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int index1 = findKey(11);
-        if(index1 >= 0){
-            System.out.println(arr[index1]);
-        }else{
-            System.out.println("没有找到");
-        }
+        testFindKey(2);
+        testFindKey(6);
+        testFindKey(9);
+        testFindKey(23);
+        testFindKey(33);
+        testFindKey(35);
+        testFindKey(3);
+        testFindKey(60);
+    }
 
-        int index2 = findKey(27);
-        if(index2 >= 0){
-            System.out.println(arr[index2]);
-        }else{
+    private static void testFindKey(int i) {
+        int index1 = findKey(i);
+        if (index1 >= 0) {
+            System.out.println(arr[index1]);
+        } else {
             System.out.println("没有找到");
         }
     }
