@@ -21,7 +21,7 @@ public interface MyStack {
     int length();
 
     /**
-     * 读取栈中元素并返回其值
+     * 读取栈顶元素并返回其值
      * 若栈为空，则返回null
      * @return
      */

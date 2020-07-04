@@ -3,23 +3,27 @@ package com.lyp.learn.stack.linkstackalgorithm;
 
 import java.util.Stack;
 
+/**
+ *  不支持多位数
+ */
 public class ExpressionEvaluate {
     public static void main(String[] args) {
-        String expression1 = "(1 + 2)*(5  - 2)/2^2 + 5%3";
+//        String expression1 = "(1 + 2)*(5  - 2)/2^2 + 5%3";
+        String expression1 = "(1 + 10)*(52  - 2)";
         String postfix1 = convertToPostfix(expression1);
         System.out.println(expression1);
         System.out.println(postfix1);
         double result1 = numberCalculate(postfix1);
         System.out.println(result1);
 
-        System.out.println("-------------------");
-
-        String expression2 = "3+(6*9)+2-6/(3-1)";
-        String postfix2 = convertToPostfix(expression2);
-        System.out.println(expression2);
-        System.out.println(postfix2);
-        double result2 = numberCalculate(postfix2);
-        System.out.println(result2);
+//        System.out.println("-------------------");
+//
+//        String expression2 = "3+(6*9)+2-6/(3-1)";
+//        String postfix2 = convertToPostfix(expression2);
+//        System.out.println(expression2);
+//        System.out.println(postfix2);
+//        double result2 = numberCalculate(postfix2);
+//        System.out.println(result2);
     }
 
 
@@ -45,7 +49,7 @@ public class ExpressionEvaluate {
             if (isOpenParenthesis(c)) {
                 stack.push(c);
                 // 右括号就把所有的操作符出栈直到遇到一个左括号为止，然后将该左括号出栈并丢弃
-            }else if(isCloaseParenthesis(c)){
+            }else if(isCloseParenthesis(c)){
                 char temp;
                 while (!isOpenParenthesis(temp = (char) stack.pop())) {
                     sb.append(temp);
@@ -102,7 +106,7 @@ public class ExpressionEvaluate {
      * @param c
      * @return
      */
-    private static boolean isCloaseParenthesis(char c) {
+    private static boolean isCloseParenthesis(char c) {
         return ')' == c;
     }
 
