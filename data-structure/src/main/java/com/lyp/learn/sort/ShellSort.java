@@ -40,8 +40,9 @@ public class ShellSort {
                     //preIndex - gap ,向前推进
                     preIndex -= gap;
                 }
-                //temp原位置不动的设置一次
-                //或者 把temp设置到前面的位置
+                //到此表示给 temp 找到了插入了位置
+                //temp原位置不动的设置一次 或者是 把temp设置到前面的位置
+                // while 循环中  preIndex 减去了 gap ,此处要加回来
                 array[preIndex + gap] = temp;
             }
             gap /= 2;

@@ -2,6 +2,7 @@ package com.lyp.learn.find;
 
 /**
  * 二分查找
+ *    针对的是一个有序数列
  */
 public class BinarySearch {
     private static int [] arr = {2,6,9,11,16,20,23,25,26,29,33,35};

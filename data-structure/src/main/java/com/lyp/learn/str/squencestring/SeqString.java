@@ -1,5 +1,10 @@
 package com.lyp.learn.str.squencestring;
 
+/**
+ * 字符串
+ *   内部 查找操作 使用了 Brute-Fource 算法，KMP 算法
+ *
+ */
 public class SeqString implements IString {
     //底层存储字符串的 char 型数据
     private char [] charElem;

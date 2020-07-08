@@ -250,9 +250,6 @@ public class MultiTree {
             }
         }
 
-
-
-
         return pathList;
     }
 

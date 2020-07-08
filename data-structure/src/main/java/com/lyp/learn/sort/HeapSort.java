@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**
  * 堆排序
+ *    一般升序采用大顶堆，降序采用小顶堆
+ *
+ *    算法思想,参考 笔记html
  */
 public class HeapSort {
 
@@ -15,6 +18,7 @@ public class HeapSort {
     public static void maxHeapSort(int [] arr){
         //1.构建大顶堆
         //开始位置是 length/2 - 1,
+        //从最后一个非叶子结点开始（叶结点自然不用调整，第一个非叶子结点 arr.length/2-1=5/2-1=1），从左至右，从下至上进行调整
         int length = arr.length;
         for(int i = length/2 - 1; i >= 0; i--){
             //从树看:从第一个非叶子结点从下至上，从右至左调整结构

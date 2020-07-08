@@ -26,6 +26,7 @@ public class HuffmanTreeTest {
         HuffmanTree huffmanTree = new HuffmanTree();
 
         System.out.println("=======" + Arrays.toString(weight)+ "============");
+
         int [][] hmCodeArr = huffmanTree.huffmanCoding(weight);
         printArray(hmCodeArr);
         System.out.println("---------------");

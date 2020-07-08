@@ -3,6 +3,11 @@ package com.lyp.learn.tree.huffman;
 /**
  * 哈夫曼树
  *
+ *     给定n个权值作为n个叶子结点，构造一棵二叉树，若该树的带权路径长度(wpl)达到最小，
+ *     称这样的二叉树为 最优二叉树，也称为哈夫曼树(Huffman Tree), 还有的书翻译为霍夫曼树。
+ *
+ *     赫夫曼树是带权路径长度最短的树，权值较大的结点离根较近
+ *
  */
 public class HuffmanTree {
 
