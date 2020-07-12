@@ -1,4 +1,4 @@
-package com.lyp.algorithm.sutra;
+package com.lyp.learn.sutra;
 
 /**
  *  Josephu约瑟夫(约瑟夫环)问题
