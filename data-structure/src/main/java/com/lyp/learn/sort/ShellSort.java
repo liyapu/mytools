@@ -1,5 +1,12 @@
 package com.lyp.learn.sort;
 
+/**
+ *  希尔排序（Shell Sort）
+ *
+ *   https://baijiahao.baidu.com/s?id=1644158198885715432&wfr=spider&for=pc
+ *   https://blog.csdn.net/qq_39207948/article/details/80006224
+ *
+ */
 public class ShellSort {
 
     public static void printArray(int [] array){
