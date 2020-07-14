@@ -10,28 +10,30 @@ import java.util.Arrays;
  */
 class BubbleSortTest {
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+//        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+        int[] arr = new int[]{5,4,3,2,1};
         System.out.println(Arrays.toString(arr));
-         straightSort(arr);
+        shellSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
-    public  static void straightSort(int [] arr){
+    public static void shellSort(int[] arr) {
         int len;
-        if(arr == null || (len = arr.length) == 0){
+        if (arr == null || (len = arr.length) == 0) {
             return;
         }
-        for (int i = 1; i < len ; i++) {
-            int j = i;
-            while(j >=1  && arr[j-1] > arr[j]){
-                int temp = arr[j-1];
-                arr[j-1] = arr[j];
-                arr[j] = temp;
-                j--;
+        for (int gap = len / 2; gap >= 1; gap = gap / 2) {
+            for (int i = 0; i < len; i++) {
+                for (int j = i; j + gap < len; j += gap) {
+                    if (arr[j] > arr[j + gap]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j + gap];
+                        arr[j + gap] = temp;
+                    }
+                }
             }
         }
     }
-
 
 
 }
