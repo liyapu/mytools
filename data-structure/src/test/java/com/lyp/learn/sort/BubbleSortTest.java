@@ -22,15 +22,14 @@ class BubbleSortTest {
         if (arr == null || (len = arr.length) == 0) {
             return;
         }
-        for (int gap = len / 2; gap >= 1; gap = gap / 2) {
-            for (int i = 0; i < len; i++) {
-                for (int j = i; j + gap < len; j += gap) {
-                    if (arr[j] > arr[j + gap]) {
-                        int temp = arr[j];
-                        arr[j] = arr[j + gap];
-                        arr[j + gap] = temp;
-                    }
+        for (int gap = len / 2; gap >= 1; gap /= 2) {
+            for (int i = gap; i < len ; i++) {
+                int temp = arr[i];
+                int j = i -gap;
+                for (; j >= 0 && arr[j] > temp ; j-=gap) {
+                    arr[j+gap] = arr[j];
                 }
+                arr[j+gap] = temp;
             }
         }
     }
