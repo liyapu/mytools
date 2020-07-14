@@ -78,19 +78,19 @@ public class ShellSort {
         // 控制 gap  gap的终止条件是 >= 1
         for (int gap = len / 2; gap >= 1; gap /= 2) {
             //内部的直接排序，从后向前
-            for (int i = gap; i < len ; i++) {
+            for (int i = gap; i < len; i++) {
                 //保存待插入的值
                 int temp = arr[i];
                 // j 定义在外部，for 循环之外需要访问
                 // j 减去 gap ,向前比较
-                int j = i -gap;
-                // j >0 ，从而不会数组越界
+                int j = i - gap;
+                // j >=0 ，从而不会数组越界,等于0不能少
                 // arr[j] 和 temp 比较，这个循环是给 temp 找到合适的插入位置
-                for (; j >= 0 && arr[j] > temp ; j-=gap) {
-                    arr[j+gap] = arr[j];
+                for (; j >= 0 && arr[j] > temp; j -= gap) {
+                    arr[j + gap] = arr[j];
                 }
                 //找temp 位置的 循环的终止条件时 j < 0 ,故下面需要 j 需要加上 gap ,才会找到终止前的位置
-                arr[j+gap] = temp;
+                arr[j + gap] = temp;
             }
         }
     }
