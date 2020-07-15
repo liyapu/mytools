@@ -10,26 +10,27 @@ import java.util.Arrays;
  */
 class BubbleSortTest {
     public static void main(String[] args) {
-//        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
-        int[] arr = new int[]{5,4,3,2,1};
+        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+//        int[] arr = new int[]{5, 4, 3, 2, 1};
         System.out.println(Arrays.toString(arr));
         shellSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
     public static void shellSort(int[] arr) {
-        int len;
+        int len = arr.length;
         if (arr == null || (len = arr.length) == 0) {
             return;
         }
         for (int gap = len / 2; gap >= 1; gap /= 2) {
-            for (int i = gap; i < len ; i++) {
+            for (int i = gap; i < len; i++) {
                 int temp = arr[i];
-                int j = i -gap;
-                for (; j >= 0 && arr[j] > temp ; j-=gap) {
-                    arr[j+gap] = arr[j];
+                int j = i - gap;
+                while (j >= 0 && arr[j] > temp) {
+                    arr[j + gap] = arr[j];
+                    j -= gap;
                 }
-                arr[j+gap] = temp;
+                arr[j + gap] = temp;
             }
         }
     }

@@ -68,8 +68,6 @@ public class ShellSort {
     }
 
     //------------------------- 方式二 ----------------------------------------------
-
-
     public static void shellSort2(int[] arr) {
         int len;
         if (arr == null || (len = arr.length) == 0) {
@@ -86,10 +84,11 @@ public class ShellSort {
                 int j = i - gap;
                 // j >=0 ，从而不会数组越界,等于0不能少
                 // arr[j] 和 temp 比较，这个循环是给 temp 找到合适的插入位置
-                for (; j >= 0 && arr[j] > temp; j -= gap) {
+                while (j >= 0 && arr[j] > temp) {
                     arr[j + gap] = arr[j];
+                    j -= gap;
                 }
-                //找temp 位置的 循环的终止条件时 j < 0 ,故下面需要 j 需要加上 gap ,才会找到终止前的位置
+                //找temp 位置的 循环的终止条件时 j < 0 或者 插入位置的前一个位置,故下面需要 j 需要加上 gap ,才会找到终止前的位置
                 arr[j + gap] = temp;
             }
         }
