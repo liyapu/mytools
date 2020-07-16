@@ -1,8 +1,6 @@
 package com.lyp.learn.sort;
 
 
-import java.util.Arrays;
-
 /**
  * @author: liyapu
  * @description:
@@ -10,51 +8,36 @@ import java.util.Arrays;
  */
 class BubbleSortTest {
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
-//        int[] arr = new int[]{5, 4, 3, 2, 1};
-//        int[] arr = new int[]{1,2,3};
-        System.out.println(Arrays.toString(arr));
-        heapSort(arr);
-        System.out.println(Arrays.toString(arr));
+//        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+////        int[] arr = new int[]{5, 4, 3, 2, 1};
+////        int[] arr = new int[]{1,2,3};
+//        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(arr));
+
+//        int arr[] = {0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        int arr[] = {10,20,30,40};
+        int index = binarySearchKey(arr,5);
+        System.out.println(index);
     }
 
-    public static void heapSort(int[] arr) {
-       int len;
-       if(arr == null || (len = arr.length) == 0){
-           return;
-       }
-       int start = len/2-1;
-        for (int i = start; i >= 0; i--) {
-            adjust(arr,i, len);
+    public static int binarySearchKey(int [] arr,int key){
+        int len;
+        if(arr == null || (len = arr.length) ==0){
+            return -1;
         }
-
-        for (int i = len-1; i >=0; i--) {
-            swap(arr,0,i);
-            adjust(arr,0,i);
-        }
-    }
-
-    private static void adjust(int[] arr, int i,int len) {
-       int temp = arr[i];
-        for (int k = 2*i+1; k < len; k = 2*i+1) {
-            if(k+1 < len && arr[k] < arr[k+1] ){
-                k++;
-            }
-            if(arr[k] > temp){
-                arr[i] = arr[k];
-                i = k;
+        int low = 0;
+        int high = len;
+        while(low <= high){
+            int middle = (low+ high)/2;
+            if(key > middle){
+                low = middle + 1;
+            }else if(key < middle){
+                high = middle -1;
             }else{
-                break;
+                return middle;
             }
         }
-        arr[i] = temp;
+        return -1;
     }
-
-    private static void swap(int[] arr, int i, int len) {
-        int temp = arr[i];
-        arr[i] = arr[len];
-        arr[len] = temp;
-    }
-
 
 }

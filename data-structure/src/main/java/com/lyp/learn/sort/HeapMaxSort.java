@@ -33,7 +33,7 @@ import java.util.Arrays;
  *    第一个叶子节点，一定是序列长度/2，
  *    第一个非叶子节点的索引就是arr.length / 2 -1。
  */
-public class HeapSort {
+public class HeapMaxSort {
 
     public static void main(String[] args) {
         int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};

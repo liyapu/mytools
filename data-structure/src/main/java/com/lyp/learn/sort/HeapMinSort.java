@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 堆排序
  */
-public class HeapSort2 {
+public class HeapMinSort {
 
     /**
      * 小顶堆排序
