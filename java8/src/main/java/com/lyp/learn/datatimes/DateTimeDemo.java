@@ -491,5 +491,34 @@ public class DateTimeDemo {
 
     }
 
+    @Test
+    public void test10(){
+
+        //当前日期
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        //当前日期减 1个月
+        LocalDateTime nowBeforeMonth = now.minusMonths(1);
+        System.out.println(nowBeforeMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        //指定日期减 1个月
+        LocalDateTime localDateTime = LocalDateTime.of(2020, 1,6,14,30,55);
+        LocalDateTime localDateTimeBeforeMonth = localDateTime.minusMonths(1);
+        // LocalDateTime 是不可变对象，修改一次之后，都是返回新对象，需要重新接收新对象
+        localDateTimeBeforeMonth.withHour(23);
+        localDateTimeBeforeMonth.withMinute(59);
+        localDateTimeBeforeMonth.withSecond(59);
+        System.out.println(localDateTimeBeforeMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        //指定日期减去 1个月，时分秒 重置为任意值
+        LocalDateTime ldt = LocalDateTime.of(2020, 1,6,14,30,55);
+        LocalDateTime ldtbm = ldt.minusMonths(1)
+                                 .withHour(23)
+                                 .withMinute(59)
+                                 .withSecond(59);
+        System.out.println(ldtbm.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+    }
+
 
 }
