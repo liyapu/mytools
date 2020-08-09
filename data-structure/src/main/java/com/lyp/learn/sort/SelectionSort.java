@@ -31,9 +31,7 @@ public class SelectionSort {
                 }
             }
             //下面的在第一个for循环内，与第二个for循环同级
-            if(minIndex == i){
-                continue;
-            }else{
+            if(minIndex != i){
                 int temp = array[minIndex];
                 array[minIndex] = array[i];
                 array[i] = temp;
