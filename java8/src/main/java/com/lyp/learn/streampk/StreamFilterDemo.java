@@ -226,6 +226,11 @@ public class StreamFilterDemo {
                 .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k2, TreeMap::new));
         System.out.println("sonTreeMap ::" + sonTreeMap);
 
+        //linkedHashMap 收集  使用指定类型的集合收集
+        LinkedHashMap<String, String> linkedHashMap = inventory.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k2, LinkedHashMap::new));
+        System.out.println("linkedHashMap ::" + linkedHashMap);
+
         //使用数组 收集
         String[] arrayColors = inventory.stream()
                                         .map(Apple::getColor)
@@ -360,5 +365,30 @@ public class StreamFilterDemo {
         for(Map.Entry<Integer,Apple> entry : map.entrySet()){
             System.out.println(entry.getKey() + "=" + entry.getValue());
         }
+    }
+
+    /**
+     * LinkedHashMap  有序map  按照插入顺序
+     *     正序
+     */
+    @Test
+    public void testListToMap6(){
+        LinkedHashMap<Integer, String> linkedHashMap = inventory.stream()
+                .sorted(Comparator.comparing(Apple::getWeight))
+                .collect(Collectors.toMap(Apple::getWeight, Apple::getColor, (v1, v2) -> v1, LinkedHashMap::new));
+        System.out.println(linkedHashMap);
+
+    }
+    /**
+     * LinkedHashMap  有序map  按照插入顺序
+     *     倒序
+     */
+    @Test
+    public void testListToMap7(){
+        LinkedHashMap<Integer, String> linkedHashMap = inventory.stream()
+                .sorted(Comparator.comparing(Apple::getWeight).reversed())
+                .collect(Collectors.toMap(Apple::getWeight, Apple::getColor, (v1, v2) -> v1, LinkedHashMap::new));
+        System.out.println(linkedHashMap);
+
     }
 }
