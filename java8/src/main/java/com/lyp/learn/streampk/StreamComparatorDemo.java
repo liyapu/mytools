@@ -432,6 +432,57 @@ public class StreamComparatorDemo {
         System.out.println(msgContent);
     }
 
+    @Test
+    public void test25(){
+        List<Worker> workers = getWorkerList();
+        //获取 地址 对应的 工人列表
+        Map<String, List<Worker>> address$WorkMap = workers.stream()
+                .collect(Collectors.groupingBy(Worker::getAddress));
+
+        //获取 地址 对应的工人列表对应的字符串名称
+        LinkedHashMap<String, String> address$namesStr = address$WorkMap.entrySet()
+                .stream()
+                //根据 key 排序
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(
+                        e -> e.getKey(),
+                        // value 变为 list 集合
+                        e -> e.getValue()
+                                .stream()
+                                .map(c -> c.getName())
+                                .collect(Collectors.joining(",")),
+                        // key 重复时，采取的策略，保留 老值
+                        (oldValue, newValue) -> oldValue,
+                        // 使用 LinkedHashMap 接收，保留顺序
+                        LinkedHashMap::new)
+                );
+
+        System.out.println("LinkedHashMap  address$namesStr");
+        System.out.println(address$namesStr);
+
+        //.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        // 拼接为地址:工人名称列表
+        StringBuilder msgContentSb = new StringBuilder();
+        address$namesStr.entrySet()
+
+                //上面排好序了，此处可以不用排序和按序遍历了
+                //.stream()
+                //根据 key 排序
+                //.sorted(Map.Entry.comparingByKey())
+                //有序遍历
+                //.forEachOrdered((entry) ->{
+
+                .forEach((entry) ->{
+                    msgContentSb.append("|")
+                            .append(entry.getKey())
+                            .append(":")
+                            .append(entry.getValue());
+                });
+        String msgContent = msgContentSb.toString();
+        System.out.println(msgContent);
+    }
+
     private List<Worker> getWorkerList() {
         List<Worker> Workers = new ArrayList<>();
         Workers.add(new Worker(5, "关羽", 22, "北京"));
