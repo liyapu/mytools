@@ -12,15 +12,15 @@ import java.util.stream.Stream;
 
 public class StreamFilterDemo {
     List<Apple> inventory = Arrays.asList(
-            new Apple("green",80,"黄土高原"),
-            new Apple("green",200,"黄河故道"),
-            new Apple("red",160,"渤海湾"),
-            new Apple("yellow",20,"渤海湾")
+            new Apple("green", 80, "黄土高原"),
+            new Apple("green", 200, "黄河故道"),
+            new Apple("red", 160, "渤海湾"),
+            new Apple("yellow", 20, "渤海湾")
     );
 
     //找出 weight >= 50 的苹果
     @Test
-    public void test1(){
+    public void test1() {
         System.out.println(filterWeightMoreThan50(inventory));
     }
 
@@ -28,10 +28,10 @@ public class StreamFilterDemo {
      * 找出 weight >= 50
      * 旧的写法，遍历循环找出
      */
-    public static List<Apple> filterWeightMoreThan50(List<Apple> inventory){
+    public static List<Apple> filterWeightMoreThan50(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
-        for(Apple apple : inventory){
-            if(apple.getWeight() >= 50){
+        for (Apple apple : inventory) {
+            if (apple.getWeight() >= 50) {
                 result.add(apple);
             }
         }
@@ -40,7 +40,7 @@ public class StreamFilterDemo {
 
     //找出 weight >= 150 的苹果
     @Test
-    public void test2(){
+    public void test2() {
         System.out.println(filterWeightMoreThan150(inventory));
     }
 
@@ -48,10 +48,10 @@ public class StreamFilterDemo {
      * 找出 weight >= 150
      * 旧的写法，遍历循环找出
      */
-    public static List<Apple> filterWeightMoreThan150(List<Apple> inventory){
+    public static List<Apple> filterWeightMoreThan150(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
-        for(Apple apple : inventory){
-            if(apple.getWeight() >= 150){
+        for (Apple apple : inventory) {
+            if (apple.getWeight() >= 150) {
                 result.add(apple);
             }
         }
@@ -60,18 +60,19 @@ public class StreamFilterDemo {
 
     //weight >= amount
     @Test
-    public void test3(){
-        System.out.println(StreamFilterDemo.filterWeightMoreThanAmount(inventory,50));
-        System.out.println(StreamFilterDemo.filterWeightMoreThanAmount(inventory,150));
+    public void test3() {
+        System.out.println(StreamFilterDemo.filterWeightMoreThanAmount(inventory, 50));
+        System.out.println(StreamFilterDemo.filterWeightMoreThanAmount(inventory, 150));
     }
+
     /**
      * 找出 weight >= amount
      * 旧的写法，遍历循环找出
      */
-    public static List<Apple> filterWeightMoreThanAmount(List<Apple> inventory,int amount){
+    public static List<Apple> filterWeightMoreThanAmount(List<Apple> inventory, int amount) {
         List<Apple> result = new ArrayList<>();
-        for(Apple apple : inventory){
-            if(apple.getWeight() >= amount){
+        for (Apple apple : inventory) {
+            if (apple.getWeight() >= amount) {
                 result.add(apple);
             }
         }
@@ -80,17 +81,17 @@ public class StreamFilterDemo {
 
     //找出绿色苹果
     @Test
-    public void test4(){
+    public void test4() {
         System.out.println(StreamFilterDemo.filterGreenApples(inventory));
     }
 
     /**
      * 旧的写法，遍历循环找出 绿苹果
      */
-    public static  List<Apple> filterGreenApples(List<Apple> inventory){
+    public static List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
-        for(Apple apple : inventory){
-            if("green".equals(apple.getColor())){
+        for (Apple apple : inventory) {
+            if ("green".equals(apple.getColor())) {
                 result.add(apple);
             }
         }
@@ -98,18 +99,18 @@ public class StreamFilterDemo {
     }
 
     @Test
-    public void test5(){
-        System.out.println(StreamFilterDemo.filterApplesByColor(inventory,"green"));
-        System.out.println(StreamFilterDemo.filterApplesByColor(inventory,"red"));
+    public void test5() {
+        System.out.println(StreamFilterDemo.filterApplesByColor(inventory, "green"));
+        System.out.println(StreamFilterDemo.filterApplesByColor(inventory, "red"));
     }
 
     /**
      * 旧的写法，遍历循环找出 指定颜色的苹果
      */
-    public static  List<Apple> filterApplesByColor(List<Apple> inventory, String color){
+    public static List<Apple> filterApplesByColor(List<Apple> inventory, String color) {
         List<Apple> result = new ArrayList<>();
-        for(Apple apple : inventory){
-            if(color.equals(apple.getColor())){
+        for (Apple apple : inventory) {
+            if (color.equals(apple.getColor())) {
                 result.add(apple);
             }
         }
@@ -118,25 +119,25 @@ public class StreamFilterDemo {
 
     //java 8 语法 ，找苹果
     @Test
-    public void test6(){
+    public void test6() {
         List<Apple> appleGreenList = inventory.stream()
-                                                .filter(apple -> "green".equals(apple.getColor()))
-                                                .collect(Collectors.toList());
+                .filter(apple -> "green".equals(apple.getColor()))
+                .collect(Collectors.toList());
         System.out.println(appleGreenList);
 
         List<Apple> appleRedList = inventory.stream()
-                                                .filter(a -> "red".equals(a.getColor()))
-                                                .collect(Collectors.toList());
+                .filter(a -> "red".equals(a.getColor()))
+                .collect(Collectors.toList());
         System.out.println(appleRedList);
 
         List<Apple> appleWeightList = inventory.stream()
-                                                .filter(a -> a.getWeight() >= 150)
-                                                .collect(Collectors.toList());
+                .filter(a -> a.getWeight() >= 150)
+                .collect(Collectors.toList());
         System.out.println(appleWeightList);
 
         List<Apple> appleGreenRedList = inventory.stream()
-                                                    .filter(a -> "green".equals(a.getColor()) && a.getWeight() >= 150)
-                                                    .collect(Collectors.toList());
+                .filter(a -> "green".equals(a.getColor()) && a.getWeight() >= 150)
+                .collect(Collectors.toList());
         System.out.println(appleGreenRedList);
 
     }
@@ -145,34 +146,29 @@ public class StreamFilterDemo {
     ///===================================结束=======================================================
 
 
-
-
-
-
-
-
     //去重操作 distinct
     @Test
-    public void test7(){
+    public void test7() {
         List<String> colors = inventory.stream()
-                                        .map(a -> a.getColor())
-                                        .collect(Collectors.toList());
+                .map(a -> a.getColor())
+                .collect(Collectors.toList());
         System.out.println(colors);
 
         List<String> distinctColors = inventory.stream()
-                                                .map(a -> a.getColor())
-                                                .distinct()
-                                                .collect(Collectors.toList());
+                .map(a -> a.getColor())
+                .distinct()
+                .collect(Collectors.toList());
         System.out.println(distinctColors);
     }
+
     @Test
-    public void test8(){
+    public void test8() {
         //Stream陷阱 distinct()会一直等待产生的结果去重，将distinct()和limit(6)调换位置，先限制结果集再去重就可以了
         IntStream.iterate(0, i -> (i + 1) % 2).distinct().limit(6).forEach(System.out::println);
     }
 
     @Test
-    public void test9(){
+    public void test9() {
         //Stream陷阱 distinct()会一直等待产生的结果去重，将distinct()和limit(6)调换位置，先限制结果集再去重就可以了
         IntStream.iterate(0, i -> (i + 1) % 2).limit(6).distinct().forEach(System.out::println);
     }
@@ -187,38 +183,38 @@ public class StreamFilterDemo {
      *     另外， Collectors 实用类提供了很多静态方法，可以方便地创建常见收集器实例，具体方法与实例如下表：
      */
     @Test
-    public void test10(){
+    public void test10() {
         //List 收集
         List<String> listColors = inventory.stream()
-                                            .map(Apple::getColor)
-                                            .collect(Collectors.toList());
+                .map(Apple::getColor)
+                .collect(Collectors.toList());
         System.out.println(listColors);
 
         //ArrayList 收集
         List<String> listColors2 = inventory.stream()
-                                            .map(Apple::getColor)
-                                            .collect(Collectors.toCollection(ArrayList::new));
+                .map(Apple::getColor)
+                .collect(Collectors.toCollection(ArrayList::new));
         System.out.println(listColors2);
 
         //HashSet 收集
         Set<String> setColors = inventory.stream()
-                                            .map(Apple::getColor)
-                                            .collect(Collectors.toSet());
+                .map(Apple::getColor)
+                .collect(Collectors.toSet());
         System.out.println(setColors);
 
         //LinkedList 收集  使用 Collectors.toCollection 指定类型的集合收集
         //我们可以自己制定结果容器的类型Collectors的toCollection接受一个Supplier函数式接口类型参数，
         // 可以直接使用构造方法引用的方式
-        List<String> linkedListColors =  inventory.stream()
-                                                .map(Apple::getColor)
-                                                .collect(Collectors.toCollection(LinkedList::new));
+        List<String> linkedListColors = inventory.stream()
+                .map(Apple::getColor)
+                .collect(Collectors.toCollection(LinkedList::new));
         System.out.println(linkedListColors);
 
         //TreeSet 收集  使用指定类型的集合收集
         Set<String> treeSetColors = inventory.stream()
-                                                .map(Apple::getColor)
-                                                .map(String::toUpperCase)
-                                                .collect(Collectors.toCollection(TreeSet::new));
+                .map(Apple::getColor)
+                .map(String::toUpperCase)
+                .collect(Collectors.toCollection(TreeSet::new));
         System.out.println(treeSetColors);
 
         //TreeMap 收集  使用指定类型的集合收集
@@ -233,14 +229,14 @@ public class StreamFilterDemo {
 
         //使用数组 收集
         String[] arrayColors = inventory.stream()
-                                        .map(Apple::getColor)
-                                        .toArray(String[]::new);
+                .map(Apple::getColor)
+                .toArray(String[]::new);
         System.out.println(Arrays.toString(arrayColors));
 
         Integer[] intWeights = inventory.stream()
-                                        .map(Apple::getWeight)
-                                        .filter(w -> w%80 == 0)
-                                        .toArray(Integer[]::new);
+                .map(Apple::getWeight)
+                .filter(w -> w % 80 == 0)
+                .toArray(Integer[]::new);
         System.out.println(intWeights);
 
         //String 类型输出
@@ -256,7 +252,7 @@ public class StreamFilterDemo {
 
         String appleColorStr3 = inventory.stream()
                 .map(Apple::getColor)
-                .collect(Collectors.joining(",","^^^^","$$$$"));
+                .collect(Collectors.joining(",", "^^^^", "$$$$"));
         System.out.println(appleColorStr3);
     }
 
@@ -277,9 +273,9 @@ public class StreamFilterDemo {
      * strList1.forEach(System.out::println);
      */
     @Test
-    public void test11(){
+    public void test11() {
         Stream<String> stream1 = Stream.of("hello", "world", "good", "morning");
-        List<String> strList1 = stream1.collect(() -> new ArrayList<>(),(list1,item) -> list1.add(item),(list2,list1) -> list2.addAll(list1));
+        List<String> strList1 = stream1.collect(() -> new ArrayList<>(), (list1, item) -> list1.add(item), (list2, list1) -> list2.addAll(list1));
         strList1.forEach(System.out::println);
         System.out.println();
 
@@ -295,10 +291,10 @@ public class StreamFilterDemo {
      * key 中没有重复值
      */
     @Test
-    public void testListToMap1(){
+    public void testListToMap1() {
         Map<Integer, String> map = inventory.stream()
-                                    .collect(Collectors.toMap(Apple::getWeight, Apple::getAddress));
-        for(Map.Entry<Integer,String> entry : map.entrySet()){
+                .collect(Collectors.toMap(Apple::getWeight, Apple::getAddress));
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + "=" + entry.getValue());
         }
     }
@@ -311,26 +307,26 @@ public class StreamFilterDemo {
      * 这时候就要在toMap方法中指定当key冲突时key的选择。(这里是选择第二个key覆盖第一个key)
      */
     @Test
-    public void testListToMap2(){
+    public void testListToMap2() {
         Map<String, String> map = inventory.stream()
                 //下面这句有异常
 //                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress));
-                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress,(k1,k2) -> k2));
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k2));
 
-       for(Map.Entry<String,String> entry : map.entrySet()){
-           System.out.println(entry.getKey() + "=" + entry.getValue());
-       }
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
     }
 
     /**
      * 合并冲突key的结果
      */
     @Test
-    public void testListToMap3(){
+    public void testListToMap3() {
         Map<String, String> map = inventory.stream()
-                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress,(k1,k2) -> k1 + "," + k2));
+                .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k1 + "," + k2));
 
-        for(Map.Entry<String,String> entry : map.entrySet()){
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + "=" + entry.getValue());
         }
     }
@@ -341,11 +337,11 @@ public class StreamFilterDemo {
      * 这时候要设置map的value值是实体本身。
      */
     @Test
-    public void testListToMap4(){
+    public void testListToMap4() {
         Map<Integer, Apple> map = inventory.stream()
                 .collect(Collectors.toMap(Apple::getWeight, apple -> apple));
 
-        for(Map.Entry<Integer,Apple> entry : map.entrySet()){
+        for (Map.Entry<Integer, Apple> entry : map.entrySet()) {
             System.out.println(entry.getKey() + "=" + entry.getValue());
         }
     }
@@ -358,11 +354,11 @@ public class StreamFilterDemo {
      * Function.identity()返回一个输出跟输入一样的Lambda表达式对象，等价于形如t -> t形式的Lambda表达式。
      */
     @Test
-    public void testListToMap5(){
+    public void testListToMap5() {
         Map<Integer, Apple> map = inventory.stream()
                 .collect(Collectors.toMap(Apple::getWeight, Function.identity()));
 
-        for(Map.Entry<Integer,Apple> entry : map.entrySet()){
+        for (Map.Entry<Integer, Apple> entry : map.entrySet()) {
             System.out.println(entry.getKey() + "=" + entry.getValue());
         }
     }
@@ -372,23 +368,47 @@ public class StreamFilterDemo {
      *     正序
      */
     @Test
-    public void testListToMap6(){
+    public void testListToMap6() {
         LinkedHashMap<Integer, String> linkedHashMap = inventory.stream()
                 .sorted(Comparator.comparing(Apple::getWeight))
                 .collect(Collectors.toMap(Apple::getWeight, Apple::getColor, (v1, v2) -> v1, LinkedHashMap::new));
         System.out.println(linkedHashMap);
 
     }
+
     /**
      * LinkedHashMap  有序map  按照插入顺序
      *     倒序
      */
     @Test
-    public void testListToMap7(){
+    public void testListToMap7() {
         LinkedHashMap<Integer, String> linkedHashMap = inventory.stream()
                 .sorted(Comparator.comparing(Apple::getWeight).reversed())
                 .collect(Collectors.toMap(Apple::getWeight, Apple::getColor, (v1, v2) -> v1, LinkedHashMap::new));
         System.out.println(linkedHashMap);
 
+    }
+
+    //====================== Collectors.collectingAndThen =====================
+
+    /**
+     *  Stream中有两个个方法collect和collectingAndThen用于对流中的数据进行处理，可以对流中的数据进行聚合操作
+     *
+     *   <R, A> R collect(Collector<? super T, A, R> collector);
+     *
+     *   // collectingAndThen : 将流中的数据通过Collector计算，最终的结果在通过Function再最终处理一下
+     *   public static<T,A,R,RR> Collector<T,A,RR> collectingAndThen(Collector<T,A,R> downstream,Function<R,RR> finisher);
+     */
+
+    @Test
+    public void testCat1() {
+        List<String> strList = Arrays.asList("a", "b", "c");
+        String str = strList.stream().collect(Collectors.joining(","));
+        System.out.println(str);
+
+        // Collectors.joining(",")的结果是：a,b,c  然后再将结果 x + "d"操作, 最终返回a,b,cd
+        String str2 = Stream.of("a", "b", "c")
+                .collect(Collectors.collectingAndThen(Collectors.joining(","), x -> x + "d"));
+        System.out.println(str2);
     }
 }
