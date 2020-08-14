@@ -97,20 +97,27 @@ public class StreamDistinctDemo {
         System.out.println("去重后：");
         System.out.println(newList);
 
+        System.out.println("利用Collectors.toMap去重:");
+        //通过 map 去重
+        //利用Collectors.toMap去重
+        List<Student> mapList = studentList.stream()
+                .collect(Collectors.toMap(Student::getName, Function.identity(), (oldValue, newValue) -> oldValue))
+                .values()
+                .stream()
+                .collect(Collectors.toList());
+        System.out.println(mapList);
+
         // 然后再根据 地址 address 去重
-
-
         //通过 TreeSet<> 来达到获取不同元素的效果
         List<Student> nl = newList.stream().collect(
                 Collectors.collectingAndThen(
-                        Collectors.toCollection(
-                                  () -> new TreeSet<>(
-                                          Comparator.comparing(Student::getAddress)
-                                  )),
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Student::getAddress))),
                         ArrayList::new)
         );
         System.out.println("根据地址去重后 :");
         System.out.println(nl);
+
+
     }
 
     @Test
@@ -126,10 +133,7 @@ public class StreamDistinctDemo {
         //根据 年龄和姓名 两个字段去重
         List<Student> newList = studentList.stream().collect(
                 Collectors.collectingAndThen(
-                        Collectors.toCollection(
-                                () -> new TreeSet<>(
-                                        Comparator.comparing(s -> s.getAge() + "-" + s.getName())
-                                )),
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(s -> s.getAge() + "-" + s.getName()))),
                         ArrayList::new)
         );
 

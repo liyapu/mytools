@@ -220,10 +220,21 @@ public class StreamComparatorDemo {
         System.out.println(JSON.toJSONString(colorWeightList));
         System.out.println();
 
+        //多个字段正序
         List<Apple> colorWeightList2 = new ArrayList<>(inventory);
         colorWeightList2.sort(Comparator.comparing(Apple::getColor).thenComparingInt(Apple::getWeight));
         System.out.println(colorWeightList2);
         System.out.println(JSON.toJSONString(colorWeightList2));
+
+        //多个字段倒序
+        List<Apple> colorWeightList3 = new ArrayList<>(inventory);
+        colorWeightList3.sort(Comparator.comparing(Apple::getColor).reversed()
+                .thenComparingInt(Apple::getWeight).reversed());
+        System.out.println(colorWeightList3);
+        System.out.println(JSON.toJSONString(colorWeightList3));
+
+
+
     }
 
     /**

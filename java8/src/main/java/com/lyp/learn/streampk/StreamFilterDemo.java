@@ -217,6 +217,10 @@ public class StreamFilterDemo {
                 .collect(Collectors.toCollection(TreeSet::new));
         System.out.println(treeSetColors);
 
+        TreeSet<Apple> treeSetApple = inventory.stream()
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Apple::getWeight))));
+        System.out.println("treeSetApple::" + treeSetApple);
+
         //TreeMap 收集  使用指定类型的集合收集
         TreeMap<String, String> sonTreeMap = inventory.stream()
                 .collect(Collectors.toMap(Apple::getColor, Apple::getAddress, (k1, k2) -> k2, TreeMap::new));
