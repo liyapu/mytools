@@ -122,7 +122,8 @@ public class HttpClient4 {
         httpPost.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36");
         httpPost.setHeader("Accept-Encoding", "gzip,deflate");
         //设置请求的报文头部的编码
-        httpPost.setHeader(new BasicHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8"));
+//        httpPost.setHeader(new BasicHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8"));
+        httpPost.setHeader(new BasicHeader("Content-Type", "application/json"));
         //设置期望服务端返回的编码
         httpPost.setHeader(new BasicHeader("Accept", "text/plain;charset=utf-8"));
 

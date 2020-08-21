@@ -3,6 +3,7 @@ package com.lyp.learn.http;
 import com.alibaba.fastjson.JSONObject;
 import com.lyp.learn.pojo.JsonRootBean;
 import com.lyp.learn.pojo.TaskList;
+import okhttp3.*;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
@@ -18,7 +19,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * @Author: liyapu
@@ -167,5 +167,53 @@ public class HttpClient4Test {
             }
         }
 
+    }
+
+
+    @Test
+    public void testDoPost4() throws IOException, InterruptedException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+
+        for (int i = 5000; i <= 10000; i++) {
+            RequestBody body = RequestBody.create("{\"domain_name\": \""+i+".com\"}",mediaType);
+            Request request = new Request.Builder()
+                    .url("https://domain.myhuaweicloud.com/v1/domains/check")
+                    .method("POST", body)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+            System.out.println(i);
+            if(response.body().string().contains("true")){
+                System.out.println(response.body().string() + " ------ " + i);
+            }
+        }
+        System.out.println("结束了");
+
+    }
+
+    @Test
+    public void testDoPost5() throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+
+        for (int i = 0 + 'a'; i <= 'z' ; i++) {
+            System.out.println(i);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            RequestBody body = RequestBody.create("{\"domain_name\": \""+i+".com\"}",mediaType);
+            Request request = new Request.Builder()
+                    .url("https://domain.myhuaweicloud.com/v1/domains/check")
+                    .method("POST", body)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+            if(response.body().string().contains("true")){
+                System.out.println(response.body().string() + " ------ " + i);
+            }
+        }
     }
 }
