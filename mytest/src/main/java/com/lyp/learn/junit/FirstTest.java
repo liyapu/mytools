@@ -1,7 +1,6 @@
 package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -18,6 +17,40 @@ import java.util.regex.Pattern;
  * @date 2019-10-09 13:18
  */
 public class FirstTest {
+
+    @Test
+    public void testRemove(){
+        String url = "https://blog.csdn.net:8080/abc/";
+        if(url.endsWith("/")){
+            url = url.substring(0,url.length()-1);
+        }
+        System.out.println(url);
+    }
+
+
+    @Test
+    public void testGetHost(){
+        String url = "https://blog.csdn.net:8080/jjjj";
+        String[] arrs = url.split("/", 4);
+        String resultUrl = "";
+        if(arrs.length >= 3){
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 3; i++) {
+                sb.append(arrs[i].trim());
+                if(i == 1){
+                    sb.append("//");
+                }
+            }
+            sb.append("/");
+            resultUrl = sb.toString();
+        }else{
+            if(!url.endsWith("/")){
+                resultUrl = url + "/";
+            }
+        }
+        System.out.println(resultUrl);
+
+    }
 
     @Test
     public void testNameLength(){

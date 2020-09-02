@@ -10,6 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,43 @@ import java.util.List;
  * INSERT INTO `tusdao_child_hospital`.`control_organ_info` (`organ_id_show`, `organ_name`, `organ_classify`, `organ_nature`, `organ_province`, `hemopathy`, `solid_tumor`, `national_point`, `foton_center`, `organ_status`, `create_user`, `create_time`) VALUES ('gogan_id_show', '医院名称', 'classify', 'nature', 'province', 'hem', 'solid', 'poin', 'fotoncenter', '1', '1', '2019-11-01 13:36:55');
  */
 public class ExcelUtils {
+
+    /**
+     * 读取excel 生成sql语句，补充经纬度
+     *
+     *  UPDATE `ncpcs_user`.`control_organ_info` SET `longitude` = '300', `latitude` = '400' WHERE (`organ_name` = '首都医科大学附属北京儿童医院');
+     */
+    @Test
+    public void testLongitudeLatitude() throws IOException {
+        String pathStr  = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/机构列表0819 -发给国君老师(2).xlsx";
+        FileInputStream fis = new FileInputStream(pathStr);
+        /**
+         * 这里根据不同的excel类型
+         * 可以选取不同的处理类：
+         *    1.XSSFWorkbook
+         *    2.HSSFWorkbook
+         */
+        // 获得工作簿
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+        // 获得第一个工作表
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        String sql = "UPDATE `ncpcs_user`.`control_organ_info` SET `longitude` = '%s', `latitude` = '%s' WHERE (`organ_name` = '%s');";
+        int rows = sheet.getPhysicalNumberOfRows();
+        for (int i = 1; i < rows; i++) {
+            // 获取第i行数据
+            XSSFRow sheetRow = sheet.getRow(i);
+            String organName = sheetRow.getCell(2).toString().trim();
+            // 经度 longitude
+            String longitude = sheetRow.getCell(6).toString().trim();
+            // 维度 latitude
+            String latitude =  sheetRow.getCell(7).toString().trim();
+            System.out.println(String.format(sql,longitude,latitude,organName));
+        }
+
+    }
+
     @Test
     public void testObtainProvince() throws Exception {
         String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";

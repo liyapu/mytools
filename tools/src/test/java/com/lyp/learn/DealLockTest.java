@@ -8,16 +8,16 @@ package com.lyp.learn;
 public class DealLockTest {
 
     public static void main(String[] args) {
-        Person p1 = new Person();
-        Person p2 = new Person();
+        Object o1 = new Object();
+        Object o2 = new Object();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true){
-                    synchronized (p1){
-                        synchronized (p2){
-                            System.out.println("p1 p2");
+                    synchronized (o1){
+                        synchronized (o2){
+                            System.out.println("o1 o2");
                         }
                     }
                 }
@@ -28,9 +28,9 @@ public class DealLockTest {
             @Override
             public void run() {
                 while (true){
-                    synchronized (p2){
-                        synchronized (p1){
-                            System.out.println("p2 p1");
+                    synchronized (o2){
+                        synchronized (o1){
+                            System.out.println("o2 o1");
                         }
                     }
                 }
@@ -40,8 +40,4 @@ public class DealLockTest {
         System.out.println("main------");
 
     }
-}
-
-class Person{
-
 }
