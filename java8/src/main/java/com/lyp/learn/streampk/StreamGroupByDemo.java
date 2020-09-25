@@ -103,7 +103,6 @@ public class StreamGroupByDemo {
                 .collect(Collectors.groupingBy(Apple::getColor,Collectors.counting()));
         System.out.println(appleColorCount);
 
-
         //groupingby 对每类求平均值
         Map<String,Double> weightAverageColor = inventory.stream()
                 .collect(Collectors.groupingBy(Apple::getColor,Collectors.averagingDouble(Apple::getWeight)));
