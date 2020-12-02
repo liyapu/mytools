@@ -16,6 +16,12 @@ import java.util.regex.Pattern;
  * @Author: liyapu
  * @Description:
  * @create: 2018-06-20 13:00
+ *
+ *  JsonPath - 根据表达式路径解析Json
+ *  https://www.jianshu.com/p/8c0ade82891b
+ *
+ *  JSONPath-简单入门
+ *  https://blog.csdn.net/myself8202/article/details/80724968
  */
 public class TestDemo {
 
