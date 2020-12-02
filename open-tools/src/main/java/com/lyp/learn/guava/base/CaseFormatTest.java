@@ -2,7 +2,11 @@ package com.lyp.learn.guava.base;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
+import com.lyp.learn.guava.bean.Person;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.util.Objects;
 
 /**
  * @author: liyapu
@@ -65,5 +69,38 @@ public class CaseFormatTest {
         System.out.println(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, input));
         System.out.println(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE,input));
     }
+
+    /**
+     * to 转换指定类型字符串
+     * 把 已有字符串 转换成不同命名规则的名字
+     */
+    @Test
+    public void testTo2() {
+        String input = "inputTestFieldTest";
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, input));
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, input));
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, input));
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE,input));
+    }
+
+    @Test
+    public void testTo3() {
+        Converter<String, String> camelConverter = CaseFormat.LOWER_CAMEL.converterTo(CaseFormat.LOWER_UNDERSCORE);
+
+        Field[] declaredFields = Person.class.getDeclaredFields();
+        StringBuffer sb = new StringBuffer();
+        for (Field declaredField : declaredFields) {
+            if(Objects.equals("id",declaredField.getName())){
+                continue;
+            }
+            if(sb.length() > 0){
+                sb.append(",");
+            }
+            sb.append(camelConverter.convert(declaredField.getName()));
+        }
+        System.out.println(sb.toString());
+    }
+
+
 
 }

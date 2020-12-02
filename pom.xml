@@ -26,6 +26,7 @@
         <module>java14</module>
         <module>jvm</module>
         <module>cypher</module>
+        <module>java15</module>
     </modules>
 
     <properties>

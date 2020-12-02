@@ -46,9 +46,6 @@ public class SetsTest {
         System.out.println(Sets.filter(set, input -> input.contains("l")));     // [i like u, i love u]
     }
 
-    @Test
-    public void test111(){
-    }
 
 
     /**
