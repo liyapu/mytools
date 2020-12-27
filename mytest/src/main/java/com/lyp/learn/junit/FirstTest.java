@@ -1,13 +1,16 @@
 package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +20,25 @@ import java.util.regex.Pattern;
  * @date 2019-10-09 13:18
  */
 public class FirstTest {
+
+    @Test
+    public void testSub(){
+        Set<String> largePartCodeSet = new HashSet<>();
+        largePartCodeSet.add("A11");
+        largePartCodeSet.add("A22");
+        largePartCodeSet.add("A33");
+
+//        String str = "A49.800x001";
+//        String str = "A1";
+        String icd10Code = "A11.aaa";
+
+        boolean isMatch = false;
+
+        if(StringUtils.isNotBlank(icd10Code) && icd10Code.length() >= 3 && largePartCodeSet.contains(icd10Code.substring(0,3))){
+            isMatch = true;
+        }
+        System.out.println("isMatch  = " + isMatch);
+    }
 
     @Test
     public void testRemove(){

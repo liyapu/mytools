@@ -1,5 +1,6 @@
 package com.lyp.learn.datatimes;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.time.*;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @description:
  * @date 2020-04-28 13:19
  */
+@Slf4j
 public class Jdk8TimeTest {
 
     // 1. LocalDate / LocalTime / LocalDateTime
@@ -132,6 +134,35 @@ public class Jdk8TimeTest {
         // 解析:文本 --->DateTime
         TemporalAccessor temporalAccessor1 = dateTimeFormatter2.parse("2017-08-15 05:07:33");
         System.out.println(temporalAccessor1);
+
+    }
+
+
+    /**
+     * 判断时间是否在某段时间内
+     */
+    @Test
+    public void testLocalDateBetween() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter dtff = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        //获取当前时间
+        LocalDate now = LocalDate.now();
+        //时间当前年
+        int year = now.getYear();
+
+        //自定义开始时间
+        LocalDate begin = LocalDate.of(year, 12, 21);
+        //自定义结束时间
+        LocalDate end = LocalDate.of(year, 12, 22);
+
+        System.out.println(" now   " + now.format(dtff));
+        System.out.println(" begin " + begin.format(dtff));
+        System.out.println(" end   " + end.format(dtff));
+        System.out.println("end.isAfter(begin) " + end.isAfter(begin));
+
+        boolean includeFlag = now.equals(begin) || now.equals(end) || (now.isAfter(begin) && now.isBefore(end));
+        System.out.println(" includeFlag   " + includeFlag);
 
     }
 

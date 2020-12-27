@@ -347,6 +347,7 @@ public class ExcelUtil {
      * ​ 　　基于 XSSFWork 导出 Excel 报表，是通过将所有单元格对象保存到内存中，当所有的 Excel 单元格全部创建完成之后一次性写入到 Excel 并导出。
      * 当百万数据级别的Excel 导出时，随着表格的不断创建，内存中对象越来越多，直至内存溢出。
      *
+     *
      * Apache Poi 提供了 SXSSFWork 对象，专门用于处理大数据量 Excel 报表导出。
      * 在实例化 SXSSFWork 这个对象时，可以指定在内存中所产生的 POI 导出相关对象的数量（默认 100），
      * 一旦内存中的对象的个数达到这个指定值时，就将内存中的这些对象的内容写入到磁盘中（XML 的文件格式），就可以将这些对象从内存中销毁，
@@ -364,7 +365,10 @@ public class ExcelUtil {
     public void printExcel()throws Exception{
         //1.创建Excel对象
         XSSFWorkbook wb = new XSSFWorkbook();
+
+        // 病例导出用的这个，指定大小的， 创建 createCell 也是简单格式的
 //        SXSSFWorkbook wb = new SXSSFWorkbook(1000);//默认值是100
+
         //2.创建Sheet对象
         Sheet sheet = wb.createSheet();
         //3.定义一些可复用的对象
@@ -661,4 +665,5 @@ class SheetHandler implements XSSFSheetXMLHandler.SheetContentsHandler {
             pkg.close();
         }
     }
+
 }
