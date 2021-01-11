@@ -1,4 +1,4 @@
-package com.lyp.mt.mg.utils;
+package com.lyp.learn.poi.word;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;

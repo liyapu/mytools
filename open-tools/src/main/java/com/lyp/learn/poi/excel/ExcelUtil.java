@@ -1,4 +1,4 @@
-package com.lyp.mt.mg.utils;
+package com.lyp.learn.poi.excel;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.poi.openxml4j.opc.OPCPackage;
@@ -9,6 +9,7 @@ import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler;
 import org.apache.poi.xssf.model.SharedStringsTable;
 import org.apache.poi.xssf.model.StylesTable;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFComment;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -35,9 +36,10 @@ import java.util.List;
  * 借助POI，可以方便的生成数据报表，数据批量上传，数据备份等工作。
  *
  * 使用API
- * HSSF : 读写 Microsoft Excel XLS 格式文档
- * XSSF : 读写 Microsoft Excel OOXML XLSX 格式文档
- * SXSSF : 读写 Microsoft Excel OOXML XLSX 格式文档
+ *  HSSF: 读写 Microsoft Excel XLS 格式文档 (.xls)
+ *  XSSF: 读写 Microsoft Excel OOXML XLSX 格式文档  (.xlsx)
+ * SXSSF: 读写 Microsoft Excel OOXML XLSX 格式文档  (.xlsx)
+ *
  * HWPF : 读写 Microsoft Word DOC 格式文档
  * HSLF : 读写 Microsoft PowerPoint 格式文档
  * HDGF : 读 Microsoft Visio 格式文档
@@ -364,10 +366,8 @@ public class ExcelUtil {
     @Test
     public void printExcel()throws Exception{
         //1.创建Excel对象
-        XSSFWorkbook wb = new XSSFWorkbook();
-
         // 病例导出用的这个，指定大小的， 创建 createCell 也是简单格式的
-//        SXSSFWorkbook wb = new SXSSFWorkbook(1000);//默认值是100
+        SXSSFWorkbook wb = new SXSSFWorkbook(1000);//默认值是100
 
         //2.创建Sheet对象
         Sheet sheet = wb.createSheet();

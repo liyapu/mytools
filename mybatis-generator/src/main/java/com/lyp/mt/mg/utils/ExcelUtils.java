@@ -31,11 +31,11 @@ public class ExcelUtils {
     /**
      * 读取excel 生成sql语句，补充经纬度
      *
-     *  UPDATE `ncpcs_user`.`control_organ_info` SET `longitude` = '300', `latitude` = '400' WHERE (`organ_name` = '首都医科大学附属北京儿童医院');
+     *  UPDATE `ncpcs_user`.`control_organ_info` SET `longitude` = '300', `latitude` = '400' WHERE (`organ_name` = '院');
      */
     @Test
     public void testLongitudeLatitude() throws IOException {
-        String pathStr  = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/机构列表0819 -发给国君老师(2).xlsx";
+        String pathStr  = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/机构列表0819 -发给老师(2).xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型
@@ -66,7 +66,7 @@ public class ExcelUtils {
 
     @Test
     public void testObtainProvince() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型
@@ -109,7 +109,7 @@ public class ExcelUtils {
 
     @Test
     public void testObtainArea() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型
@@ -167,7 +167,7 @@ public class ExcelUtils {
 
     @Test
     public void poiTestMethod() throws Exception {
-        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/儿童医院机构列表_1105.xlsx";
+        String pathStr = "/Users/liyapu/myGitRepository/mytools/mybatis-generator/src/main/resources/机构列表_1105.xlsx";
         FileInputStream fis = new FileInputStream(pathStr);
         /**
          * 这里根据不同的excel类型

@@ -1,4 +1,4 @@
-package com.lyp.mt.mg.utils;
+package com.lyp.learn.poi.excel;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.poi.ss.usermodel.Cell;
@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  *     原因是 你所 创建的 book sheet row cell 等 此时是存在 内存的 并没有 持久化，
  *     那么 随着 数据量增大 内存的需求量也就增大，那么很大可能就是要 OOM了。
  *
- * 3. SXSSFWorkbook（excel 2007后，poi使用3.8+版本）
+ * 3. SXSSFWorkbook（excel 2007后，poi使用3.8+版本） 扩展名 .xlsx
  *     因为数据量过大 导致内存吃不消 那么 可以 让内存 到量持久化 吗？
  *     答案是 肯定的，
  *
@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  *     --new SXSSFWookbook（5000），此时 当 行数 达到 5000 时，把 内存 持久化 写到 文件中，以此逐步写入避免OOM,
  *     那么这样 就完美解决了大数据下导出的问题；
  */
-public class ExcelUtilsThree {
+public class ExcelUtils3 {
 
     /**
      * 下面给出一个使用 SXSSFWorkbook 来进行excel导出的模版工具类：

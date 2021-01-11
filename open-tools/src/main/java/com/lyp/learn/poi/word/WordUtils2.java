@@ -1,4 +1,4 @@
-package com.lyp.mt.mg.utils;
+package com.lyp.learn.poi.word;
 
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;

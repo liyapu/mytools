@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 删除合并单元格
+ * 数据库表
+ * 生成 表字段注释文档
+ *
+ * 根据表生成表字段文档
  */
 public class WordUtils5 {
     public static void main(String[] args) throws Exception {
