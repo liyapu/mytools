@@ -36,6 +36,10 @@ import java.util.regex.Pattern;
  *     此种的情况 就是 设置 最大 内存条数 比如  设置 最大内存量为5000 rows
  *     --new SXSSFWookbook（5000），此时 当 行数 达到 5000 时，把 内存 持久化 写到 文件中，以此逐步写入避免OOM,
  *     那么这样 就完美解决了大数据下导出的问题；
+ *
+ *     性能参数：SXSSFWorkbook.setCompressTempFiles(true)，SXSSF将sheet data刷新到临时文件（每张sheet一个临时文件）中，
+ *     并且这些临时文件的大小可以增长到非常大的值。
+ *     例如，对于一个20MB的CSV数据，临时XML的大小变得大于千兆字节。如果临时文件的大小是一个问题，你可以开启使用GZIP压缩。
  */
 public class ExcelUtils3 {
 

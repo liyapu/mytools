@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * https://www.cnblogs.com/dintalk/p/10891599.html
  * https://www.cnblogs.com/dw3306/p/11357258.html
  *
@@ -45,6 +46,25 @@ import java.util.List;
  * HDGF : 读 Microsoft Visio 格式文档
  * HPBF : 读 Microsoft Publisher 格式文档
  * HSMF : 读 Microsoft Outlook 格式文档
+ *
+ *
+ *    .xls与.xlsx
+ *    首先，科普一些基础常识：
+ *       .xls 是用03版Office Excel ，新建Excel默认保存的Excel文件格式的后缀是.xls，
+ *       不可以打开编辑07版的xlsx文件，否则出现乱码或者卡死。行列的上限为 65536行，256列。
+ *
+ *       .xlsx 是用07版Office Excel ，新建Excel默认保存的的Excel文件格式后缀是.xlsx，
+ *       也能打开编辑03版的xls文件。行列的上限为 1048575行，16384列。
+ *
+ *     然后，在存储格式上：
+ *       .xls，文件存储格式实现原理是基于微软的ole db是微软com组件的一种实现，本质上也是一个微型数据库，
+ *       由于微软的东西很多不开源，基本上也已经被淘汰，了解它的细节意义不大。
+ *
+ *       .xlsx ，文件存储格式实现是基于openXml和zip技术（（用winrar可以打开看）。
+ *       它的优点是简单存储、安全传输方便、处理数据简单。
+ *
+ *       .csv，纯文本文件（以","为分割符），可以被excel打开。他的格式非常简单，解析起来和解析文本文件一样。
+ *
  */
 
 public class ExcelUtil {
@@ -73,14 +93,14 @@ public class ExcelUtil {
         int firstRowNum = sheet.getFirstRowNum();
         //获取最后一行的行号
         int lastRowNum = sheet.getLastRowNum();
-        
+
         //4.设置行高和列宽
         nRow.setHeightInPoints(26.25f);
         //(列的索引,列宽*256(理解为固定写法))
         sheet.setColumnWidth(1, 26 * 256);
         //5.创建单元格对象(索引从0开始)
         Cell nCell = nRow.createCell(0);
-        
+
         //6.设置单元格内容
         nCell.setCellValue("dinTalk");
 
@@ -119,7 +139,7 @@ public class ExcelUtil {
         //1.用获取excel模板的真实路径
         String path = ExcelUtil.class.getClassLoader().getResource("").getPath();
         System.out.println("path = " + path);
-        String templatePath =  path + "template/练习.xlsx";
+        String templatePath = path + "template/练习.xlsx";
         System.out.println("templatePath = " + templatePath);
         //2.读取excel模板,创建excel对象
         XSSFWorkbook wb = new XSSFWorkbook(templatePath);
@@ -136,7 +156,7 @@ public class ExcelUtil {
         nCell = nRow.getCell(cellIndex);
         //7.设置大标题的内容
         LocalDate localDate = LocalDate.now();
-        String bigTitle =  localDate.toString() + " 新增用户表";
+        String bigTitle = localDate.toString() + " 新增用户表";
         nCell.setCellValue(bigTitle);
         //8.跳过第二行(模板的小标题,即excel设置好样式的表头,我们要用)
         rowIndex++;
@@ -188,7 +208,7 @@ public class ExcelUtil {
         File parentFile = file.getParentFile();
         System.out.println(parentFile.isDirectory());
         System.out.println(parentFile.exists());
-        if(!parentFile.exists()){
+        if (!parentFile.exists()) {
             parentFile.mkdirs();
         }
         FileOutputStream fos = new FileOutputStream(file);
@@ -214,7 +234,7 @@ public class ExcelUtil {
         //1.读取上传的文件
         String path = ExcelUtil.class.getClassLoader().getResource("").getPath();
         System.out.println("path = " + path);
-        String templatePath =  path + "template/练习2.xlsx";
+        String templatePath = path + "template/练习2.xlsx";
         System.out.println("templatePath = " + templatePath);
         File file = new File(templatePath);
         InputStream inputStream = new FileInputStream(file);
@@ -227,7 +247,7 @@ public class ExcelUtil {
         System.out.println("lastRowNum = " + lastRowNum);
 
         //跳过大标题行
-        for(int rowIndex = 1; rowIndex <= lastRowNum ; rowIndex++){
+        for (int rowIndex = 1; rowIndex <= lastRowNum; rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             int cellIndex = 0;
             //5.创建用户对象
@@ -268,6 +288,7 @@ public class ExcelUtil {
         System.out.println();
         System.out.println(list);
     }
+
     /**
      * 获取单元格内的数据,并进行格式转换
      * @param cell
@@ -298,7 +319,7 @@ public class ExcelUtil {
      * @return
      */
     private static String convertCellValueToString(Cell cell) {
-        if(cell==null){
+        if (cell == null) {
             return null;
         }
         String returnValue = null;
@@ -364,7 +385,7 @@ public class ExcelUtil {
      * 下载用户新增表
      */
     @Test
-    public void printExcel()throws Exception{
+    public void printExcel() throws Exception {
         //1.创建Excel对象
         // 病例导出用的这个，指定大小的， 创建 createCell 也是简单格式的
         SXSSFWorkbook wb = new SXSSFWorkbook(1000);//默认值是100
@@ -377,11 +398,11 @@ public class ExcelUtil {
         Row nRow = null;
         Cell nCell = null;
         //4.设置列的宽度（列索引，列宽*256  理解为固定写法）
-        sheet.setColumnWidth(1,26*256);
-        sheet.setColumnWidth(2,12*256);
-        sheet.setColumnWidth(3,29*256);
-        sheet.setColumnWidth(4,12*256);
-        sheet.setColumnWidth(5,15*256);
+        sheet.setColumnWidth(1, 26 * 256);
+        sheet.setColumnWidth(2, 12 * 256);
+        sheet.setColumnWidth(3, 29 * 256);
+        sheet.setColumnWidth(4, 12 * 256);
+        sheet.setColumnWidth(5, 15 * 256);
         //5.创建大标题行   大标题：2019年5月份新增用户表
         nRow = sheet.createRow(rowIndex++);//使用的是0,使用完了+1
         //设置大标题行的高度
@@ -389,18 +410,18 @@ public class ExcelUtil {
         //6.创建大标题的单元格
         nCell = nRow.createCell(cellIndex);
         //7.合并单元格
-        sheet.addMergedRegion(new CellRangeAddress(0,0,1,5));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 5));
         //8.设置大标题内容
-        String bigTitle = "2019-01".replaceAll("-0","-").replaceAll("-","年") + "月份新增用户表";//inputDate  2015-01  2015年1月份出货表
+        String bigTitle = "2019-01".replaceAll("-0", "-").replaceAll("-", "年") + "月份新增用户表";//inputDate  2015-01  2015年1月份出货表
         nCell.setCellValue(bigTitle);
         //9.创建小标题内容
-        String[] titles = new String[]{"用户名","性别","年龄","手机号","邮箱"};
+        String[] titles = new String[]{"用户名", "性别", "年龄", "手机号", "邮箱"};
         //10.创建小标题行
         nRow = sheet.createRow(rowIndex++);//使用的是1，使用完了再加1
         //设置小标题行高
         nRow.setHeightInPoints(26.25f);
         //12.创建小标题的单元格
-        for(String title : titles){
+        for (String title : titles) {
             nCell = nRow.createCell(cellIndex++);
             //设置小标题内容
             nCell.setCellValue(title);
@@ -408,8 +429,8 @@ public class ExcelUtil {
         //13.获取要生成的数据（数据库内的用户数据）
         List<User> list = getUsers();
         //14.遍历数据
-        for(User user : list){
-            for(int i=0;i<5000;i++) {
+        for (User user : list) {
+            for (int i = 0; i < 5000; i++) {
                 //15.创建数据行
                 nRow = sheet.createRow(rowIndex++);
                 //16.设置数据行高
@@ -441,7 +462,7 @@ public class ExcelUtil {
         File parentFile = file.getParentFile();
         System.out.println(parentFile.isDirectory());
         System.out.println(parentFile.exists());
-        if(!parentFile.exists()){
+        if (!parentFile.exists()) {
             parentFile.mkdirs();
         }
         FileOutputStream fos = new FileOutputStream(file);
@@ -483,16 +504,16 @@ public class ExcelUtil {
 
     private List<User> getUsers() {
         List<User> users = new ArrayList<>();
-        users.add(new User("孙悟空","男",28,"13788888888","sun@163.com"));
-        users.add(new User("猪八戒","",25,"13766666","zhu@qq.com"));
-        users.add(new User("唐僧","女",26,"1375555555","tang@qq.com"));
+        users.add(new User("孙悟空", "男", 28, "13788888888", "sun@163.com"));
+        users.add(new User("猪八戒", "", 25, "13766666", "zhu@qq.com"));
+        users.add(new User("唐僧", "女", 26, "1375555555", "tang@qq.com"));
 
         return users;
     }
 }
 
 
-class User{
+class User {
     private String userName;
     private String gender;
     private Integer age;
@@ -588,6 +609,7 @@ class SheetHandler implements XSSFSheetXMLHandler.SheetContentsHandler {
         System.out.println(user);
         //这里简单打印，可以存入列表。当列表内user对象大于1000时，存入数据库
     }
+
     /**
      * 获取当前行的每一个单元格数据
      * @param cellName    ： 当前单元格名称 ： B32   C23   DXX
@@ -634,8 +656,8 @@ class SheetHandler implements XSSFSheetXMLHandler.SheetContentsHandler {
  * 第二步：创建解析器
  *
  */
- class ExcelParse {
-    public void parse (String path) throws Exception {
+class ExcelParse {
+    public void parse(String path) throws Exception {
         //解析器
         SheetHandler hl = new SheetHandler();
         //1.根据 Excel 获取 OPCPackage 对象
@@ -649,7 +671,7 @@ class SheetHandler implements XSSFSheetXMLHandler.SheetContentsHandler {
             StylesTable styles = reader.getStylesTable();
             XMLReader parser = XMLReaderFactory.createXMLReader();
             // 处理公共属性
-            parser.setContentHandler(new XSSFSheetXMLHandler(styles,sst, hl, false));
+            parser.setContentHandler(new XSSFSheetXMLHandler(styles, sst, hl, false));
             XSSFReader.SheetIterator sheets = (XSSFReader.SheetIterator) reader.getSheetsData();
             //逐行读取逐行解析
             while (sheets.hasNext()) {
