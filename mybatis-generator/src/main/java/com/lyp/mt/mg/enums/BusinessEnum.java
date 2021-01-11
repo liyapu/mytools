@@ -1,4 +1,4 @@
-package com.lyp.mt.enums;
+package com.lyp.mt.mg.enums;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +15,10 @@ public interface BusinessEnum {
      * 机构分类枚举
      */
      enum OrganClassify{
-         NATIONAL_HEALTH_COMMITTEE(1,"国家卫生健康委员会"),
-         National_child_Cancer_Monitor(2,"国家儿童肿瘤监测中心"),
-         PROVINCIAL_HEALTH_COMMITTEES(3,"省、市级卫健委"),
-         Monitor_point(4,"监测点");
+         NATIONAL_COMMITTEE(1,"员会"),
+         National_Monitor(2,"测中心"),
+         PROVINCIAL_COMMITTEES(3,"委"),
+         Monitor_point(4,"点");
 
          private int code;
          private String name;
@@ -77,9 +77,9 @@ public interface BusinessEnum {
     enum OrganNature{
          UNKNOWN(0,"未知"),
          MANAGEMENT_ORGAN(1,"管理机构"),
-         GENERAL_HOSPITAL(2,"综合性医院"),
-         MATERNAL_CHILD_HOSPITAL(3,"儿童专科医院、妇幼保健院"),
-         CANCER_HOSPITAL(4,"肿瘤专科医院");
+         GENERAL_HOSPITAL(2,"性医院"),
+         MATERNAL_CHILD_HOSPITAL(3,"儿童专科医院"),
+         CANCER_HOSPITAL(4,"科医院");
 
          private int code;
          private String name;
