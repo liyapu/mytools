@@ -65,6 +65,29 @@ import java.util.List;
  *
  *       .csv，纯文本文件（以","为分割符），可以被excel打开。他的格式非常简单，解析起来和解析文本文件一样。
  *
+ *
+ *                      文件格式                                 最大行    最大列    问题
+ *     HSSF: 读写 Microsoft Excel XLS 格式文档 (.xls)             65535     256     导出数据量少
+ *     XSSF: 读写 Microsoft Excel OOXML XLSX 格式文档  (.xlsx)    1048576   16384   内存溢出问题
+ *    SXSSF: 读写 Microsoft Excel OOXML XLSX 格式文档  (.xlsx)    1048576   16384   完美
+ *
+ *
+ *
+ *    SXSSFWorkbook是用来生成海量excel数据文件，主要原理是借助临时存储空间生成excel，
+ *    SXSSFWorkbook专门处理大数据，对于大型excel的创建且不会内存溢出的，就只有SXSSFWorkbook了
+ *    它的原理很简单，用硬盘空间换内存（就像hashmap用空间换时间一样）
+ *    SXSSFWorkbook是streaming版本的XSSFWorkbook,它只会保存最新的excel rows在内存里供查看，
+ *    在此之前的excel rows都会被写入到硬盘里（Windows电脑的话，是写入到C盘根目录下的temp文件夹）。
+ *    被写入到硬盘里的rows是不可见的/不可访问的。只有还保存在内存里的才可以被访问到。
+ *
+ *    注:HSSFWorkbook和XSSFWorkbook的Excel Sheet导出条数上限
+ *    (<=2003版)是65535行、256列,
+ *    (>=2007版) 是 行,16384列,
+ *    如果数据量超过了此上限,那么可以使用SXSSFWorkbook来导出。
+ *    实际上上万条数据，甚至上千条数据就可以考虑使用SXSSFWorkbook了。
+ *
+ *    注意：首先需要引入依赖：注意：4.0.0版本的JDK需要1.8以上，如果JDK是1.7的，那么就使用3.9版本的依赖
+ *
  */
 
 public class ExcelUtil {
