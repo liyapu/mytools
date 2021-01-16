@@ -8,9 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 /**
- * @author: liyapu
- * @description:
- * @date 2020-01-20 17:20
+ * easyexcel 官网
+ * https://www.yuque.com/easyexcel/doc/easyexcel
  */
 public class ReadTest {
 
