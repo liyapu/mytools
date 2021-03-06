@@ -21,6 +21,25 @@ import java.util.regex.Pattern;
  */
 public class FirstTest {
 
+    @Test
+    public void  testCommaData(){
+        String line =" Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。";
+        String[] result = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+    @Test
+    public void  testCommaData2(){
+        String line =" Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。";
+
+        //双引号内的逗号不分割  双引号外的逗号进行分割
+        String[] result = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)",-1);
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+
     //英文表头正则表达式
     private static final Pattern headPattern = Pattern.compile("^[A-Za-z0-9]+$");
 
