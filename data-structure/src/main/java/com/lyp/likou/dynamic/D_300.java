@@ -50,7 +50,7 @@ import java.util.Objects;
  * 在后续求解子问题中如果遇到求过结果的子问题，直接查表去得到答案而不计算
  *
  */
-public class d_300 {
+public class D_300 {
 
     /**
      * 时间复杂度：O(N^2)，这里 N 是输入数组的长度； 空间复杂度：O(N)
