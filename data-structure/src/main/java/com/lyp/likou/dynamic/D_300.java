@@ -93,16 +93,156 @@ public class D_300 {
         return result;
     }
 
+    /**
+     * 官方题解
+     * https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/
+     *
+     * @param nums
+     * @return
+     */
+    public static int lengthOfLIS_A(int[] nums) {
+        int resultLen = 1, numsLen = nums.length;
+        if (numsLen == 0) {
+            return 0;
+        }
+        int[] d = new int[numsLen + 1];
+        d[resultLen] = nums[0];
+        for (int i = 1; i < numsLen; ++i) {
+            if (nums[i] > d[resultLen]) {
+                d[++resultLen] = nums[i];
+            } else {
+                // pos 表示在长度为 resultLen的数组d中，比 nums[i]最末次小的下标值
+                int l = 1, r = resultLen, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
+                while (l <= r) {
+                    int mid = (l + r) >> 1;
+                    if (d[mid] < nums[i]) {
+                        pos = mid;
+                        l = mid + 1;
+                    } else {
+                        r = mid - 1;
+                    }
+                }
+                d[pos + 1] = nums[i];
+            }
+        }
+
+        System.out.println(Arrays.toString(d));
+        return resultLen;
+    }
+
+    /**
+     * 动态规划+二分查找  O(nlg(n))
+     *
+     * 考虑一个简单的贪心，如果我们要使上升子序列尽可能的长，则我们需要让序列上升得尽可能慢，因此我们希望每次在上升子序列最后加上的那个数尽可能的小。
+     *
+     * 很具小巧思。新建数组 cell，用于保存最长上升子序列。
+     *
+     * 对原序列进行遍历，将每位元素二分插入 cell 中。
+     *
+     * 如果 cell 中元素都比它小，将它插到最后
+     * 否则，用它覆盖掉比它大的元素中最小的那个。
+     * 总之，思想就是让 cell 中存储比较小的元素。
+     * cell 中是真实的最长上升子序列之一（最长的子序列可能不唯一），长度也是最长的。
+     *
+     * https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-dong-tai-gui-hua-e/
+     */
+    public static int lengthOfLIS_B(int[] nums) {
+        if (Objects.isNull(nums)) {
+            return 0;
+        }
+        int resultLen = 1, numsLen = nums.length;
+        if (numsLen <= 1) {
+            return numsLen;
+        }
+
+        int[] d = new int[numsLen + 1];
+        d[1] = nums[0];
+        for (int i = 1; i < numsLen; i++) {
+            if (nums[i] > d[resultLen]) {
+                d[++resultLen] = nums[i];
+            } else {
+                int left = 1, right = resultLen, pos = 0;
+                while (left <= right) {
+                    int mid = (left + right) / 2;
+                    if (d[mid] < nums[i]) {
+                        pos = mid;
+                        left = mid + 1;
+                    } else {
+                        right = mid - 1;
+                    }
+                }
+                d[pos + 1] = nums[i];
+            }
+        }
+
+        System.out.println(Arrays.toString(d));
+        return resultLen;
+    }
+
+    public static int lengthOfLIS_C(int[] nums) {
+        if (Objects.isNull(nums)) {
+            return 0;
+        }
+        int numsLen = nums.length;
+        if (numsLen <= 1) {
+            return numsLen;
+        }
+
+        int[] d = new int[numsLen];
+        d[0] = nums[0];
+        int resultLen = 1;
+
+        for (int i = 1; i < numsLen; i++) {
+            if (nums[i] > d[resultLen - 1]) {
+                d[resultLen++] = nums[i];
+            } else {
+                int left = 0, right = resultLen - 1;
+                while (left <= right) {
+                    int mid = (left + right) / 2;
+                    if (d[mid] < nums[i]) {
+                        left = mid + 1;
+                    } else {
+                        right = mid - 1;
+                    }
+                }
+                d[left] = nums[i];
+            }
+        }
+        System.out.println(Arrays.toString(d));
+        return resultLen;
+    }
+
 
     public static void main(String[] args) {
         // 2,3,7,101
         // 4
         int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
         System.out.println(lengthOfLIS(nums));
+        System.out.println();
 
         // 1，3，6，7，9，10
         // 6
         int[] arr1 = {1, 3, 6, 7, 9, 4, 10, 5, 6};
         System.out.println(lengthOfLIS(arr1));
+        System.out.println();
+
+        int[] arr2 = {3, 8, 4, 12, 5};
+
+        System.out.println("--------lengthOfLIS_A----------");
+        System.out.println(lengthOfLIS_A(nums));
+        System.out.println(lengthOfLIS_A(arr1));
+        System.out.println(lengthOfLIS_A(arr2));
+        System.out.println();
+
+        System.out.println("--------lengthOfLIS_B----------");
+        System.out.println(lengthOfLIS_B(nums));
+        System.out.println(lengthOfLIS_B(arr1));
+        System.out.println(lengthOfLIS_B(arr2));
+        System.out.println();
+
+        System.out.println("--------lengthOfLIS_C----------");
+        System.out.println(lengthOfLIS_C(nums));
+        System.out.println(lengthOfLIS_C(arr1));
+        System.out.println(lengthOfLIS_C(arr2));
     }
 }
