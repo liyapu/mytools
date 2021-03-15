@@ -34,39 +34,39 @@ public class D_392 {
     public static boolean isSubsequence(String s, String t) {
         int sLen = s.length();
         int tLen = t.length();
-        if(sLen == 0){
+        if (sLen == 0) {
             return true;
         }
-        if(tLen == 0){
+        if (tLen == 0) {
             return false;
         }
 
         int i = 0;
-        int j =0;
-        for (; i < tLen && j < sLen ; ) {
-            if(t.charAt(i) == s.charAt(j)){
+        int j = 0;
+        for (; i < tLen && j < sLen; ) {
+            if (t.charAt(i) == s.charAt(j)) {
                 i++;
                 j++;
-            }else{
+            } else {
                 i++;
             }
         }
 
-        return j==sLen;
+        return j == sLen;
     }
 
     public static void main(String[] args) {
-       String  s1 = "abc", t1 = "ahbgdc";
-        System.out.println(isSubsequence(s1,t1));
+        String s1 = "abc", t1 = "ahbgdc";
+        System.out.println(isSubsequence(s1, t1));
 
-        String  s2 = "axc", t2 = "ahbgdc";
-        System.out.println(isSubsequence(s2,t2));
+        String s2 = "axc", t2 = "ahbgdc";
+        System.out.println(isSubsequence(s2, t2));
 
-        String  s3 = "abc", t3 = "abc";
-        System.out.println(isSubsequence(s3,t3));
+        String s3 = "abc", t3 = "abc";
+        System.out.println(isSubsequence(s3, t3));
 
-        String  s4 = "", t4 = "ahbgdc";
-        System.out.println(isSubsequence(s4,t4));
+        String s4 = "", t4 = "ahbgdc";
+        System.out.println(isSubsequence(s4, t4));
     }
 
 }
