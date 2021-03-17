@@ -21,25 +21,54 @@ import java.util.regex.Pattern;
  */
 public class FirstTest {
 
+    /**
+     * 1.如果字符串最后一位有值，则没有区别，
+     * 2.若干最后n位都是切割符，split(",")不会继续切分，split(",", -1)会继续切分
+     */
     @Test
-    public void  testCommaData(){
-        String line =" Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。";
-        String[] result = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        for (String s : result) {
-            System.out.println(s);
+    public void testCommaData() {
+        String line = " Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。,,,,";
+        String[] result1 = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+
+        System.out.println("result1 len is  = " + result1.length);
+        for (int i = 0; i < result1.length; i++) {
+            System.out.println(i + "-" + result1[i]);
         }
+        System.out.println("------------------");
+
+        String[] result2 = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+        System.out.println("result2 len is =" + result2.length);
+        for (int i = 0; i < result2.length; i++) {
+            System.out.println(i + "-" + result2[i]);
+        }
+
+
     }
+
     @Test
-    public void  testCommaData2(){
-        String line =" Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。";
+    public void testCommaData2() {
+        String line = " Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。,,,,";
 
         //双引号内的逗号不分割  双引号外的逗号进行分割
-        String[] result = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)",-1);
+        String[] result = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)", -1);
         for (String s : result) {
             System.out.println(s);
         }
     }
 
+    @Test
+    public void testCommaData3() {
+        String line = " Sachin ,, M,\"数学，,,,科学,英语\",需要改进这些主题。,,,,";
+        String linee = " \"boyet.com\", 48 , ,\"Saturday, April 23, 2005\", \"Mack \"\"The Knife\"\"\" ";
+
+
+        //双引号内的逗号不分割  双引号外的逗号进行分割
+        String[] result = linee.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)", -1);
+//        String[] strArr = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)",-1); //双引号内的逗号不分割  双引号外的逗号进行分割
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
     //英文表头正则表达式
     private static final Pattern headPattern = Pattern.compile("^[A-Za-z0-9]+$");
 
