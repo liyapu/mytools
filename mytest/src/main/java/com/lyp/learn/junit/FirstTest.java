@@ -21,6 +21,14 @@ import java.util.regex.Pattern;
  */
 public class FirstTest {
 
+    @Test
+    public void addTest(){
+        String s1 = "+";
+        String s2 = "+";
+        String s3 = "+";
+        System.out.println(s2.equals(s1));
+    }
+
     /**
      * 1.如果字符串最后一位有值，则没有区别，
      * 2.若干最后n位都是切割符，split(",")不会继续切分，split(",", -1)会继续切分
