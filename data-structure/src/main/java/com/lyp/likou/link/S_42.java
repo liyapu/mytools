@@ -1,4 +1,4 @@
-package com.lyp.likou.swordOffer;
+package com.lyp.likou.link;
 
 /**
  *@author: liyapu
@@ -26,7 +26,7 @@ package com.lyp.likou.swordOffer;
  *
  * 注意：本题与主站 53 题相同：https://leetcode-cn.com/problems/maximum-subarray/
  */
-public class O_42 {
+public class S_42 {
 
     public static int maxSubArray(int[] nums) {
         if (null == nums) {
