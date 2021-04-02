@@ -44,6 +44,7 @@ public class F_0201 {
                 //添加成功，表示以前没有
                 // pre和cur都更新一下，跳到下一个
                 // pre 的更新，是根据 pre自身自己进行更新的
+                // 1 1 1 2
                 pre = pre.next;
                 cur = cur.next;
             } else {
