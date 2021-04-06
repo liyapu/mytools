@@ -17,11 +17,12 @@ public class MySqlMetaDataUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(MySqlMetaDataUtil.class);
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static  String DB_NAME = "ncpcs_follow";
+    private static  String DRIVER = "com.mysql.cj.jdbc.Driver";
 //    private static final String URL = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8";
-    private static final String URL = "jdbc:mysql://localhost:3306/ncpcs_user?serverTimezone=UTC&characterEncoding=utf8";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Root$123";
+    private static  String URL = "jdbc:mysql://localhost:3306/"+DB_NAME+"?serverTimezone=UTC&characterEncoding=utf8";
+    private static  String USERNAME = "root";
+    private static  String PASSWORD = "Root$123";
 
 
 //    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -195,7 +196,7 @@ public class MySqlMetaDataUtil {
 //            rs = metaData.getTables(null, null, null, new String[]{"TABLE"});
             //指定数据库名称
 //            rs = metaData.getTables("test", null, null, new String[]{"TABLE"});
-            rs = metaData.getTables("ncpcs_user", null, null, new String[]{"TABLE"});
+            rs = metaData.getTables(DB_NAME, null, null, new String[]{"TABLE"});
             while (rs.next()){
 //                System.out.println("getAllTables :::::" + rs.getString("TABLE_NAME") );
 //                tableNames.add(rs.getString("TABLE_NAME")); //表名
@@ -260,7 +261,7 @@ public class MySqlMetaDataUtil {
             //多个数据库中的 tableName 表，
 //            ResultSet colRet = metaData.getColumns("","%", tableName,"%");
             //指定 数据库catatog 下的表
-            ResultSet colRet = metaData.getColumns("ncpcs_user","%", tableName,"%");
+            ResultSet colRet = metaData.getColumns(DB_NAME,"%", tableName,"%");
             while(colRet.next()) {
                 fe = new FieldEntity();
                 //列名
