@@ -37,9 +37,21 @@
 //        dummyNode.next = head;
 //
 //        ListNode baseNode = dummyNode;
+//
 //        ListNode cur = dummyNode.next;
+//        ListNode next = cur.next;
 //        while (cur.next != null){
 //            ListNode next = cur.next;
+//
+//            if(cur.val == next.val){
+//                baseNode.next = null;
+//            }else{
+//                if(cur.next == next){
+//                    cur = cur.next;
+//                }else {
+//                    cur = next;
+//                }
+//            }
 //        }
 //    }
 //
