@@ -54,6 +54,8 @@ public class L_142 {
             second = second.next.next;
             if(first == second){
                 hasCycle = true;
+                //记得 结束，否则死循环
+                break;
             }
         }
 
