@@ -25,6 +25,7 @@ public class LinkUtils {
         return head.next;
     }
 
+
     /**
      *
      * @param pos 从0开始算
