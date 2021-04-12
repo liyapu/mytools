@@ -86,8 +86,6 @@ public class BiTreeTest {
         System.out.print("后根遍历(非递归) ");
         biTree.postOrder();
         System.out.println();
-        System.out.print("后根遍历(非递归) ");
-        biTree.postOrder2();
 
         System.out.println();
         System.out.println();
@@ -132,10 +130,6 @@ public class BiTreeTest {
         BiTree biTree2 = create2();
         BiTreeNode root2 = biTree2.getRoot();
         System.out.println("判断两棵树是否相等 : " + biTree.isEqual(root,root2));
-        System.out.println("判断两棵树是否相等 : " + biTree.isEqual2(root,root));
-        System.out.println("判断两棵树是否相等 : " + biTree.isEqual2(root,root2));
-        System.out.println("判断两棵树是否相等 : " + biTree.isEqual3(root,root));
-        System.out.println("判断两棵树是否相等 : " + biTree.isEqual3(root,root2));
 
         System.out.println("--------------------------");
         System.out.println("获取从根结点到叶子结点的所有路径");

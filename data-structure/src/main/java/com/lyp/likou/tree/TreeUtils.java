@@ -1,8 +1,6 @@
 package com.lyp.likou.tree;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  *@author: liyapu
@@ -47,9 +45,11 @@ public class TreeUtils {
             TreeNode root = map.get(i);
             TreeNode left = map.get(2 * i + 1);
             TreeNode right = map.get(2 * i + 2);
-            if (root == null) break;
-            root.left = left;
-            root.right = right;
+            if (root != null) {
+                root.left = left;
+                root.right = right;
+
+            }
         }
         return map.get(0);
     }
@@ -71,7 +71,55 @@ public class TreeUtils {
 
     public static void main(String[] args) {
         TreeNode root = buildTree(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        pirnt(root);
+        List<List<Integer>> lists = levelOrder2(root);
+        int size = lists.size();
+
+        for (int i = 0; i < lists.size(); i++) {
+            List<Integer> subList = lists.get(i);
+            printTab(size);
+            for (int j = 0; j < subList.size(); j++) {
+                if (j != 0) {
+                    printTab(j);
+                }
+                System.out.print(subList.get(j));
+            }
+            System.out.println();
+            size--;
+        }
+    }
+
+    public static void printTab(int size) {
+        for (int i = 0; i < size; i++) {
+            System.out.print("\t");
+        }
+    }
+
+
+    /**
+     * 层次遍历二叉树的算法(自左向右)
+     * 如果想把遍历的结果存放到list中，我们还可以这样写
+     * @return
+     */
+    public static List<List<Integer>> levelOrder2(TreeNode tree) {
+        if (tree == null)
+            return null;
+        List<List<Integer>> list = new ArrayList<>();
+        bfs(tree, 0, list);
+        return list;
+    }
+
+    private static void bfs(TreeNode tree, int level, List<List<Integer>> list) {
+        if (tree == null)
+            return;
+        if (level >= list.size()) {
+            List<Integer> subList = new ArrayList<>();
+            subList.add(tree.val);
+            list.add(subList);
+        } else {
+            list.get(level).add(tree.val);
+        }
+        bfs(tree.left, level + 1, list);
+        bfs(tree.right, level + 1, list);
     }
 
 

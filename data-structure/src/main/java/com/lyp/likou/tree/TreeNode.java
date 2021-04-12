@@ -6,9 +6,9 @@ package com.lyp.likou.tree;
  *@date 2021-04-09 12:17
  */
 public class TreeNode {
-    Integer val;
-    TreeNode left;
-    TreeNode right;
+    public Integer val;
+    public TreeNode left;
+    public TreeNode right;
 
     TreeNode() {
     }
