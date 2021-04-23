@@ -44,7 +44,7 @@ public class MultiTree {
     }
 
     /**
-     * 广度优先遍历
+     * 广度优先遍历 （Breadth-First-Search）
      * @param node
      */
     public static void breadthFirstSearch(MultiTreeNode node){
@@ -63,7 +63,7 @@ public class MultiTree {
     }
 
     /**
-     * 深度优先遍历
+     * 深度优先遍历 （Depth-First-Search）
      * @param node
      */
     public static void depthFirstSearch(MultiTreeNode node){
