@@ -42,33 +42,27 @@ public class A_40 {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         if (candidates == null || candidates.length == 0) return result;
-        Boolean[] used = new Boolean[candidates.length];
-        Arrays.fill(used, false);
         Arrays.sort(candidates);
-
-        backTrack(result, path, candidates, used, target, 0);
+        backTrack(result, path, candidates, target, 0);
         return result;
     }
 
-    private static void backTrack(List<List<Integer>> result, List<Integer> path, int[] candidates, Boolean[] used, int target, int index) {
+    private static void backTrack(List<List<Integer>> result, List<Integer> path, int[] candidates, int target, int index) {
         if (target == 0) {
             result.add(new ArrayList<>(path));
             return;
         }
         for (int i = index; i < candidates.length; i++) {
-            if (used[i]) continue;
+            if (candidates[i] > target) break;
             //此处i > index
             if (i > index && candidates[i] == candidates[i - 1]) {
                 continue;
             }
-            if (candidates[i] > target) break;
-            used[i] = true;
             path.add(candidates[i]);
             System.out.println("递归之前 => " + path + "，剩余 = " + (target - candidates[i]));
             //此处 i 加 1 进行递归
-            backTrack(result, path, candidates, used, target - candidates[i], i + 1);
+            backTrack(result, path, candidates, target - candidates[i], i + 1);
             path.remove(path.size() - 1);
-            used[i] = false;
             System.out.println("递归之后 => " + path);
 
         }
