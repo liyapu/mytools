@@ -62,24 +62,14 @@ public class A_34 {
                 }
 
                 //根据while 的终止条件判断，i 值修正
-                if(i >= 0){
-                    if(nums[i] != target){
-                        i++;
-                    }
-                }else{
-                    i++;
-                }
+                i++;
 
                 //找到之后，向 右 移动
                 int j = mid;
                 while (j < len && nums[j] == target){
                     j++;
                 }
-                if(j < len){
-                    j--;
-                }else{
-                    j--;
-                }
+                j--;
                 return new int [] {i,j};
             }
         }

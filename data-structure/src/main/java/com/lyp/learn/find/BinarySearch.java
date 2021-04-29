@@ -6,6 +6,14 @@ import java.util.List;
 /**
  * 二分查找
  *    针对的是一个有序数列
+ *
+ *
+ *    二分查找细节详解，顺便赋诗一首
+ *    https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/
+ *
+ *
+ *    写对二分查找不能靠模板，需要理解加练习 （附练习题，持续更新） liweiwei1419
+ *    https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/
  */
 public class BinarySearch {
 
