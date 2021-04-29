@@ -44,6 +44,10 @@ public class BinarySearch {
      *
      * 虽然 >> 1 和 /2 ，但是有些语言编译器都会将 /2 转换成位运算的操作，这是编译器内部的优化。
      * 因此我们没有必要手动去做这一步优化，写代码的时候还是写 /2。
+     *
+     *
+     * 另外声明一下，计算 mid 时需要防止溢出，代码中 left + (right - left) / 2 就和 (left + right) / 2 的结果相同，
+     * 但是有效防止了 left 和 right 太大直接相加导致溢出
      */
     public static int findKey(int[] arr, int key) {
         int len;
@@ -58,7 +62,7 @@ public class BinarySearch {
 //            int mid = (low + high) >> 1; // >>1 可以，别人
             // 为了防止 low + high 整形溢出,超出 int型最大值，写成这样
             int mid = low + (high - low) / 2;
-//            int mid = low + (high - low)>>1; //  (high - low)>>1 这种写法，会形成死循环
+//            int mid = low + ((high - low)>>1); //  (high - low)>>1 这种写法，会形成死循环, ((high - low)>>1) 这种写法可以; 因为 移位运算符的优先级 低于 加减操作符的优先级
             System.out.println("mid = " + mid);
 
             if (key < arr[mid]) {

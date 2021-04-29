@@ -226,7 +226,7 @@ public class MyBeanUtils {
     /**
      * Bean --> Map 1
      * 利用Introspector和PropertyDescriptor 将Bean --> Map
-     *
+     * bean转map
      * @param obj
      */
     public static Map<String, Object> transBean2Map(Object obj) throws IntrospectionException, InvocationTargetException, IllegalAccessException {
@@ -266,7 +266,8 @@ public class MyBeanUtils {
     /**
      * Map --> Bean 1:
      * 利用Introspector,PropertyDescriptor实现 Map --> Bean
-     *
+     * map转bean
+     * bean使用lombok的时候，有可能不能赋上值，需要显示的使用 getter/setter方法
      * @param map
      * @param obj
      */
