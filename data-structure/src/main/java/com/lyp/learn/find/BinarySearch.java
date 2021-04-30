@@ -20,6 +20,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {2, 6, 9, 11, 16, 20, 23, 25, 26, 29, 33, 35};
         System.out.println(findKey(arr, 1));
+        System.out.println(findKey(arr, 100));
         System.out.println(findKey(arr, 2));
         System.out.println(findKey(arr, 11));
         System.out.println(findKey(arr, 29));
@@ -71,7 +72,7 @@ public class BinarySearch {
             // 为了防止 low + high 整形溢出,超出 int型最大值，写成这样
             int mid = low + (high - low) / 2;
 //            int mid = low + ((high - low)>>1); //  (high - low)>>1 这种写法，会形成死循环, ((high - low)>>1) 这种写法可以; 因为 移位运算符的优先级 低于 加减操作符的优先级
-            System.out.println("mid = " + mid);
+//            System.out.println("mid = " + mid);
 
             if (key < arr[mid]) {
                 high = mid - 1;

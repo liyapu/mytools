@@ -213,7 +213,7 @@ public class D_300 {
     }
 
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         // 2,3,7,101
         // 4
         int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
