@@ -17,7 +17,14 @@ public class BinarySearch {
         System.out.println(findKey(arr, 29));
         System.out.println(findKey(arr, 35));
         System.out.println(findKey(arr, 50));
-        System.out.println();
+        System.out.println("--------------");
+        System.out.println(search(arr, 1));
+        System.out.println(search(arr, 2));
+        System.out.println(search(arr, 11));
+        System.out.println(search(arr, 29));
+        System.out.println(search(arr, 35));
+        System.out.println(search(arr, 50));
+        System.out.println("--------------");
 
         // 查找可以返回多个重复key
         int[] array = {2, 6, 9, 11, 16, 20, 20, 20, 20, 20, 20, 20, 23, 25, 26, 29, 33, 35};
@@ -30,6 +37,13 @@ public class BinarySearch {
      * 查找为key 的数据元素
      * 若找到，则返回其下标，
      * 若没有找到，返回 -1；
+     *
+     * int mid = (left + right) >>> 1;
+     * 这是参考 Java 的 JDK 中 Arrays.binarySearch() 函数的写法。理由是 left + right 即使是在整型溢出以后，
+     * 由于无符号右移 >>> 1 ，仍然能够得到正确的结果（我掌握的语言中，只有 Java 语言中有 >>> 这个操作符）。
+     *
+     * 虽然 >> 1 和 /2 ，但是有些语言编译器都会将 /2 转换成位运算的操作，这是编译器内部的优化。
+     * 因此我们没有必要手动去做这一步优化，写代码的时候还是写 /2。
      */
     public static int findKey(int[] arr, int key) {
         int len;
@@ -40,13 +54,47 @@ public class BinarySearch {
         int low = 0;
         int high = len - 1;
         while (low <= high) {
-            int mid = (low + high) / 2;
+//            int mid = (low + high) / 2;
+//            int mid = (low + high) >> 1; // >>1 可以，别人
+            // 为了防止 low + high 整形溢出,超出 int型最大值，写成这样
+            int mid = low + (high - low) / 2;
+//            int mid = low + (high - low)>>1; //  (high - low)>>1 这种写法，会形成死循环
+            System.out.println("mid = " + mid);
+
             if (key < arr[mid]) {
                 high = mid - 1;
             } else if (key > arr[mid]) {
                 low = mid + 1;
             } else {
                 return mid;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 力扣
+     * https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int search(int[] nums, int target) {
+        int len = nums.length;
+        int left = 0;
+        int right = len - 1;
+        // 在 [left..right] 里查找 target
+        while (left <= right) {
+            // 为了防止 left + right 整形溢出，写成这样
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                // 下一轮搜索区间：[left..mid - 1]
+                right = mid - 1;
+            } else {
+                // 此时：nums[mid] < target，下一轮搜索区间：[mid + 1..right]
+                left = mid + 1;
             }
         }
         return -1;
