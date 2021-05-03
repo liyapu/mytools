@@ -1,15 +1,20 @@
-package com.lyp.learn.base.threads.pk04.test2;
+package com.lyp.learn.base.threads.pk05;
 
 import java.util.concurrent.Semaphore;
 
 /**
+ * 交替打印 ABC,每个打印 10 次
  * Semaphore信号量方式
  * 1、基本思路
  * Semaphore又称信号量，是操作系统中的一个概念，在Java并发编程中，信号量控制的是线程并发的数量。
  *
  * public Semaphore(int permits)
  * 其中参数permits就是允许同时运行的线程数目;
- * Semaphore是用来保护一个或者多个共享资源的访问，Semaphore内部维护了一个计数器，其值为可以访问的共享资源的个数。一个线程要访问共享资源，先获得信号量，如果信号量的计数器值大于1，意味着有共享资源可以访问，则使其计数器值减去1，再访问共享资源。如果计数器值为0,线程进入休眠。当某个线程使用完共享资源后，释放信号量，并将信号量内部的计数器加1，之前进入休眠的线程将被唤醒并再次试图获得信号量。
+ * Semaphore是用来保护一个或者多个共享资源的访问，Semaphore内部维护了一个计数器，其值为可以访问的共享资源的个数。
+ * 一个线程要访问共享资源，先获得信号量，
+ *     如果信号量的计数器值大于1，意味着有共享资源可以访问，则使其计数器值减去1，再访问共享资源。
+ *     如果计数器值为0,线程进入休眠。
+ * 当某个线程使用完共享资源后，释放信号量，并将信号量内部的计数器加1，之前进入休眠的线程将被唤醒并再次试图获得信号量。
  *
  * Semaphore使用时需要先构建一个参数来指定共享资源的数量，Semaphore构造完成后即是获取Semaphore、共享资源使用完毕后释放Semaphore。
  *
@@ -18,12 +23,13 @@ import java.util.concurrent.Semaphore;
  * //do something here
  * semaphore.release();
  */
-public class ABC_Semaphore {
+public class PrintABC1 {
     // 以A开始的信号量,初始信号量数量为1
     private static Semaphore A = new Semaphore(1);
     // B、C信号量,A完成后开始,初始信号数量为0
     private static Semaphore B = new Semaphore(0);
     private static Semaphore C = new Semaphore(0);
+
     static class ThreadA extends Thread {
         @Override
         public void run() {
