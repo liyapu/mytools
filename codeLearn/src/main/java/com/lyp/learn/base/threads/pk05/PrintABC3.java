@@ -1,4 +1,4 @@
-package com.lyp.learn.base.threads.pk04.test2;
+package com.lyp.learn.base.threads.pk05;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -9,21 +9,27 @@ import java.util.concurrent.locks.ReentrantLock;
  * ReentrantLock结合Condition
  * 1、基本思路
  * 与ReentrantLock搭配的通行方式是Condition，如下：
+ *
  * private Lock lock = new ReentrantLock();
  * private Condition condition = lock.newCondition();
+ *
  * condition.await();//this.wait();
  * condition.signal();//this.notify();
  * condition.signalAll();//this.notifyAll();
- * Condition是被绑定到Lock上的，必须使用lock.newCondition()才能创建一个Condition。从上面的代码可以看出，Synchronized能实现的通信方式，Condition都可以实现，功能类似的代码写在同一行中。
+ *
+ * Condition是被绑定到Lock上的，必须使用lock.newCondition()才能创建一个Condition。从上面的代码可以看出，
+ * Synchronized能实现的通信方式，Condition都可以实现，功能类似的代码写在同一行中。
  * 这样解题思路就和第一种方法基本一致，只是采用的方法不同。
  *
  */
-public class ABCCondition {
+public class PrintABC3 {
     private static Lock lock = new ReentrantLock();
     private static Condition A = lock.newCondition();
     private static Condition B = lock.newCondition();
     private static Condition C = lock.newCondition();
     private static int count = 0;
+
+
     static class ThreadA extends Thread {
         @Override
         public void run() {
@@ -74,7 +80,7 @@ public class ABCCondition {
                     while (count % 3 != 2) {
                         C.await();// C释放lock锁，当前面B线程执行后会通过C.signal()唤醒该线程
                     }
-                    System.out.print("C");
+                    System.out.println("C");
                     count++;
                     A.signal();// C执行完唤醒A线程
                 }

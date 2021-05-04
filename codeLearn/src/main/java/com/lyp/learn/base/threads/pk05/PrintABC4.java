@@ -2,12 +2,10 @@ package com.lyp.learn.base.threads.pk05;
 
 
 
-public class PrintOddEven4 {
+public class PrintABC4 {
 
     //控制单个打印的次数  for循环使用
-    private static Integer MAX = 5;
-    //共享的变量
-    private static volatile Integer count = 1;
+    private static Integer MAX = 10;
     //控制线程切换的状态位
     private static volatile Integer state = 1;
     //临界区使用的锁
@@ -20,7 +18,7 @@ public class PrintOddEven4 {
                 //同步块，保证下面的代码不会被切换，原子性保证
                 synchronized (obj){
                     if(state == 1){
-                        System.out.println(Thread.currentThread().getName() + " " + count++);
+                        System.out.print("A");
                         //自己打印了，才让i++控制循环，保证打印的遍数不会少
                         i++;
                         //让下一个打印
@@ -37,13 +35,32 @@ public class PrintOddEven4 {
                     }
                 }
             }
-        },"奇数线程").start();
+        }).start();
 
         new Thread(() ->{
             for (int i = 1; i <= MAX;) {
                 synchronized (obj){
                     if(state == 2){
-                        System.out.println(Thread.currentThread().getName() + "   " + count++);
+                        System.out.print("B");
+                        i++;
+                        state = 3;
+                        obj.notifyAll();
+                    }else{
+                        try {
+                            obj.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(() ->{
+            for (int i = 1; i <= MAX; ) {
+                synchronized (obj){
+                    if(state == 3){
+                        System.out.println("C");
                         i++;
                         state = 1;
                         obj.notifyAll();
@@ -56,7 +73,6 @@ public class PrintOddEven4 {
                     }
                 }
             }
-        },"偶数线程").start();
-
+        }).start();
     }
 }

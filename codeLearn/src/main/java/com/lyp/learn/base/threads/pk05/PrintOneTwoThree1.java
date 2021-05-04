@@ -3,7 +3,7 @@ package com.lyp.learn.base.threads.pk05;
 /**
  * 三个线程交替打印 1,2,3,
  */
-public class PrintOneTwoThree {
+public class PrintOneTwoThree1 {
 
     private static volatile Integer MAX = 10;
     private static volatile Integer num = 1;

@@ -1,82 +1,122 @@
 package com.lyp.learn.base.threads.pk05;
 
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 交替打印 ABC,每个打印 10 次
- * Semaphore信号量方式
- * 1、基本思路
- * Semaphore又称信号量，是操作系统中的一个概念，在Java并发编程中，信号量控制的是线程并发的数量。
+ * 题目：有A,B,C三个线程, A线程输出A, B线程输出B, C线程输出C，
+ * 要求, 同时启动三个线程, 按顺序输出ABC, 循环10次。
  *
- * public Semaphore(int permits)
- * 其中参数permits就是允许同时运行的线程数目;
- * Semaphore是用来保护一个或者多个共享资源的访问，Semaphore内部维护了一个计数器，其值为可以访问的共享资源的个数。
- * 一个线程要访问共享资源，先获得信号量，
- *     如果信号量的计数器值大于1，意味着有共享资源可以访问，则使其计数器值减去1，再访问共享资源。
- *     如果计数器值为0,线程进入休眠。
- * 当某个线程使用完共享资源后，释放信号量，并将信号量内部的计数器加1，之前进入休眠的线程将被唤醒并再次试图获得信号量。
+ * 分析
+ * 沿用两个线程的交替打印的思路，重点是当第一个线程获取到锁的时候第二个线程在wait状态等待被唤醒，
+ * 此时第一个线程完成任务时，主动唤醒第二个线程，自己进入等待状态，不与之竞争。这样就能起到“我做完轮到你，你做完轮到我”的状态。
+ * 而三个线程的情况下是无法简单通过一个锁来完成的，因为当多个线程在等待时，我们无法通过 notify 来唤醒指定的线程。如何解决呢？
  *
- * Semaphore使用时需要先构建一个参数来指定共享资源的数量，Semaphore构造完成后即是获取Semaphore、共享资源使用完毕后释放Semaphore。
+ * 解决
+ * 我们可以使用三个锁 lock1、lock2 和 lock3，分别对应要执行的三个线程 t1、t2 和 t3。
  *
- * Semaphore semaphore = new Semaphore(3,true);
- * semaphore.acquire();
- * //do something here
- * semaphore.release();
  */
 public class PrintABC1 {
-    // 以A开始的信号量,初始信号量数量为1
-    private static Semaphore A = new Semaphore(1);
-    // B、C信号量,A完成后开始,初始信号数量为0
-    private static Semaphore B = new Semaphore(0);
-    private static Semaphore C = new Semaphore(0);
+    static volatile Integer num = 0;
+    static int times = 10;
+    static  Lock lock = new ReentrantLock();
+    Condition conditionA = lock.newCondition();
+    Condition conditionB = lock.newCondition();
+    Condition conditionC = lock.newCondition();
 
-    static class ThreadA extends Thread {
+     class AOut implements Runnable {
         @Override
         public void run() {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    A.acquire();// A获取信号执行,A信号量减1,当A为0时将无法继续获得该信号量
-                    System.out.print("A");
-                    B.release();// B释放信号，B信号量加1（初始为0），此时可以获取B信号量
+            for(int i = 0 ; i < times; i++){
+                lock.lock();
+                try{
+                    //1.不该输出时，就等待
+                    if(num != 0){
+                        conditionA.await();
+                    }
+                    //2.输出
+//                    System.out.print("A");
+                    System.out.print(Thread.currentThread().getName());
+
+                    //3.变为1，同时唤醒下一个
+                    num = 1;
+                    conditionB.signal();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    static class ThreadB extends Thread {
-        @Override
-        public void run() {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    B.acquire();
-                    System.out.print("B");
-                    C.release();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    static class ThreadC extends Thread {
-        @Override
-        public void run() {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    C.acquire();
-                    System.out.println("C");
-                    A.release();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
             }
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        new ThreadA().start();
-        new ThreadB().start();
-        new ThreadC().start();
+    class BOut implements Runnable{
+        @Override
+        public void run() {
+            for(int i = 0 ; i < times; i++){
+                lock.lock();
+                try{
+                    //1.不该输出时，就等待
+                    if(num != 1){
+                        conditionB.await();
+                    }
+                    //2.输出
+//                    System.out.print("B");
+                    System.out.print(Thread.currentThread().getName());
+
+                    //3.变为2，同时唤醒下一个
+                    num = 2;
+                    conditionC.signal();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+
+            }
+        }
+    }
+
+
+    class COut implements Runnable{
+        @Override
+        public void run() {
+            for(int i = 0 ; i < times; i++){
+                lock.lock();
+                try{
+                    //1.不该输出时，就等待
+                    if(num != 2){
+                        conditionC.await();
+                    }
+                    //2.输出
+//                    System.out.print("C");
+                    System.out.print(Thread.currentThread().getName());
+                    System.out.println();
+
+                    //3.变量变为0，同时唤醒下一个
+                    num = 0;
+                    conditionA.signal();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+         new PrintABC1().start();
+    }
+
+    public void start(){
+         new Thread(new AOut(),"A").start();
+         new Thread(new BOut(),"B").start();
+         new Thread(new COut(),"C").start();
     }
 }
+
 

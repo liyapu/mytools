@@ -2,10 +2,10 @@ package com.lyp.learn.base.threads.pk05;
 
 
 
-public class PrintOddEven4 {
+public class PrintOneTwoThree2 {
 
     //控制单个打印的次数  for循环使用
-    private static Integer MAX = 5;
+    private static Integer MAX = 10;
     //共享的变量
     private static volatile Integer count = 1;
     //控制线程切换的状态位
@@ -37,13 +37,33 @@ public class PrintOddEven4 {
                     }
                 }
             }
-        },"奇数线程").start();
+        },"one线程").start();
 
         new Thread(() ->{
             for (int i = 1; i <= MAX;) {
                 synchronized (obj){
                     if(state == 2){
                         System.out.println(Thread.currentThread().getName() + "   " + count++);
+                        i++;
+                        state = 3;
+                        obj.notifyAll();
+                    }else{
+                        try {
+                            obj.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        },"two线程").start();
+
+
+        new Thread(() ->{
+            for (int i = 1; i <= MAX ; ) {
+                synchronized (obj){
+                    if(state == 3){
+                        System.out.println(Thread.currentThread().getName() + "       " + count++);
                         i++;
                         state = 1;
                         obj.notifyAll();
@@ -56,7 +76,7 @@ public class PrintOddEven4 {
                     }
                 }
             }
-        },"偶数线程").start();
+        },"three线程").start();
 
     }
 }
