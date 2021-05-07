@@ -21,7 +21,7 @@ public class PrintOneTwoThree2 {
                 synchronized (obj){
                     if(state == 1){
                         System.out.println(Thread.currentThread().getName() + " " + count++);
-                        //自己打印了，才让i++控制循环，保证打印的遍数不会少
+                        //自己打印了，才让i++控制循环，保证打印的遍数不会少 !!!!!
                         i++;
                         //让下一个打印
                         state = 2;
