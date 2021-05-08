@@ -5,7 +5,7 @@ package com.lyp.likou.link;
  *@description:
  *@date 2021-04-02 10:07
  *
- * 剑指 Offer 24. 反转链表
+ * 剑指 Offer 24. 反转链表  链表反转
  * 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
  *
  *
@@ -41,6 +41,7 @@ public class S_24 {
         if(head == null || head.next == null){
             return head;
         }
+        //得到 newHead ，然后最后返回     递归传入head的下一个结点值
         ListNode newHead = reverseList2(head.next);
         head.next.next = head;
         head.next = null;
