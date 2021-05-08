@@ -41,7 +41,7 @@ public class S_24 {
         if(head == null || head.next == null){
             return head;
         }
-        ListNode newHead = reverseList(head.next);
+        ListNode newHead = reverseList2(head.next);
         head.next.next = head;
         head.next = null;
         return newHead;
