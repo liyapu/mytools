@@ -1,6 +1,7 @@
 package com.lyp.likou.other;
 
-import java.util.PriorityQueue;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *@author: liyapu
@@ -37,33 +38,38 @@ import java.util.PriorityQueue;
 public class L_414 {
 
     public static int thirdMax(int[] nums) {
-        int len = 0;
-
-//        Integer big = null,mid = null,samll = null;
-//        for (int num : nums) {
-//
-//        }
-
-        PriorityQueue<Integer> pq = new PriorityQueue<>(3);
-        pq.offer(Integer.MIN_VALUE);
-        pq.offer(Integer.MIN_VALUE);
-        pq.offer(Integer.MIN_VALUE);
+        //解决 nums 中，出现 Integer.MIN_VALUE
+        Set<Integer> seen = new HashSet<>();
+        //初始化值
+        int big = Integer.MIN_VALUE, middle = Integer.MIN_VALUE, small = Integer.MIN_VALUE;
         for (int num : nums) {
-            pq.offer(num);
-        }
 
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println("------------");
-        return 0;
+            if(seen.size() < 3){
+                seen.add(num);
+            }
+            //去除过滤 和初始化值相等的值
+            if (num == big || num == middle || num == small) {
+                continue;
+            }
+            if (num > big) {
+                small = middle;
+                middle = big;
+                big = num;
+            } else if (num > middle) {
+                small = middle;
+                middle = num;
+            } else if (num > small) {
+                small = num;
+            }
+        }
+        return (seen.size() < 3) ? big : small;
     }
 
     public static void main(String[] args) {
-        System.out.println(thirdMax(new int [] {3, 2, 1}));
-        System.out.println(thirdMax(new int [] {1,2}));
-        System.out.println(thirdMax(new int [] {2, 2, 3, 1}));
-        System.out.println(thirdMax(new int [] {3, 2, 1}));
-        System.out.println(thirdMax(new int [] {3, 2, 1}));
+        System.out.println(thirdMax(new int[]{3, 2, 1}));
+        System.out.println(thirdMax(new int[]{1, 2}));
+        System.out.println(thirdMax(new int[]{2, 2, 3, 1}));
+        System.out.println(thirdMax(new int[]{3, 2, 1}));
+        System.out.println(thirdMax(new int[]{3, 2, 1}));
     }
 }
