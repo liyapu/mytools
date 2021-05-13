@@ -94,6 +94,7 @@ public class S_3 {
         int left = 0;
         int maxLen = 0;
         char[] chars = s.toCharArray();
+
         for (int i = 0; i < chars.length; i++) {
             if (value$Index.containsKey(chars[i])) {
                 left = Math.max(left, value$Index.get(chars[i]) + 1);
