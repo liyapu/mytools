@@ -63,5 +63,5 @@ public class L_141 {
         ListNode l2 = LinkUtils.buildCycleList(-1, 3, 2, 0, -4);
         boolean l2Result = hasCycle(l2);
         System.out.println("l2Result = " + l2Result);
-    }
+    }  
 }

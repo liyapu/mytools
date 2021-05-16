@@ -79,9 +79,12 @@ public class L_83 {
        while (cur.next != null){
            if(cur.val == cur.next.val){
                //此处移动，就是删除效果
+               // 1 1 2 3
+               // 1 1 2 2 3
                cur.next = cur.next.next;
            }else{
                // if 不相等，就把 cur 移动到此节点上
+               // 1 2 3
                cur = cur.next;
            }
        }

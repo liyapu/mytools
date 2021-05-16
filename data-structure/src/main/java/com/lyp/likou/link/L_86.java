@@ -35,6 +35,7 @@ public class L_86 {
         }
         ListNode smallNode = new ListNode(-1);
         ListNode smallTailNode = smallNode;
+
         ListNode bigNode = new ListNode(-1);
         ListNode bigTailNode = bigNode;
 
