@@ -72,7 +72,7 @@ public class D_121 {
      */
     public static int maxProfit_A(int[] prices) {
         int len = prices.length;
-        if(len == 0){
+        if (len == 0) {
             return 0;
         }
 
@@ -80,11 +80,11 @@ public class D_121 {
         int base = prices[0];
 
         for (int i = 1; i < len; i++) {
-           if(prices[i] > base){
-               maxProfit = Math.max(maxProfit,prices[i]-base);
-           }else{
-               base = prices[i];
-           }
+            if (prices[i] > base) {
+                maxProfit = Math.max(maxProfit, prices[i] - base);
+            } else {
+                base = prices[i];
+            }
 
         }
         return maxProfit;
@@ -92,7 +92,7 @@ public class D_121 {
 
     public static int maxProfit_B(int[] prices) {
         int len = prices.length;
-        if(len == 0){
+        if (len == 0) {
             return 0;
         }
 
@@ -100,8 +100,8 @@ public class D_121 {
         int minPrice = prices[0];
 
         for (int i = 1; i < len; i++) {
-            minPrice = Math.min(minPrice,prices[i]);
-            maxProfit = Math.max(maxProfit,prices[i]-minPrice);
+            minPrice = Math.min(minPrice, prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
         }
         return maxProfit;
     }

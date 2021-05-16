@@ -2,6 +2,9 @@ package com.lyp.learn.sort;
 
 import java.util.Arrays;
 
+/**
+ * 归并排序
+ */
 public class MergeSort {
 
     public static void main(String[] args) {
@@ -45,6 +48,10 @@ public class MergeSort {
             return arr;
         }
 
+//        if(arr == null  || (len = arr.length) <= 1){
+//            return arr;
+//        }
+
         int mid = len / 2;
         int[] left = Arrays.copyOfRange(arr, 0, mid);
         int[] right = Arrays.copyOfRange(arr, mid, len);
@@ -67,6 +74,7 @@ public class MergeSort {
         //index 表示 left,right 数组总长度遍历次数
         //i 表示 left数组的下标
         //j 表示 right数组的下标
+        //index 已经在 for 循环中自增了，在下面的数组赋值时，不能自增了
         for (int index = 0, i = 0, j = 0; index < len; index++) {
             // 前两个判断 i >= leftLen，j >= rightLen 一定要放在前面，不然会出错，比如放在if判断的时候，会报数组越界的异常
             //i >= left数组长度，表示left中已经遍历完了，剩下的把right中的数组元素直接放到array中
@@ -199,6 +207,7 @@ public class MergeSort {
         }
 
     }
+
 
 
 }
