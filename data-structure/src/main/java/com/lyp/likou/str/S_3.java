@@ -14,7 +14,6 @@ import java.util.Set;
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
  *
  *
- *
  * 示例 1:
  * 输入: s = "abcabcbb"
  * 输出: 3
@@ -44,21 +43,27 @@ import java.util.Set;
 public class S_3 {
 
     public static int lengthOfLongestSubstring(String s) {
-        int len = 0;
-        int index = 0;
+        int len;
+        int index;
+        int maxLen = 0;
         StringBuilder sb = new StringBuilder();
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
 
-            if ((index = sb.indexOf(chars[i] + "")) >= 0) {
+        if (s == null || (len = s.length()) == 0) {
+            return 0;
+        }
+
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            if ((index = sb.indexOf(ch + "")) >= 0) {
+                //从包含字符的下一个字符开始截取
                 sb = new StringBuilder(sb.substring(index + 1));
             }
-            sb.append(chars[i]);
-            if (sb.length() > len) {
-                len = sb.length();
+            sb.append(ch);
+            if (maxLen < sb.length()) {
+                maxLen = sb.length();
             }
         }
-        return len;
+        return maxLen;
     }
 
     /**
@@ -89,21 +94,30 @@ public class S_3 {
     }
 
     public static int lengthOfLongestSubstring3(String s) {
-        if (s == null || s.length() == 0) return 0;
-        Map<Character, Integer> value$Index = new HashMap<>();
-        int left = 0;
+        int len;
+        int leftIndex = 0;
         int maxLen = 0;
-        char[] chars = s.toCharArray();
+        Map<Character,Integer> value$Index = new HashMap<>();
 
-        for (int i = 0; i < chars.length; i++) {
-            if (value$Index.containsKey(chars[i])) {
-                left = Math.max(left, value$Index.get(chars[i]) + 1);
+        if(s == null || (len = s.length()) == 0){
+            return 0;
+        }
+
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            if(value$Index.containsKey(ch)){
+                //ababc
+                //value$Index.get(chars[i]) + 1 得到的是 第一个a 之后的b的下标，下面会更新 第二个 a 的下标位置
+                // 或者 abcdecafgh  第二个c时，leftIndex 的值为 d, 再到 第二个 a 时，value$Index.get(ch) + 1 为 1，小于leftIndex ，此时 leftIndex 的值不会变
+                leftIndex = Math.max(leftIndex,value$Index.get(ch) + 1);
             }
-            value$Index.put(chars[i], i);
-            maxLen = Math.max(maxLen, i - left + 1);
+            value$Index.put(ch,i);
+            // abc
+            maxLen = Math.max(maxLen,i-leftIndex + 1);
         }
         return maxLen;
     }
+
 
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring("abcabcbb"));
