@@ -1,8 +1,5 @@
 package com.lyp.likou.array;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *@author: liyapu
  *@description:
@@ -43,8 +40,6 @@ public class A_674 {
         int maxLen = 0;
         int leftIndex = 0;
         int max = Integer.MIN_VALUE;
-
-        Map<Integer, Integer> value$Index = new HashMap<>();
 
         for (int i = 0; i < len; i++) {
             int value = nums[i];
