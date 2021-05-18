@@ -69,7 +69,7 @@ public class L_7 {
         return result;
     }
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 //        System.out.println(reverse(12345));
         System.out.println(reverse(-12345));
     }
