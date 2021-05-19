@@ -4,6 +4,20 @@ import com.lyp.likou.tree.TreeNode;
 
 import java.util.*;
 
+/**
+ *  二叉树
+ *
+ *                         1
+ *          2                        7
+ *   3           4                8     9
+ *            5     6
+ *
+ * 前序遍历法：123456789（根左右）
+ *
+ * 中序遍历法：325461879（左根右）
+ *
+ * 后序遍历法：356428971（左右根）
+ */
 public class BiTree {
     //树的根结点
     private BiTreeNode root;
