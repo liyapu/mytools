@@ -153,9 +153,12 @@ public class BiTree {
     public void preOrder2() {
         Stack<BiTreeNode> stack = new Stack<>();
         BiTreeNode node = root;
+
         while (node != null || stack.size() > 0) {
             while (node != null) {//压入所有的左节点，压入前访问它
+                //访问自身，上面有校验，保证没有空指针
                 System.out.print(node.getData());
+                //添加自身，上面有校验，保证添加的不为null
                 stack.push(node);
                 node = node.getLchild();
             }
