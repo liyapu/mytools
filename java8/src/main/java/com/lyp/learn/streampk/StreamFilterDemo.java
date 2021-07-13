@@ -415,4 +415,28 @@ public class StreamFilterDemo {
                 .collect(Collectors.collectingAndThen(Collectors.joining(","), x -> x + "d"));
         System.out.println(str2);
     }
+
+    /**
+     * 查找重复元素
+     */
+    @Test
+    public void findRepeat01(){
+        List<Apple> inventory = Arrays.asList(
+                new Apple("green", 80, "黄土高原"),
+                new Apple("green", 200, "黄河故道"),
+                new Apple("red", 160, "渤海湾"),
+                new Apple("yellow", 20, "渤海湾"),
+                new Apple("red", 160, "渤海湾")
+        );
+        //已经添加过的
+        Set<String> colorSeen = new HashSet<>();
+
+        String repeatColor = inventory
+                .stream()
+                .filter(apple -> !colorSeen.add(apple.getColor()))
+                .map(Apple::getColor)
+                .collect(Collectors.joining(","));
+        System.out.println("repeatColor == " + repeatColor);
+    }
+
 }
