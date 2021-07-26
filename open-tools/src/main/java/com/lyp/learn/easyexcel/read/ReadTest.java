@@ -3,9 +3,9 @@ package com.lyp.learn.easyexcel.read;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.read.metadata.ReadSheet;
-import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import org.junit.jupiter.api.Test;
 
 /**
  * easyexcel 官网
@@ -25,7 +25,8 @@ public class ReadTest {
     @Test
     public void simpleRead() {
         // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
-        String fileName = getFileName();
+//        String fileName = getFileName();
+        String fileName = "/Users/liyapu/mywork/repositoryMy/mytools/open-tools/src/main/resources/easyexcel/read/批量用户准备2.xlsx";
 
         //这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
 //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet().doRead();
@@ -37,6 +38,25 @@ public class ReadTest {
 //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0)
 //                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
 //                .headRowNumber(1).doRead();
+
+        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet()
+                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
+                .headRowNumber(1).doRead();
+    }
+
+    public static void main(String[] args) {
+        String fileName = "/Users/liyapu/mywork/repositoryMy/mytools/open-tools/src/main/resources/easyexcel/read/批量用户准备.xlsx";
+
+        //这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
+        //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet().doRead();
+
+        //指定 sheet
+        //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0).doRead();
+
+        //        //指定 sheet ,指定标题行
+        //        EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet(0)
+        //                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
+        //                .headRowNumber(1).doRead();
 
         EasyExcel.read(fileName, Hospital.class, new HospitalListener()).sheet()
                 // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行

@@ -3,6 +3,8 @@ package com.lyp.learn.easyexcel.read;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,15 @@ public class HospitalListener extends AnalysisEventListener<Hospital> {
      */
     public HospitalListener(HospitalDao hospitalDao) {
         this.hospitalDao = hospitalDao;
+    }
+
+    /**
+     * 获取表头字段 headRowNumber(1) 写几会调用几次
+     * @param headMap
+     * @param context
+     */
+    public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
+        log.info("headMap=============headMap:{},context:{}",JSON.toJSONString(headMap),JSON.toJSONString(context));
     }
 
     /**

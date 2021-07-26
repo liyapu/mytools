@@ -1,6 +1,10 @@
 package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +23,54 @@ import java.util.regex.Pattern;
  * @description:
  * @date 2019-10-09 13:18
  */
+@Slf4j
 public class FirstTest {
+    @Test
+    public void testL3(){
+        LocalDate localDateTimeNow1 = LocalDate.parse("2018-12",DateTimeFormatter.ofPattern("yyyy-MM"));
+        System.out.println("localDateTimeNow1 : " + localDateTimeNow1);
+    }
+
+
+    @Test
+    public void testL2() {
+        List<String> payrollMonthList = Arrays.asList("2019-01", "2019-02", "2019-03", "2019-10", "2019-11", "2019-12");
+        for (String payrollMonth : payrollMonthList) {
+            LocalDate parse = LocalDate.parse(payrollMonth,DateTimeFormatter.ofPattern("yyyy-MM"));
+            System.out.println(parse.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+        }
+    }
+
+
+        @Test
+    public void testL1(){
+        List<String> payrollMonthList = Arrays.asList("2019-01", "2019-02", "2019-03", "2019-10", "2019-11", "2019-12");
+        for (String payrollMonth : payrollMonthList) {
+            String[] yearMonthArray = payrollMonth.split("-");
+            if (yearMonthArray.length != 2) {
+                log.error("FranchiseePayrollRuleServiceImpl.getLastMonthSettlementPayableAmount, settleMonth parse error,"
+                        + " payrollMonth:{}", payrollMonth);
+                throw new IllegalArgumentException("settleMonth parse error!");
+            }
+            String year = yearMonthArray[0];
+            String month = yearMonthArray[1];
+            if (Integer.parseInt(month) > 12) {
+                log.error("FranchiseePayrollRuleServiceImpl.getPayrollCostLowerLimitCheck, settleMonth parse  error, " +
+                        "payrollMonth:{}", payrollMonth);
+                throw new IllegalArgumentException("settleMonth parse error!");
+            }
+            // 取上个月的薪资总数
+            if (StringUtils.equals("01", month)) {
+                month = "12";
+                year = String.valueOf(Integer.parseInt(year) - 1);
+            } else {
+                month = Strings.padStart((Integer.parseInt(month) - 1)+"",2,'0');
+            }
+            String settleMonth = year + month;
+            System.out.println(settleMonth);
+        }
+
+    }
 
     @Test
     public void addTest(){

@@ -1,5 +1,6 @@
 package com.lyp.learn.poi.excel;
 
+import java.util.HashSet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -49,7 +50,17 @@ public class ExcelCreateTable {
         StringBuffer tableStr = new StringBuffer();
         int tolal = 0;
 
-        Set<String> requireColumn = Sets.newHashSet("A48", "B12", "B15", "A46C", "A12C", "A13", "C03C", "C04N", "D01");
+//        Set<String> requireColumn =  Sets.newHashSet("A48", "B12", "B15", "A46C", "A12C", "A13", "C03C", "C04N", "D01");
+        Set<String> requireColumn =  new HashSet<>();
+        requireColumn.add("A48");
+        requireColumn.add("B12");
+        requireColumn.add("B15");
+        requireColumn.add("A46C");
+        requireColumn.add("A12C");
+        requireColumn.add("A13");
+        requireColumn.add("C03C");
+        requireColumn.add("C04N");
+        requireColumn.add("D01");
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
