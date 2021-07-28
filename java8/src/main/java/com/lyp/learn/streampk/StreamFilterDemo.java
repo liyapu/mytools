@@ -436,7 +436,7 @@ public class StreamFilterDemo {
                 .filter(apple -> !colorSeen.add(apple.getColor()))
                 .map(Apple::getColor)
                 .collect(Collectors.joining(","));
-        System.out.println("repeatColor == " + repeatColor);
+        System.out.println("repeatColor = " + repeatColor);
     }
 
 }

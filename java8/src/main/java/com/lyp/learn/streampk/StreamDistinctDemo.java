@@ -120,14 +120,17 @@ public class StreamDistinctDemo {
 
     }
 
+    /**
+     * 根据对象某几个属性去重
+     *
+     * https://blog.csdn.net/qq_35634181/article/details/108867857
+     * JDK8 Stream操作 collectingAndThen ------根据对象的属性进行去重操作
+     */
     @Test
     public void test031() {
         List<Student> studentList = getStudentList();
         System.out.println("去重前：");
         printList(studentList);
-
-        // 然后再根据 地址 address 去重
-
 
         //通过 TreeSet<> 来达到获取不同元素的效果
         //根据 年龄和姓名 两个字段去重

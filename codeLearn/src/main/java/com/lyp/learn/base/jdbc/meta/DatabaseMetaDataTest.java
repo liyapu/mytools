@@ -1,6 +1,5 @@
 package com.lyp.learn.base.jdbc.meta;
 
-import com.lyp.learn.base.jdbc.DbConnectionUtil;
 import org.junit.Test;
 
 import java.sql.*;

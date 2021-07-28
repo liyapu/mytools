@@ -1,4 +1,4 @@
-package com.lyp.learn.base.jdbc;
+package com.lyp.learn.base.jdbc.meta;
 
 import java.io.File;
 import java.io.FileInputStream;
