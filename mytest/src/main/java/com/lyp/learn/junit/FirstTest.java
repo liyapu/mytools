@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,33 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void test5(){
+
+        long numberOfOffender = 6L;
+        BigDecimal selfProportion = new BigDecimal(0.9);
+        long numberOfOffenderAllow = selfProportion.multiply(BigDecimal.valueOf(6)).longValue();
+        if (numberOfOffender >= numberOfOffenderAllow) {
+            // 大于等于设置的比例，那么就是不违规
+            System.out.println("满足");
+        } else {
+            System.out.println("不满足");
+        }
+    }
+
+    @Test
+    public void test4(){
+        List<String> names = Arrays.asList("赵","钱","孙","李","周","郑","王");
+        List<String> nums = Arrays.asList("一","二","三","四","五","六","七","八","九","十");
+        for (String name : names) {
+            for (String num : nums) {
+                System.out.println(name + num);
+            }
+        }
+
+    }
+
     @Test
     public void testL3(){
         LocalDate localDateTimeNow1 = LocalDate.parse("2018-12",DateTimeFormatter.ofPattern("yyyy-MM"));

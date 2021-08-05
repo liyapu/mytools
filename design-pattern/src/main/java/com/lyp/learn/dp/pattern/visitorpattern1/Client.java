@@ -1,6 +1,7 @@
 package com.lyp.learn.dp.pattern.visitorpattern1;
 
 /**
+ *
  * 应用程序
  */
 public class Client {
