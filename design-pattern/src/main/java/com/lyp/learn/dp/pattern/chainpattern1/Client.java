@@ -9,6 +9,7 @@ public class Client {
         request.setRequestStr("aa <替换吧>  我是敏感词 敏感 <aBc>");
 
         Response response = new Response();
+        response.setResponseStr("我是响应：：：");
 
         HTMLFilter htmlFilter = new HTMLFilter();
         SensitiveFilter sensitiveFilter = new SensitiveFilter();
@@ -21,6 +22,8 @@ public class Client {
 
         chain.doFilter(request,response,chain);
 
+        System.out.println();
+        System.out.println("-------------------------");
         System.out.println(request.getRequestStr());
         System.out.println(response.getResponseStr());
     }

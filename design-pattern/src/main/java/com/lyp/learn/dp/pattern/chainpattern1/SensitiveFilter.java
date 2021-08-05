@@ -9,7 +9,7 @@ package com.lyp.learn.dp.pattern.chainpattern1;
 public class SensitiveFilter implements Filter {
     @Override
     public void doFilter(Request request, Response response, FilterChain chain) {
-        System.out.println("SensitiveFilter   start");
+        System.out.println("\tSensitiveFilter   start");
 
         request.setRequestStr(request.getRequestStr()
                             .replaceAll("被就业","就业")
@@ -19,7 +19,7 @@ public class SensitiveFilter implements Filter {
 
         chain.doFilter(request,response,chain);
 
-        System.out.println("SensitiveFilter   end");
+        System.out.println("\tSensitiveFilter   end");
 
     }
 }

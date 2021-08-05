@@ -6,7 +6,7 @@ package com.lyp.learn.dp.pattern.chainpattern1;
 public class CharFilter implements Filter {
     @Override
     public void doFilter(Request request, Response response, FilterChain chain) {
-        System.out.println("CharFilter   start");
+        System.out.println("\t\tCharFilter   start");
 
         request.setRequestStr(request.getRequestStr()
                                 .toUpperCase()
@@ -14,7 +14,7 @@ public class CharFilter implements Filter {
         response.setResponseStr(response.getResponseStr() + " CharFilter ");
         chain.doFilter(request,response,chain);
 
-        System.out.println("CharFilter   end");
+        System.out.println("\t\tCharFilter   end");
 
     }
 }

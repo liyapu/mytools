@@ -27,6 +27,7 @@ public class FilterChain implements Filter {
         //index 初始化为0
         //当index 达到filters的长度时，就返回不在执行
         if(index == filters.size()){
+            System.out.println("\t\t\t chain doFilter end");
             return;
         }
 
