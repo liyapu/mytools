@@ -1,5 +1,6 @@
 package com.lyp.learn.streampk;
 
+import com.google.common.base.Strings;
 import com.lyp.learn.bean.Apple;
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +49,14 @@ public class Utils {
                 .filter(entry -> entry.getValue() > 1)
                 .map(entry -> entry.getKey())
                 .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 999; i++) {
+            String num = Strings.padStart(i+"",3,'0');
+            System.out.println("![](..\\img\\law\\economic"+num+".png)");
+
+        }
     }
 
 }
