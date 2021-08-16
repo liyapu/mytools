@@ -26,6 +26,52 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+    /**
+     * nbsp NBSP 其ASCII码值为160，这才知道，原来ASCII码中除了32之外还有160这个特殊的空格
+     * 但是不间断空格有个问题，就是它无法被trim()所裁剪，也无法被正则表达式的\s所匹配，也无法被StringUtils的isBlank()所识别，也就是说，无法像裁剪寻常空格那样移除这个不间断空格。
+     *
+     * 我们可以利用不间断空格的Unicode编码来移除它，其编码为\u00A0
+     */
+    @Test
+    public void testNbsp1(){
+        final char c1 = ' '; //db里的空格
+        final char c2 = ' '; //手动输入的空格
+        System.out.println((int)c1); //160
+        System.out.println((int)c2); //32
+    }
+
+    @Test
+    public void testNbsp2(){
+//        replace("\u00A0", "")
+//        replaceAll("\\u00A0+", "")  //这是正则表达式的写法
+        String idCard = "  22072 2198808014012    ";
+        String idCardTemp = idCard.replace("\u00A0", "");
+        System.out.println("idCardTemp= " + idCardTemp);
+
+    }
+    @Test
+    public void testTrim(){
+        String str = "a b       c   d   e   f";
+
+        String idCard = "   22011      219880    7014218    ";
+//        String idCardTemp = idCard.trim();
+        String idCardTemp = replaceBlank(idCard);
+        System.out.println("idCard = "+ idCard);
+        System.out.println("idCardTemp = "+ idCardTemp);
+
+    }
+
+    @Test
+    public void testTrim2(){
+        String str = "a b       c   d   e   f";
+
+        String idCard = "   22011      219880    7014218    ";
+        //        String idCardTemp = idCard.trim();
+        String idCardTemp = replaceBlank2(idCard);
+        System.out.println("idCard = "+ idCard);
+        System.out.println("idCardTemp = "+ idCardTemp);
+
+    }
 
     @Test
     public void test5(){
@@ -168,9 +214,16 @@ public class FirstTest {
      * @param str
      * @return
      */
-    public String replaceBlank(String str) {
-        Pattern pt = Pattern.compile("^\\s*|\\s*$");
-        Matcher mt = pt.matcher(str);
+    public static String replaceBlank(String str) {
+        Pattern pattern = Pattern.compile("^\\s*|\\s*$");
+        Matcher mt = pattern.matcher(str);
+        str = mt.replaceAll("");
+        return str;
+    }
+
+    public static String replaceBlank2(String str) {
+        Pattern pattern = Pattern.compile("^\\s*|^\\u00A0*|\\u00A0*$|\\s*$");
+        Matcher mt = pattern.matcher(str);
         str = mt.replaceAll("");
         return str;
     }
