@@ -1,4 +1,4 @@
-package com.lyp.learn.junit;
+package com.lyp.learn.spock;
 
 /**
  * @author: liyapu

@@ -27,6 +27,7 @@
         <module>jvm</module>
         <module>cypher</module>
         <module>java15</module>
+        <module>spockdemo</module>
     </modules>
 
     <properties>
