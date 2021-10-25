@@ -2,6 +2,7 @@ package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,52 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    /**
+     * 测试 list 方法
+     */
+    @Test
+    public void testList02(){
+        List<Integer> ints = new ArrayList<>();
+        ints.add(1);
+        ints.add(2);
+        ints.add(3);
+        ints.add(4);
+        ints.add(5);
+
+        List<Integer> others = new ArrayList<>();
+        others.add(2);
+        others.add(4);
+        others.add(6);
+        others.add(8);
+
+        boolean b1 = ints.retainAll(others);
+        System.out.println("ints = " + ints);
+        System.out.println("others = " + others);
+    }
+
+    /**
+     * 测试 list 方法
+     */
+    @Test
+    public void testList01(){
+        List<Integer> ints = new ArrayList<>();
+        ints.add(1);
+        ints.add(2);
+        ints.add(3);
+        ints.add(4);
+        ints.add(5);
+
+        List<Integer> others = new ArrayList<>();
+        others.add(2);
+        others.add(4);
+        others.add(6);
+        others.add(8);
+
+        boolean b = ints.removeAll(others);
+        System.out.println("ints = " + ints);
+        System.out.println("others = " + others);
+    }
     /**
      * nbsp NBSP 其ASCII码值为160，这才知道，原来ASCII码中除了32之外还有160这个特殊的空格
      * 但是不间断空格有个问题，就是它无法被trim()所裁剪，也无法被正则表达式的\s所匹配，也无法被StringUtils的isBlank()所识别，也就是说，无法像裁剪寻常空格那样移除这个不间断空格。

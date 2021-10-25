@@ -3,6 +3,9 @@ package com.lyp.learn.streampk;
 import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.Apple;
 import com.lyp.learn.bean.Dish;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -349,6 +352,16 @@ public class StreamGroupByDemo {
         Map<Integer, Map<String, Apple>> collect = inventory.stream()
                 .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, Function.identity())));
         System.out.println(collect);
+    }
+
+    /**
+     * 使用 TreeMap 收集，key值自动排序
+     */
+    @Test
+    public void test117(){
+        TreeMap<String, List<Apple>> colorToAppleListTreeMap = inventory.stream()
+                .collect(groupingBy(Apple::getColor, TreeMap::new, mapping(Function.identity(), toList())));
+        System.out.println(colorToAppleListTreeMap);
     }
 
     /**
