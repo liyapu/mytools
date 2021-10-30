@@ -12,21 +12,25 @@ interface Information {
  enum Season implements Information {
 
     SPRING("spring", "春暖花开"){
+        @Override
         public void show() {
             System.out.println("春天在哪里?");
         }
     },
     SUMMER("summer", "夏日炎炎"){
+        @Override
         public void show() {
             System.out.println("夏天在哪里?");
         }
     },
     AUTUMN("autumn", "秋高气爽"){
+        @Override
         public void show() {
             System.out.println("秋天在哪里?");
         }
     },
     WINTER("winter", "白雪皑皑"){
+        @Override
         public void show() {
             System.out.println("冬天在哪里?");
         }
