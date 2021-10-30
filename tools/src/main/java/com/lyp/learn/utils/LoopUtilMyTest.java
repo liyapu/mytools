@@ -14,7 +14,7 @@ import org.apache.thrift.TException;
  * @date 2021-10-29 20:26
  * @desc
  */
-public class LoopUtilTest {
+public class LoopUtilMyTest {
 
     //=================================================================================
 //    @Test

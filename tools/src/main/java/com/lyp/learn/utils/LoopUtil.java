@@ -1,5 +1,6 @@
 package com.lyp.learn.utils;
 
+import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
 import com.lyp.learn.enums.ThreadPoolNames;
 import com.lyp.learn.fun.OneParamFunction;
@@ -17,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
  * @description: 循环获取全量数据
  */
 public class LoopUtil {
+
     /**
      * 循环获取全部数据
      * @param responseFunc 获取response， 第一个入参是offset，第二个是 limit，第三个是response类型
