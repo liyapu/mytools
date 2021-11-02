@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +28,20 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testOptional(){
+//        Optional<Integer> numOptional = Optional.ofNullable(null);
+        Optional<Integer> numOptional = Optional.ofNullable(2);
+        Integer count  = 100;
+        String confirmAuthorization = "--";
+
+        if(numOptional.isPresent() && null != numOptional.get()) {
+            confirmAuthorization = "确认";
+        }
+        System.out.println("confirmAuthorization = " + confirmAuthorization);
+
+    }
 
     /**
      * 测试 list 方法
