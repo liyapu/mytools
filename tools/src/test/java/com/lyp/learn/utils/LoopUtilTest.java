@@ -5,7 +5,6 @@ import com.lyp.learn.bean.Man;
 import com.lyp.learn.bean.ManResponse;
 import java.util.List;
 import junit.framework.TestCase;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author liyapu

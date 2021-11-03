@@ -1,13 +1,15 @@
 package com.lyp.learn.bean;
 
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.json.JSON;
 import com.google.common.base.Strings;
+import com.lyp.learn.utils.JsonUtil;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
-import org.apache.commons.lang3.RandomUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.omg.IOP.Encoding;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author liyapu
@@ -21,9 +23,20 @@ public class Man {
     public static List<Man> manList = new ArrayList<>();
 
     static {
-        for (int i = 1; i < 35; i++) {
-            manList.add(Man.of(i, RandomUtil.randomString(3)));
+        int id = 1;
+        int end = 38;
+        for (char i = 'a'; i <'z' ; i++) {
+            for (char j = 'a'; j < 'z'; j++) {
+                manList.add(Man.of(id++, i+""+j));
+                if(i == end){
+                    break;
+                }
+            }
+            if(i == end){
+                break;
+            }
         }
+
     }
 
     public static Man of(int id,String name){
@@ -80,6 +93,37 @@ public class Man {
         manResponse.setMsg("成功");
         manResponse.setData(manDTO);
         return manResponse;
+    }
+
+    /**
+     * 根据 id列表 查询
+     * @param ids
+     * @return
+     */
+    public ManListResponse queryByIds(List<Integer> ids){
+        System.out.println("queryByIds ===== ids:::" + JsonUtil.writeToString(ids));
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ManListResponse manListResponse = new ManListResponse();
+        manListResponse.setCode(0);
+        manListResponse.setMsg("成功");
+
+        List<Man> dataList = new ArrayList<>();
+        Map<Integer, Man> id$ManMap =
+                manList.stream().collect(Collectors.toMap(Man::getId, Function.identity(), (k1, k2) -> k1));
+        for (Integer id : ids) {
+            Man man = id$ManMap.get(id);
+            dataList.add(man);
+        }
+        manListResponse.setData(dataList);
+        System.out.println("queryByIds ===== manListResponse::" + JsonUtil.writeToString(manListResponse));
+
+        return manListResponse;
     }
 
 
