@@ -2,7 +2,9 @@ package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.*;
+import com.lyp.learn.utils.JsonUtil;
 import com.lyp.learn.utils.MyBeanUtils;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
@@ -233,8 +235,11 @@ public class StreamComparatorDemo {
         System.out.println(colorWeightList3);
         System.out.println(JSON.toJSONString(colorWeightList3));
 
-
-
+        //多个字段倒叙排
+        List<Apple> colorWeightList4 = new ArrayList<>(inventory);
+        colorWeightList4.sort(Comparator.comparing(Apple::getColor,Comparator.reverseOrder()).thenComparing(Apple::getWeight,Comparator.reverseOrder()));
+        System.out.println(colorWeightList4);
+        System.out.println(JSON.toJSONString(colorWeightList4));
     }
 
     /**
@@ -494,17 +499,163 @@ public class StreamComparatorDemo {
         System.out.println(msgContent);
     }
 
+    /**
+     * 根据 id 正序排序
+     *
+     * List<类> list; 代表某集合
+     *
+     * //返回 对象集合以类属性一升序排序
+     * list.stream().sorted(Comparator.comparing(类::属性一));
+     */
+    @Test
+    public void testSorted(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+        List<Worker> workerList2 = workerList1.stream().sorted(Comparator.comparing(Worker::getId)).collect(Collectors.toList());
+        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+    }
+
+    /**
+     * 根据 id 正序排序,然后倒叙输出
+     *
+     * //返回 对象集合以类属性一降序排序 注意两种写法
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一).reversed());//先以属性一升序,结果进行属性一降序
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()));//以属性一降序
+     */
+    @Test
+    public void testSortedReversed(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+//        List<Worker> workerList2 =
+//                workerList1.stream().sorted(Comparator.comparing(Worker::getId).reversed()).collect(Collectors.toList());
+//        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+        List<Worker> workerList3 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+
+    }
+
+    /**
+     * 返回 对象集合以类属性一升序 属性二升序
+     * list.stream().sorted(Comparator.comparing(类::属性一).thenComparing(类::属性二));
+     */
+    @Test
+    public void testSortedThen(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+
+        List<Worker> workerList2 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId).thenComparing(Worker::getAge))
+                .collect(Collectors.toList());
+        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+    }
+
+    /**
+     * //返回 对象集合以类属性一降序 属性二升序 注意两种写法
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二));//先以属性一升序,升序结果进行属性一降序,
+     * 再进行属性二升序
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()).thenComparing(类::属性二));//先以属性一降序,
+     * 再进行属性二升序
+     */
+    @Test
+    public void testSortReversedThen(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+
+        List<Worker> workerList2 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId).reversed().thenComparing(Worker::getAge))
+                .collect(Collectors.toList());
+        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+        List<Worker> workerList3 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()).thenComparing(Worker::getAge))
+                .collect(Collectors.toList());
+        System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+
+    }
+
+    /**
+     * //返回 对象集合以类属性一降序 属性二降序 注意两种写法
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二,Comparator.reverseOrder()));
+     * //先以属性一升序,升序结果进行属性一降序,再进行属性二降序
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()).thenComparing(类::属性二,Comparator.reverseOrder()));
+     * //先以属性一降序,再进行属性二降序
+     */
+    @Test
+    public void testSortedReverseReverse(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+
+        List<Worker> workerList2 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId).reversed().thenComparing(Worker::getAge,Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+        List<Worker> workerList3 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder())
+                        .thenComparing(Worker::getAge, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+
+    }
+
+    /**
+     * //返回 对象集合以类属性一升序 属性二降序 注意两种写法
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二).reversed());
+     * //先以属性一升序,升序结果进行属性一降序,再进行属性二升序,结果进行属性一升序属性二降序
+     *
+     * list.stream().sorted(Comparator.comparing(类::属性一).thenComparing(类::属性二,Comparator.reverseOrder()));
+     * //先以属性一升序,再进行属性二降序
+     */
+    @Test
+    public void testSortedThenReverseOrder(){
+        List<Worker> workerList1 = getWorkerList();
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+
+        List<Worker> workerList2 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId).reversed().thenComparing(Worker::getAge).reversed())
+                .collect(Collectors.toList());
+        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+
+        List<Worker> workerList3 = workerList1.stream()
+                .sorted(Comparator.comparing(Worker::getId).thenComparing(Worker::getAge, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+    }
+
+    /**
+     * 排序总结：：：：：
+     * 通过以上例子我们可以发现
+     *    1. Comparator.comparing(类::属性一).reversed();
+     *    2. Comparator.comparing(类::属性一,Comparator.reverseOrder());
+     *   两种排序是完全不一样的,一定要区分开来
+     *     1 是得到排序结果后再排序,
+     *     2 是直接进行排序,很多人会混淆导致理解出错,2更好理解,建议使用2
+     */
+
     private List<Worker> getWorkerList() {
         List<Worker> Workers = new ArrayList<>();
         Workers.add(new Worker(5, "关羽", 22, "北京"));
         Workers.add(new Worker(8, "张飞", 11, "天津"));
-        Workers.add(new Worker(8, "张飞", 11, "天津"));
+        Workers.add(new Worker(8, "张飞", 29, "天津"));
         Workers.add(new Worker(2, "曹操", 56, "上海"));
         Workers.add(new Worker(9, "刘备", 32, "北京"));
         Workers.add(new Worker(1, "诸葛亮", 26, "温州"));
-        Workers.add(new Worker(9, "刘备", 32, "北京"));
-        Workers.add(new Worker(9, "刘备", 32, "北京"));
+        Workers.add(new Worker(9, "刘备", 20, "北京"));
+        Workers.add(new Worker(9, "刘备", 60, "北京"));
         Workers.add(new Worker(4, "孙权", 18, "上海"));
+        Workers.add(new Worker(4, "孙策", 10, "浙江"));
         return Workers;
     }
 
