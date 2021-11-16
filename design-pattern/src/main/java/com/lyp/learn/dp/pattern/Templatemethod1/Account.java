@@ -28,7 +28,7 @@ public abstract class Account {
     //基本方法，确定利息，留个子类去实现
     protected abstract double getInterestRate();
 
-    //基本方法，更加账号类型和账号确定账户金额
+    //基本方法，根据账号类型和账号确定账户金额
     protected  double getAccount(String accountType, String accountNumber){
         //访问数据库....
         return 1000;

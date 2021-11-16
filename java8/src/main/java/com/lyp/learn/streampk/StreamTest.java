@@ -336,6 +336,13 @@ public class StreamTest {
         numStrs.forEach(x -> System.out.println(x));
     }
 
+    /**
+     *  long dateSellCount = dateSells.stream()
+     *                             .flatMap(dto -> dto.getSellPoiList().stream())
+     *                             .mapToLong(SellPoi::getSellCount)
+     *                             .sum();
+     */
+
     @Test
     public void testList() {
         List numList = new ArrayList<>();
