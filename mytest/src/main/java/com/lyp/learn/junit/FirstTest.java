@@ -30,6 +30,44 @@ import java.util.regex.Pattern;
 public class FirstTest {
 
     @Test
+    public void testBigDecimal4(){
+        //Java有自带的 stripTrailingZeros() 方法用于去除末尾多余的0
+
+        BigDecimal num = new BigDecimal("100.000");
+        BigDecimal numNoEndZero = num.stripTrailingZeros();  //numNoEndZero  ：1E+2
+        System.out.println(numNoEndZero.toString());
+
+        //按上面的方法输出结果，会显示科学计数法，所以需要处理一下，解决方法：
+        String numNoEndZeroStr = new BigDecimal("100.000").stripTrailingZeros().toPlainString();   //numNoEndZeroStr  ：100
+        System.out.println(numNoEndZeroStr);
+
+    }
+
+    @Test
+    public void testBigDecimal3(){
+        BigDecimal bg = new BigDecimal("100000000.0000000");
+        System.out.println(bg);
+
+
+        System.out.println(bg.toString());
+
+        //stripTrailingZeros()函数就是用于去除末尾多余的0的
+        String bgStr = bg.stripTrailingZeros().toPlainString();
+        System.out.println(bgStr);
+    }
+
+    @Test
+    public void testBigDecimal2(){
+        BigDecimal bg = new BigDecimal(100.0000000);
+        System.out.println(bg);
+
+        System.out.println(bg.toString());
+
+        String bgStr = bg.stripTrailingZeros().toPlainString();
+        System.out.println(bgStr);
+    }
+
+    @Test
     public void testOptional(){
 //        Optional<Integer> numOptional = Optional.ofNullable(null);
         Optional<Integer> numOptional = Optional.ofNullable(2);
