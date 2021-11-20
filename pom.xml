@@ -45,18 +45,6 @@
 
 
     <dependencies>
-        <!-- 签章 -->
-        <dependency>
-            <groupId>com.sankuai.meituan</groupId>
-            <artifactId>bsi-esign-sdk</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-        <!-- 文档模版 -->
-        <dependency>
-            <groupId>com.sankuai.meituan</groupId>
-            <artifactId>xcontract-thrift-client</artifactId>
-            <version>3.1.4.11</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
