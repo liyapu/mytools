@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.thrift.TBase;
+//import org.apache.thrift.TBase;
 
 /**
  * @Description Json静态工具（基于jackson） 考虑到大多数使用场景，所以：反序列化方法会吞掉异常；序列化方法会抛出异常
@@ -63,7 +63,7 @@ public class JsonUtil {
             }
         };
         MAPPER.setFilterProvider(new SimpleFilterProvider().addFilter(DYNC_FILTER, newFilter));
-        MAPPER.addMixIn(TBase.class, DynamicFilter.class);
+//        MAPPER.addMixIn(TBase.class, DynamicFilter.class);
         //日期格式化
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         MAPPER.setDateFormat(sdf);

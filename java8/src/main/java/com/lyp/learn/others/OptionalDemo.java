@@ -341,6 +341,40 @@ public class OptionalDemo {
     }
 
     /**
+     * orElse(T other) 不论容器是否为空,只要调用该方法, 则对象other一定存在
+     * orElseGet(Supplier<? extends T> supplier) 只有当容器为空时,才调用supplier.get()方法产生对象
+     *
+     * 请想象以下场景:
+     *    在分布式开发中,有一个方法需要接收前台数据,但该数据可能为空,
+     *    当该数据为空时,需要远程调用一个方法为其设置默认值
+     *
+     * 结果为orElse调用方法,orElseGet没有调用方法
+     *      可以看到,虽然opt不为空,但是orElse()依然调用了远程方法,并产生了一个String对象
+     *      orElseGet并没有调用方法,也没有产生任何对象
+     *
+     *  所以可见orElseGet()更优, 但代价就是需要传入一个Supplier<T>类型的参数,相对会麻烦一些.
+     */
+    @Test
+    public void testOrElse() {
+        Optional<String> opt = Optional.of("前端数据");
+
+        System.out.println("---orElse 调用---");
+        String x = opt.orElse(getDefaultValue());
+        System.out.println("x = " + x);
+
+        System.out.println();
+        System.out.println("---orElseGet 调用---");
+        String y = opt.orElseGet(() -> getDefaultValue());
+        System.out.println("y = " + y);
+
+    }
+
+    public String getDefaultValue(){  //远程方法调用
+        System.out.println("我被调用了!");
+        return "我是默认值";
+    }
+
+    /**
      * filter
      * filter方法在Optional中value不为空的情况下对Optional中的值进行过滤
      *

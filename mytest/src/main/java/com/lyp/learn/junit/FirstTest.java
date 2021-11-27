@@ -1,6 +1,7 @@
 package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,17 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    /**
+     * 获取当前时间的 毫秒时间戳
+     */
+    @Test
+    public void testEpochMilli(){
+        long epochMilli = Instant.now().toEpochMilli();
+        System.out.println(epochMilli);
+        long currentTimeMillis = System.currentTimeMillis();
+        System.out.println(currentTimeMillis);
+    }
 
     @Test
     public void testBigDecimal4(){

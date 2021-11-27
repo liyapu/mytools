@@ -1,13 +1,12 @@
 package com.lyp.learn.utils;
 
-import com.lyp.learn.bean.User;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import static java.util.stream.Collectors.toList;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.thrift.TException;
+//import java.util.Arrays;
+//import java.util.List;
+//import java.util.Objects;
+//import static java.util.stream.Collectors.toList;
+//import org.apache.commons.collections.CollectionUtils;
+//import org.apache.commons.lang3.StringUtils;
+//import org.apache.thrift.TException;
 
 /**
  * @author liyapu
