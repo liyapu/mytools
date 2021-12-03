@@ -31,6 +31,20 @@ import java.util.regex.Pattern;
 public class FirstTest {
 
     /**
+     * 【强制】BigDecimal的等值比较应使用compareTo()方法，而不是equals()方法
+     * （说明：说明：equals()方法会比较值和精度（1.0与1.00返回结果为false），而compareTo()则会忽略精度）
+     */
+    @Test
+    public void testBigDecimalCompareTo(){
+        BigDecimal num1 = new BigDecimal("100.000");
+        BigDecimal num2 = new BigDecimal("100");
+
+        System.out.println(Objects.equals(num1,num2));
+        System.out.println(num1.compareTo(num2));
+
+    }
+
+    /**
      * 获取当前时间的 毫秒时间戳
      */
     @Test
