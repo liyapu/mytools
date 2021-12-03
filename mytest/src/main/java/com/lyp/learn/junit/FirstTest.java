@@ -31,6 +31,32 @@ import java.util.regex.Pattern;
 public class FirstTest {
 
     /**
+     * 【强制】日期格式化时，传入pattern中表示年份统一使用小写的y（说明：日期格式化时，yyyy表示当天所在的年，
+     * 而大写的YYYY代表是week in which year（JDK7之后引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的YYYY就是下一年）
+     */
+    @Test
+    public void testYear(){
+        //正例：表示日期和时间的格式如下所示
+        String strTime = "2021-12-02";
+        LocalDate parse = LocalDate.parse(strTime, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println("parse : " + parse) ;
+
+        LocalDateTime localDateTimeNow1 = LocalDateTime.parse("2018-12-18 15:41:15",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("localDateTimeNow1 : " + localDateTimeNow1);
+    }
+
+    /**
+     * 【强制】在日期格式中分清楚大写的M和小写的m，大写的H和小写的h分别指代的意义
+     *
+     * 说明：日期格式中的这两对字母表意如下：
+     * 1）表示月份是大写的M
+     * 2）表示分钟则是小写的m
+     *
+     * 3）24小时制的是大写的H
+     * 4）12小时制的则是小写的h
+     */
+
+    /**
      * 【强制】BigDecimal的等值比较应使用compareTo()方法，而不是equals()方法
      * （说明：说明：equals()方法会比较值和精度（1.0与1.00返回结果为false），而compareTo()则会忽略精度）
      */
