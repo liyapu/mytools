@@ -29,6 +29,17 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+    /**
+     * 强制】不要在程序中写死一年为365天，避免在公历闰年时出现日期转换错误或程序逻辑错误
+     */
+    @Test
+    public void testYearNums(){
+        //获取今年的天数
+        int intdaysOfThisYear=LocalDate.now().lengthOfYear();
+        //获取指定某年的天数
+        int intdaysOfThisYear2 = LocalDate.of(2011, 1, 1).lengthOfYear();
+
+    }
 
     /**
      * 【强制】日期格式化时，传入pattern中表示年份统一使用小写的y（说明：日期格式化时，yyyy表示当天所在的年，
