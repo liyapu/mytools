@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,16 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testStr(){
+        String str = "10309\n" + "10309\n"  + "9453\n" + "97119\n" + "97119";
+        String[] split = str.split("\n");
+        String collect = Arrays.stream(str.split("\n"))
+                .collect(Collectors.toSet()).stream()
+                .collect(Collectors.joining(","));
+        System.out.println(collect);
+    }
     /**
      * 强制】不要在程序中写死一年为365天，避免在公历闰年时出现日期转换错误或程序逻辑错误
      */
