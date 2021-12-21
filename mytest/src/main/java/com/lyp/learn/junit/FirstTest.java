@@ -31,6 +31,97 @@ import java.util.regex.Pattern;
 @Slf4j
 public class FirstTest {
 
+    /**
+     * (五) 日期时间
+     * 1. 【强制】日期格式化时，传入 pattern 中表示年份统一使用小写的 y。
+     * 说明：日期格式化时，yyyy 表示当天所在的年，而大写的 YYYY 代表是 week in which year（JDK7 之后
+     * 引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的 YYYY
+     * 就是下一年。
+     * 正例：表示日期和时间的格式如下所示：
+     * new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+     *
+     * 2. 【强制】在日期格式中分清楚大写的 M 和小写的 m，大写的 H 和小写的 h 分别指代的意义。
+     * 说明：日期格式中的这两对字母表意如下：
+     * 1） 表示月份是大写的 M； 2） 表示分钟则是小写的 m； 3） 24 小时制的是大写的 H； 4） 12 小时制的则是小写的 h。
+     *
+     * 3. 【强制】获取当前毫秒数：System.currentTimeMillis(); 而不是 new Date().getTime()。
+     * 说明：如果想获取更加精确的纳秒级时间值，使用 System.nanoTime 的方式。在 JDK8 中，针对统计时间
+     * 等场景，推荐使用 Instant 类。
+     *
+     * 4. 【强制】不允许在程序任何地方中使用：1）java.sql.Date。 2）java.sql.Time。 3）java.sql.Timestamp。
+     * 说明：第 1 个不记录时间，getHours()抛出异常；第 2 个不记录日期，getYear()抛出异常；第 3 个在构造
+     * 方法 super((time/1000)*1000)，在 Timestamp 属性 fastTime 和 nanos 分别存储秒和纳秒信息。
+     * 反例： java.util.Date.after(Date)进行时间比较时，当入参是 java.sql.Timestamp 时，会触发 JDK
+     * BUG(JDK9 已修复)，可能导致比较时的意外结果。
+     */
+
+    /**
+     * 【强制】任何货币金额，均以最小货币单位且整型类型来进行存储。
+     */
+    /**
+     *【强制】浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals
+     * 来判断。
+     * 说明：浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。二进
+     * 制无法精确表示大部分的十进制小数，具体原理参考《码出高效》。
+     */
+    @Test
+    public void testFloat1() {
+        //反例：
+        float a = 1.0F - 0.9F;
+        float b = 0.9F - 0.8F;
+        if (a == b) {
+        // 预期进入此代码块，执行其它业务逻辑
+        // 但事实上 a==b 的结果为 false
+        }
+        Float x = Float.valueOf(a);
+        Float y = Float.valueOf(b);
+        if (x.equals(y)) {
+        // 预期进入此代码块，执行其它业务逻辑
+        // 但事实上 equals 的结果为 false
+        }
+    }
+
+    @Test
+    public void testFloat2(){
+        //正例：
+        //(1) 指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的。
+        float a = 1.0F - 0.9F;
+        float b = 0.9F - 0.8F;
+        float diff = 1e-6F;
+        if (Math.abs(a - b) < diff) {
+            System.out.println("true");
+        }
+
+        //(2) 使用 BigDecimal 来定义值，再进行浮点数的运算操作。
+        BigDecimal aa = new BigDecimal("1.0");
+        BigDecimal bb = new BigDecimal("0.9");
+        BigDecimal cc = new BigDecimal("0.8");
+        BigDecimal x = aa.subtract(bb);
+        BigDecimal y = bb.subtract(cc);
+        if (x.compareTo(y) == 0) {
+            System.out.println("true");
+        }
+    }
+
+    /**
+     * 【强制】如上所示 BigDecimal 的等值比较应使用 compareTo()方法，而不是 equals()方法。
+     *  说明：equals()方法会比较值和精度（1.0 与 1.00 返回结果为 false），而 compareTo()则会忽略精度。
+     */
+
+    /**
+     * 【强制】禁止使用构造方法 BigDecimal(double)的方式把 double 值转化为 BigDecimal 对象。
+     *  说明：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
+     *   如：BigDecimal g = new BigDecimal(0.1F); 
+     *   实际的存储值为：0.10000000149
+     */
+    @Test
+    public void testBigDecimalDemo1(){
+        //正例：优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 valueOf 方法，此方法内部其实执行了
+        //Double 的 toString，而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。
+        BigDecimal recommend1 = new BigDecimal("0.1");
+        BigDecimal recommend2 = BigDecimal.valueOf(0.1);
+    }
+
     @Test
     public void testStr(){
         String str = "10309\n" + "10309\n"  + "9453\n" + "97119\n" + "97119";
