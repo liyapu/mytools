@@ -467,6 +467,13 @@ public class DateTimeDemo {
         System.out.println();
     }
 
+
+    @Test
+    public void test08(){
+        Long createTime = 1638193736089L; //2021-11-29 21:48:56
+        DateTimeFormatter chinaDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
+    }
+
     /**
      * 带时区的
      * ZoneDate ZoneTime ZoneDateTime
