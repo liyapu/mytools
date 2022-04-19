@@ -1,10 +1,9 @@
 package com.lyp.learn.base.jdbc.meta;
 
-import org.junit.jupiter.api.Test;
-
 import java.sql.Connection;
 import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author: liyapu
@@ -25,7 +24,7 @@ public class ParameterMetaDataTest {
         String sql = "SELECT * FROM employee WHERE id = ? ";
 
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setLong(1,1088250446457389058L);
+        ps.setLong(1, 1088250446457389058L);
 
         //获取参数元数据
         ParameterMetaData psMetaData = ps.getParameterMetaData();
@@ -33,15 +32,6 @@ public class ParameterMetaDataTest {
         System.out.println("parameterCount = " + parameterCount);
         connection.close();
     }
-
-
-
-
-
-
-
-
-
 
 
 }

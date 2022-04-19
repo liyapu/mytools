@@ -1,9 +1,8 @@
 package com.lyp.learn;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
-
 import java.util.List;
+import org.junit.Test;
 
 /**
  *@author: liyapu
@@ -12,6 +11,7 @@ import java.util.List;
  */
 public class TestDemo {
 
+    
     @Test
     public void test1(){
         List<String> strLists = Lists.newArrayList("aa","bb","cc","dd","ee");

@@ -1,27 +1,25 @@
 package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author: liyapu
@@ -30,6 +28,15 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testBigDecimal2222() {
+        String str = "2.99aa";
+        BigDecimal salePriceDecimal = new BigDecimal(str);
+        BigDecimal hundred = new BigDecimal("100");
+        BigDecimal multiply = salePriceDecimal.multiply(hundred);
+        System.out.println(multiply);
+    }
 
     /**
      * (五) 日期时间

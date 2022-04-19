@@ -1,0 +1,1627 @@
+Search faq...
+124
+hits
+402
+ms
+log.com.sankuai.grocerysce.sreturn.api_all 本月份
+"旧链路创建发运单异常"
+使用DSL查询语法
+search
+2022/03/01 00:00:00 - 2022/03/31 23:59:59 天级聚合
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 15:28:09+0800",
+  "traceId__": "-3575870174282150802",
+  "es_datetime": "2022-03-08 15:28:09.425",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 15:28:09 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"王洪波","driverPhone":"15832163860","plateNumber":"冀ALB096","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086619528"],"poiType":2,"poiId":10046430,"supplierId":28691,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086619528","totalSkuCount":4,"totalEstimatedQuantity":6,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10046430,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "425",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 15:28:06+0800",
+  "traceId__": "6966009928704826581",
+  "es_datetime": "2022-03-08 15:28:06.542",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 15:28:06 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"王洪波","driverPhone":"15832163860","plateNumber":"冀ALB096","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086619528"],"poiType":2,"poiId":10046430,"supplierId":28691,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086619528","totalSkuCount":4,"totalEstimatedQuantity":6,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10046430,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "542",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 14:41:52+0800",
+  "traceId__": "-5021603437363960402",
+  "es_datetime": "2022-03-08 14:41:52.876",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 14:41:52 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "876",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 14:41:51+0800",
+  "traceId__": "1717196602327189141",
+  "es_datetime": "2022-03-08 14:41:51.888",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 14:41:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "888",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 14:41:49+0800",
+  "traceId__": "1822868443635950804",
+  "es_datetime": "2022-03-08 14:41:49.270",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 14:41:49 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "270",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 12:29:29+0800",
+  "traceId__": "-8147844752193711029",
+  "es_datetime": "2022-03-08 12:29:29.312",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 12:29:29 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"彭小彭","driverPhone":"15872146866","plateNumber":"京Q12345","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202110262772630","YXTH202110282840132","YXTH202111022936886","YXTH202111022941929","YXTH202111032954005","YXTH202111053040817","YXTH202111053041170","YXTH202111153245810"],"poiType":2,"poiId":10005977,"supplierId":6031,"targetCategoryPoiId":143210202994530,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202110262772630","totalSkuCount":1,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202110282840132","totalSkuCount":10,"totalEstimatedQuantity":2527,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022936886","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022941929","totalSkuCount":3,"totalEstimatedQuantity":5,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111032954005","totalSkuCount":1,"totalEstimatedQuantity":80,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053040817","totalSkuCount":1,"totalEstimatedQuantity":135,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053041170","totalSkuCount":1,"totalEstimatedQuantity":268,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111153245810","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "312",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 12:28:59+0800",
+  "traceId__": "173556266276939849",
+  "es_datetime": "2022-03-08 12:28:59.281",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 12:28:59 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"彭小彭","driverPhone":"15872146866","plateNumber":"京Q12345","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202110262772630","YXTH202110282840132","YXTH202111022936886","YXTH202111022941929","YXTH202111032954005","YXTH202111053040817","YXTH202111053041170","YXTH202111153245810"],"poiType":2,"poiId":10005977,"supplierId":6031,"targetCategoryPoiId":143210202994530,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202110262772630","totalSkuCount":1,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202110282840132","totalSkuCount":10,"totalEstimatedQuantity":2527,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022936886","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022941929","totalSkuCount":3,"totalEstimatedQuantity":5,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111032954005","totalSkuCount":1,"totalEstimatedQuantity":80,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053040817","totalSkuCount":1,"totalEstimatedQuantity":135,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053041170","totalSkuCount":1,"totalEstimatedQuantity":268,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111153245810","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "281",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 12:28:53+0800",
+  "traceId__": "492890596666957049",
+  "es_datetime": "2022-03-08 12:28:53.670",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 12:28:53 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"彭小彭","driverPhone":"15872146866","plateNumber":"京Q12345","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202110262772630","YXTH202110282840132","YXTH202111022936886","YXTH202111022941929","YXTH202111032954005","YXTH202111053040817","YXTH202111053041170","YXTH202111153245810"],"poiType":2,"poiId":10005977,"supplierId":6031,"targetCategoryPoiId":143210202994530,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202110262772630","totalSkuCount":1,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202110282840132","totalSkuCount":10,"totalEstimatedQuantity":2527,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022936886","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111022941929","totalSkuCount":3,"totalEstimatedQuantity":5,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111032954005","totalSkuCount":1,"totalEstimatedQuantity":80,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053040817","totalSkuCount":1,"totalEstimatedQuantity":135,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111053041170","totalSkuCount":1,"totalEstimatedQuantity":268,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530},{"returnBillNo":"YXTH202111153245810","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10005977,"poiType":2,"cwId":143210202994530}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "670",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:49:35+0800",
+  "traceId__": "9209005949208057033",
+  "es_datetime": "2022-03-08 11:49:35.074",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:49:35 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"盛家奇阜阳","driverPhone":"15755422760","plateNumber":"皖ABK261","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086588833"],"poiType":2,"poiId":143075177282582,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086588833","totalSkuCount":1,"totalEstimatedQuantity":23,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143075177282582,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "074",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:49:34+0800",
+  "traceId__": "-6351396033158440445",
+  "es_datetime": "2022-03-08 11:49:34.684",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:49:34 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"盛家奇阜阳","driverPhone":"15755422760","plateNumber":"皖ABK261","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086588833"],"poiType":2,"poiId":143075177282582,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086588833","totalSkuCount":1,"totalEstimatedQuantity":23,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143075177282582,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "684",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:49:33+0800",
+  "traceId__": "-3711606526420235936",
+  "es_datetime": "2022-03-08 11:49:33.918",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:49:33 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"盛家奇阜阳","driverPhone":"15755422760","plateNumber":"皖ABK261","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086588833"],"poiType":2,"poiId":143075177282582,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086588833","totalSkuCount":1,"totalEstimatedQuantity":23,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143075177282582,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "918",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:46:09+0800",
+  "traceId__": "51706431507017224",
+  "es_datetime": "2022-03-08 11:46:09.706",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:46:09 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"盛家奇阜阳","driverPhone":"15755422760","plateNumber":"皖ABK261","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086588833"],"poiType":2,"poiId":143075177282582,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086588833","totalSkuCount":1,"totalEstimatedQuantity":23,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143075177282582,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "706",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:46:08+0800",
+  "traceId__": "-5887383483248403232",
+  "es_datetime": "2022-03-08 11:46:08.859",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:46:08 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"盛家奇阜阳","driverPhone":"15755422760","plateNumber":"皖ABK261","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086588833"],"poiType":2,"poiId":143075177282582,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086588833","totalSkuCount":1,"totalEstimatedQuantity":23,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143075177282582,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "859",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:27+0800",
+  "traceId__": "8471527748170116409",
+  "es_datetime": "2022-03-08 11:45:27.167",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:27 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "167",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:26+0800",
+  "traceId__": "-2515296801273969858",
+  "es_datetime": "2022-03-08 11:45:26.801",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:26 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "801",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:26+0800",
+  "traceId__": "47974693098754107",
+  "es_datetime": "2022-03-08 11:45:26.354",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:26 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "354",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:20+0800",
+  "traceId__": "-6030047176543339573",
+  "es_datetime": "2022-03-08 11:45:20.203",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:20 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "203",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:19+0800",
+  "traceId__": "-6810452805750584708",
+  "es_datetime": "2022-03-08 11:45:19.801",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:19 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "801",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:19+0800",
+  "traceId__": "-351895467629773513",
+  "es_datetime": "2022-03-08 11:45:19.408",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:19 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "408",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:18+0800",
+  "traceId__": "-5314970389288498780",
+  "es_datetime": "2022-03-08 11:45:18.841",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:18 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "841",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:18+0800",
+  "traceId__": "5746187513586222908",
+  "es_datetime": "2022-03-08 11:45:18.523",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:18 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "523",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:18+0800",
+  "traceId__": "4905336626365155231",
+  "es_datetime": "2022-03-08 11:45:18.131",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:18 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "131",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:17+0800",
+  "traceId__": "-7345796845565860509",
+  "es_datetime": "2022-03-08 11:45:17.725",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:17 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "725",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:17+0800",
+  "traceId__": "5840667706579499602",
+  "es_datetime": "2022-03-08 11:45:17.396",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:17 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "396",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:17+0800",
+  "traceId__": "-2930739580535964299",
+  "es_datetime": "2022-03-08 11:45:17.083",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:17 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "083",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:16+0800",
+  "traceId__": "7232950369611908746",
+  "es_datetime": "2022-03-08 11:45:16.682",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:16 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "682",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:16+0800",
+  "traceId__": "-85542289819974506",
+  "es_datetime": "2022-03-08 11:45:16.281",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:16 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "281",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:15+0800",
+  "traceId__": "-82385692840787473",
+  "es_datetime": "2022-03-08 11:45:15.887",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:15 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "887",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:15+0800",
+  "traceId__": "1921384832667103728",
+  "es_datetime": "2022-03-08 11:45:15.483",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:15 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "483",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:15+0800",
+  "traceId__": "-7333351449244905393",
+  "es_datetime": "2022-03-08 11:45:15.087",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:15 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "087",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:14+0800",
+  "traceId__": "-3100502776119480147",
+  "es_datetime": "2022-03-08 11:45:14.451",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:14 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "451",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:13+0800",
+  "traceId__": "-5749809474763150678",
+  "es_datetime": "2022-03-08 11:45:13.763",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:13 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "763",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:13+0800",
+  "traceId__": "4751983982279574032",
+  "es_datetime": "2022-03-08 11:45:13.049",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:13 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "049",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:45:12+0800",
+  "traceId__": "4062112700235321528",
+  "es_datetime": "2022-03-08 11:45:12.132",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:45:12 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "132",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:43:52+0800",
+  "traceId__": "634814167291613047",
+  "es_datetime": "2022-03-08 11:43:52.656",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:43:52 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"饶勇芜湖","driverPhone":"15105651316","plateNumber":"皖A5QP57","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076574888","YXTH202203086618595"],"poiType":2,"poiId":10371883,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076574888","totalSkuCount":1,"totalEstimatedQuantity":26,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086618595","totalSkuCount":1,"totalEstimatedQuantity":15,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371883,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "656",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:11+0800",
+  "traceId__": "-6757384590339030169",
+  "es_datetime": "2022-03-08 11:42:11.824",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:11 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "824",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:10+0800",
+  "traceId__": "-6348366587788501016",
+  "es_datetime": "2022-03-08 11:42:10.837",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:10 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "837",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:08+0800",
+  "traceId__": "-9196080800571584614",
+  "es_datetime": "2022-03-08 11:42:08.318",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:08 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "318",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:06+0800",
+  "traceId__": "-7109607017364554912",
+  "es_datetime": "2022-03-08 11:42:06.474",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:06 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "474",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:05+0800",
+  "traceId__": "5704995579551761149",
+  "es_datetime": "2022-03-08 11:42:05.060",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:05 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "060",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:04+0800",
+  "traceId__": "-1540851752599751715",
+  "es_datetime": "2022-03-08 11:42:04.201",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:04 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "201",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:42:03+0800",
+  "traceId__": "2815120369410994362",
+  "es_datetime": "2022-03-08 11:42:03.444",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:42:03 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "444",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:41:40+0800",
+  "traceId__": "8951241072671399478",
+  "es_datetime": "2022-03-08 11:41:40.236",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:41:40 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "236",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:41:39+0800",
+  "traceId__": "-9021705927566028079",
+  "es_datetime": "2022-03-08 11:41:39.526",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:41:39 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "526",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:41:38+0800",
+  "traceId__": "-7580768521364283928",
+  "es_datetime": "2022-03-08 11:41:38.494",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:41:38 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "494",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:41:33+0800",
+  "traceId__": "123919370073079785",
+  "es_datetime": "2022-03-08 11:41:33.761",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:41:33 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "761",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:41:32+0800",
+  "traceId__": "-5100185966981657131",
+  "es_datetime": "2022-03-08 11:41:32.104",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:41:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "104",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:39:02+0800",
+  "traceId__": "-777187763180495284",
+  "es_datetime": "2022-03-08 11:39:02.051",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:39:02 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "051",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:48+0800",
+  "traceId__": "4750307001887430021",
+  "es_datetime": "2022-03-08 11:38:48.864",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:48 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "864",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:37+0800",
+  "traceId__": "5817711180120943894",
+  "es_datetime": "2022-03-08 11:38:37.313",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:37 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "313",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:36+0800",
+  "traceId__": "-5648616996634132979",
+  "es_datetime": "2022-03-08 11:38:36.027",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:36 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "027",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:35+0800",
+  "traceId__": "9152517311197844382",
+  "es_datetime": "2022-03-08 11:38:35.264",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:35 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "264",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:34+0800",
+  "traceId__": "2019559805616253868",
+  "es_datetime": "2022-03-08 11:38:34.595",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:34 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "595",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:33+0800",
+  "traceId__": "6999202116747988372",
+  "es_datetime": "2022-03-08 11:38:33.562",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:33 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "562",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:32+0800",
+  "traceId__": "-8385609188010141565",
+  "es_datetime": "2022-03-08 11:38:32.384",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "384",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:38:22+0800",
+  "traceId__": "-8638626569831478073",
+  "es_datetime": "2022-03-08 11:38:22.807",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:38:22 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "807",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:37:45+0800",
+  "traceId__": "-6434124954105652915",
+  "es_datetime": "2022-03-08 11:37:45.482",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:37:45 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "482",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:37:43+0800",
+  "traceId__": "5957538904136543173",
+  "es_datetime": "2022-03-08 11:37:43.724",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:37:43 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "724",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:37:25+0800",
+  "traceId__": "3549933371165229427",
+  "es_datetime": "2022-03-08 11:37:25.767",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:37:25 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "767",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:37:17+0800",
+  "traceId__": "-7797638569854830111",
+  "es_datetime": "2022-03-08 11:37:17.965",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:37:17 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "965",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:36:42+0800",
+  "traceId__": "-8365205617910613788",
+  "es_datetime": "2022-03-08 11:36:42.767",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:36:42 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "767",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:36:25+0800",
+  "traceId__": "292076674607546291",
+  "es_datetime": "2022-03-08 11:36:25.717",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:36:25 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "717",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:36:24+0800",
+  "traceId__": "2973409421343545093",
+  "es_datetime": "2022-03-08 11:36:24.841",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:36:24 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "841",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:36:07+0800",
+  "traceId__": "-5483681773109104568",
+  "es_datetime": "2022-03-08 11:36:07.722",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:36:07 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "722",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:35:59+0800",
+  "traceId__": "-8134831295368970924",
+  "es_datetime": "2022-03-08 11:35:59.827",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:35:59 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "827",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:35:50+0800",
+  "traceId__": "1805605260489249378",
+  "es_datetime": "2022-03-08 11:35:50.201",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:35:50 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "201",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 11:35:44+0800",
+  "traceId__": "-183257518618808808",
+  "es_datetime": "2022-03-08 11:35:44.924",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 11:35:44 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"张庆杨合肥","driverPhone":"18855181563","plateNumber":"皖A536GP","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076593922"],"poiType":2,"poiId":10100337,"supplierId":6426,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076593922","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10100337,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "924",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:09:19+0800",
+  "traceId__": "4932834618880189822",
+  "es_datetime": "2022-03-08 10:09:19.343",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:09:19 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "343",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:09:18+0800",
+  "traceId__": "-7862164856850042799",
+  "es_datetime": "2022-03-08 10:09:18.038",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:09:18 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "038",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:09:16+0800",
+  "traceId__": "-2004497280814525798",
+  "es_datetime": "2022-03-08 10:09:16.436",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:09:16 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "436",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:09:00+0800",
+  "traceId__": "5804111775314181423",
+  "es_datetime": "2022-03-08 10:09:00.147",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:09:00 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "147",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:58+0800",
+  "traceId__": "-4807646355194950766",
+  "es_datetime": "2022-03-08 10:08:58.588",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:58 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "588",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:56+0800",
+  "traceId__": "8791721889227565264",
+  "es_datetime": "2022-03-08 10:08:56.386",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:56 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "386",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:56+0800",
+  "traceId__": "3505248810479558552",
+  "es_datetime": "2022-03-08 10:08:56.076",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:56 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "076",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:55+0800",
+  "traceId__": "-3271237081238573390",
+  "es_datetime": "2022-03-08 10:08:55.784",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:55 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "784",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:55+0800",
+  "traceId__": "1280375073590420723",
+  "es_datetime": "2022-03-08 10:08:55.549",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:55 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "549",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:54+0800",
+  "traceId__": "-7511522336144043726",
+  "es_datetime": "2022-03-08 10:08:54.978",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:54 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "978",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:54+0800",
+  "traceId__": "217210819014780145",
+  "es_datetime": "2022-03-08 10:08:54.241",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:54 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "241",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:53+0800",
+  "traceId__": "7980554217886083646",
+  "es_datetime": "2022-03-08 10:08:53.460",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:53 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "460",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:52+0800",
+  "traceId__": "2627225133739676107",
+  "es_datetime": "2022-03-08 10:08:52.174",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:52 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "174",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:36+0800",
+  "traceId__": "-8184969723866488209",
+  "es_datetime": "2022-03-08 10:08:36.251",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:36 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646755200000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "251",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:32+0800",
+  "traceId__": "-1518892390275460685",
+  "es_datetime": "2022-03-08 10:08:32.648",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "648",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:08:29+0800",
+  "traceId__": "-7041591681763187521",
+  "es_datetime": "2022-03-08 10:08:29.494",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:08:29 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "494",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:32+0800",
+  "traceId__": "233199172462405611",
+  "es_datetime": "2022-03-08 10:07:32.478",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "478",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:32+0800",
+  "traceId__": "7315764722088201756",
+  "es_datetime": "2022-03-08 10:07:32.195",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "195",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:31+0800",
+  "traceId__": "-2897737684952795356",
+  "es_datetime": "2022-03-08 10:07:31.900",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:31 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "900",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:31+0800",
+  "traceId__": "-6376181190992371202",
+  "es_datetime": "2022-03-08 10:07:31.524",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:31 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "524",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:30+0800",
+  "traceId__": "-263976823448692078",
+  "es_datetime": "2022-03-08 10:07:30.963",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:30 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "963",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:30+0800",
+  "traceId__": "3239007594043654417",
+  "es_datetime": "2022-03-08 10:07:30.544",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:30 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "544",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:29+0800",
+  "traceId__": "-1583066366956250263",
+  "es_datetime": "2022-03-08 10:07:29.929",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:29 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "929",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:07:28+0800",
+  "traceId__": "72851389873817812",
+  "es_datetime": "2022-03-08 10:07:28.146",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:07:28 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "146",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:06:45+0800",
+  "traceId__": "3821632246774790798",
+  "es_datetime": "2022-03-08 10:06:45.346",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:06:45 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "346",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:06:34+0800",
+  "traceId__": "-99945658517073419",
+  "es_datetime": "2022-03-08 10:06:34.547",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:06:34 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "547",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:06:31+0800",
+  "traceId__": "310430837094126138",
+  "es_datetime": "2022-03-08 10:06:31.828",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:06:31 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"孙子龙","driverPhone":"13320132207","plateNumber":"赣AC1F81","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086630043"],"poiType":2,"poiId":143255145691376,"supplierId":31858,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086630043","totalSkuCount":2,"totalEstimatedQuantity":2,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "828",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:05:51+0800",
+  "traceId__": "5861997120135848676",
+  "es_datetime": "2022-03-08 10:05:51.719",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:05:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "719",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:05:51+0800",
+  "traceId__": "8382116363961736974",
+  "es_datetime": "2022-03-08 10:05:51.425",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:05:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "425",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:05:51+0800",
+  "traceId__": "6507224264427641535",
+  "es_datetime": "2022-03-08 10:05:51.128",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:05:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "128",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:05:50+0800",
+  "traceId__": "-9145752809596029083",
+  "es_datetime": "2022-03-08 10:05:50.553",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:05:50 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "553",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:05:49+0800",
+  "traceId__": "8349515014131255974",
+  "es_datetime": "2022-03-08 10:05:49.870",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:05:49 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "870",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:04:53+0800",
+  "traceId__": "-6987540559325831132",
+  "es_datetime": "2022-03-08 10:04:53.016",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:04:53 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "016",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+
+
+
+
+
+  {
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:04:52+0800",
+  "traceId__": "-2863405782042221036",
+  "es_datetime": "2022-03-08 10:04:52.695",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:04:52 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "695",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:04:52+0800",
+  "traceId__": "1202168577755289262",
+  "es_datetime": "2022-03-08 10:04:52.430",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:04:52 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "430",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:04:51+0800",
+  "traceId__": "3631022196722760860",
+  "es_datetime": "2022-03-08 10:04:51.477",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:04:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "477",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:32+0800",
+  "traceId__": "-2379143561697778992",
+  "es_datetime": "2022-03-08 10:03:32.970",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "970",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:32+0800",
+  "traceId__": "1626018639752695153",
+  "es_datetime": "2022-03-08 10:03:32.637",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:32 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "637",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:30+0800",
+  "traceId__": "3134968761749549230",
+  "es_datetime": "2022-03-08 10:03:30.998",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:30 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "998",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:18+0800",
+  "traceId__": "-8286036878293378120",
+  "es_datetime": "2022-03-08 10:03:18.470",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:18 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "470",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:17+0800",
+  "traceId__": "687986601902710272",
+  "es_datetime": "2022-03-08 10:03:17.801",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:17 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "801",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:16+0800",
+  "traceId__": "2647629258261026004",
+  "es_datetime": "2022-03-08 10:03:16.735",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:16 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "735",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 10:03:13+0800",
+  "traceId__": "-3372942352955081053",
+  "es_datetime": "2022-03-08 10:03:13.772",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 10:03:13 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"李雨湘","driverPhone":"19118734123","plateNumber":"湘CCY381","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086609001"],"poiType":2,"poiId":10371889,"supplierId":211532,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086609001","totalSkuCount":1,"totalEstimatedQuantity":57,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371889,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "772",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 09:26:13+0800",
+  "traceId__": "-5737897530844616536",
+  "es_datetime": "2022-03-08 09:26:13.192",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 09:26:13 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"章定安","driverPhone":"19170096061","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086619093","YXTH202203086632312"],"poiType":2,"poiId":143255145691376,"supplierId":182433,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086632312","totalSkuCount":1,"totalEstimatedQuantity":30,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086619093","totalSkuCount":2,"totalEstimatedQuantity":3,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "192",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 09:26:11+0800",
+  "traceId__": "8199879651057329965",
+  "es_datetime": "2022-03-08 09:26:11.764",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 09:26:11 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"章定安","driverPhone":"19170096061","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086619093","YXTH202203086632312"],"poiType":2,"poiId":143255145691376,"supplierId":182433,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086632312","totalSkuCount":1,"totalEstimatedQuantity":30,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086619093","totalSkuCount":2,"totalEstimatedQuantity":3,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "764",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 09:26:08+0800",
+  "traceId__": "6335080182694407447",
+  "es_datetime": "2022-03-08 09:26:08.594",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 09:26:08 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"章定安","driverPhone":"19170096061","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086619093","YXTH202203086632312"],"poiType":2,"poiId":143255145691376,"supplierId":182433,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086632312","totalSkuCount":1,"totalEstimatedQuantity":30,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0},{"returnBillNo":"YXTH202203086619093","totalSkuCount":2,"totalEstimatedQuantity":3,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "594",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:25:21+0800",
+  "traceId__": "-7127784469894111150",
+  "es_datetime": "2022-03-08 08:25:21.631",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:25:21 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"章定安南昌2仓","driverPhone":"19170096061","plateNumber":"赣AUOB75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "631",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:25:08+0800",
+  "traceId__": "8779048508077378050",
+  "es_datetime": "2022-03-08 08:25:08.879",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:25:08 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"章定安南昌2仓","driverPhone":"19170096061","plateNumber":"赣AUOB75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "879",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:24:51+0800",
+  "traceId__": "5619579695636167359",
+  "es_datetime": "2022-03-08 08:24:51.025",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:24:51 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"涂卫华","driverPhone":"13387088032","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "025",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:24:45+0800",
+  "traceId__": "-5754560968525598830",
+  "es_datetime": "2022-03-08 08:24:45.118",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:24:45 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"涂卫华","driverPhone":"13387088032","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "118",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:24:44+0800",
+  "traceId__": "-3460132550955650858",
+  "es_datetime": "2022-03-08 08:24:44.009",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:24:44 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"涂卫华","driverPhone":"13387088032","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "009",
+  "mt_servername": "set-zf-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:24:41+0800",
+  "traceId__": "2543043364382028220",
+  "es_datetime": "2022-03-08 08:24:41.452",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:24:41 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"涂卫华","driverPhone":"13387088032","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "452",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:24:40+0800",
+  "traceId__": "-2964808663166280173",
+  "es_datetime": "2022-03-08 08:24:40.154",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:24:40 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"涂卫华","driverPhone":"13387088032","plateNumber":"赣AU0B75","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086589463"],"poiType":2,"poiId":143255145691376,"supplierId":6962,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086589463","totalSkuCount":1,"totalEstimatedQuantity":1,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "154",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:18:47+0800",
+  "traceId__": "8533166786774813483",
+  "es_datetime": "2022-03-08 08:18:47.656",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:18:47 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"马春莹","driverPhone":"13677347265","plateNumber":"赣AD3B70","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086651567"],"poiType":2,"poiId":143255145691376,"supplierId":197666,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086651567","totalSkuCount":1,"totalEstimatedQuantity":33,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "656",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-29",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-08 08:18:44+0800",
+  "traceId__": "6324525747045955011",
+  "es_datetime": "2022-03-08 08:18:44.268",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/08 08:18:44 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"马春莹","driverPhone":"13677347265","plateNumber":"赣AD3B70","temperatureLevel":2,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203086651567"],"poiType":2,"poiId":143255145691376,"supplierId":197666,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203086651567","totalSkuCount":1,"totalEstimatedQuantity":33,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":143255145691376,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "268",
+  "mt_servername": "set-zf-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-12",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-07 21:17:43+0800",
+  "traceId__": "6742695186010629039",
+  "es_datetime": "2022-03-07 21:17:43.224",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/07 21:17:43 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"任广范","driverPhone":"18865241949","plateNumber":"津AGF761","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076575051"],"poiType":2,"poiId":10371881,"supplierId":14684,"targetCategoryPoiId":0,"planArrivalTime":1646668800000,"returnBillList":[{"returnBillNo":"YXTH202203076575051","totalSkuCount":5,"totalEstimatedQuantity":8,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371881,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "224",
+  "mt_servername": "set-gh-grocerysce-sreturn-api01.mt"
+}
+{
+  "mt_appkey": "com.sankuai.grocerysce.sreturn.api",
+  "mt_thread": "deliveryBillTServiceImpl-service-pool-28",
+  "mt_level": "ERROR",
+  "mt_datetime": "2022-03-07 21:17:36+0800",
+  "traceId__": "6115634576891980933",
+  "es_datetime": "2022-03-07 21:17:36.724",
+  "mt_logger_name": "com.meituan.grocery.sce.sreturn.api.service.service.deliverybill.DeliveryBillService",
+  "es_timestamp": "2022/03/07 21:17:36 +0800",
+  "message": " 旧链路创建发运单异常:{"driverName":"任广范","driverPhone":"18865241949","plateNumber":"津AGF761","temperatureLevel":1,"deliveryBillStatus":0,"returnBillNoList":["YXTH202203076575051"],"poiType":2,"poiId":10371881,"supplierId":14684,"targetCategoryPoiId":0,"planArrivalTime":1646582400000,"returnBillList":[{"returnBillNo":"YXTH202203076575051","totalSkuCount":5,"totalEstimatedQuantity":8,"billShowStatus":30,"billShowStatusName":"待取回","billTag":1,"poiId":10371881,"poiType":2,"cwId":0}],"billTag":0,"showModifyButton":false,"showCancelButton":false}\ncom.meituan.grocery.sce.exception.BizException: 创建发运信息接口异常\n",
+  "mt_millisecond": "724",
+  "mt_servername": "set-gh-grocerysce-sreturn-api02.mt"
+}

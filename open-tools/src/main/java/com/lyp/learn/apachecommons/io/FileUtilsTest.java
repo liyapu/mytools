@@ -1,11 +1,6 @@
 package com.lyp.learn.apachecommons.io;
 
 import com.google.common.base.Charsets;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
-import org.apache.commons.io.filefilter.FileFilterUtils;
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,7 +9,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author: liyapu
@@ -293,9 +294,43 @@ public class FileUtilsTest {
     public void testIterator() throws IOException {
         File sourceFile1 = new File("/Users/liyapu/myGitRepository/mytools/open-tools/src/main/resources/io/write.txt");
         LineIterator li = FileUtils.lineIterator(sourceFile1, "UTF-8");
-        while (li.hasNext()){
+        while (li.hasNext()) {
 //            System.out.println(li.nextLine());
             System.out.println(li.next());
         }
+    }
+
+
+    /**
+     * 读取文件
+     */
+    @Test
+    public void testRead2() throws IOException {
+        String strPath = "/Users/liyapu/mywork/repositoryMy/mytools/open-tools/src/main/resources/老链路退供单.txt";
+        File sourFile = new File(strPath);
+        //根据文件获取文件输入流
+
+        //读取文件到集合中
+        List<String> strList = FileUtils.readLines(sourFile, "UTF-8");
+        Set<String> set = new HashSet<>();
+
+        //strList.stream()
+        //    .forEach(System.out::println);
+
+        int len = "YXTH202203086619528".length();
+        for (String s : strList) {
+            if (s.contains("YXTH")) {
+                int start = s.indexOf("YXTH");
+                String no = s.substring(start, start + len);
+                set.add(no);
+            }
+        }
+        //set.stream().forEach(System.out::println);
+        StringBuffer sb = new StringBuffer();
+        for (String s : set) {
+            sb.append("'").append(s).append("',");
+        }
+        System.out.println(sb.toString());
+
     }
 }
