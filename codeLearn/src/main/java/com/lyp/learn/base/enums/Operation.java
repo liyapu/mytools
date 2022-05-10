@@ -56,6 +56,11 @@ public enum Operation {
         for (Operation operation : Operation.values()) {
             System.out.printf("%f %s %f = %f%n", x, operation, y, operation.apply(x, y));
         }
+
+        System.out.println();
+        System.out.println(PLUS.name());
+        System.out.println(PLUS.symbol);
+        System.out.println(PLUS.ordinal());
     }
 }
 
