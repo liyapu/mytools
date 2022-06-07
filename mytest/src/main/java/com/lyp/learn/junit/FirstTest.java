@@ -1,5 +1,6 @@
 package com.lyp.learn.junit;
 
+import com.beust.jcommander.internal.Lists;
 import com.google.common.base.Strings;
 import java.io.File;
 import java.math.BigDecimal;
@@ -28,6 +29,26 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testGetOutNo() {
+        String str = "msg";
+        String[] splitList = str.split("\\n");
+        List<String> result = Lists.newArrayList();
+        for (String line : splitList) {
+            int startIndex = line.indexOf("SJCK");
+            if (startIndex <= 0) {
+                continue;
+            }
+            String outNo = line.substring(startIndex, startIndex + "SJCK2022052301769085".length());
+            if (result.contains(outNo)) {
+                continue;
+            }
+            result.add(outNo);
+            System.out.println(outNo);
+        }
+
+    }
 
     @Test
     public void testBigDecimal2222() {
