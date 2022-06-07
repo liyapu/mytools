@@ -1,8 +1,5 @@
 package com.lyp.learn.bean;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.json.JSON;
-import com.google.common.base.Strings;
 import com.lyp.learn.utils.JsonUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +112,7 @@ public class Man {
 
         List<Man> dataList = new ArrayList<>();
         Map<Integer, Man> id$ManMap =
-                manList.stream().collect(Collectors.toMap(Man::getId, Function.identity(), (k1, k2) -> k1));
+            manList.stream().collect(Collectors.toMap(Man::getId, Function.identity(), (k1, k2) -> k1));
         for (Integer id : ids) {
             Man man = id$ManMap.get(id);
             dataList.add(man);
@@ -126,6 +123,25 @@ public class Man {
         return manListResponse;
     }
 
+
+    /**
+     * 根据 id 查询
+     *
+     * @param id
+     * @return
+     */
+    public Man queryById(Integer id) {
+        System.out.println("queryById ===== id:::" + JsonUtil.writeToString(id));
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Map<Integer, Man> id$ManMap =
+            manList.stream().collect(Collectors.toMap(Man::getId, Function.identity(), (k1, k2) -> k1));
+        return id$ManMap.get(id);
+    }
 
 
 }
