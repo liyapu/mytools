@@ -1,14 +1,22 @@
 package com.lyp.learn.streampk;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.lyp.learn.bean.Apple;
+import com.lyp.learn.utils.JsonUtil;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author: liyapu
@@ -17,10 +25,11 @@ import java.util.stream.Collectors;
  */
 public class StreamMapDemo {
     List<Apple> inventory = Arrays.asList(
-            new Apple("green", 80, "黄土高原"),
-            new Apple("green", 200, "黄河故道"),
-            new Apple("red", 160, "渤海湾"),
-            new Apple("yellow", 20, "渤海湾")
+        new Apple("green", 80, "黄土高原"),
+        new Apple("green", 200, "黄河故道"),
+        new Apple("red", 160, "渤海湾"),
+        new Apple("yellow", 20, "渤海湾"),
+        new Apple("yellow", 30, "山东栖霞")
     );
 
     Map<String, List<String>> map = new HashMap<>();
@@ -277,16 +286,33 @@ public class StreamMapDemo {
         Set<Map.Entry<Object, Object>> entries = properties.entrySet();
 
         LinkedHashMap<String, String> collect = entries.stream()
-                .collect(Collectors.toMap(k -> (String) k.getKey(), e -> (String) e.getValue()))
-                .entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors
-                        .toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+            .collect(Collectors.toMap(k -> (String) k.getKey(), e -> (String) e.getValue()))
+            .entrySet()
+            .stream()
+            .sorted(Map.Entry.comparingByKey())
+            .collect(Collectors
+                .toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         collect.forEach((k, v) -> System.out.println(k + ":" + v));
     }
 
+    @Test
+    public void testGetOrDefaultDemo() {
+        // getOrDefault  实现存在就加入，没有就新建
+        Map<String, List<Apple>> id2AppleListMap = new HashMap<>();
+        id2AppleListMap.put("green", Lists.newArrayList(new Apple("green", 80, "初始化的")));
+        //--------以上为准备数据
+
+        for (Apple apple : inventory) {
+            String colorKey = apple.getColor();
+            List<Apple> appleTempList = id2AppleListMap.getOrDefault(colorKey, new ArrayList<>());
+            appleTempList.add(apple);
+            id2AppleListMap.put(colorKey, appleTempList);
+        }
+
+        System.out.println("====id2AppleListMap ==  " + JsonUtil.writeToString(id2AppleListMap));
+
+    }
 
 
 }

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeoutException;
  * @date 2022-06-03 17:17
  * @description
  */
-public class CompletableFutureDemo {
+public class FutureTaskDemo {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
 
