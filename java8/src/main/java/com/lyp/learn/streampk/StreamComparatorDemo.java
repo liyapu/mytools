@@ -1,16 +1,25 @@
 package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
-import com.lyp.learn.bean.*;
+import com.lyp.learn.bean.Address;
+import com.lyp.learn.bean.Apple;
+import com.lyp.learn.bean.Student;
+import com.lyp.learn.bean.User;
+import com.lyp.learn.bean.UserVo;
 import com.lyp.learn.utils.JsonUtil;
 import com.lyp.learn.utils.MyBeanUtils;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.BeanUtils;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 
 public class StreamComparatorDemo {
     List<Apple> inventory = Arrays.asList(
@@ -518,24 +527,24 @@ public class StreamComparatorDemo {
 
     /**
      * 根据 id 正序排序,然后倒叙输出
-     *
+     * <p>
      * //返回 对象集合以类属性一降序排序 注意两种写法
-     *
+     * <p>
      * list.stream().sorted(Comparator.comparing(类::属性一).reversed());//先以属性一升序,结果进行属性一降序
-     *
+     * <p>
      * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()));//以属性一降序
      */
     @Test
-    public void testSortedReversed(){
+    public void testSortedReversed() {
         List<Worker> workerList1 = getWorkerList();
         System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
-//        List<Worker> workerList2 =
-//                workerList1.stream().sorted(Comparator.comparing(Worker::getId).reversed()).collect(Collectors.toList());
-//        System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
+        //List<Worker> workerList2 =
+        //    workerList1.stream().sorted(Comparator.comparing(Worker::getId).reversed()).collect(Collectors.toList());
+        //System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
 
         List<Worker> workerList3 = workerList1.stream()
-                .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()))
-                .collect(Collectors.toList());
+            .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()))
+            .collect(Collectors.toList());
         System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
 
     }

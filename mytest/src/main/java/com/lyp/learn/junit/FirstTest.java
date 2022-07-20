@@ -31,6 +31,14 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     @Test
+    public void testSubString() {
+        String str = "中国很伟大，国人奋进。";
+        System.out.println(str.length());
+        System.out.println(str.substring(2));
+        System.out.println(str.substring(0, 5));
+    }
+
+    @Test
     public void testGetOutNo() {
         String str = "msg";
         String[] splitList = str.split("\\n");

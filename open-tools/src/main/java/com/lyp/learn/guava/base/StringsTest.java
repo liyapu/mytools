@@ -100,9 +100,9 @@ public class StringsTest {
      */
     @Test
     public void testStringFormat(){
-        System.out.println(String.format("%s位 %s位 %s 位 %s 位",1,2,3,5));
-        System.out.println(String.format("%s位 %s位 %s 位",1,2,3,5));
-        System.out.println(String.format("%s位 %s位 %s 位 %s 位",1,2));
+        System.out.println(String.format("%s位 %s位 %s 位 %s 位", 1, 2, 3, 4));
+        System.out.println(String.format("%s位 %s位 %s 位", 1, 2, 3, 4));
+        System.out.println(String.format("%s位 %s位 %s 位 %s 位", 1, 2));
     }
 
     /**
@@ -110,10 +110,10 @@ public class StringsTest {
      * 容忍  %s 和 占位数 个数不匹配, 多了少了都行
      */
     @Test
-    public void testLenientFormat(){
-        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位 %s 位",1,2,3,5));
-        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位",1,2,3,5));
-        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位 %s 位",1,2));
+    public void testLenientFormat() {
+        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位 %s 位", 1, 2, 3, 4));
+        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位", 1, 2, 3, 4));
+        System.out.println(Strings.lenientFormat("%s位 %s位 %s 位 %s 位", 1, 2));
     }
 
 
