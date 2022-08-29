@@ -1,8 +1,17 @@
 package com.lyp.learn.datatimes;
 
-import org.junit.jupiter.api.Test;
-
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.OffsetDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -10,6 +19,7 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * Joda 的关键日期/时间概念
@@ -439,7 +449,7 @@ public class DateTimeDemo {
 
         LocalDateTime localDateTimeNow = LocalDateTime.now();
         DateTimeFormatter chinaDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
-        System.out.println("chinaDateTimeFormatter " + chinaDateTimeFormatter.format(localDateNow));
+        System.out.println("chinaDateTimeFormatter " + chinaDateTimeFormatter.format(localDateTimeNow));
 
         DateTimeFormatter chinaDateTimeFormatterCustom = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()
@@ -449,20 +459,26 @@ public class DateTimeDemo {
                 .toFormatter();
 
         System.out.println("localDateTimeNow : " + localDateTimeNow);
-        System.out.println("DateTimeFormatter.BASIC_ISO_DATE : " + localDateTimeNow.format(DateTimeFormatter.BASIC_ISO_DATE));
+        System.out
+            .println("DateTimeFormatter.BASIC_ISO_DATE : " + localDateTimeNow.format(DateTimeFormatter.BASIC_ISO_DATE));
         System.out.println("DateTimeFormatter.ISO_DATE : " + localDateTimeNow.format(DateTimeFormatter.ISO_DATE));
-        System.out.println("DateTimeFormatter.ISO_DATE_TIME : " + localDateTimeNow.format(DateTimeFormatter.ISO_DATE_TIME));
-        System.out.println("DateTimeFormatter.ISO_LOCAL_DATE : " + localDateTimeNow.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        System.out
+            .println("DateTimeFormatter.ISO_DATE_TIME : " + localDateTimeNow.format(DateTimeFormatter.ISO_DATE_TIME));
+        System.out
+            .println("DateTimeFormatter.ISO_LOCAL_DATE : " + localDateTimeNow.format(DateTimeFormatter.ISO_LOCAL_DATE));
         System.out.println("DateTimeFormatter.ISO_TIME : " + localDateTimeNow.format(DateTimeFormatter.ISO_TIME));
         System.out.println("chinaDateTimeFormatter : " + localDateTimeNow.format(chinaDateTimeFormatter));
         System.out.println("chinaDateTimeFormatterCustom : " + localDateTimeNow.format(chinaDateTimeFormatterCustom));
         System.out.println(localDateTimeNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         System.out.println(localDateTimeNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+        System.out.println(localDateTimeNow.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")));
 
-        LocalDateTime localDateTimeNow1 = LocalDateTime.parse("2018-12-18 15:41:15",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        LocalDateTime localDateTimeNow1 = LocalDateTime
+            .parse("2018-12-18 15:41:15", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         System.out.println("localDateTimeNow1 : " + localDateTimeNow1);
 
-        LocalDateTime localDateTimeNow2 = LocalDateTime.parse("2018-12-18 15:41:15",chinaDateTimeFormatter);
+        LocalDateTime localDateTimeNow2 = LocalDateTime.parse("2018-12-18 15:41:15", chinaDateTimeFormatter);
         System.out.println("localDateTimeNow2 : " + localDateTimeNow2);
         System.out.println();
     }

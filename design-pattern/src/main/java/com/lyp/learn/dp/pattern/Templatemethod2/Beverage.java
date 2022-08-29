@@ -2,21 +2,26 @@ package com.lyp.learn.dp.pattern.Templatemethod2;
 
 /**
  * 饮料模板基类
+ * 抽象类
  */
 public abstract class Beverage {
 
     /**
      * 制作饮料流程
+     * 定义为 final，防止子类重写
+     * 注意事项：为防止恶意操作，一般模板方法都加上 final 关键词。
      */
-    public final void create(){
+    public final void create() {
         boilWater();//把水煮沸
         brew();//用沸水冲泡...
         pourInCup();//把...倒进杯子
-        addCoundiments();//加...
+        addCoundiments();//加调味品...
         hook();
     }
 
-
+    /**
+     * 公共方法，默认实现
+     */
     public void boilWater() {
         System.out.println("煮开水");
     }

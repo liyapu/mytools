@@ -355,7 +355,29 @@ public class FileUtilsTest {
             result.add(outNo);
             System.out.println("\"" + outNo + "\",");
         }
+    }
 
+    @Test
+    public void testOut3() throws IOException {
+        String fileStr = "/Users/liyapu/mywork/repositoryMy/mytools/open-tools/src/main/resources/deadOutNo.txt";
+        File sourceFile = new File(fileStr);
+        List<String> lineList = FileUtils.readLines(sourceFile, "UTF-8");
+        List<String> result = Lists.newArrayList();
+        for (String line : lineList) {
+            int startIndex = line.indexOf("SJWLCK");
+            if (startIndex <= 0) {
+                continue;
+            }
+            if (!line.contains("PICK_UP_START")) {
+                continue;
+            }
+            String outNo = line.substring(startIndex, startIndex + "SJWLCK2022052401879919".length());
+            if (result.contains(outNo)) {
+                continue;
+            }
+            result.add(outNo);
+            System.out.println("\"" + outNo + "\",");
+        }
     }
 
 }

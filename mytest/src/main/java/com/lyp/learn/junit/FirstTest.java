@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +30,45 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testForEach() {
+        List<String> listNull = null;
+        List<String> collect = CollectionUtils.emptyIfNull(listNull).stream()
+            .map(s -> "---->" + s)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * 字符统计长度
+     * 字数统计网站 https://zishu.xpcha.com/
+     */
+    @Test
+    public void testCharCount() {
+        String str = "重要提醒，我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789我是来凑字符的0123456789等2个仓库，共计处理！";
+        System.out.println(str.length());
+    }
+
+    /**
+     * 保留三位小数
+     */
+    @Test
+    public void testThree() {
+        long quantity = 500000L;
+        int mg_to_kg = 1000_000;
+
+        calPrint(quantity, mg_to_kg);
+        calPrint(1343483434334L, mg_to_kg);
+        calPrint(1300000000023232L, mg_to_kg);
+        calPrint(500L, mg_to_kg);
+        calPrint(300L, mg_to_kg);
+    }
+
+    private void calPrint(long quantity, int mg_to_kg) {
+        String str = new BigDecimal(quantity).divide(new BigDecimal(mg_to_kg))
+            .setScale(3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
+        System.out.println(str);
+    }
 
     @Test
     public void testSubString() {
