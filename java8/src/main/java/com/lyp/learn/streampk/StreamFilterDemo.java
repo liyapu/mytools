@@ -2,13 +2,22 @@ package com.lyp.learn.streampk;
 
 
 import com.lyp.learn.bean.Apple;
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 
 public class StreamFilterDemo {
     List<Apple> inventory = Arrays.asList(
@@ -432,11 +441,49 @@ public class StreamFilterDemo {
         Set<String> colorSeen = new HashSet<>();
 
         String repeatColor = inventory
-                .stream()
-                .filter(apple -> !colorSeen.add(apple.getColor()))
-                .map(Apple::getColor)
-                .collect(Collectors.joining(","));
+            .stream()
+            .filter(apple -> !colorSeen.add(apple.getColor()))
+            .map(Apple::getColor)
+            .collect(Collectors.joining(","));
         System.out.println("repeatColor = " + repeatColor);
+    }
+
+    /**
+     * 原来的对象
+     */
+    @Test
+    public void testStreamNew() {
+        Apple apple = inventory.get(0);
+        System.out.println(apple);
+
+        List<Apple> inventoryNew = inventory.stream()
+            .peek(a -> a.setAddress("aaa"))
+            .collect(Collectors.toList());
+        Apple appleNew = inventoryNew.get(0);
+        System.out.println(appleNew);
+
+        System.out.println(apple == appleNew);
+    }
+
+    /**
+     * 新对象
+     */
+    @Test
+    public void testStreamNew2() {
+        Apple apple = inventory.get(0);
+        System.out.println(apple);
+
+        List<Apple> inventoryNew = inventory.stream()
+            .map(a -> {
+                Apple aa = new Apple();
+                aa.setAddress(a.getAddress());
+                return aa;
+            })
+            .collect(Collectors.toList());
+        Apple appleNew = inventoryNew.get(0);
+        System.out.println(appleNew);
+
+        System.out.println(apple == appleNew);
     }
 
 }
