@@ -2,8 +2,6 @@ package com.lyp.learn.cf;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -39,17 +37,14 @@ public class CompletableFuture13 {
                 int i = 10 / 2;
                 return new Random().nextInt(10);
             }
-        }).handle(new BiFunction<Integer, Throwable, Integer>() {
-            @Override
-            public Integer apply(Integer param, Throwable throwable) {
-                int result = -1;
-                if (throwable == null) {
-                    result = param * 2;
-                } else {
-                    System.out.println(throwable.getMessage());
-                }
-                return result;
+        }).handle((param, throwable) -> {
+            int result = -1;
+            if (throwable == null) {
+                result = param * 2;
+            } else {
+                System.out.println(throwable.getMessage());
             }
+            return result;
         });
         System.out.println(future.get());
     }

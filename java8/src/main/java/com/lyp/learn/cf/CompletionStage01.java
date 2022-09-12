@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 /**
  * @author liyapu
  * @date 2021-10-31 18:52
- * @desc  https://www.cnblogs.com/txmfz/p/11266411.html
+ * @desc https://www.cnblogs.com/txmfz/p/11266411.html
  *        Java并发包之阶段执行之CompletionStage接口
  *
  * 前言
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
  * 一个实现类，但我先从这个接口的方法开始介绍，为了举例说明这些接口方法的使用，会用到部分CompletableFuture的方法，下一步再详细的介绍CompletableFuture。
  *
  * CompletionStage
- * 定义了一组接口用于在一个阶段执行结束之后，要么继续执行下一个阶段，要么对结果进行转换产生新的结果等等，一般来说要执行下一个阶段都需要上一个阶段正常完成，当然这个类也提供了对异常结果的处理接口。CompletionStage
- * 只定义了一组基本的接口，其实现类还可据此扩展出更丰富的方法。
+ * 定义了一组接口用于在一个阶段执行结束之后，要么继续执行下一个阶段，要么对结果进行转换产生新的结果等等，一般来说要执行下一个阶段都需要上一个阶段正常完成，当然这个类也提供了对异常结果的处理接口。
+ * CompletionStage只定义了一组基本的接口，其实现类还可据此扩展出更丰富的方法。
  *
  * 方法概述
  * CompletionStage的接口方法可以从多种角度进行分类，从最宏观的横向划分，CompletionStage的接口主要分三类：
@@ -54,8 +54,8 @@ import org.junit.jupiter.api.Test;
  * 如果一个阶段同时依赖于两个阶段，并且两个阶段都异常地完成，那么CompletionException可以对应于这两个异常中的任何一个。
  * 如果一个阶段依赖于另外两个阶段中的任何一个，并且其中只有一个异常完成，则不能保证依赖阶段是正常完成还是异常完成。
  * 在使用方法whenComplete的情况下，当提供的操作本身遇到异常时，如果前面的阶段没有异常完成，则阶段将以其异常作为原因异常完成。
- * 所有方法都遵循上述触发、执行和异常完成规范，此外，虽然用于传递一个表示完成结果的参数（也就是说，对于T类型的参数）可以为null，但是如果为其它任何参数传递null都将导致NullPointerException
- * 。此接口不定义用于初始创建、强制正常或异常完成、探测完成状态或结果或等待阶段完成的方法。CompletionStage的实现类可以提供适当的方法来实现这些效果。方法 toCompletableFuture
+ * 所有方法都遵循上述触发、执行和异常完成规范，此外，虽然用于传递一个表示完成结果的参数（也就是说，对于T类型的参数）可以为null，但是如果为其它任何参数传递null都将导致NullPointerException。
+ * 此接口不定义用于初始创建、强制正常或异常完成、探测完成状态或结果或等待阶段完成的方法。CompletionStage的实现类可以提供适当的方法来实现这些效果。方法 toCompletableFuture
  * 通过提供一个公共转换类型，支持该接口的不同实现之间的互操作性。
  */
 public class CompletionStage01 {
@@ -85,9 +85,9 @@ public class CompletionStage01 {
      * 以下是使用示例，运用了CompletionStage实现类CompletableFuture，这里忽略Async版本的异步方法：
      *
      *
-     *  这些示例展示了根据一个阶段的结果、两个阶段的结果以及两个阶段中最先完成的结果进行转换，并返回新的结果。第一个和第一个示例结果都是"hello
-     *  world"，其中第二个示例不论两个阶段谁先完成，参数s1都是"hello"，参数s2都是"world'。第三个示例，applyToEither依赖两个阶段谁最先完成，其结果有时候是"hello
-     *  Tom"，有时候是"hello John"
+     *  这些示例展示了根据一个阶段的结果、两个阶段的结果以及两个阶段中最先完成的结果进行转换，并返回新的结果。
+     *  第一个和第一个示例结果都是"hello world"，其中第二个示例不论两个阶段谁先完成，参数s1都是"hello"，参数s2都是"world'。
+     *  第三个示例，applyToEither依赖两个阶段谁最先完成，其结果有时候是"hello Tom"，有时候是"hello John"
      */
 
     @Test
@@ -164,7 +164,7 @@ public class CompletionStage01 {
      * 以下是使用示例，运用了CompletionStage实现类CompletableFuture，这里忽略Async版本的异步方法：
      *
      * 示例展示了根据一个阶段的结果、两个阶段的结果以及两个阶段中最先完成的结果进行消耗，并没有返回值。acceptEither的示例中，
-     * 依赖两个阶段谁最先完成，打印结果有时候是"hello tom"，有时候是"hellojohn"。
+     * 依赖两个阶段谁最先完成，打印结果有时候是"hello tom"，有时候是"hello john"。
      */
     @Test
     public void thenAccept(){
@@ -236,7 +236,8 @@ public class CompletionStage01 {
      *
      * 以下是使用示例，运用了CompletionStage实现类CompletableFuture，这里忽略Async版本的异步方法：
      *
-     * 示例展示了只要依赖的上一个阶段（或者两个阶段，或者两个阶段中的任意一个）正常完成，就会执行指定的操作，并且不会依赖上一个阶段（或者两个阶段，或者两个阶段中的任意一个最先完成的阶段）的结果。三个示例都回打印出"helloworld"
+     * 示例展示了只要依赖的上一个阶段（或者两个阶段，或者两个阶段中的任意一个）正常完成，就会执行指定的操作，并且不会依赖上一个阶段（或者两个阶段，或者两个阶段中的任意一个最先完成的阶段）的结果。
+     * 三个示例都回打印出"hello world"
      */
     @Test
     public void thenRun(){
@@ -326,21 +327,22 @@ public class CompletionStage01 {
 
     /**
      * 五、不论阶段正常还是异常完成的消耗型：
-     *  public CompletionStage<T> whenComplete(BiConsumer<? super T, ? super Throwable> action);
-     *  public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action);
-     *  public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executorexecutor);
-     *
-     *  上面的一、二、三、四种类型的方法都需要依赖的阶段正常完成，如果异常完成将导致上面介绍的四种类型的方法最终也异常完成，不会得出我们希望的结果。
-     *  而whenComplete则不论依赖的上一个阶段是正常完成还是异常完成都不会影响它的执行，
-     *  但它是一个消耗型接口，即不会对阶段的原来结果产生影响，结合thenCombine综合whenComplete的示例如下：
-     *
-     *  上例中，whenComplete的参数s表示通过thenCombine正常完成的结果，如果没有异常的话，该参数的值就是"hello
-     *  world"，t参数是Throwable类型的异常，因为thenCombine同时依赖两个阶段的正常完成，此时第一个阶段中抛出了异常，所以不会执行thenCombine指定的函数，即不会打印"combine
-     *  result"，whenComplete不论是否前面的阶段是否出现异常都会执行，最后打印出这样的信息：
-     *
-     *
-     *  如果将上例中的thenCombine换成applyToEither，那么如果两个阶段中最先完成的阶段是异常完成，那么其结果与上面不变，还是异常结束；如果最先完成的阶段是正常完成（把抛异常之前那个hread.sleep
-     *  (3000) 改成 hread.sleep(2000) ）的话，那么整个阶段将不会出现异常，whenComplete的参数s就是"hello world"，t为null。
+     * public CompletionStage<T> whenComplete(BiConsumer<? super T, ? super Throwable> action);
+     * public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action);
+     * public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executorexecutor);
+     * <p>
+     * 上面的一、二、三、四种类型的方法都需要依赖的阶段正常完成，如果异常完成将导致上面介绍的四种类型的方法最终也异常完成，不会得出我们希望的结果。
+     * 而whenComplete则不论依赖的上一个阶段是正常完成还是异常完成都不会影响它的执行，
+     * 但它是一个消耗型接口，即不会对阶段的原来结果产生影响，结合thenCombine综合whenComplete的示例如下：
+     * <p>
+     * 上例中，whenComplete的参数s表示通过thenCombine正常完成的结果，如果没有异常的话，该参数的值就是"hello world"，
+     * t参数是Throwable类型的异常，因为thenCombine同时依赖两个阶段的正常完成，
+     * 此时第一个阶段中抛出了异常，所以不会执行thenCombine指定的函数，即不会打印"combine result"，
+     * whenComplete不论是否前面的阶段是否出现异常都会执行，最后打印出这样的信息：
+     * <p>
+     * 如果将上例中的thenCombine换成applyToEither，那么如果两个阶段中最先完成的阶段是异常完成，那么其结果与上面不变，还是异常结束；
+     * 如果最先完成的阶段是正常完成（把抛异常之前那个Thread.sleep(3000) 改成 Thread.sleep(2000) ）的话，那么整个阶段将不会出现异常，
+     * whenComplete的参数s就是"hello world"，t为null。
      */
     @Test
     public void thenCombine2(){
@@ -381,16 +383,16 @@ public class CompletionStage01 {
 
     /**
      * 六、不论阶段正常还是异常完成的产出型：
-     * whenComplete是对不论依赖阶段正常完成还是异常完成时的消耗或者消费，即不会改变阶段的现状，而handle
-     * 前缀的方法则是对应的产出型方法，即可以对正常完成的结果进行转换，也可以对异常完成的进行补偿一个结果，即可以改变阶段的现状。
-     *
-     *  //不论正常还是异常的产出型：
-     *  public <U> CompletionStage<U> handle (BiFunction<? super T, Throwable, ? extends U> fn);
-     *  public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn);
-     *  public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn, Executor executor);
-     *
-     *  handle的第一个参数s是上一个阶段的结果，t参数是Throwable类型的异常，这里上一个阶段如果没有抛出异常，那么最终打印的结果是"Tom"，现在通过handle对出现异常的情况进行了补偿返回John
-     *  ，所以上例最终其实打印的是"John"。
+     * whenComplete是对不论依赖阶段正常完成还是异常完成时的消耗或者消费，即不会改变阶段的现状，
+     * 而handle前缀的方法则是对应的产出型方法，即可以对正常完成的结果进行转换，也可以对异常完成的进行补偿一个结果，即可以改变阶段的现状。
+     * <p>
+     * //不论正常还是异常的产出型：
+     * public <U> CompletionStage<U> handle (BiFunction<? super T, Throwable, ? extends U> fn);
+     * public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn);
+     * public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn, Executor executor);
+     * <p>
+     * handle的第一个参数s是上一个阶段的结果，t参数是Throwable类型的异常，这里上一个阶段如果没有抛出异常，那么最终打印的结果是"Tom"，
+     * 现在通过handle对出现异常的情况进行了补偿返回John，所以上例最终其实打印的是"John"。
      */
     @Test
     public void handle() {
@@ -419,11 +421,11 @@ public class CompletionStage01 {
     /**
      * 七、异常完成的产出型：
      * 第五、六两种类型的方法是对于不论依赖的阶段是正常完成还是异常完成的处理，CompletionStage还提供了一个仅当上一个阶段异常完成时的处理，并且可以修改阶段的结果：
-     *
-     *  public CompletionStage<T> exceptionally(Function<Throwable, ? extends T> fn);
-     *
-     *  可见exceptionally只有一个参数e，表示上一个节点的异常，只有上一个阶段异常完成才会被执行，以上示例在异常时返回了新的值"hello
-     *  world"对出现异常的阶段进行了补偿，所以最终整个阶段不会出现异常，并打印出"hello world"。
+     * <p>
+     * public CompletionStage<T> exceptionally(Function<Throwable, ? extends T> fn);
+     * <p>
+     * 可见exceptionally只有一个参数e，表示上一个节点的异常，只有上一个阶段异常完成才会被执行，
+     * 以上示例在异常时返回了新的值"hello world"对出现异常的阶段进行了补偿，所以最终整个阶段不会出现异常，并打印出"hello world"。
      */
     @Test
     public void exceptionally() {
@@ -447,6 +449,7 @@ public class CompletionStage01 {
     /**
      * 八、实现该接口不同实现之间互操作的类型转换方法：
      * public CompletableFuture<T> toCompletableFuture();
-     * 返回一个与此阶段保持相同完成属性的CompletableFuture实例。如果此阶段已经是一个CompletableFuture，那么直接返回该阶段本身，否则此方法的调用可能等效于thenApply(x -> x)，但返回一个类型为CompletableFuture的实例。不选择实现该互操作性的CompletionStage实现，可能会抛出UnsupportedOperationException异常。
+     * 返回一个与此阶段保持相同完成属性的CompletableFuture实例。如果此阶段已经是一个CompletableFuture，那么直接返回该阶段本身，
+     * 否则此方法的调用可能等效于thenApply(x -> x)，但返回一个类型为CompletableFuture的实例。不选择实现该互操作性的CompletionStage实现，可能会抛出UnsupportedOperationException异常。
      */
 }
