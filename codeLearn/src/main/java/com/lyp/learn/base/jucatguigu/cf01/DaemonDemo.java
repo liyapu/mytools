@@ -1,9 +1,11 @@
-package com.lyp.learn.base.jucatguigu.base;
+package com.lyp.learn.base.jucatguigu.cf01;
 
 /**
  * @author liyapu
  * @date 2022-06-03 16:43
  * @description
+ *    如果用户线程全部结束意味着程序需要完成的业务操作已经结束了，守护线程随着JVM一同结束工作。
+ *    setDaemon(true)方法必须再start()之前设置，否则报IllegalThreadStateException异常
  */
 public class DaemonDemo {
 

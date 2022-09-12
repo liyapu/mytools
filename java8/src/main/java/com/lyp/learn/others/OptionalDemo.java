@@ -3,12 +3,11 @@ package com.lyp.learn.others;
 
 import com.lyp.learn.bean.Address;
 import com.lyp.learn.bean.Student;
-import org.testng.annotations.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.testng.annotations.Test;
 
 /**
  * Optional<T> 类，是一个容器类，代表一个值存在或不存在，原来用 null 表示一个值不存在，
@@ -575,13 +574,25 @@ public class OptionalDemo {
 
     public String getCarInsuranceName(Optional<Person> person) {
         return person.flatMap(Person::getCar)
-                .flatMap(Car::getInsurance)
-                .map(Insurance::getName)
-                .orElse("Unknown"); //如果Optional的结果值为空，设置默认值
+            .flatMap(Car::getInsurance)
+            .map(Insurance::getName)
+            .orElse("Unknown"); //如果Optional的结果值为空，设置默认值
     }
 
-
-
+    /**
+     * 对象引用，可以多级都为NULl, Map映射为null,会返回 Optional<>对象
+     */
+    @Test
+    public void test14() {
+        China china = new China();
+        String pathName = Optional.ofNullable(china)
+            .map(ch -> ch.province)
+            .map(p -> p.city)
+            .map(c -> c.streat)
+            .map(s -> s.pathName)
+            .orElse("默认小路名称");
+        System.out.println("pathName = " + pathName);
+    }
 }
 
 
@@ -637,6 +648,7 @@ class Car {
 }
 
 class Insurance {
+
     private String name;
 
     public Insurance() {
@@ -646,11 +658,34 @@ class Insurance {
         this.name = name;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
+}
+
+
+class China {
+
+    public Province province;
+}
+
+class Province {
+
+    public City city;
+}
+
+class City {
+
+    public Streat streat;
+}
+
+class Streat {
+
+    public String pathName;
 }
 
 

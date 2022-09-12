@@ -1,4 +1,4 @@
-package com.lyp.learn.base.jucatguigu.completableFuture;
+package com.lyp.learn.base.jucatguigu.cf02;
 
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -42,6 +42,7 @@ public class CompletableFutureUseDemo {
         });
 
         System.out.println("main线程 ==== 去做其它事情 == " + Thread.currentThread().getName());
+        // get() 方法，阻塞到这里
         System.out.println("main线程 获取结果 === " + integerCompletableFuture.get());
     }
 
@@ -90,16 +91,19 @@ public class CompletableFutureUseDemo {
             System.out.println();
             return num;
         }, executorService).whenComplete((resultNum, throwException) -> {
+            
+            System.out.println();
             System.out.println("whenComplete ====--- come in ");
             if (Objects.isNull(throwException)) {
                 // 异常为空，即没有异常时
                 System.out.println("whenComplete ==== 获取结果 ： " + resultNum);
             }
             System.out.println("whenComplete ====---  " + throwException.getCause());
+            System.out.println();
 
         }).exceptionally(ex -> {
-            ex.printStackTrace();
-            System.out.println("exceptionally 异常：" + ex.getCause() + "\t" + ex.getMessage());
+            //ex.printStackTrace();
+            System.out.println("exceptionally 发生异常：" + ex.getCause() + "\t" + ex.getMessage());
             return null;
         });
 

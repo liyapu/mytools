@@ -32,6 +32,13 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     @Test
+    public void testSanMu() {
+        Object obj = null;
+        int a = obj == null ? 1 : null;
+        System.out.println(a);
+    }
+
+    @Test
     public void testForEach() {
         List<String> listNull = null;
         List<String> collect = CollectionUtils.emptyIfNull(listNull).stream()

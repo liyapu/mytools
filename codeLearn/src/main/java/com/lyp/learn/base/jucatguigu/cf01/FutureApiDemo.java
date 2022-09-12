@@ -1,4 +1,4 @@
-package com.lyp.learn.base.jucatguigu.base;
+package com.lyp.learn.base.jucatguigu.cf01;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;

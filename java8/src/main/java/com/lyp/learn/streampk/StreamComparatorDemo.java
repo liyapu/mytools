@@ -224,9 +224,7 @@ public class StreamComparatorDemo {
     @Test
     public void test11() {
         List<Apple> colorWeightList = new ArrayList<>(inventory);
-        colorWeightList.sort(Comparator.comparing(Apple::getColor)
-                .thenComparing(Apple::getWeight)
-        );
+        colorWeightList.sort(Comparator.comparing(Apple::getColor).thenComparing(Apple::getWeight));
         System.out.println(colorWeightList);
         System.out.println(JSON.toJSONString(colorWeightList));
         System.out.println();
@@ -567,12 +565,10 @@ public class StreamComparatorDemo {
 
     /**
      * //返回 对象集合以类属性一降序 属性二升序 注意两种写法
-     *
-     * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二));//先以属性一升序,升序结果进行属性一降序,
-     * 再进行属性二升序
-     *
-     * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()).thenComparing(类::属性二));//先以属性一降序,
-     * 再进行属性二升序
+     * <p>
+     * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二));//先以属性一升序,升序结果进行属性一降序,再进行属性二升序
+     * <p>
+     * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()).thenComparing(类::属性二));//先以属性一降序,再进行属性二升序
      */
     @Test
     public void testSortReversedThen(){

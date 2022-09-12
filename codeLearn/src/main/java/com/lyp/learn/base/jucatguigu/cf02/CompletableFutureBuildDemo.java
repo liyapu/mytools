@@ -1,4 +1,4 @@
-package com.lyp.learn.base.jucatguigu.completableFuture;
+package com.lyp.learn.base.jucatguigu.cf02;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -23,6 +23,7 @@ public class CompletableFutureBuildDemo {
      * Executor executor 参数说明：
      * 如果没有指定 Executor的方法，直接使用默认的 ForkJoinPool.commonPool()作为它的线程池执行异步代码
      * 如果指定了线程池，则使用我们自定义的或者特别指定的线程池执行异步代码
+     * <p>
      * 2  supplyAsync 有返回值
      * supplyAsync(Supplier<U> supplier)
      * supplyAsync(Supplier<U> supplier, Executor executor)
