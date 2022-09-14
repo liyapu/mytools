@@ -82,6 +82,13 @@ public class CompletionStage02 {
 
     /**
      * 可以输出预期结果
+     * <p>
+     * https://www.proyy.com/6968286631614742535.html
+     * allOf 的返回值是 CompletableFuture类型，这是因为 每个传入的 CompletableFuture 的返回值都可能不同，
+     * 所以组合的结果是 无法用某种类型来表示的，索性返回 Void 类型。那么，如何获取每个 CompletableFuture 的执行结果呢？
+     * <p>
+     * 这里有个关键问题，因为allof没有返回值，所以通过theApply，给allFutures附上一个回调函数。
+     * 在回调函数里面，以此调用么一个Future的get()/join()函数
      */
     @Test
     public void testALlOf01() {
@@ -287,12 +294,54 @@ public class CompletionStage02 {
 
         //final Integer sumResult = CompletableFuture.allOf(cfList.toArray(new CompletableFuture[cfList.size()]))
         final Integer sumResult = CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0]))
-            .thenApply(v -> {
-                return cfList.stream()
-                    .map(cf -> cf.join())
-                    .mapToInt(Integer::valueOf)
-                    .sum();
-            }).join();
+            .thenApply(v -> cfList.stream()
+                .map(CompletableFuture::join)
+                .mapToInt(Integer::valueOf)
+                .sum()
+            ).join();
+
+        System.out.println("sumResult = " + sumResult);
+    }
+
+    @Test
+    public void testAllOf07() {
+        final CompletableFuture<Integer> cf1 = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 10;
+        });
+
+        final CompletableFuture<Integer> cf2 = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 20;
+        });
+
+        final CompletableFuture<Integer> cf3 = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 30;
+        });
+
+        //直接转成 array
+        final CompletableFuture<Integer>[] cfArrays = Lists.newArrayList(cf1, cf2, cf3)
+            .toArray(new CompletableFuture[0]);
+
+        final Integer sumResult = CompletableFuture.allOf(cfArrays)
+            .thenApply(v -> Arrays.stream(cfArrays)
+                .map(CompletableFuture::join)
+                .mapToInt(Integer::valueOf)
+                .sum()
+            ).join();
 
         System.out.println("sumResult = " + sumResult);
     }
