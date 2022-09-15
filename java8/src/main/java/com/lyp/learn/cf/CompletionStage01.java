@@ -1,6 +1,7 @@
 package com.lyp.learn.cf;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -353,9 +354,9 @@ public class CompletionStage01 {
                 e.printStackTrace();
             }
 
-            if (1 == 1) {
-                throw new RuntimeException("测试一下异常情况");
-            }
+            //if (1 == 1) {
+            //    throw new RuntimeException("测试一下异常情况");
+            //}
 
             return "hello ";
         }).thenCombine(CompletableFuture.supplyAsync(() -> {
@@ -367,19 +368,69 @@ public class CompletionStage01 {
             System.out.println("return world...");  //会执行
             return "world";
         }), (s1, s2) -> {
-            String s = s1 + " " + s2;   //并不会执行
+            String s = s1 + "--- " + s2;   //并不会执行
             System.out.println("combine result :"+s); //并不会执行
             return s;
         }).whenComplete((s, t) -> {
-            System.out.println("current result ==== is :" +s);
-            if(t != null){
+            System.out.println("current result ==== is :" + s);
+            if (t != null) {
                 System.out.println("阶段执行过程中存在异常：");
                 t.printStackTrace();
             }
         }).join();
 
-        System.out.println("final result:"+result); //并不会执行
+        System.out.println("final result:" + result); //并不会执行
     }
+
+    /**
+     * 举一个生活上的例子，假如我们需要出去旅游，需要完成三个任务：
+     * <p>
+     * 任务一：订购航班
+     * 任务二：订购酒店
+     * 任务三：订购租车服务
+     * 很显然任务一和任务二没有相关性，可以单独执行。但是任务三必须等待任务一与任务二结束之后，才能订购租车服务。
+     */
+    @Test
+    public void testCombine3() {
+        //任务1：  订购航班
+        final CompletableFuture<String> orderAirplane = CompletableFuture.supplyAsync(() -> {
+            System.out.println("查询航班");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("订购航班");
+            return "航班信息";
+        });
+
+        //任务2：  订购酒店
+        final CompletableFuture<String> orderHotel = CompletableFuture.supplyAsync(() -> {
+            System.out.println("查询酒店");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("订购酒店");
+            return "酒店信息";
+        });
+
+        //任务3：任务1 和 任务2 都完成，才能去订购租车服务
+        final CompletableFuture<String> hireCar = orderHotel
+            .thenCombine(orderAirplane, (airplane, hotel) -> {
+                System.out.println("根据航班+酒店 订购租车服务:::" + airplane + " --- " + hotel);
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return "租车服务";
+            });
+
+        System.out.println(hireCar.join());
+    }
+
 
     /**
      * 六、不论阶段正常还是异常完成的产出型：
