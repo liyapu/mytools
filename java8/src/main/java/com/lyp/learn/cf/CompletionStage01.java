@@ -344,6 +344,9 @@ public class CompletionStage01 {
      * 如果将上例中的thenCombine换成applyToEither，那么如果两个阶段中最先完成的阶段是异常完成，那么其结果与上面不变，还是异常结束；
      * 如果最先完成的阶段是正常完成（把抛异常之前那个Thread.sleep(3000) 改成 Thread.sleep(2000) ）的话，那么整个阶段将不会出现异常，
      * whenComplete的参数s就是"hello world"，t为null。
+     *
+     * whenComplete 与 handle 方法就类似于 try..catch..finanlly 中 finally 代码块。无论是否发生异常，都将会执行的。
+     * 这两个方法区别在于 handle 支持返回结果。
      */
     @Test
     public void thenCombine2(){
@@ -477,6 +480,8 @@ public class CompletionStage01 {
      * <p>
      * 可见exceptionally只有一个参数e，表示上一个节点的异常，只有上一个阶段异常完成才会被执行，
      * 以上示例在异常时返回了新的值"hello world"对出现异常的阶段进行了补偿，所以最终整个阶段不会出现异常，并打印出"hello world"。
+     * <p>
+     * exceptionally 使用方式类似于 try..catch 中 catch代码块中异常处理。
      */
     @Test
     public void exceptionally() {
