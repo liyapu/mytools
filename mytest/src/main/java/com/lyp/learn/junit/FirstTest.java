@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,17 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testListNull() {
+        List<Integer> intList = null;
+        //List<Integer> intList = Arrays.asList(1, 2, 3);
+        final List<Integer> newIntList = ListUtils.emptyIfNull(intList).stream()
+            .map(i -> i + 10)
+            .peek(i -> System.out.println("i peek " + i))
+            .collect(Collectors.toList());
+        System.out.println(newIntList);
+    }
 
     @Test
     public void testSanMu() {

@@ -3,8 +3,10 @@ package com.lyp.learn.base.enums.year;
 import java.util.List;
 
 public enum YearEnum {
-
-    SPRING("spring", "春暖花开"){
+    /**
+     *
+     */
+    SPRING("spring", "春暖花开") {
         @Override
         public void say() {
             System.out.println("春天~~~~~~~");

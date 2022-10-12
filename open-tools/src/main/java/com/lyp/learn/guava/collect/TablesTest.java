@@ -5,10 +5,9 @@ import com.google.common.base.Function;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
+import java.util.Set;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
 
 /**
  * 提供 Table 的静态方法
@@ -78,7 +77,22 @@ public class TablesTest {
         table.put("B", "5", "B5");
 
         System.out.println(JSONObject.toJSONString(table));
-
+        System.out.println(table.get("A", "1"));
+        System.out.println(table.get("5", "B"));
     }
 
+    @Test
+    public void test_table4() {
+        Table<String, String, String> table = HashBasedTable.create();
+        table.put("keyIdA", "类型111", "备注111");
+        table.put("keyIdB", "类型222", "备注222");
+        table.put("keyIdC", "类型333", "备注333");
+
+        System.out.println(table.columnKeySet());
+        System.out.println(table.cellSet());
+        System.out.println(table.rowKeySet());
+        System.out.println(table.values());
+        System.out.println(table.rowMap());
+        System.out.println(table.columnMap());
+    }
 }
