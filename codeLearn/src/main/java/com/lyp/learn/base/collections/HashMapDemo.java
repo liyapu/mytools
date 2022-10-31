@@ -1,6 +1,7 @@
 package com.lyp.learn.base.collections;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.junit.Test;
@@ -71,4 +72,105 @@ public class HashMapDemo {
         // 输出更新后的HashMap
         System.out.println("Updated HashMap: " + priceMap);
     }
+
+    /**
+     * 编程中经常遇到这种数据结构，判断一个map中是否存在这个key，
+     * 如果存在则处理value的数据，
+     * 如果不存在，则创建一个满足value要求的数据结构放到value中。
+     * 以前常用的方法如下：
+     */
+    @Test
+    public void testComputeIfAbsent03() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+
+        hashMap.put("china", set);
+
+        // 判断map中是否存在，如果存在则添加元素到set中，如果不存在则新建set添加到hashMap中
+        if (hashMap.containsKey("china")) {
+            hashMap.get("china").add("liSi");
+        } else {
+            Set<String> setTmp = new HashSet<>();
+            setTmp.add("liSi");
+            hashMap.put("china", setTmp);
+        }
+        System.out.println(hashMap);
+    }
+
+    /**
+     * 官方非常的贴心，为了满足广大用户的要求，加入了computeIfAbsent() 这个api,
+     * 使用后以上代码变成了下面的形式：
+     */
+    @Test
+    public void testComputeIfAbsent04() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+
+        hashMap.put("china", set);
+        // after JDK1.8
+        hashMap.computeIfAbsent("china", key -> getValues(key)).add("liSi");
+        System.out.println(hashMap);
+    }
+
+    public static HashSet getValues(String key) {
+        System.out.println("---getValues---");
+        return new HashSet();
+    }
+
+    @Test
+    public void testComputeIfAbsent05() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+
+        hashMap.put("china", set);
+        // after JDK1.8
+        hashMap.computeIfAbsent("qin", key -> getValues(key)).add("liSi");
+        System.out.println(hashMap);
+    }
+
+    @Test
+    public void testComputeIfAbsent06() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+
+        hashMap.put("china", set);
+
+        Set<String> set2 = hashMap.getOrDefault("china", new HashSet<>());
+        set2.add("lisi");
+
+        Set<String> set3 = hashMap.getOrDefault("qin", new HashSet<>());
+        set3.add("qqq");
+        hashMap.put("qin", set3);
+
+        System.out.println(hashMap);
+    }
+
+    @Test
+    public void testComputeIfAbsent07() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+        hashMap.put("china", set);
+
+        Set<String> set2 = hashMap.computeIfAbsent("china", key -> new HashSet<>());
+        set2.add("lisi");
+
+        Set<String> set3 = hashMap.computeIfAbsent("qin", key -> new HashSet<>());
+        set3.add("qqq");
+
+        hashMap.computeIfAbsent("han", key -> new HashSet<>()).add("hhh");
+
+        System.out.println(hashMap);
+    }
+
+
 }
