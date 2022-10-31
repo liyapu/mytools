@@ -32,6 +32,35 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class FirstTest {
 
+    /**
+     * 空列表  --> stream 流， 不会执行了后续逻辑
+     */
+
+    @Test
+    public void testListNullEmpty() {
+        //List<Integer> intLists = Arrays.asList(1, 2, 3, 4, 5, 6);
+        //List<Integer> intLists = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> intLists = new ArrayList<>();
+        final List<Integer> listResult = intLists.stream()
+            .map(i -> i * i)
+            .peek(System.out::println)
+            .collect(Collectors.toList());
+        System.out.println("listResult = " + listResult);
+    }
+
+    @Test
+    public void testStrNull() {
+        String str1 = null;
+        System.out.println(str1 + "");
+        System.out.println(String.valueOf(str1));
+        System.out.println();
+        String str2 = "aa";
+        System.out.println(str2 + "");
+        System.out.println(String.valueOf(str2));
+
+        System.out.println("-----------");
+    }
+
     @Test
     public void testListNull() {
         List<Integer> intList = null;
