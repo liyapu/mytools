@@ -1,16 +1,27 @@
 package com.lyp.learn.streampk;
 
-import com.alibaba.fastjson.JSON;
-import com.lyp.learn.bean.Apple;
-import com.lyp.learn.bean.Dish;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
-import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import com.alibaba.fastjson.JSON;
+import com.lyp.learn.bean.Apple;
+import com.lyp.learn.bean.AppleVO;
+import com.lyp.learn.bean.Dish;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 
 public class StreamGroupByDemo {
 
@@ -283,24 +294,41 @@ public class StreamGroupByDemo {
 
     @Test
     public void test108(){
-        Map<String,String> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining(",","[","]"))));
+        Map<String, String> collect = inventory.stream()
+            .collect(Collectors
+                .groupingBy(Apple::getAddress, Collectors.mapping(Apple::getColor, Collectors.joining(",", "[", "]"))));
         System.out.println(collect);
     }
 
     @Test
-    public void test109(){
-        Map<String,String> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(a -> a.getColor() + "|" + a.getWeight(), Collectors.joining("-"))));
+    public void test109() {
+        Map<String, String> collect = inventory.stream()
+            .collect(Collectors.groupingBy(Apple::getAddress,
+                Collectors.mapping(a -> a.getColor() + "|" + a.getWeight(), Collectors.joining("-"))));
         System.out.println(collect);
     }
 
+    /**
+     * groupingBy 之后，对 List 再进行转换和操作
+     */
     @Test
-    public void test110(){
-        Map<String,String> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(a ->{
-                    return a.getColor() + "|" + a.getWeight();
-                },Collectors.joining("-"))));
+    public void test1091() {
+        Map<String, List<AppleVO>> color2VoList = inventory.stream()
+            .collect(groupingBy(Apple::getColor, mapping(a -> {
+                AppleVO vo = new AppleVO();
+                vo.setAddress(a.getAddress());
+                vo.setWeight(a.getWeight());
+                return vo;
+            }, toList())));
+        System.out.println(color2VoList);
+    }
+
+    @Test
+    public void test110() {
+        Map<String, String> collect = inventory.stream()
+            .collect(Collectors.groupingBy(Apple::getAddress, Collectors.mapping(a -> {
+                return a.getColor() + "|" + a.getWeight();
+            }, Collectors.joining("-"))));
         System.out.println(collect);
     }
 
@@ -348,9 +376,9 @@ public class StreamGroupByDemo {
 
 
     @Test
-    public void test116(){
+    public void test116() {
         Map<Integer, Map<String, Apple>> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, Function.identity())));
+            .collect(Collectors.groupingBy(Apple::getWeight, Collectors.toMap(Apple::getColor, Function.identity())));
         System.out.println(collect);
     }
 
@@ -358,9 +386,9 @@ public class StreamGroupByDemo {
      * 使用 TreeMap 收集，key值自动排序
      */
     @Test
-    public void test117(){
+    public void test117() {
         TreeMap<String, List<Apple>> colorToAppleListTreeMap = inventory.stream()
-                .collect(groupingBy(Apple::getColor, TreeMap::new, mapping(Function.identity(), toList())));
+            .collect(groupingBy(Apple::getColor, TreeMap::new, mapping(Function.identity(), toList())));
         System.out.println(colorToAppleListTreeMap);
     }
 
