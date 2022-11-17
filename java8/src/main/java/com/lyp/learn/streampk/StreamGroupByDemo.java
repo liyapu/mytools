@@ -309,17 +309,17 @@ public class StreamGroupByDemo {
     }
 
     /**
-     * groupingBy 之后，对 List 再进行转换和操作
+     * groupingBy 之后，Collectors.mapping 对 List 再进行转换和操作
      */
     @Test
     public void test1091() {
         Map<String, List<AppleVO>> color2VoList = inventory.stream()
-            .collect(groupingBy(Apple::getColor, mapping(a -> {
+            .collect(groupingBy(Apple::getColor, Collectors.mapping(a -> {
                 AppleVO vo = new AppleVO();
                 vo.setAddress(a.getAddress());
                 vo.setWeight(a.getWeight());
                 return vo;
-            }, toList())));
+            }, Collectors.toList())));
         System.out.println(color2VoList);
     }
 
