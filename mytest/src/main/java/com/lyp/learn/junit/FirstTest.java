@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -31,6 +32,20 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testTreeMap() {
+        TreeMap<String, Object> treeMap = new TreeMap<>();
+        treeMap.put("H", "HHH");
+        treeMap.put("c", "cccc");
+        treeMap.put("C", "CCC");
+        treeMap.put("A", "AAA");
+        treeMap.put("b", "bbb");
+        treeMap.put("a", "aaa");
+        treeMap.put("B", "BBB");
+
+        System.out.println(treeMap);
+    }
 
     /**
      * 空列表  --> stream 流， 不会执行了后续逻辑
