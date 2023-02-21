@@ -71,6 +71,7 @@ public enum Color {
         Color[] values = Color.values();
         for(Color color : values){
             System.out.println(color);
+            System.out.printf("----name--->>>" + color.name());
         }
 
     }

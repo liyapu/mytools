@@ -10,9 +10,42 @@ import org.junit.jupiter.api.Test;
 public class EnumTest {
 
     @Test
-    public void enumSwitchCase(){
+    public void testInteger3() {
+        Integer i1 = 129;
+        Integer i2 = 129;
+        System.out.println("i1 == i2 :" + (i1 == i2));
+        System.out.println("i1 equals i2 :" + (i1.equals(i2)));
+    }
+
+    @Test
+    public void testInteger2() {
+        Integer i1 = 128;
+        Integer i2 = 128;
+        System.out.println("i1 == i2 :" + (i1 == i2));
+        System.out.println("i1 equals i2 :" + (i1.equals(i2)));
+    }
+
+    @Test
+    public void testInteger() {
+        Integer i1 = 127;
+        Integer i2 = 127;
+        System.out.println("i1 == i2 :" + (i1 == i2));
+        System.out.println("i1 equals i2 :" + (i1.equals(i2)));
+    }
+
+    @Test
+    public void testDoubleStr() {
+        String str = "1000222.00000";
+        Double d = Double.parseDouble(str);
+        //Long result = Long.parseLong(str);
+        Long result = d.longValue();
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    public void enumSwitchCase() {
         Color color = Color.getColorByCode("red");
-        switch (color){
+        switch (color) {
             case RED:
                 System.out.println("color is red");
                 break;

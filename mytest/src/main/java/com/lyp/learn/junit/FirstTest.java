@@ -34,6 +34,38 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     @Test
+    public void testJoinIn() {
+        List<Long> poiIdList = new ArrayList<>();
+        poiIdList.add(1L);
+        poiIdList.add(5L);
+        poiIdList.add(8L);
+
+        String result1 = String.join(",", poiIdList.stream().map(k -> k.toString()).collect(
+            Collectors.toList()));
+        String result2 = poiIdList.stream().map(Object::toString).collect(Collectors.joining(","));
+        System.out.println(result1);
+        System.out.println(result2);
+    }
+
+    @Test
+    public void testJoinIn2() {
+        List<Long> poiIdList = new ArrayList<>();
+        poiIdList.add(1L);
+        poiIdList.add(5L);
+        poiIdList.add(8L);
+
+        String result = poiIdList.stream().map(k -> k.toString()).collect(Collectors.joining(","));
+        System.out.println(result);
+    }
+
+    @Test
+    public void testObjectIsNull() {
+        Long id = null;
+        long logisticsDeviationQty = Objects.isNull(id) ? 0 : id;
+        System.out.println("------");
+    }
+
+    @Test
     public void testTreeMap() {
         TreeMap<String, Object> treeMap = new TreeMap<>();
         treeMap.put("H", "HHH");

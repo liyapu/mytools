@@ -143,5 +143,15 @@ public class Man {
         return id$ManMap.get(id);
     }
 
+    public List<Man> getManList(ManQueryParam param) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 下面是假的，xml中sql中需要指定 ......... id > #{id} ORDER BY id ASC LIMIT #{limitNum}
+        return manList.subList(id, param.getLimitNum());
+    }
+
 
 }
