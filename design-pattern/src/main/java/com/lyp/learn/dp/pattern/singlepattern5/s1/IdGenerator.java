@@ -5,7 +5,8 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @author liyapu
  * @date 2023-03-08 09:45
- * @description 1.饿汉式
+ * @description 表示全局唯一类
+ * 1.饿汉式
  * 饿汉式的实现方式比较简单。在类加载的时候，instance静态实例就已经创建并初始化好了，所以，instance实例的创建过程是线程安全的。
  * 不过，这样的实现方式不支持延迟加载（在真正用到IdGenerator的时候，再创建实例），从名字中我们也可以看出这一点。具体的代码实现如下所示：
  * <p>
