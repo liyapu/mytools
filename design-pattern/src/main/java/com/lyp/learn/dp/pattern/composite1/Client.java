@@ -2,6 +2,7 @@ package com.lyp.learn.dp.pattern.composite1;
 
 /**
  * 安全模式（客户端）
+ * 组合模式
  */
 public class Client {
 

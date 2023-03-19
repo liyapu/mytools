@@ -1,7 +1,5 @@
 package com.lyp.learn.guava.eventbus.demo2;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**

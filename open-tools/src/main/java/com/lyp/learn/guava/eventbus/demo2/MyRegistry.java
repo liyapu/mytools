@@ -21,8 +21,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  *
  */
 class MyRegistry {
-    private final ConcurrentHashMap<String, ConcurrentLinkedQueue<MySubscriber>> subscriberContainer =
-            new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, ConcurrentLinkedQueue<MySubscriber>> subscriberContainer = new ConcurrentHashMap<>();
     /**
      * 绑定
      * @param subscriber
