@@ -1,15 +1,11 @@
 package com.lyp.learn.datatimes;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.TemporalAccessor;
-import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -73,31 +69,6 @@ public class Jdk8TimeTest {
 
     }
 
-    // 2. Instant:时间点
-    //替换原有的Date
-    @Test
-    public void test2() {
-        // now():得到Instant的实例
-        Instant instant = Instant.now();// 表示自1970年1月1日0时0分0秒（UTC）开始的秒数
-        System.out.println(instant);
-
-        // atOffset():得到带偏移量的日期时间
-        OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));
-        System.out.println(offsetDateTime);
-
-        // 得到时间戳
-        long milli = instant.toEpochMilli();
-        System.out.println(milli);//
-
-
-        // 根据毫秒数，得到时间点的对象
-        Instant instant2 = Instant.ofEpochMilli(milli);
-        System.out.println(instant2);
-
-
-        Date date = new Date();//被76行替代
-        Date date1 = new Date(3252345324534L);//被89行替代
-    }
 
     // 3.DateTimeFormatter:日期时间的格式化工具
     //替换原有的SimpleDateFormat

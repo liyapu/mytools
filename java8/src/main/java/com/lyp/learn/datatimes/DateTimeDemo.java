@@ -1,16 +1,12 @@
 package com.lyp.learn.datatimes;
 
 import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.OffsetDateTime;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -67,35 +63,35 @@ import org.junit.jupiter.api.Test;
  */
 public class DateTimeDemo {
         /**
-        * ================LocalDate=========================
-        * LocalDate是一个不可变的类，它表示默认格式(yyyy-MM-dd)的日期.
-        * LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
-         *
-        * getYear()    int    获取当前日期的年份
-        * getMonth()    Month    获取当前日期的月份对象
-        * getMonthValue()    int    获取当前日期是第几月
-        * getDayOfWeek()    DayOfWeek    表示该对象表示的日期是星期几
-        * getDayOfMonth()    int    表示该对象表示的日期是这个月第几天
-        * getDayOfYear()    int    表示该对象表示的日期是今年第几天
-        * withYear(int year)    LocalDate    修改当前对象的年份
-        * withMonth(int month)    LocalDate    修改当前对象的月份
-        * withDayOfMonth(int dayOfMonth)    LocalDate    修改当前对象在当月的日期
-        * isLeapYear()    boolean    是否是闰年
-        * lengthOfMonth()    int    这个月有多少天
-        * lengthOfYear()    int    该对象表示的年份有多少天（365或者366）
-        * plusYears(long yearsToAdd)    LocalDate    当前对象增加指定的年份数
-        * plusMonths(long monthsToAdd)    LocalDate    当前对象增加指定的月份数
-        * plusWeeks(long weeksToAdd)    LocalDate    当前对象增加指定的周数
-        * plusDays(long daysToAdd)    LocalDate    当前对象增加指定的天数
-        * minusYears(long yearsToSubtract)    LocalDate    当前对象减去指定的年数
-        * minusMonths(long monthsToSubtract)    LocalDate    当前对象减去注定的月数
-        * minusWeeks(long weeksToSubtract)    LocalDate    当前对象减去指定的周数
-        * minusDays(long daysToSubtract)    LocalDate    当前对象减去指定的天数
-        * compareTo(ChronoLocalDate other)    int    比较当前对象和other对象在时间上的大小，返回值如果为正，则当前对象时间较晚，
-        * isBefore(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之前 <
-        * isAfter(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之后 >
-        * isEqual(ChronoLocalDate other)    boolean    比较两个日期对象是否相等
-        */
+         * ================LocalDate=========================
+         * LocalDate是一个不可变的类，它表示默认格式(yyyy-MM-dd)的日期.
+         * LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
+         * <p>
+         * getYear()      int    获取当前日期的年份
+         * getMonth()    Month    获取当前日期的月份对象
+         * getMonthValue()    int    获取当前日期是第几月
+         * getDayOfWeek()    DayOfWeek    表示该对象表示的日期是星期几
+         * getDayOfMonth()    int    表示该对象表示的日期是这个月第几天
+         * getDayOfYear()    int    表示该对象表示的日期是今年第几天
+         * withYear(int year)    LocalDate    修改当前对象的年份
+         * withMonth(int month)    LocalDate    修改当前对象的月份
+         * withDayOfMonth(int dayOfMonth)    LocalDate    修改当前对象在当月的日期
+         * isLeapYear()    boolean    是否是闰年
+         * lengthOfMonth()    int    这个月有多少天
+         * lengthOfYear()    int    该对象表示的年份有多少天（365或者366）
+         * plusYears(long yearsToAdd)    LocalDate    当前对象增加指定的年份数
+         * plusMonths(long monthsToAdd)    LocalDate    当前对象增加指定的月份数
+         * plusWeeks(long weeksToAdd)    LocalDate    当前对象增加指定的周数
+         * plusDays(long daysToAdd)    LocalDate    当前对象增加指定的天数
+         * minusYears(long yearsToSubtract)    LocalDate    当前对象减去指定的年数
+         * minusMonths(long monthsToSubtract)    LocalDate    当前对象减去注定的月数
+         * minusWeeks(long weeksToSubtract)    LocalDate    当前对象减去指定的周数
+         * minusDays(long daysToSubtract)    LocalDate    当前对象减去指定的天数
+         * compareTo(ChronoLocalDate other)    int    比较当前对象和other对象在时间上的大小，返回值如果为正，则当前对象时间较晚，
+         * isBefore(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之前 <
+         * isAfter(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之后 >
+         * isEqual(ChronoLocalDate other)    boolean    比较两个日期对象是否相等
+         */
     @Test
     public void test1(){
         // 日期
@@ -298,74 +294,16 @@ public class DateTimeDemo {
         System.out.println();
     }
 
-    /**
-     * Instant
-     * 机器的日期和时间格式
-     * 时间戳(以Unix元年：1970年1月1日 00:00:00 到某个时间之间的毫秒数)
-     */
-    @Test
-    public void test4(){
-        Instant instant = Instant.now();
-        System.out.println("instant : " + instant); //默认获取 UTC 时区
-        System.out.println("instant.getEpochSecond() 获取秒：" + instant.getEpochSecond());
-        System.out.println(instant.getNano());
-
-        OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));
-        System.out.println(offsetDateTime);
-        System.out.println(offsetDateTime.toEpochSecond()); //返回时间戳
-        System.out.println(offsetDateTime.toLocalDateTime());
-        System.out.println();
-
-        Instant instant1 = Instant.ofEpochSecond(30);
-        System.out.println("instant1 : " + instant1);
-        System.out.println();
-
-        Instant instant2 = Instant.ofEpochSecond(86400);
-        System.out.println("instant2 : " + instant2);
-        System.out.println();
-
-    }
 
 
-    /**
-     * Duration--------操作时间间隔 秒，毫秒
-     */
-    @Test
-    public void test5(){
-        Duration duration = Duration.ofDays(1);
-        System.out.println("duration : " + duration);
-
-        Duration duration1 = Duration.ofHours(2);
-        System.out.println("duration1 : " + duration1);
-
-        LocalTime time = LocalTime.now();
-        LocalTime time2 = time.plusHours(1);
-        Duration duration2 = Duration.between(time,time2);
-        System.out.println("duration2 : " + duration2);
-        System.out.println("duration2.getSeconds() : " + duration2.getSeconds());
-        System.out.println("duration2.getNano() : " + duration2.getNano());
-        System.out.println("duration2.toNanos() : " + duration2.toNanos());
 
 
-        LocalDateTime localDateTime = LocalDateTime.now();
-        LocalDateTime localDateTime1 = localDateTime.plusDays(1);
-        Duration duration3 = Duration.between(localDateTime,localDateTime1);
-        System.out.println("duration3 : " + duration3);
-
-
-        Instant instant = Instant.now();
-        Instant instant1 = instant.plusMillis(1000);
-        Duration duration4 = Duration.between(instant,instant1);
-        System.out.println("duration4 : " + duration4);
-        System.out.println("duration4 : " + duration4.getNano());
-        System.out.println();
-    }
 
     /**
      * Period---------操作 年，月，日
      */
     @Test
-    public void test6(){
+    public void test6() {
 
         Period period = Period.ofDays(5);
         System.out.println("period : " + period);

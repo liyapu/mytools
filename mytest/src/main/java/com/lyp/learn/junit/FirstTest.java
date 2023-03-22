@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,12 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testLocalDateTime() {
+        long lo = LocalDateTime.now().minusDays(366).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println("lo = " + lo);
+    }
 
     @Test
     public void testJoinIn() {
