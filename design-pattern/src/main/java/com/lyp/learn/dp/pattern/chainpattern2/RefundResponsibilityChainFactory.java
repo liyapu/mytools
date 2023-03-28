@@ -6,6 +6,7 @@ package com.lyp.learn.dp.pattern.chainpattern2;
  * @desc
  */
 public class RefundResponsibilityChainFactory {
+
     public static RefundResponsibilityChainNode createRefundProcessChain(ProductMode productMode){
         if(ProductMode.MULTI_STAGE_AND_RATED_COMMISSION == productMode){
             RefundResponsibilityChainNode multiStageTimeLineExtractRefundNode = new MultiStageTimeLineExtractRefundNode(ChainStrategy.REJECT);
