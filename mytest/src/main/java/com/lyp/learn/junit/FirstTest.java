@@ -11,8 +11,10 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -33,6 +35,57 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testListSet() {
+        Map<Long, Object> skuIdToSkuBoMap = new HashMap<>();
+        skuIdToSkuBoMap.put(111L, new Object());
+        skuIdToSkuBoMap.put(222L, new Object());
+        skuIdToSkuBoMap.put(333L, new Object());
+        List<Long> skuIdList = Lists.newArrayList(skuIdToSkuBoMap.keySet());
+        System.out.println(skuIdList);
+    }
+
+    @Test
+    public void testSupport() {
+        List<Integer> supportOld = Arrays
+            .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
+                230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230030, 230031,
+                230032, 230033, 230034,
+                230035, 230036, 230007, 230008, 230009, 230079, 230080, 230081, 230092, 230082, 230083, 230084, 230085,
+                230086, 230087, 230088,
+                230089, 230090, 230091, 230077, 230078, 230061, 230062, 230063, 230064, 230065, 230066, 230067, 230068,
+                230069, 230070, 230071,
+                230072, 230073, 230074, 230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050,
+                230051, 230052, 230053,
+                230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
+                230094);
+
+        List<Integer> listNew = Arrays
+            .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
+                230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230010, 230003,
+                230004, 230005,
+                230006, 230030, 230031, 230032, 230033, 230034, 230035, 230036, 230007, 230008, 230009, 230079, 230080,
+                230081, 230082, 230083, 230084, 230085, 230086, 230087, 230088, 230089, 230090, 230077, 230078, 230061,
+                230062, 230063, 230064, 230065, 230066, 230067, 230068, 230069, 230070, 230071, 230072, 230073, 230074,
+                230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050, 230051, 230052, 230053,
+                230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
+                230091);
+
+        for (Integer old : supportOld) {
+            if (!listNew.contains(old)) {
+                System.out.println(old);
+            }
+        }
+
+        System.out.println("-----------------");
+        for (Integer xin : listNew) {
+            if (!supportOld.contains(xin)) {
+                System.out.println(xin);
+            }
+        }
+
+    }
 
     @Test
     public void testLocalDateTime() {
