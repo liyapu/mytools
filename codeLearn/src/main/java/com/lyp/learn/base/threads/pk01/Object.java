@@ -1,5 +1,4 @@
-//package com.lyp.learn.base.threads.pk01;
-package java.lang;
+package com.lyp.learn.base.threads.pk01;
 
 /**
  * java.lang.Object为java所有类的基类，所以一般的类都可用重写或直接使用Object下方法
@@ -10,9 +9,9 @@ package java.lang;
 public class Object {
 
     private static native void registerNatives();
-    static {
-        registerNatives();
-    }
+    //static {
+    //    registerNatives();
+    //}
 
     /**
      * 返回此Object的运行时类。 返回的类对象是被表示类的static synchronized方法锁定的对象。
@@ -25,7 +24,7 @@ public class Object {
      * 返回次Object的运行时类类型。
      * 不可重写，要调用的话，一般和getName()联合使用，如getClass().getName()
      */
-    public final native Class<?> getClass();
+    //public final native Class<?> getClass();
 
     /**
      * 返回对象的哈希码值。
@@ -51,7 +50,7 @@ public class Object {
      *
      * 如果不重写hashcode(),在HashSet中添加两个equals的对象，会将两个对象都加入进去。
      */
-    public native int hashCode();
+    //public native int hashCode();
 
     /**
      * Object中的equals方法是直接判断this和obj本身的值是否相等，
@@ -124,7 +123,7 @@ public class Object {
      * @throws  CloneNotSupportedException  如果对象的类不支持Cloneable接口。
      *                                      覆盖clone方法的子类也可以抛出此异常以指示实例无法克隆。
      */
-    protected native Object clone() throws CloneNotSupportedException;
+    //protected native Object clone() throws CloneNotSupportedException;
 
     /**
      * 默认返回对象的名称及引用地址，但一般被子类重写用于说明子类相关属性值描述
@@ -137,9 +136,9 @@ public class Object {
      * 换句话说，这个方法返回一个等于下列值的字符串：
      *  getClass().getName() + '@' + Integer.toHexString(hashCode())
      */
-    public String toString() {
-        return getClass().getName() + "@" + Integer.toHexString(hashCode());
-    }
+    //public String toString() {
+    //    return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    //}
 
     /**
      * 唤醒正在等待对象监视器的单个线程。
@@ -158,7 +157,7 @@ public class Object {
      *
      * @throws  IllegalMonitorStateException  如果当前线程不是此对象的监视器的所有者
      */
-    public final native void notify();
+    //public final native void notify();
 
     /**
      * 唤醒正在等待对象监视器的所有线程。 线程通过调用wait方法之一等待对象的监视器。
@@ -170,7 +169,7 @@ public class Object {
      * 有关线程可以成为监视器所有者的方法的说明，请参阅notify方法。
      * @throws  IllegalMonitorStateException  如果当前线程不是此对象的监视器的所有者
      */
-    public final native void notifyAll();
+    //public final native void notifyAll();
 
     /**
      * 导致当前线程等待，直到另一个线程调用此对象的notify()方法或notifyAll()方法，或指定的时间已过。
@@ -217,7 +216,7 @@ public class Object {
      * @throws  InterruptedException  如果任何线程在当前线程等待通知之前或当前线程中断当前线程。
      *                                 当抛出此异常时，当前线程的中断状态将被清除
      */
-    public final native void wait(long timeout) throws InterruptedException;
+    //public final native void wait(long timeout) throws InterruptedException;
 
     /**
      * 导致当前线程等待，直到另一个线程调用此对象的notify()方法或notifyAll()方法，或其他一些线程中断当前线程，或一定量的实时时间。
@@ -242,27 +241,27 @@ public class Object {
      *
      * @param      timeout   以毫秒为单位等待的最长时间。
      * @param      nanos     额外的时间，以纳秒范围0-999999
-     * @throws  IllegalArgumentException   如果超时值为负值或 IllegalArgumentException值不在0-999999范围内。
-     * @throws  IllegalMonitorStateException  如果当前线程不是此对象的监视器的所有者。
-     * @throws  InterruptedException 如果任何线程在当前线程等待通知之前或当前线程中断当前线程。
+     * @throws IllegalArgumentException   如果超时值为负值或 IllegalArgumentException值不在0-999999范围内。
+     * @throws IllegalMonitorStateException  如果当前线程不是此对象的监视器的所有者。
+     * @throws InterruptedException 如果任何线程在当前线程等待通知之前或当前线程中断当前线程。
      *                              当抛出此异常时，当前线程的中断状态将被清除
      */
-    public final void wait(long timeout, int nanos) throws InterruptedException {
-        if (timeout < 0) {
-            throw new IllegalArgumentException("timeout value is negative");
-        }
-
-        if (nanos < 0 || nanos > 999999) {
-            throw new IllegalArgumentException(
-                    "nanosecond timeout value out of range");
-        }
-
-        if (nanos > 0) {
-            timeout++;
-        }
-
-        wait(timeout);
-    }
+    //public final void wait(long timeout, int nanos) throws InterruptedException {
+    //    if (timeout < 0) {
+    //        throw new IllegalArgumentException("timeout value is negative");
+    //    }
+    //
+    //    if (nanos < 0 || nanos > 999999) {
+    //        throw new IllegalArgumentException(
+    //                "nanosecond timeout value out of range");
+    //    }
+    //
+    //    if (nanos > 0) {
+    //        timeout++;
+    //    }
+    //
+    //    wait(timeout);
+    //}
 
     /**
      * 导致当前线程等待，直到另一个线程调用该对象的notify()方法或notifyAll()方法。
@@ -280,13 +279,13 @@ public class Object {
      *      }
      *  该方法只能由作为该对象的监视器的所有者的线程调用。 有关线程可以成为监视器所有者的方式的说明，请参阅notify方法。
      *
-     * @throws  IllegalMonitorStateException  如果当前线程不是对象监视器的所有者
-     * @throws  InterruptedException 如果任何线程在当前线程等待通知之前或当前线程中断当前线程。
+     * @throws IllegalMonitorStateException  如果当前线程不是对象监视器的所有者
+     * @throws InterruptedException 如果任何线程在当前线程等待通知之前或当前线程中断当前线程。
      *                                  当抛出此异常时，当前线程的中断状态将被清除
      */
-    public final void wait() throws InterruptedException {
-        wait(0);
-    }
+    //public final void wait() throws InterruptedException {
+    //    wait(0);
+    //}
 
     /**
      * 垃圾回收器在认为该对象是垃圾对象的时候会调用该方法。子类可以通过重写该方法来达到资源释放的目的。
@@ -319,5 +318,5 @@ public class Object {
      *
      * @throws  Throwable - 这个方法提出的 异常
      */
-    protected void finalize() throws Throwable { }
+    //protected void finalize() throws Throwable { }
 }

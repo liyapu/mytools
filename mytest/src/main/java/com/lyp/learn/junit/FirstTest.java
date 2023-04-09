@@ -4,6 +4,8 @@ import com.beust.jcommander.internal.Lists;
 import com.google.common.base.Strings;
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +13,8 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,6 +39,25 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.MILLISECOND, -1);
+        //当月需要自动商家确认的买赔单，对账周期的结束时间，一定是上个月月底
+        Date checkEndDate = calendar.getTime();
+
+        System.out.println("checkEndDate = " + checkEndDate);
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String dateStr = format.format(checkEndDate);
+        System.out.println("dateStr = " + dateStr);
+    }
 
     @Test
     public void testListSet() {
