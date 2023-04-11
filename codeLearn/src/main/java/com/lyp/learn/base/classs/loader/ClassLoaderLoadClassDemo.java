@@ -56,6 +56,12 @@ import sun.security.util.CurveDB;
  * 执行类构造器()方法的： 此方法是由编译期自动收集类中所有类变量的赋值动作和静态代码块中的语句合并产生的(类构造器是构造类信息的，并非new对象构造器)
  * 如其父类为进行初始化，则初始化操作从先从父类进行；
  * 虚拟机会保证一个类的()方法在多线程环境中被正确加锁和同步；
+ *
+ *
+ * DK9及之后：
+ * 启动类加载器(Bootstrap ClassLoader)：
+ * 平台类加载器(Platform ClassLoader)：
+ * 应用程序类加载器(Application ClassLoader)：
  */
 public class ClassLoaderLoadClassDemo {
 

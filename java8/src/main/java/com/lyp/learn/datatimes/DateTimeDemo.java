@@ -28,21 +28,27 @@ import org.junit.jupiter.api.Test;
  * 时区（Time zone）
  * 我将针对 Joda 依次讨论每一个概念。
  *
- * 不可变性
- * 我在本文讨论的 Joda 类具有不可变性，因此它们的实例无法被修改。（不可变类的一个优点就是它们是线程安全的）。我将向您展示的用于处理日期计算的 API 方法全部返回一个对应 Joda 类的新实例，同时保持原始实例不变。当您通过一个 API 方法操作 Joda 类时，您必须捕捉该方法的返回值，因为您正在处理的实例不能被修改。您可能对这种模式很熟悉；比如，这正是 java.lang.String 的各种操作方法的工作方式。
+ * ---不可变性
+ * 我在本文讨论的 Joda 类具有不可变性，因此它们的实例无法被修改。（不可变类的一个优点就是它们是线程安全的）。
+ * 我将向您展示的用于处理日期计算的 API 方法全部返回一个对应 Joda 类的新实例，同时保持原始实例不变。
+ * 当您通过一个 API 方法操作 Joda 类时，您必须捕捉该方法的返回值，因为您正在处理的实例不能被修改。
+ * 您可能对这种模式很熟悉；比如，这正是 java.lang.String 的各种操作方法的工作方式。
  *
- * 瞬间性
- * Instant 表示时间上的某个精确的时刻，使用从 epoch 开始计算的毫秒表示。这一定义与 JDK 相同，这就是为什么任何 Joda Instant 子类都可以与 JDK Date 和 Calendar 类兼容的原因。
- *
+ * ---瞬间性
+ * Instant 表示时间上的某个精确的时刻，使用从 epoch 开始计算的毫秒表示。
+ * 这一定义与 JDK 相同，这就是为什么任何 Joda Instant 子类都可以与 JDK Date 和 Calendar 类兼容的原因。
  * 更通用一点的定义是：一个瞬间 就是指时间线上只出现一次且唯一的一个时间点，并且这种日期结构只能以一种有意义的方式出现一次。
  *
- * 局部性
- * 一个局部时间，正如我将在本文中将其称为局部时间片段一样，它指的是时间的一部分片段。瞬间性指定了与 epoch 相对的时间上的一个精确时刻，与此相反，局部时间片段指的是在时间上可以来回 “移动” 的一个时刻，这样它便可以应用于多个实例。比如，6 月 2 日 可以应用于任意一年的 6 月份（使用 Gregorian 日历）的第二天的任意瞬间。同样，11:06 p.m. 可以应用于任意一年的任意一天，并且每天只能使用一次。即使它们没有指定一个时间上的精确时刻，局部时间片段仍然是有用的。
- *
+ * ---局部性
+ * 一个局部时间，正如我将在本文中将其称为局部时间片段一样，它指的是时间的一部分片段。瞬间性指定了与 epoch 相对的时间上的一个精确时刻，
+ * 与此相反，局部时间片段指的是在时间上可以来回 “移动” 的一个时刻，这样它便可以应用于多个实例。
+ * 比如，6 月 2 日 可以应用于任意一年的 6 月份（使用 Gregorian 日历）的第二天的任意瞬间。
+ * 同样，11:06 p.m. 可以应用于任意一年的任意一天，并且每天只能使用一次。即使它们没有指定一个时间上的精确时刻，局部时间片段仍然是有用的。
  * 我喜欢将局部时间片段看作一个重复周期中的一点，这样的话，如果我正在考虑的日期构建可以以一种有意义的方式出现多次（即重复的），那么它就是一个局部时间。
  *
- * 年表
- * Joda 本质 — 以及其设计核心 — 的关键就是年表（它的含义由一个同名抽象类捕捉）。从根本上讲，年表是一种日历系统 — 一种计算时间的特殊方式 — 并且是一种在其中执行日历算法的框架。受 Joda 支持的年表的例子包括：
+ * ---年表
+ * Joda 本质 — 以及其设计核心 — 的关键就是年表（它的含义由一个同名抽象类捕捉）。
+ * 从根本上讲，年表是一种日历系统 — 一种计算时间的特殊方式 — 并且是一种在其中执行日历算法的框架。受 Joda 支持的年表的例子包括：
  *
  * ISO（默认）
  * Coptic
@@ -51,49 +57,53 @@ import org.junit.jupiter.api.Test;
  * Joda-Time 1.6 支持 8 种年表，每一种都可以作为特定日历系统的计算引擎。
  *
  * 时区
- * 时区是值一个相对于英国格林威治的地理位置，用于计算时间。要了解事件发生的精确时间，还必须知道发生此事件的位置。任何严格的时间计算都必须涉及时区（或相对于 GMT），除非在同一个时区内发生了相对时间计算（即时这样时区也很重要，如果事件对于位于另一个时区的各方存在利益关系的话）。
+ * 时区是值一个相对于英国格林威治的地理位置，用于计算时间。要了解事件发生的精确时间，还必须知道发生此事件的位置。
+ * 任何严格的时间计算都必须涉及时区（或相对于 GMT），除非在同一个时区内发生了相对时间计算（即时这样时区也很重要，如果事件对于位于另一个时区的各方存在利益关系的话）。
  *
- * DateTimeZone 是 Joda 库用于封装位置概念的类。许多日期和时间计算都可以在不涉及时区的情况下完成，但是仍然需要了解 DateTimeZone 如何影响 Joda 的操作。默认时间，即从运行代码的机器的系统时钟检索到的时间，在大部分情况下被使用。
+ * DateTimeZone 是 Joda 库用于封装位置概念的类。许多日期和时间计算都可以在不涉及时区的情况下完成，
+ * 但是仍然需要了解 DateTimeZone 如何影响 Joda 的操作。
+ * 默认时间，即从运行代码的机器的系统时钟检索到的时间，在大部分情况下被使用。
  *
  *
- *    LocalDate、LocalTime、LocalDateTime 类是其中较重要的几个类，它们的实例是不可变的对象，
- *    分别表示使用 ISO-8601日历系统的日期、时间、日期和时间。
- *    它们提供了简单的本地日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。
- *    注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
+ * LocalDate、LocalTime、LocalDateTime 类是其中较重要的几个类，它们的实例是不可变的对象，
+ * 分别表示使用 ISO-8601日历系统的日期、时间、日期和时间。
+ * 它们提供了简单的本地日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。
+ * 注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
  */
 public class DateTimeDemo {
-        /**
-         * ================LocalDate=========================
-         * LocalDate是一个不可变的类，它表示默认格式(yyyy-MM-dd)的日期.
-         * LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
-         * <p>
-         * getYear()      int    获取当前日期的年份
-         * getMonth()    Month    获取当前日期的月份对象
-         * getMonthValue()    int    获取当前日期是第几月
-         * getDayOfWeek()    DayOfWeek    表示该对象表示的日期是星期几
-         * getDayOfMonth()    int    表示该对象表示的日期是这个月第几天
-         * getDayOfYear()    int    表示该对象表示的日期是今年第几天
-         * withYear(int year)    LocalDate    修改当前对象的年份
-         * withMonth(int month)    LocalDate    修改当前对象的月份
-         * withDayOfMonth(int dayOfMonth)    LocalDate    修改当前对象在当月的日期
-         * isLeapYear()    boolean    是否是闰年
-         * lengthOfMonth()    int    这个月有多少天
-         * lengthOfYear()    int    该对象表示的年份有多少天（365或者366）
-         * plusYears(long yearsToAdd)    LocalDate    当前对象增加指定的年份数
-         * plusMonths(long monthsToAdd)    LocalDate    当前对象增加指定的月份数
-         * plusWeeks(long weeksToAdd)    LocalDate    当前对象增加指定的周数
-         * plusDays(long daysToAdd)    LocalDate    当前对象增加指定的天数
-         * minusYears(long yearsToSubtract)    LocalDate    当前对象减去指定的年数
-         * minusMonths(long monthsToSubtract)    LocalDate    当前对象减去注定的月数
-         * minusWeeks(long weeksToSubtract)    LocalDate    当前对象减去指定的周数
-         * minusDays(long daysToSubtract)    LocalDate    当前对象减去指定的天数
-         * compareTo(ChronoLocalDate other)    int    比较当前对象和other对象在时间上的大小，返回值如果为正，则当前对象时间较晚，
-         * isBefore(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之前 <
-         * isAfter(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之后 >
-         * isEqual(ChronoLocalDate other)    boolean    比较两个日期对象是否相等
-         */
+
+    /**
+     * ================LocalDate=========================
+     * LocalDate是一个不可变的类，它表示默认格式(yyyy-MM-dd)的日期.
+     * LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
+     *
+     * getYear()      int    获取当前日期的年份
+     * getMonth()    Month    获取当前日期的月份对象
+     * getMonthValue()    int    获取当前日期是第几月
+     * getDayOfWeek()    DayOfWeek    表示该对象表示的日期是星期几
+     * getDayOfMonth()    int    表示该对象表示的日期是这个月第几天
+     * getDayOfYear()    int    表示该对象表示的日期是今年第几天
+     * withYear(int year)    LocalDate    修改当前对象的年份
+     * withMonth(int month)    LocalDate    修改当前对象的月份
+     * withDayOfMonth(int dayOfMonth)    LocalDate    修改当前对象在当月的日期
+     * isLeapYear()    boolean    是否是闰年
+     * lengthOfMonth()    int    这个月有多少天
+     * lengthOfYear()    int    该对象表示的年份有多少天（365或者366）
+     * plusYears(long yearsToAdd)    LocalDate    当前对象增加指定的年份数
+     * plusMonths(long monthsToAdd)    LocalDate    当前对象增加指定的月份数
+     * plusWeeks(long weeksToAdd)    LocalDate    当前对象增加指定的周数
+     * plusDays(long daysToAdd)    LocalDate    当前对象增加指定的天数
+     * minusYears(long yearsToSubtract)    LocalDate    当前对象减去指定的年数
+     * minusMonths(long monthsToSubtract)    LocalDate    当前对象减去注定的月数
+     * minusWeeks(long weeksToSubtract)    LocalDate    当前对象减去指定的周数
+     * minusDays(long daysToSubtract)    LocalDate    当前对象减去指定的天数
+     * compareTo(ChronoLocalDate other)    int    比较当前对象和other对象在时间上的大小，返回值如果为正，则当前对象时间较晚，
+     * isBefore(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之前 <
+     * isAfter(ChronoLocalDate other)    boolean    比较当前对象日期是否在other对象日期之后 >
+     * isEqual(ChronoLocalDate other)    boolean    比较两个日期对象是否相等
+     */
     @Test
-    public void test1(){
+    public void test1() {
         // 日期
         LocalDate date = LocalDate.now();
 
@@ -117,7 +127,6 @@ public class DateTimeDemo {
         System.out.println("date.isLeapYear() : " + date.isLeapYear());
 
         System.out.println();
-
 
         System.out.println("date.plusYears(2): " + date.plusYears(2));
         System.out.println("date.minusYears(5) : " + date.minusYears(5));
@@ -166,12 +175,7 @@ public class DateTimeDemo {
         System.out.println("date.with(.dayOfWeekInMonth(-2,DayOfWeek.SUNDAY)) : " + date.with(TemporalAdjusters.dayOfWeekInMonth(-2,DayOfWeek.SUNDAY)));
         System.out.println("date.with(.dayOfWeekInMonth(0,DayOfWeek.SUNDAY)) : " + date.with(TemporalAdjusters.dayOfWeekInMonth(0,DayOfWeek.SUNDAY)));
 
-
-
-
         System.out.println();
-
-
 
         LocalDate date2 = LocalDate.of(2015,10,10);
         System.out.println("date2 : " + date2);
@@ -251,8 +255,8 @@ public class DateTimeDemo {
     }
 
     /**
-    * ==============LocalDateTime===============================
-    * LocalDateTime是一个不可变的日期-时间对象，它表示一组日期-时间，默认格式是yyyy-MM-dd-HH-mm-ss.zzz
+     * ==============LocalDateTime===============================
+     * LocalDateTime是一个不可变的日期-时间对象，它表示一组日期-时间，默认格式是yyyy-MM-dd-HH-mm-ss.zzz
      */
     @Test
     public void test3(){
@@ -271,7 +275,6 @@ public class DateTimeDemo {
         System.out.println("localDateTime1 : " + localDateTime1);
         System.out.println();
 
-
         LocalDateTime localDateTime2 = LocalDateTime.of(2012,5,20,15,35,38);
         System.out.println("localDateTime2 : " + localDateTime2);
         System.out.println("localDateTime2.getDayOfMonth() : " + localDateTime2.getDayOfMonth());
@@ -285,18 +288,23 @@ public class DateTimeDemo {
         System.out.println("localDateTime41 : " + localDateTime41);
         System.out.println();
 
-        LocalDateTime localDateTime42 = date.atTime(15,36);
+        LocalDateTime localDateTime42 = date.atTime(15, 36);
         System.out.println("localDateTime42 : " + localDateTime42);
         System.out.println();
 
         LocalDateTime localDateTime5 = time.atDate(date);
         System.out.println("localDateTime5 : " + localDateTime5);
         System.out.println();
+
+        /**
+         * 获取今天的开始和结束日期
+         */
+        LocalDateTime localDateTimeMin = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        LocalDateTime localDateTimeMax = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        System.out.println("localDateTimeMin : " + localDateTimeMin);
+        System.out.println("localDateTimeMax : " + localDateTimeMax);
+
     }
-
-
-
-
 
 
     /**
@@ -375,7 +383,6 @@ public class DateTimeDemo {
         System.out.println("localDateNow2 :" + localDateNow2);
         System.out.println("localDateNow2.getYear() : " + localDateNow2.getYear());
 
-
         LocalDate localDateNow3 = LocalDate.parse("2018-10-10",DateTimeFormatter.ISO_LOCAL_DATE);
         System.out.println("localDateNow3 : " + localDateNow3);
         System.out.println();
@@ -390,11 +397,11 @@ public class DateTimeDemo {
         System.out.println("chinaDateTimeFormatter " + chinaDateTimeFormatter.format(localDateTimeNow));
 
         DateTimeFormatter chinaDateTimeFormatterCustom = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .append(DateTimeFormatter.ISO_LOCAL_DATE)
-                .appendLiteral(" ")
-                .append(DateTimeFormatter.ISO_LOCAL_TIME)
-                .toFormatter();
+            .parseCaseInsensitive()
+            .append(DateTimeFormatter.ISO_LOCAL_DATE)
+            .appendLiteral(" ")
+            .append(DateTimeFormatter.ISO_LOCAL_TIME)
+            .toFormatter();
 
         System.out.println("localDateTimeNow : " + localDateTimeNow);
         System.out
@@ -473,13 +480,12 @@ public class DateTimeDemo {
         System.out.println(localDateTimeBeforeMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         //指定日期减去 1个月，时分秒 重置为任意值
-        LocalDateTime ldt = LocalDateTime.of(2020, 1,6,14,30,55);
+        LocalDateTime ldt = LocalDateTime.of(2020, 1, 6, 14, 30, 55);
         LocalDateTime ldtbm = ldt.minusMonths(1)
-                                 .withHour(23)
-                                 .withMinute(59)
-                                 .withSecond(59);
+            .withHour(23)
+            .withMinute(59)
+            .withSecond(59);
         System.out.println(ldtbm.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
-
 
 }

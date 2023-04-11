@@ -40,11 +40,14 @@ public class DurationTest {
         System.out.println("duration2.getSeconds() : " + duration2.getSeconds());
         System.out.println("duration2.getNano() : " + duration2.getNano());
         System.out.println("duration2.toNanos() : " + duration2.toNanos());
+        System.out.println("duration2.toHours() : " + duration2.toHours());
+        System.out.println("duration2.toDays() : " + duration2.toDays());
 
         LocalDateTime localDateTime = LocalDateTime.now();
         LocalDateTime localDateTime1 = localDateTime.plusDays(1);
         Duration duration3 = Duration.between(localDateTime, localDateTime1);
         System.out.println("duration3 : " + duration3);
+        System.out.println("duration3.toHours : " + duration3.toHours());
 
         Instant instant = Instant.now();
         Instant instant1 = instant.plusMillis(1000);
