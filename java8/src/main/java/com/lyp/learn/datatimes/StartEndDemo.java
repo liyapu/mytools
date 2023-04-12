@@ -17,8 +17,10 @@ import org.junit.jupiter.api.Test;
  */
 public class StartEndDemo {
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
     /**
      * 获取当天的最大最小开始日期时间
@@ -201,6 +203,27 @@ public class StartEndDemo {
         return LocalDate.now().plusYears(years).with(TemporalAdjusters.lastDayOfYear());
     }
 
+    /**
+     * 季度开始和结束时间测试
+     */
+    @Test
+    public void testQuarter() {
+        // quarters 0本季度，1下季度，-1上季度 以此类推
+        long quarters = -4;
+        LocalDate localDate = LocalDate.now();
+        //LocalDate localDate = LocalDate.of(2023, 1, 5);
+        LocalDate resDate = localDate.plusMonths(quarters * 3);
+        Month month = resDate.getMonth();
+        Month firstMonthOfQuarter = month.firstMonthOfQuarter();
+        LocalDate startQuarter = LocalDate.of(resDate.getYear(), firstMonthOfQuarter, 1);
+        System.out.println("startQuarter = " + dateFormatter.format(startQuarter));
+
+        Month endMonthOfQuarter = Month.of(firstMonthOfQuarter.getValue() + 2);
+        LocalDate endQuarter = LocalDate
+            .of(resDate.getYear(), endMonthOfQuarter, endMonthOfQuarter.length(resDate.isLeapYear()));
+        System.out.println("endQuarter   = " + dateFormatter.format(endQuarter));
+    }
+
     @Test
     public void testNext() {
         LocalDate localDate = LocalDate.now();
@@ -220,12 +243,25 @@ public class StartEndDemo {
 
         LocalDate date6 = localDate.with(TemporalAdjusters.firstDayOfYear());
         System.out.println("一年的第一天 " + dateFormatter.format(date6));
-        
+
         LocalDate date5 = localDate.with(TemporalAdjusters.lastDayOfYear());
         System.out.println("一年中的最后一天 " + dateFormatter.format(date5));
 
         LocalDate date7 = localDate.with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY));
         System.out.println("当前月的最后一个星期日 " + dateFormatter.format(date7));
+    }
+
+
+    @Test
+    public void testMinMax() {
+        System.out.println("LocalTime min = " + timeFormatter.format(LocalTime.MIN));
+        System.out.println("LocalTime min = " + timeFormatter.format(LocalTime.MAX));
+
+        System.out.println("LocalDate min = " + dateFormatter.format(LocalDate.MIN));
+        System.out.println("LocalDate max = " + dateFormatter.format(LocalDate.MAX));
+
+        System.out.println("LocalDateTime min = " + dateTimeFormatter.format(LocalDateTime.MIN));
+        System.out.println("LocalDateTime max = " + dateTimeFormatter.format(LocalDateTime.MAX));
     }
 
 }

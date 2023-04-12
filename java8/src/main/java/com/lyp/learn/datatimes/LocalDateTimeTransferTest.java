@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * @date 2023-03-22 14:37
  * @description
  */
-public class DateLocalDateTimeTransferTest {
+public class LocalDateTimeTransferTest {
 
     /**
      * Date转LocalDateTime
@@ -38,6 +39,22 @@ public class DateLocalDateTimeTransferTest {
         Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
         System.out.println("dae = " + date);
     }
+
+    //=========== LocalDateTime与String互转 ==========================================
+    @Test
+    public void LocalDateTimeToStr() {
+        //时间转字符串格式化
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dateTime = LocalDateTime.now(ZoneOffset.of("+8")).format(formatter);
+        System.out.println("dateTime = " + dateTime);
+
+        //字符串转时间
+        String dateTimeStr = "2018-07-28 14:11:15";
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime2 = LocalDateTime.parse(dateTimeStr, df);
+        System.out.println("dateTime2 = " + dateTime2);
+
+    }
     //==============LocalDateTime==========时间戳=======================================
 
     /**
@@ -56,6 +73,9 @@ public class DateLocalDateTimeTransferTest {
         //将当前时间转为时间戳  秒
         long second2 = localDateTime.toInstant(ZoneOffset.ofHours(8)).getEpochSecond();
         System.out.println("second2 = " + second2);
+        //获取秒数
+        Long second = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        System.out.println("second3 = " + second);
     }
 
     /**
@@ -65,8 +85,12 @@ public class DateLocalDateTimeTransferTest {
      */
     @Test
     public void testLocalDateTime3() {
-        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
-        System.out.println("milliSecond = " + milliSecond);
+        //获取毫秒数
+        Long milliSecond1 = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        System.out.println("milliSecond1 = " + milliSecond1);
+
+        Long milliSecond2 = LocalDateTime.now().toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println("milliSecond2 = " + milliSecond2);
     }
 
     /**

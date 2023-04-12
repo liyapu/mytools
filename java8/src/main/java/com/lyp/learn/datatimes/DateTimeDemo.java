@@ -5,19 +5,29 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.Period;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Java 8中的时间处理
+ * 在Java8中， 新的时间及⽇期API位于java.time包中， 该包中有哪些重要的类。 分别代表了什么？
+ * Instant： 时间戳
+ * Duration： 持续时间， 时间差
+ * LocalDate： 只包含⽇期， ⽐如： 2016-10-20
+ * LocalTime： 只包含时间， ⽐如： 22:15:16
+ * LocalDateTime： 包含⽇期和时间， ⽐如： 2016-10-20 22:15:16
+ * Period： 时间段
+ * ZoneOffset： 时区偏移量， ⽐如： +8:00
+ * ZonedDateTime： 带时区的时间
+ * Clock： 时钟， ⽐如获取⽬前美国纽约的时间
+ * 原文链接：https://blog.csdn.net/weixin_42517137/article/details/114226165
+ * -----------------------------------------------------------------------
+ *
  * Joda 的关键日期/时间概念
  * Joda 使用以下概念，它们可以应用到任何日期/时间库：
  *
@@ -69,6 +79,8 @@ import org.junit.jupiter.api.Test;
  * 分别表示使用 ISO-8601日历系统的日期、时间、日期和时间。
  * 它们提供了简单的本地日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。
  * 注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
+ *
+ *
  */
 public class DateTimeDemo {
 
@@ -201,15 +213,16 @@ public class DateTimeDemo {
         System.out.println("isEqual :" + isEqual);
         boolean isEqual2 = date2.isEqual(date2);
         System.out.println(isEqual2);
+        System.out.println();
     }
 
+
     /**
-     *
      * ===============LocalTime===========================
      * LocalTime是一个不可变的类，它的实例代表一个符合人类可读格式的时间，默认格式是hh:mm:ss.zzz
      */
     @Test
-    public void test2(){
+    public void test2() {
         System.out.println("-----------------------------时间-------------------------");
         LocalTime time = LocalTime.now();
         System.out.println(time);
@@ -308,45 +321,6 @@ public class DateTimeDemo {
 
 
     /**
-     * Period---------操作 年，月，日
-     */
-    @Test
-    public void test6() {
-
-        Period period = Period.ofDays(5);
-        System.out.println("period : " + period);
-        System.out.println("period.minusDays(1) : " + period.minusDays(1));
-        System.out.println("period.plusDays(5) : " + period.plusDays(5));
-        System.out.println();
-
-        Period period1 = Period.ofYears(3);
-        System.out.println("period1 : " + period1);
-
-        LocalDate date = LocalDate.now();
-        LocalDate date2 = date.plusDays(1);
-        Period period2 = Period.between(date,date2);
-        System.out.println("period2 : " + period2);
-        System.out.println("period2.isNegative() : " + period2.isNegative());
-        System.out.println("period2.isZero() : "  + period2.isZero());
-        System.out.println("period2.getYears() : " + period2.getYears());
-        System.out.println("period2.getMonths() : " + period2.getMonths());
-        System.out.println("period2.getDays() : " + period2.getDays());
-        System.out.println();
-
-        Period period3 = Period.between(date2,date);
-        System.out.println("period3 : " + period3);
-        System.out.println("period3.isNegative() : " + period3.isNegative());
-        System.out.println("period3.isZero() : " + period3.isZero());
-        System.out.println("period3.getYears() : " + period3.getYears());
-        System.out.println("period3.getMonths() : " + period3.getMonths());
-        System.out.println("period3.getDays() : " + period3.getDays());
-        System.out.println("period3.get(ChronoUnit.YEARS) : " + period3.get(ChronoUnit.YEARS));
-        System.out.println("period3.get(ChronoUnit.MONTHS) : " + period3.get(ChronoUnit.MONTHS));
-        System.out.println("period3.get(ChronoUnit.DAYS) : " + period3.get(ChronoUnit.DAYS));
-        System.out.println();
-    }
-
-    /**
      * 时间校正器
      * TemporalAdjuster
      */
@@ -435,29 +409,6 @@ public class DateTimeDemo {
         DateTimeFormatter chinaDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
     }
 
-    /**
-     * 带时区的
-     * ZoneDate ZoneTime ZoneDateTime
-     */
-    @Test
-    public  void test9(){
-        System.out.println("-----------支持的所有时区-----------------");
-        Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();
-        for(String s : availableZoneIds){
-            System.out.println(s);
-        }
-        System.out.println("------------------时区-----------------------------");
-        ZonedDateTime zonedDateTime = ZonedDateTime.now();
-        System.out.println("zonedDateTime : " + zonedDateTime);
-
-        LocalDate date = LocalDate.now();
-        LocalDateTime localDateTime = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.of("Asia/Shanghai");
-        System.out.println("date.atStartOfDay(zoneId) : " + date.atStartOfDay(zoneId));
-
-        System.out.println("localDateTime.atZone(zoneId) : " + localDateTime.atZone(zoneId));
-
-    }
 
     @Test
     public void test10(){
