@@ -508,9 +508,7 @@ public class StreamComparatorDemo {
 
     /**
      * 根据 id 正序排序
-     *
      * List<类> list; 代表某集合
-     *
      * //返回 对象集合以类属性一升序排序
      * list.stream().sorted(Comparator.comparing(类::属性一));
      */
@@ -525,11 +523,8 @@ public class StreamComparatorDemo {
 
     /**
      * 根据 id 正序排序,然后倒叙输出
-     * <p>
      * //返回 对象集合以类属性一降序排序 注意两种写法
-     * <p>
      * list.stream().sorted(Comparator.comparing(类::属性一).reversed());//先以属性一升序,结果进行属性一降序
-     * <p>
      * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()));//以属性一降序
      */
     @Test
@@ -565,9 +560,9 @@ public class StreamComparatorDemo {
 
     /**
      * //返回 对象集合以类属性一降序 属性二升序 注意两种写法
-     * <p>
+     *
      * list.stream().sorted(Comparator.comparing(类::属性一).reversed().thenComparing(类::属性二));//先以属性一升序,升序结果进行属性一降序,再进行属性二升序
-     * <p>
+     *
      * list.stream().sorted(Comparator.comparing(类::属性一,Comparator.reverseOrder()).thenComparing(类::属性二));//先以属性一降序,再进行属性二升序
      */
     @Test

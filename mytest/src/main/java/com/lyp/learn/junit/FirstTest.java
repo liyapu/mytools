@@ -41,6 +41,14 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     @Test
+    public void LocalDateMin() {
+        LocalDateTime today = LocalDateTime.of(2023, 4, 24, 10, 10, 10);
+        Long createFinanceIntegrateBillWaitDay = 23L;
+        LocalDateTime startLocalDateTime = today.minusDays(createFinanceIntegrateBillWaitDay);
+        System.out.println("startLocalDateTime = " + startLocalDateTime);
+    }
+
+    @Test
     public void testCalendar() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1);

@@ -69,6 +69,22 @@ public class DurationTest {
         System.out.println();
     }
 
+    @Test
+    public void testDate1() {
+        LocalDateTime localDateTime1 = LocalDateTime.of(2023, 4, 1, 10, 10, 10);
+        LocalDateTime localDateTime2 = LocalDateTime.now();
+
+        Duration duration = Duration.between(localDateTime1, localDateTime2);
+        System.out.println("duration.getSeconds = " + duration.getSeconds());
+        System.out.println("duration.getNano    = " + duration.getNano());
+        System.out.println("duration.toString   = " + duration.toString());
+        System.out.println("duration.toNanos    = " + duration.toNanos());
+        System.out.println("duration.toMillis   = " + duration.toMillis());
+        System.out.println("duration.toMinutes  = " + duration.toMinutes());
+        System.out.println("duration.toHours    = " + duration.toHours());
+        System.out.println("duration.toDays     = " + duration.toDays());
+    }
+
     /**
      * 解析方法
      * 格式说明
