@@ -1,0 +1,2 @@
+com.lyp.learn.base.spi.impl.EurekaRegistry
+com.lyp.learn.base.spi.impl.ZookeeperRegistry
