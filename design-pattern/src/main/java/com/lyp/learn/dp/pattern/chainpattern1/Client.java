@@ -4,9 +4,11 @@ package com.lyp.learn.dp.pattern.chainpattern1;
  *
  */
 public class Client {
+
     public static void main(String[] args) {
         Request request = new Request();
-        request.setRequestStr("aa <替换吧>  我是敏感词 敏感 <aBc>");
+        String originStr = "aa <替换吧>  我是敏感词 敏感 <aBc>";
+        request.setRequestStr(originStr);
 
         Response response = new Response();
         response.setResponseStr("我是响应：：：");
@@ -20,11 +22,12 @@ public class Client {
         chain.addFilter(sensitiveFilter);
         chain.addFilter(charFilter);
 
-        chain.doFilter(request,response,chain);
+        chain.doFilter(request, response, chain);
 
         System.out.println();
+        System.out.println("原文请求  : " + originStr);
         System.out.println("-------------------------");
-        System.out.println(request.getRequestStr());
-        System.out.println(response.getResponseStr());
+        System.out.println("处理后请求 ： " + request.getRequestStr());
+        System.out.println("处理后响应 ： " + response.getResponseStr());
     }
 }

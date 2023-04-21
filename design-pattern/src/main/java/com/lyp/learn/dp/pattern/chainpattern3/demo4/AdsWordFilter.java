@@ -1,0 +1,17 @@
+package com.lyp.learn.dp.pattern.chainpattern3.demo4;
+
+/**
+ * @author liyapu
+ * @date 2023-04-20 20:38
+ * @description
+ */
+public class AdsWordFilter implements SensitiveWordFilter {
+
+    @Override
+    public boolean doFilter(Content content) {
+        //合法的
+        boolean legal = true;
+        //...
+        return legal;
+    }
+}

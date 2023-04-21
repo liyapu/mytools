@@ -1,7 +1,8 @@
-package com.lyp.learn.dp.pattern.statepattern;
+package com.lyp.learn.dp.pattern.statepattern1;
 
 /**
- *  抽象角色
+ * 抽象角色
+ * 状态机
  */
 public abstract class State {
     //持有一个环境对象

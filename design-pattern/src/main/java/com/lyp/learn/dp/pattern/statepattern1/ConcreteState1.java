@@ -1,4 +1,4 @@
-package com.lyp.learn.dp.pattern.statepattern;
+package com.lyp.learn.dp.pattern.statepattern1;
 
 /**
  *  具体状态1
