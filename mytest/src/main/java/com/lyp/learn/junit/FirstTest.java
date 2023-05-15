@@ -40,6 +40,45 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class FirstTest {
 
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    @Test
+    public void testCalendar3() {
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("calendar默认时间 " + dateFormat.format(calendar.getTime()));
+
+        calendar.setTime(new Date());
+
+        //当周开始时间：2023-05-14 00:00:00
+        calendar.set(Calendar.DAY_OF_WEEK, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        System.out.println("当周开始时间 " + dateFormat.format(calendar.getTime()));
+        //当周结束时间：2023-05-20 23:59:59
+        calendar.add(Calendar.WEEK_OF_YEAR, 1);
+        calendar.add(Calendar.MILLISECOND, -1);
+        System.out.println("当周结束时间 " + dateFormat.format(calendar.getTime()));
+    }
+
+    @Test
+    public void testCalendar2() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        //当月开始时间：2022-03-01 00:00:00
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        System.out.println("当月开始时间 " + dateFormat.format(calendar.getTime()));
+        //当月结束时间：2022-03-31 23:59:59
+        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.MILLISECOND, -1);
+        System.out.println("当月结束时间 " + dateFormat.format(calendar.getTime()));
+    }
+
     @Test
     public void LocalDateMin() {
         LocalDateTime today = LocalDateTime.of(2023, 4, 24, 10, 10, 10);
