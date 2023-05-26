@@ -1,7 +1,7 @@
 package com.lyp.learn.junit;
 
-import com.beust.jcommander.internal.Lists;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -41,6 +41,39 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    @Test
+    public void testBillNo() {
+        //单号生成规则：PF+yyyyMMdd+自增id
+        String date = "20230523";
+        long id = 111;
+        String idStr = getResultIdStr(id, 6);
+
+        final String result = String.format("%s%s%s", "PF", date, idStr);
+        System.out.println("result = " + result);
+    }
+
+    private String getResultIdStr(long id, int maxLength) {
+        String aa = String.format("%0" + maxLength + "d", id);
+        return aa;
+    }
+
+    @Test
+    public void testFormatLength() {
+        System.out.println(String.format("%06d", 123));
+        System.out.println(String.format("%06d", 1234));
+        System.out.println(String.format("%06d", 12345));
+        System.out.println(String.format("%06d", 123456));
+        System.out.println(String.format("%06d", 1234567));
+        System.out.println(String.format("%06d", 12345678));
+        System.out.println();
+        System.out.println(String.format("%01d", 123));
+        System.out.println(String.format("%02d", 123));
+        System.out.println(String.format("%03d", 123));
+        System.out.println(String.format("%04d", 123));
+        System.out.println(String.format("%05d", 123));
+        System.out.println(String.format("%06d", 123));
+    }
 
     @Test
     public void testCalendar3() {

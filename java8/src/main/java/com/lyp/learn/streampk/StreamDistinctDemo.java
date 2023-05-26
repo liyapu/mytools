@@ -1,12 +1,17 @@
 package com.lyp.learn.streampk;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 
 /**
  * Stream 的distinct()方法
@@ -135,22 +140,38 @@ public class StreamDistinctDemo {
         //通过 TreeSet<> 来达到获取不同元素的效果
         //根据 年龄和姓名 两个字段去重
         List<Student> newList = studentList.stream().collect(
-                Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(s -> s.getAge() + "-" + s.getName()))),
-                        ArrayList::new)
+            Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(s -> s.getAge() + "-" + s.getName()))),
+                ArrayList::new)
         );
 
         System.out.println("根据 年龄和姓名 去重后 :");
         printList(newList);
     }
 
+    @Test
+    public void test032() {
+        List<Student> studentList = getStudentList();
+        System.out.println("去重前：");
+        printList(studentList);
+
+        Map<String, Integer> sutMap = studentList.stream()
+            .collect(Collectors.groupingBy(Student::getName,
+                Collectors.collectingAndThen(
+                    Collectors.minBy(Comparator.comparing(Student::getAge)),
+                    min -> min.map(Student::getId).orElse(null))
+            ));
+
+        System.out.println(sutMap);
+    }
+
 
     /**
-     *   根据 List<Object> 中 Object 某个属性去重
-     *     通过 filter() 方法
+     * 根据 List<Object> 中 Object 某个属性去重
+     * 通过 filter() 方法
      *
-     *     我们首先创建一个方法作为 Stream.filter() 的参数，其返回类型为 Predicate，
-     *     原理就是判断一个元素能否加入到 Set 中去
+     * 我们首先创建一个方法作为 Stream.filter() 的参数，其返回类型为 Predicate，
+     * 原理就是判断一个元素能否加入到 Set 中去
      */
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
