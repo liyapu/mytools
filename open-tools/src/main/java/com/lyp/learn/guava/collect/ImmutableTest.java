@@ -107,16 +107,49 @@ public class ImmutableTest {
      * 不可变集合，不可修改
      */
     @Test
-    public void testImmutableList(){
-        ImmutableList<String> immutableList = ImmutableList.of("a","b","c","d");
+    public void testImmutableList() {
+        ImmutableList<String> immutableList = ImmutableList.of("a", "b", "c", "d");
         System.out.println(immutableList);
 
         //java.lang.UnsupportedOperationException
         //immutableList.add("aa");
     }
 
+    /**
+     * JDK不变集合和Google Guava不变集合都不可增删数据。
+     * 但是，当原始集合增加数据之后，
+     * JDK不变集合的数据随之增加，
+     * 而Google Guava的不变集合的数据并没有增加。
+     * 这是两者最大的区别。
+     */
     @Test
-    public void testImmutableMap(){
+    public void testImmutableList2() {
+        List originalList = new ArrayList<>();
+        originalList.add("a");
+        originalList.add("b");
+        originalList.add("c");
+
+        List jdkUnmodifiableList = Collections.unmodifiableList(originalList);
+        List guavaImmutableList = ImmutableList.copyOf(originalList);
+
+        //jdkUnmodifiableList.add("d"); // 抛出UnsupportedOperationException
+        // guavaImmutableList.add("d"); // 抛出UnsupportedOperationException
+        originalList.add("d");
+
+        print(originalList); // a b c d
+        print(jdkUnmodifiableList); // a b c d
+        print(guavaImmutableList); // a b c
+    }
+
+    private static void print(List<String> list) {
+        for (String s : list) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+    }
+
+    @Test
+    public void testImmutableMap() {
         ImmutableMap<String, String> immutableMap = ImmutableMap.of("k1", "v1", "k2", "v2");
         System.out.println(immutableMap);
     }

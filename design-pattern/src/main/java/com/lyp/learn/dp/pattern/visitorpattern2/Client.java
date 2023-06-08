@@ -29,6 +29,7 @@ public class Client {
         // 接受访问者
         accountBook.show(cpa);
         System.out.println();
+        System.out.println("--------");
 
 
         // boss查看总收入和总消费

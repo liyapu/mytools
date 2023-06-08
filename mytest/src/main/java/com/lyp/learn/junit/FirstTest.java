@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
@@ -41,6 +43,23 @@ import org.junit.jupiter.api.Test;
 public class FirstTest {
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    @Test
+    public void testStreamOf() {
+        List<Integer> compSkuList = Lists.newArrayList(1, 2, 3);
+        //List<Integer> compSkuList = new ArrayList<>();
+        //List<Integer> adjustSkuList = Lists.newArrayList(10, 20, 30, 1, 2);
+        List<Integer> adjustSkuList = new ArrayList<>();
+        List<Integer> needPriceSkuList = Stream.of(compSkuList, adjustSkuList)
+            .flatMap(Collection::stream)
+            .distinct()
+            .collect(Collectors.toList());
+
+        for (Integer num : needPriceSkuList) {
+            System.out.println("num = " + num);
+        }
+
+    }
 
     @Test
     public void testBillNo() {
