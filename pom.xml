@@ -28,6 +28,7 @@
         <module>cypher</module>
         <module>java15</module>
         <module>spockdemo</module>
+        <module>leetcode</module>
     </modules>
 
     <properties>
