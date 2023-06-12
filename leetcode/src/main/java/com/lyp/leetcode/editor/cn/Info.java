@@ -6,7 +6,7 @@ package com.lyp.leetcode.editor.cn;
  * @description
  */
 public interface Info {
-
+//        leetcode.editor.cn 是力扣自己建的，我们不能改，所以下面最后面的包会是这个
 //        自己计划放的包路径
 //        package com.lyp.leetcode.editor.cn;
 //
