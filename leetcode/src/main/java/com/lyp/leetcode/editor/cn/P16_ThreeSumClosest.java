@@ -35,6 +35,8 @@ package com.lyp.leetcode.editor.cn;
 //
 // Related Topics 数组 双指针 排序 👍 1404 👎 0
 
+import java.util.Arrays;
+
 /**
  * 最接近的三数之和
  *
@@ -44,8 +46,8 @@ public class P16_ThreeSumClosest {
     public static void main(String[] args) {
         //测试代码
         Solution solution = new P16_ThreeSumClosest().new Solution();
-//        System.out.println( solution.threeSumClosest(new int []{-1,2,1,-4}, 1));
-//        System.out.println( solution.threeSumClosest(new int []{0, 0, 0}, 1));
+        System.out.println(solution.threeSumClosest(new int[]{-1, 2, 1, -4}, 1));
+        System.out.println(solution.threeSumClosest(new int[]{0, 0, 0}, 1));
         System.out.println(solution.threeSumClosest(new int[]{0, 1, 2}, 3));
     }
 
@@ -53,30 +55,26 @@ public class P16_ThreeSumClosest {
 //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int threeSumClosest(int[] nums, int target) {
-            int r1 = 0;
-            int r2 = 0;
-            int r3 = 0;
-            int gap = Integer.MAX_VALUE;
+            Arrays.sort(nums);
+            int answer = nums[0] + nums[1] + nums[2];
             for (int i = 0; i < nums.length - 2; i++) {
-                for (int j = i + 1; j < nums.length - 1; j++) {
-                    for (int k = j + 1; k < nums.length; k++) {
-                        int temp = nums[i] + nums[j] + nums[k];
-                        int tempGap = temp - target;
-                        if (tempGap == 0) {
-                            //说明正好等于 target,就是要返回的结果
-                            //这里要返回temp,三数之和
-                            return temp;
-                        }
-                        if (Math.abs(tempGap) < Math.abs(gap)) {
-                            gap = tempGap;
-                            r1 = i;
-                            r2 = j;
-                            r3 = k;
-                        }
+                int left = i + 1;
+                int right = nums.length - 1;
+                while (left < right) {
+                    int tempAnswer = nums[i] + nums[left] + nums[right];
+                    if (Math.abs(tempAnswer - target) < Math.abs(answer - target)) {
+                        answer = tempAnswer;
+                    }
+                    if (tempAnswer > target) {
+                        right--;
+                    } else if (tempAnswer < target) {
+                        left++;
+                    } else {
+                        return tempAnswer;
                     }
                 }
             }
-            return nums[r1] + nums[r2] + nums[r3];
+            return answer;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
