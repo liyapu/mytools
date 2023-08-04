@@ -5,14 +5,20 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Objects;
 
 /**
- *@author: liyapu
- *@description:
- *@date 2021-04-01 09:43
+ * @author: liyapu
+ * @description:
+ * @date 2021-04-01 09:43
  */
 public class LinkUtils {
 
-    public static ListNode buildList(Integer ... arrs){
-        if(ArrayUtils.isEmpty(arrs)){
+    /**
+     * 构建指定数字的链表
+     *
+     * @param arrs 可变参数
+     * @return 链表头结点
+     */
+    public static ListNode buildList(Integer... arrs) {
+        if (ArrayUtils.isEmpty(arrs)) {
             return null;
         }
         ListNode head = new ListNode(-1);
@@ -70,8 +76,13 @@ public class LinkUtils {
     public static void printListNode(ListNode head) {
         ListNode temp = head;
         while (Objects.nonNull(temp)) {
-            System.out.print(temp.val+"\t");
+//            System.out.print(temp.val+"\t");
+
+            System.out.print(temp.val);
             temp = temp.next;
+            if (Objects.nonNull(temp)) {
+                System.out.print(" --> ");
+            }
         }
         System.out.println();
     }

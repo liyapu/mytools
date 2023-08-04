@@ -2,6 +2,12 @@ package com.lyp.learn.junit;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -11,28 +17,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
 
 /**
  * @author: liyapu
@@ -45,14 +34,31 @@ public class FirstTest {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Test
+    public void testMap1() {
+        Map<String, String> map = new HashMap<>();
+        Map<String, String> temp1 = null;
+
+//        map.put(temp1);
+
+    }
+
+    @Test
+    public void testInteger() {
+        Integer a = new Integer(2);
+        Integer b = new Integer(2);
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+    }
+
+    @Test
     public void testStreamOf() {
         List<Integer> compSkuList = Lists.newArrayList(1, 2, 3);
         //List<Integer> compSkuList = new ArrayList<>();
         //List<Integer> adjustSkuList = Lists.newArrayList(10, 20, 30, 1, 2);
         List<Integer> adjustSkuList = new ArrayList<>();
         List<Integer> needPriceSkuList = Stream.of(compSkuList, adjustSkuList)
-            .flatMap(Collection::stream)
-            .distinct()
+                .flatMap(Collection::stream)
+                .distinct()
             .collect(Collectors.toList());
 
         for (Integer num : needPriceSkuList) {

@@ -2,6 +2,9 @@ package com.lyp.learn.utils;
 
 import com.lyp.learn.bean.Man;
 import com.lyp.learn.bean.ManListResponse;
+import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +13,6 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import junit.framework.TestCase;
-import org.junit.jupiter.api.Test;
 
 /**
  * @author liyapu
@@ -139,7 +140,7 @@ public class ThreadPoolMyUtilsTest extends TestCase {
         List<List<Man>> manListList = ThreadPoolMyUtils.submitAndGet(threadPool, ftList, 3, TimeUnit.SECONDS);
 
         System.out.println("manListList ==== " + JsonUtil.writeToString(manListList));
-        List<Man> manListResult = ThreadPoolMyUtils.listArrary2List(manListList);
+        List<Man> manListResult = ThreadPoolMyUtils.listArray2List(manListList);
         System.out.println("manListResult ==== " + JsonUtil.writeToString(manListResult));
 
         long end = System.currentTimeMillis();

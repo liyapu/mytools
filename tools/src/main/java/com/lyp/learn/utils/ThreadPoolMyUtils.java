@@ -1,20 +1,14 @@
 package com.lyp.learn.utils;
 
 import com.google.common.collect.Lists;
-import com.lyp.learn.enums.ThreadPoolNames;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Component;
 
 /**
  * @Description 线程池工具类
@@ -144,7 +138,7 @@ public class ThreadPoolMyUtils  {
      * @param resultList list
      * @return {@link List<E>}
      */
-    public static <E> List<E> listArrary2List(List<List<E>> resultList) {
+    public static <E> List<E> listArray2List(List<List<E>> resultList) {
         return resultList.parallelStream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
     }
 
