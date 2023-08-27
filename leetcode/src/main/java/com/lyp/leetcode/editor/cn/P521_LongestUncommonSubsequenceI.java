@@ -63,7 +63,8 @@ public class P521_LongestUncommonSubsequenceI{
 class Solution {
     public int findLUSlength(String a, String b) {
 
-    }
+		return 0;
+	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

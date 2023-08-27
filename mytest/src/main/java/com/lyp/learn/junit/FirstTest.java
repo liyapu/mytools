@@ -34,6 +34,18 @@ public class FirstTest {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Test
+    public void testUUid22() {
+        String u = "my_" + UUID.randomUUID();
+        System.out.println(u);
+    }
+
+    @Test
+    public void testUUid() {
+        String u = UUID.randomUUID().toString();
+        System.out.println(u);
+    }
+
+    @Test
     public void testMap1() {
         Map<String, String> map = new HashMap<>();
         Map<String, String> temp1 = null;
