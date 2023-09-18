@@ -1,27 +1,18 @@
 package com.lyp.learn.streampk;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toList;
-
 import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.Apple;
 import com.lyp.learn.bean.AppleVO;
 import com.lyp.learn.bean.Dish;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.DoubleSummaryStatistics;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeMap;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
 
 public class StreamGroupByDemo {
 
@@ -252,29 +243,41 @@ public class StreamGroupByDemo {
     }
 
     @Test
-    public void test103(){
+    public void test103() {
         Map<String, Set<Apple>> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.toSet()));
+                .collect(Collectors.groupingBy(Apple::getAddress, Collectors.toSet()));
         System.out.println(collect);
     }
 
-    // 根据 key 对集合进行分组, 并且 value 的集合为指定属性集合而不是对象集合
+    /**
+     * 根据 key 对集合进行分组, 并且 value 的集合为指定属性集合而不是对象集合
+     */
     @Test
-    public void test104(){
+    public void test104() {
         Map<String, List<String>> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.toList())));
+                .collect(Collectors.groupingBy(Apple::getAddress, Collectors.mapping(Apple::getColor, Collectors.toList())));
+        System.out.println(collect);
+    }
+
+    /**
+     * 根据 key 对集合进行分组, 并且 value 取其中1个字段，映射为 set
+     */
+    @Test
+    public void test1041() {
+        Map<String, Set<Integer>> collect = inventory.stream()
+                .collect(groupingBy(Apple::getAddress, mapping(Apple::getWeight, Collectors.toSet())));
         System.out.println(collect);
     }
 
 
     /**
      * 收集List 之后，再次对 List 进行操作
-     *根据 key 进行分组并且将指定属性值进行拼接作为哈希表的 value 值
+     * 根据 key 进行分组并且将指定属性值进行拼接作为哈希表的 value 值
      */
     @Test
-    public void test105(){
-        Map<String,String> collect = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getAddress,Collectors.mapping(Apple::getColor,Collectors.joining("-"))));
+    public void test105() {
+        Map<String, String> collect = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getAddress, Collectors.mapping(Apple::getColor, Collectors.joining("-"))));
         System.out.println(collect);
     }
 
