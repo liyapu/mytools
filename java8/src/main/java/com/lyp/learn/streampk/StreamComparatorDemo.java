@@ -1,25 +1,15 @@
 package com.lyp.learn.streampk;
 
 import com.alibaba.fastjson.JSON;
-import com.lyp.learn.bean.Address;
-import com.lyp.learn.bean.Apple;
-import com.lyp.learn.bean.Student;
-import com.lyp.learn.bean.User;
-import com.lyp.learn.bean.UserVo;
+import com.lyp.learn.bean.*;
 import com.lyp.learn.utils.JsonUtil;
 import com.lyp.learn.utils.MyBeanUtils;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class StreamComparatorDemo {
     List<Apple> inventory = Arrays.asList(
@@ -536,9 +526,32 @@ public class StreamComparatorDemo {
         //System.out.println("workerList2 ==== " + JsonUtil.writeToString(workerList2));
 
         List<Worker> workerList3 = workerList1.stream()
-            .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()))
-            .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Worker::getId, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
         System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+
+    }
+
+    @Test
+    public void testSortedReversed2() {
+        List<Worker> workerList1 = getWorkerList2();
+        Map<Integer, Worker> workMap = workerList1.stream()
+                .collect(Collectors.toMap(Worker::getId, Function.identity(), (k1, k2) -> k1));
+
+        System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
+
+        // 可以倒叙排
+//        List<Worker> workerList4 = workerList1.stream()
+//                .sorted(Comparator.comparingInt(worker -> workMap.get(((Worker) worker).getId()).getAge()).reversed())
+//                .collect(Collectors.toList());
+
+        // 可以倒叙排
+        List<Worker> workerList4 = workerList1.stream()
+                .sorted(Comparator.comparing(worker -> workMap.get(worker.getId()).getAge(), Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+
+//        System.out.println("workerList3 ==== " + JsonUtil.writeToString(workerList3));
+        System.out.println("workerList4 ==== " + JsonUtil.writeToString(workerList4));
 
     }
 
@@ -547,7 +560,7 @@ public class StreamComparatorDemo {
      * list.stream().sorted(Comparator.comparing(类::属性一).thenComparing(类::属性二));
      */
     @Test
-    public void testSortedThen(){
+    public void testSortedThen() {
         List<Worker> workerList1 = getWorkerList();
         System.out.println("workerList1 ==== " + JsonUtil.writeToString(workerList1));
 
@@ -655,6 +668,17 @@ public class StreamComparatorDemo {
         Workers.add(new Worker(9, "刘备", 20, "北京"));
         Workers.add(new Worker(9, "刘备", 60, "北京"));
         Workers.add(new Worker(4, "孙权", 18, "上海"));
+        Workers.add(new Worker(4, "孙策", 10, "浙江"));
+        return Workers;
+    }
+
+    private List<Worker> getWorkerList2() {
+        List<Worker> Workers = new ArrayList<>();
+        Workers.add(new Worker(5, "关羽", 22, "北京"));
+        Workers.add(new Worker(8, "张飞", 11, "天津"));
+        Workers.add(new Worker(2, "曹操", 56, "上海"));
+        Workers.add(new Worker(1, "诸葛亮", 26, "温州"));
+        Workers.add(new Worker(9, "刘备", 60, "北京"));
         Workers.add(new Worker(4, "孙策", 10, "浙江"));
         return Workers;
     }
