@@ -34,6 +34,28 @@ public class FirstTest {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Test
+    public void testFormatStr() {
+//        System.out.println(String.format("aa%sbb%scc", 'A', 7));
+        List<Integer> intNums = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7);
+        intNums.forEach(i -> {
+            if (i == 4) {
+                return; // forEach 中 return 类似于continue;
+//                continue; //使用continue报错
+            }
+            System.out.println(i);
+        });
+    }
+
+
+    @Test
+    public void testFormat() {
+        int maxLength = 8;
+        int id = 5113;
+        String result = String.format("%0" + maxLength + "d", id);
+        System.out.println(result);
+    }
+
+    @Test
     public void testUUid22() {
         String u = "my_" + UUID.randomUUID();
         System.out.println(u);
