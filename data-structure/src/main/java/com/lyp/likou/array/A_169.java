@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *@author: liyapu
- *@description:
- *@date 2021-04-26 11:09
+ * @author: liyapu
+ * @description:
+ * @date 2021-04-26 11:09
  *
  * 169. 多数元素
  * 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
@@ -29,20 +29,38 @@ import java.util.Map;
  * 尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
  */
 public class A_169 {
-    public  static int majorityElement(int[] nums) {
-        Map<Integer,Integer> value$Times = new HashMap<>();
+    public static int majorityElement(int[] nums) {
+        Map<Integer, Integer> value$Times = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            value$Times.put(nums[i],value$Times.getOrDefault(nums[i],0)+1);
+            value$Times.put(nums[i], value$Times.getOrDefault(nums[i], 0) + 1);
         }
 
-        int count = nums.length/2;
-        for(Map.Entry<Integer,Integer> entry : value$Times.entrySet()){
+        int count = nums.length / 2;
+        for (Map.Entry<Integer, Integer> entry : value$Times.entrySet()) {
             Integer key = entry.getKey();
             Integer value = entry.getValue();
-            if(value > count){
+            if (value > count) {
                 return key;
             }
         }
         return -1;
+    }
+
+    public int majorityElement2(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        //出现的最大次数
+        int maxTimes = Integer.MIN_VALUE;
+        //出现次数最多的值
+        Integer target = null;
+        for (int i = 0; i < nums.length; i++) {
+            int count = map.getOrDefault(nums[i], 0);
+            count++;
+            map.put(nums[i], count);
+            if (count > maxTimes) {
+                maxTimes = count;
+                target = nums[i];
+            }
+        }
+        return target;
     }
 }

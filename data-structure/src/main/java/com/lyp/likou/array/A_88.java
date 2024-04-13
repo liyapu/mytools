@@ -33,6 +33,28 @@ import java.util.Arrays;
  */
 public class A_88 {
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
+        int mIndex = m - 1;
+        int nIndex = n - 1;
+        int resultIndex = m + n - 1;
+
+        //结束条件，任何一个下标可以访问到值，就要继续
+        while (nIndex >= 0 || mIndex >= 0) {
+            if (nIndex < 0) {
+                nums1[resultIndex--] = nums1[mIndex--];
+            } else if (mIndex < 0) {
+                nums1[resultIndex--] = nums2[nIndex--];
+            } else {
+                if (nums2[nIndex] > nums1[mIndex]) {
+                    nums1[resultIndex--] = nums2[nIndex--];
+                } else {
+                    nums1[resultIndex--] = nums1[mIndex--];
+                }
+            }
+        }
+    }
+
+
+    public static void merge2(int[] nums1, int m, int[] nums2, int n) {
         int tail = nums1.length - 1;
         int p1 = m - 1;
         int p2 = n - 1;

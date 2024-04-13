@@ -1,6 +1,7 @@
 package com.lyp.likou.array;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -53,19 +54,44 @@ import java.util.Set;
  */
 public class A_80 {
 
+    public int removeDuplicates3(int[] nums) {
+        if (Objects.isNull(nums)) {
+            return 0;
+        }
+        int length = nums.length;
+        if (length == 0 || length == 1 || length == 2) {
+            return length;
+        }
+        int newIndex = 0;
+        boolean onece = false;
+        for (int i = 1; i < length; i++) {
+            if (nums[newIndex] == nums[i]) {
+                if (!onece) {
+                    onece = true;
+                    nums[++newIndex] = nums[i];
+                }
+            } else {
+                nums[++newIndex] = nums[i];
+                onece = false;
+            }
+
+        }
+        return newIndex + 1;
+    }
+
     public static int removeDuplicates(int[] nums) {
         int newLen = 0;
-        if(nums == null || nums.length == 0) return 0;
+        if (nums == null || nums.length == 0) return 0;
 
         Set<Integer> seen = new HashSet<>();
 
         for (int i = 1; i < nums.length; i++) {
-            if(nums[i] == nums[newLen]){
-                if(!seen.contains(nums[i])){
+            if (nums[i] == nums[newLen]) {
+                if (!seen.contains(nums[i])) {
                     seen.add(nums[i]);
                     nums[++newLen] = nums[i];
                 }
-            }else{
+            } else {
                 nums[++newLen] = nums[i];
             }
         }

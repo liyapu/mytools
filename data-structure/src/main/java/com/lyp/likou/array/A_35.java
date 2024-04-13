@@ -29,6 +29,7 @@ public class A_35 {
 
     /**
      * 暴力解法，遍历
+     *
      * @param nums
      * @param target
      * @return
@@ -48,26 +49,29 @@ public class A_35 {
 //        }
 //        return eqIndex > 0 ? eqIndex : ltIndex;
 //    }
-    public static int searchInsert(int[] nums, int target) {
-        int len = nums.length;
-        int left = 0, right = len - 1;
-        int middle = 0;
-        int index = 0;
 
-        while (left <= right) {
-            middle = (left + right) / 2;
-            if (nums[middle] < target) {
-                //小于的时候，返回 index 要加 1
-                index = middle + 1;
-                left = middle + 1;
-            } else if (nums[middle] == target) {
-                index = middle;
-                break;
+    /**
+     * 二分查找法返回下标
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int searchInsert(int[] nums, int target) {
+        int leftIndex = 0;
+        int rightIndex = nums.length - 1;
+        while (leftIndex <= rightIndex) {
+            int middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
+            int middle = nums[middleIndex];
+            if (middle == target) {
+                return middleIndex;
+            } else if (middle < target) {
+                leftIndex = middleIndex + 1;
             } else {
-                right = middle - 1;
+                rightIndex = middleIndex - 1;
             }
         }
-        return index;
+        return leftIndex;
     }
 
     public static void main(String[] args) {

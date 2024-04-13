@@ -796,7 +796,6 @@ public class StreamTest {
                 .flatMap(
                         item -> list2.stream()
                                 .map(item2 -> item + " " + item2)
-
                 )
                 .collect(Collectors.toList())
                 .forEach(System.out::println);

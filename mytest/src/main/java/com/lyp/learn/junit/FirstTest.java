@@ -32,6 +32,1283 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+  
+
+    /**
+     * 双冷
+     */
+    @Test
+    public void testsql2() {
+        String s = "INSERT INTO `return_process_rule_date` SET  `return_bill_no` = '%s', `compute_start` = '2024-01-12 13:04:10', `free_storage_day` = '3', `punish_day` = '0', `free_storage_start` = '2024-01-12 13:04:10', `free_storage_end` = '2024-01-14 13:04:10', `punish_start` = '1970-01-01 00:00:01', `punish_end` = '1970-01-01 00:00:01', `destroy` = '2024-01-15 13:04:10', `valid` = '1', `operator` = 'liyapu', `create_time` = '2024-01-12 13:04:09', `update_time` = '2024-01-12 13:04:09';";
+        String str = "TGD2024010816358,TGD2024011141992,TGD2024011141994,TGD2024011143883,TGD2024011144613,TGD2024011144614,TGD2024011144630,TGD2024011145586,TGD2024011145623,TGD2024011145624,TGD2024011148156,TGD2024011150018,TGD2024011243963,TGD2024011243965,TGD2024011243966,TGD2024011244716,TGD2024011244766,TGD2024011244774,TGD2024011244817,TGD2024011244841,TGD2024011244844,TGD2024011244845,TGD2024011244854,TGD2024011244880,TGD2024011244896,TGD2024011244944,TGD2024011244946,TGD2024011244977,TGD2024011244978,TGD2024011244985,TGD2024011244987,TGD2024011245700,TGD2024011245721,TGD2024011245742,TGD2024011245763,TGD2024011245809,TGD2024011245832,TGD2024011245864,TGD2024011245883,TGD2024011245884,TGD2024011245918,TGD2024011245941,TGD2024011245944,TGD2024011245954,TGD2024011245993,TGD2024011246190,TGD2024011246223,TGD2024011246236,TGD2024011246238,TGD2024011246260,TGD2024011246271,TGD2024011246285,TGD2024011246296,TGD2024011246423,TGD2024011246432,TGD2024011246442,TGD2024011246460,TGD2024011246481,TGD2024011246502,TGD2024011246575,TGD2024011246594,TGD2024011246601,TGD2024011246649,TGD2024011246650,TGD2024011247201,TGD2024011247318,TGD2024011247337,TGD2024011247339,TGD2024011247342,TGD2024011247344,TGD2024011247434,TGD2024011247473,TGD2024011247482,TGD2024011247490,TGD2024011247491,TGD2024011247493,TGD2024011247496,TGD2024011247552,TGD2024011247558,TGD2024011247572,TGD2024011247582,TGD2024011248226,TGD2024011248227,TGD2024011248244,TGD2024011248251,TGD2024011248290,TGD2024011248297,TGD2024011248305,TGD2024011248322,TGD2024011248323,TGD2024011248354,TGD2024011248359,TGD2024011248360,TGD2024011248420,TGD2024011248423,TGD2024011248437,TGD2024011248486,TGD2024011248492,TGD2024011248506,TGD2024011248513,TGD2024011248515,TGD2024011248521,TGD2024011248549,TGD2024011248575,TGD2024011249065,TGD2024011249068,TGD2024011249092,TGD2024011249112,TGD2024011249158,TGD2024011249160,TGD2024011249161,TGD2024011249162,TGD2024011249195,TGD2024011249201,TGD2024011249213,TGD2024011249233,TGD2024011249247,TGD2024011249248,TGD2024011249298,TGD2024011249304,TGD2024011249351,TGD2024011249365,TGD2024011249398,TGD2024011249415,TGD2024011249441,TGD2024011250103,TGD2024011250152,TGD2024011250211,TGD2024011250214,TGD2024011250247,TGD2024011250268,TGD2024011250279,TGD2024011250315,TGD2024011250330,TGD2024011250395,TGD2024011250405,TGD2024011250423,TGD2024011250425,TGD2024011250449,TGD2024011250459,TGD2024011250491,TGD2024011251081,TGD2024011251099,TGD2024011251100,TGD2024011251145,TGD2024011251173,TGD2024011251214,TGD2024011251253,TGD2024011251287,TGD2024011251303,TGD2024011251312,TGD2024011252003,TGD2024011252005,TGD2024011252010,TGD2024011252015,TGD2024011252017,TGD2024011252024,TGD2024011253004,TGD2024011253026,TGD2024011253027,TGD2024011253030,TGD2024011253031,TGD2024011253032,TGD2024011253045,TGD2024011253047,TGD2024011253051,TGD2024011253052,TGD2024011253060,TGD2024011253092";
+        final String[] strArr = str.split(",");
+        for (int i = 0; i < strArr.length; i++) {
+            System.out.println(String.format(s, strArr[i]));
+        }
+    }
+
+    /**
+     * 常温 452
+     */
+    @Test
+    public void testSql1() {
+        String s = "INSERT INTO `return_process_rule_date` SET  `return_bill_no` = '%s', `compute_start` = '2024-01-12 12:40:01', `free_storage_day` = '1', `punish_day` = '6', `free_storage_start` = '2024-01-12 12:40:01', `free_storage_end` = '2024-01-12 12:40:01', `punish_start` = '2024-01-13 12:40:01', `punish_end` = '2024-01-18 12:40:01', `destroy` = '2024-01-19 12:40:01', `valid` = '1', `operator` = 'liyapu', `create_time` = '2024-01-12 12:40:01', `update_time` = '2024-01-12 12:40:01';";
+
+        String str = "TGD2024010892967,TGD2024010896733,TGD2024011143889,TGD2024011144617,TGD2024011147135,TGD2024011148151,TGD2024011149008,TGD2024011150042,TGD2024011243903,TGD2024011243936,TGD2024011243972,TGD2024011243973,TGD2024011243975,TGD2024011243979,TGD2024011243980,TGD2024011243986,TGD2024011243996,TGD2024011243997,TGD2024011244660,TGD2024011244677,TGD2024011244680,TGD2024011244683,TGD2024011244691,TGD2024011244698,TGD2024011244732,TGD2024011244750,TGD2024011244751,TGD2024011244758,TGD2024011244765,TGD2024011244775,TGD2024011244780,TGD2024011244782,TGD2024011244783,TGD2024011244784,TGD2024011244785,TGD2024011244786,TGD2024011244787,TGD2024011244789,TGD2024011244790,TGD2024011244798,TGD2024011244804,TGD2024011244808,TGD2024011244810,TGD2024011244814,TGD2024011244815,TGD2024011244821,TGD2024011244840,TGD2024011244864,TGD2024011244866,TGD2024011244877,TGD2024011244881,TGD2024011244908,TGD2024011244909,TGD2024011244911,TGD2024011244917,TGD2024011244920,TGD2024011244936,TGD2024011244937,TGD2024011244964,TGD2024011244973,TGD2024011244983,TGD2024011244989,TGD2024011245629,TGD2024011245645,TGD2024011245658,TGD2024011245659,TGD2024011245664,TGD2024011245670,TGD2024011245683,TGD2024011245685,TGD2024011245694,TGD2024011245695,TGD2024011245698,TGD2024011245699,TGD2024011245711,TGD2024011245713,TGD2024011245715,TGD2024011245716,TGD2024011245732,TGD2024011245738,TGD2024011245746,TGD2024011245773,TGD2024011245781,TGD2024011245806,TGD2024011245808,TGD2024011245811,TGD2024011245815,TGD2024011245825,TGD2024011245842,TGD2024011245846,TGD2024011245849,TGD2024011245855,TGD2024011245865,TGD2024011245875,TGD2024011245907,TGD2024011245909,TGD2024011245917,TGD2024011245929,TGD2024011245940,TGD2024011245945,TGD2024011245963,TGD2024011245971,TGD2024011245973,TGD2024011245974,TGD2024011245981,TGD2024011245982,TGD2024011245986,TGD2024011245989,TGD2024011246203,TGD2024011246212,TGD2024011246222,TGD2024011246225,TGD2024011246234,TGD2024011246237,TGD2024011246239,TGD2024011246243,TGD2024011246244,TGD2024011246245,TGD2024011246247,TGD2024011246249,TGD2024011246259,TGD2024011246276,TGD2024011246294,TGD2024011246295,TGD2024011246312,TGD2024011246314,TGD2024011246320,TGD2024011246349,TGD2024011246358,TGD2024011246372,TGD2024011246381,TGD2024011246387,TGD2024011246390,TGD2024011246396,TGD2024011246405,TGD2024011246412,TGD2024011246413,TGD2024011246480,TGD2024011246489,TGD2024011246493,TGD2024011246509,TGD2024011246513,TGD2024011246520,TGD2024011246522,TGD2024011246526,TGD2024011246528,TGD2024011246534,TGD2024011246535,TGD2024011246537,TGD2024011246548,TGD2024011246557,TGD2024011246580,TGD2024011246581,TGD2024011246610,TGD2024011246616,TGD2024011246624,TGD2024011246628,TGD2024011246635,TGD2024011246637,TGD2024011246642,TGD2024011247198,TGD2024011247205,TGD2024011247206,TGD2024011247215,TGD2024011247218,TGD2024011247221,TGD2024011247232,TGD2024011247234,TGD2024011247242,TGD2024011247246,TGD2024011247253,TGD2024011247254,TGD2024011247264,TGD2024011247265,TGD2024011247273,TGD2024011247274,TGD2024011247275,TGD2024011247298,TGD2024011247320,TGD2024011247340,TGD2024011247343,TGD2024011247355,TGD2024011247363,TGD2024011247364,TGD2024011247368,TGD2024011247377,TGD2024011247379,TGD2024011247381,TGD2024011247385,TGD2024011247386,TGD2024011247415,TGD2024011247417,TGD2024011247418,TGD2024011247427,TGD2024011247431,TGD2024011247432,TGD2024011247442,TGD2024011247443,TGD2024011247451,TGD2024011247453,TGD2024011247456,TGD2024011247457,TGD2024011247471,TGD2024011247472,TGD2024011247474,TGD2024011247475,TGD2024011247480,TGD2024011247481,TGD2024011247483,TGD2024011247487,TGD2024011247494,TGD2024011247499,TGD2024011247500,TGD2024011247523,TGD2024011247527,TGD2024011247535,TGD2024011247540,TGD2024011247543,TGD2024011247553,TGD2024011247554,TGD2024011247574,TGD2024011247577,TGD2024011247583,TGD2024011247597,TGD2024011247609,TGD2024011247614,TGD2024011247624,TGD2024011247625,TGD2024011248187,TGD2024011248193,TGD2024011248195,TGD2024011248196,TGD2024011248197,TGD2024011248198,TGD2024011248203,TGD2024011248225,TGD2024011248240,TGD2024011248241,TGD2024011248252,TGD2024011248280,TGD2024011248283,TGD2024011248286,TGD2024011248295,TGD2024011248348,TGD2024011248349,TGD2024011248367,TGD2024011248375,TGD2024011248376,TGD2024011248387,TGD2024011248401,TGD2024011248412,TGD2024011248444,TGD2024011248459,TGD2024011248473,TGD2024011248479,TGD2024011248489,TGD2024011248493,TGD2024011248495,TGD2024011248523,TGD2024011248524,TGD2024011248528,TGD2024011248536,TGD2024011248542,TGD2024011248553,TGD2024011248557,TGD2024011248559,TGD2024011249031,TGD2024011249032,TGD2024011249035,TGD2024011249037,TGD2024011249044,TGD2024011249046,TGD2024011249058,TGD2024011249067,TGD2024011249070,TGD2024011249072,TGD2024011249073,TGD2024011249078,TGD2024011249079,TGD2024011249082,TGD2024011249093,TGD2024011249179,TGD2024011249180,TGD2024011249192,TGD2024011249200,TGD2024011249202,TGD2024011249207,TGD2024011249210,TGD2024011249223,TGD2024011249224,TGD2024011249225,TGD2024011249242,TGD2024011249270,TGD2024011249276,TGD2024011249284,TGD2024011249289,TGD2024011249297,TGD2024011249301,TGD2024011249302,TGD2024011249312,TGD2024011249313,TGD2024011249318,TGD2024011249319,TGD2024011249323,TGD2024011249332,TGD2024011249338,TGD2024011249340,TGD2024011249341,TGD2024011249347,TGD2024011249355,TGD2024011249367,TGD2024011249388,TGD2024011249395,TGD2024011249406,TGD2024011249408,TGD2024011249414,TGD2024011249417,TGD2024011249425,TGD2024011249428,TGD2024011249429,TGD2024011249431,TGD2024011249447,TGD2024011249449,TGD2024011249455,TGD2024011249456,TGD2024011250058,TGD2024011250060,TGD2024011250066,TGD2024011250071,TGD2024011250082,TGD2024011250094,TGD2024011250098,TGD2024011250100,TGD2024011250111,TGD2024011250113,TGD2024011250115,TGD2024011250119,TGD2024011250128,TGD2024011250129,TGD2024011250134,TGD2024011250175,TGD2024011250193,TGD2024011250195,TGD2024011250196,TGD2024011250199,TGD2024011250200,TGD2024011250207,TGD2024011250232,TGD2024011250233,TGD2024011250234,TGD2024011250235,TGD2024011250238,TGD2024011250239,TGD2024011250250,TGD2024011250252,TGD2024011250253,TGD2024011250258,TGD2024011250262,TGD2024011250281,TGD2024011250282,TGD2024011250285,TGD2024011250288,TGD2024011250292,TGD2024011250302,TGD2024011250305,TGD2024011250306,TGD2024011250309,TGD2024011250319,TGD2024011250321,TGD2024011250329,TGD2024011250331,TGD2024011250333,TGD2024011250338,TGD2024011250344,TGD2024011250353,TGD2024011250355,TGD2024011250360,TGD2024011250361,TGD2024011250363,TGD2024011250372,TGD2024011250375,TGD2024011250417,TGD2024011250422,TGD2024011250424,TGD2024011250447,TGD2024011250448,TGD2024011250453,TGD2024011250458,TGD2024011250460,TGD2024011250464,TGD2024011250476,TGD2024011250482,TGD2024011250483,TGD2024011250484,TGD2024011250485,TGD2024011251015,TGD2024011251029,TGD2024011251046,TGD2024011251048,TGD2024011251064,TGD2024011251065,TGD2024011251077,TGD2024011251085,TGD2024011251096,TGD2024011251097,TGD2024011251111,TGD2024011251115,TGD2024011251117,TGD2024011251120,TGD2024011251121,TGD2024011251144,TGD2024011251152,TGD2024011251155,TGD2024011251169,TGD2024011251177,TGD2024011251193,TGD2024011251196,TGD2024011251197,TGD2024011251205,TGD2024011251223,TGD2024011251224,TGD2024011251231,TGD2024011251239,TGD2024011251241,TGD2024011251270,TGD2024011251272,TGD2024011251278,TGD2024011251280,TGD2024011251305,TGD2024011251313,TGD2024011251337,TGD2024011251338,TGD2024011251339,TGD2024011252004,TGD2024011252006,TGD2024011252028,TGD2024011252031,TGD2024011252033,TGD2024011252042,TGD2024011253013,TGD2024011253014,TGD2024011253020,TGD2024011253039,TGD2024011253050,TGD2024011253066,TGD2024011253074,TGD2024011253075,TGD2024011253076,TGD2024011253084,TGD2024011253085,TGD2024011253087,TGD2024011253094";
+        final String[] strArr = str.split(",");
+        for (int i = 0; i < strArr.length; i++) {
+            System.out.println(String.format(s, strArr[i]));
+        }
+    }
+
+    @Test
+    public void testStrT() {
+        String str = "real compute process rule date detail is null returnBillNo:TGD2024011253094\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253092\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246650\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248575\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250491\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246649\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253087\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251339\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251337\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251338\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250485\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252042\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247625\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253085\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253084\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247624\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246642\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250484\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249456\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246637\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250483\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246635\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249455\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250482\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253076\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248559\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249449\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252033\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247614\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253075\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248557\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253074\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252031\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249447\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247609\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250476\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246628\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248553\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252028\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249441\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253066\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248549\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247597\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246624\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251313\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251312\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252024\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253060\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249431\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246616"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011251305\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250464\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248542\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252017\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252015\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251303\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249429\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249428\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250460\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249425\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250459\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246610\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248536\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252010\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250458\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252006\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253052\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252005\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247583\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252004\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011252003\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246601\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247582\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249417\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253051\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250453\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253050\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248528\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249415\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249414\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253047\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250449\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250448\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250447\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253045\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248524\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248523\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251287\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247577\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246594\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249408\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248521\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253039\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247574\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247572\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249406\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251280\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244989\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251278\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244987"
+                + " real compute process rule date detail is null returnBillNo:TGD2024011248515\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248513\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244985\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244983\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253032\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253031\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246581\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246580\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253030\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249398\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244978\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244977\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250425\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248506\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250424\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253027\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244973\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253026\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249395\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250423\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251272\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250422\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251270\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249388\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247558\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246575\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250417\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253020\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248495\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248493\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244964\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248492\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253014\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247554\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253013\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248489\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250405\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247553\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247552\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248486\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011253004\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249367\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248479\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251253\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249365\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246557\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250395\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247543\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248473\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247540"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011249355\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251241\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244946\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245993\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244944\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249351\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247535\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248459\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245989\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251239\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246548\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249347\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244937\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244936\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245986\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246537\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247527\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250375\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247523\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249341\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246535\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249340\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246534\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251231\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249338\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250372\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248444\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245982\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245981\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249332\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246528\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250363\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244920\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245974\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251224\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251223\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245973\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246526\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250361\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248437\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250360\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249323\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245971\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246522\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244917\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249319\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249318\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246520\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244911\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247500"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011250353\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250355\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251214\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244909\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245963\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244908\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247499\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249313\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246513\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249312\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250344\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246509\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247496\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247494\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247493\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248423\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245954\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246502\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251205\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247491\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248420\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247490\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250338\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245945\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251197\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245944\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249304\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244896\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247487\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249302\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249301\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251196\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247483\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246493\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250333\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249298\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245941\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247482\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248412\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247481\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249297\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247480\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246489\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250331\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251193\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250329\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250330\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245940\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247475\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249289"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011247474\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246481\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246480\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247473\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250321\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247471\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247472\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244881\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250319\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249284\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245929\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244880\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248401\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250315\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244877\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247457\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251177\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249276\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247456\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251173\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250309\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245918\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247453\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245917\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251169\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247451\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248387\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247443\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245909\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247442\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249270\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250306\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250305\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245907\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244866\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244864\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246460\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247434\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244854\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250302\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251155\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247431\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247432\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251152\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247427\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248376\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250292\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248375\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246442\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247418"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011247417\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244845\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250288\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249248\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247415\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249247\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245884\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245883\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248367\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250285\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244844\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251145\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251144\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250282\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246432\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244841\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248360\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250281\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245875\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244840\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249242\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250279\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248359\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245865\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249233\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248354\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250268\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245864\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246423\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244821\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249225\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246413\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246412\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249224\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248349\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248348\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249223\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244817\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245855\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247386\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247385\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250262\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244815\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244814\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246405\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250258\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247381\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245849\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247379\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249213"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011251121\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249210\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245846\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246396\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247377\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251120\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244810\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249207\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251117\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245842\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250253\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250252\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251115\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244808\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246390\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250250\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249202\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246387\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251111\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249200\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249201\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250247\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248323\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244804\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245832\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248322\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246381\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247368\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245825\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249195\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249192\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247364\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251100\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244798\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251099\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247363\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251097\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246372\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251096\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247355\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250239\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250238\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244789\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244790\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244787\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249180\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244786\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245815\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250235\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250234"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011244785\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249179\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250233\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246358\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244784\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244783\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250232\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244782\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244780\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251085\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247342\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247344\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247343\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248305\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247340\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245811\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247339\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245809\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244775\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246349\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244774\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251081\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247337\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245808\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245806\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251077\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250214\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248297\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249162\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244766\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248295\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249161\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250211\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244765\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249160\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249158\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250207\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248290\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244758\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250200\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248286\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246320\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250199\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245781\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244751\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251065\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247320\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248283\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244750\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250196"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011250195\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246314\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251064\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246312\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250193\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248280\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245773\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247318\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245763\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250175\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251048\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244732\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251046\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246296\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246295\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246294\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247298\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245746\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251029\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249112\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244716\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250152\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245742\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246285\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245738\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011251015\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246276\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248252\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245732\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248251\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246271\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250134\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249093\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247275\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247274\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250129\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250128\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249092\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247273\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245721\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248244\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246260\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246259\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243997\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244698\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243996\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243986\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250119\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245716\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245715"
+                + " real compute process rule date detail is null returnBillNo:TGD2024011246249\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247265\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247264\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249082\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246247\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248241\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245711\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245713\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250115\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248240\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250113\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246245\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249079\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250111\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246244\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244691\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243980\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243979\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249078\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243975\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249073\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243973\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249072\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246243\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243972\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247254\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247253\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249070\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246239\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245700\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245699\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250103\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244683\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245698\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249068\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249067\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250100\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243965\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243966\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246238\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245695\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249065\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248227\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245694\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250098\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246237\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243963\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247246\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246236\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248226"
+                + "real compute process rule date detail is null returnBillNo:TGD2024011246234\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248225\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249058\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244680\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250094\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244677\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247242\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246225\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247234\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246223\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247232\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249046\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245685\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245683\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249044\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246222\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250082\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243936\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246212\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249037\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248203\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247221\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245670\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248198\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248197\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011244660\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249035\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250071\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248196\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245664\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247218\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247215\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248195\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249032\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245659\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250066\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245658\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011249031\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248193\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250060\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011246203\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247206\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011248187\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011250058\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247205\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247201\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245645\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011247198\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011243903\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011245629"
+                + " real compute process rule date detail is null returnBillNo:TGD2024011246190\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011150042\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011149008\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011144630\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011145624\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011145623\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011148156\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011144617\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011148151\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011144614\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011144613\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011143889\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011141994\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011141992\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011143883\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011150018\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011145586\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024011147135\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024010892967\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024010896733\n" +
+                "adjust\t\n" +
+                " real compute process rule date detail is null returnBillNo:TGD2024010816358"
+                + ""
+                + "";
+        String[] strArr = str.split(":");
+        for (int i = 0; i < strArr.length; i++) {
+            String s = strArr[i];
+            if (s.startsWith("TGD")) {
+                System.out.println(s.split("\\n")[0].trim().substring(0, 16));
+            }
+        }
+    }
+
+    @Test
+    public void testLongInteger() {
+        Long a = 300L;
+        Long b = 300L;
+        System.out.println(a == b);
+    }
 
     @Test
     public void testFormatStr() {
@@ -82,6 +1359,18 @@ public class FirstTest {
         Integer b = new Integer(2);
         System.out.println(a == b);
         System.out.println(a.equals(b));
+    }
+
+    @Test
+    public void testLong() {
+        Long a = new Long(2);
+        Long b = new Long(2);
+        System.out.println(a.equals(b));
+
+
+        Long aa = new Long(1234567890123567L);
+        Long bb = new Long(1234567890123567L);
+        System.out.println(aa.equals(bb));
     }
 
     @Test

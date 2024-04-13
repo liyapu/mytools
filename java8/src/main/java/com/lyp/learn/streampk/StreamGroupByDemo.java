@@ -104,39 +104,51 @@ public class StreamGroupByDemo {
     @Test
     public void test5(){
         System.out.println("-----groupingBy-----对每类统计个数----------");
-        Map<String,Long> appleColorCount = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor,Collectors.counting()));
+        Map<String, Long> appleColorCount = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getColor, Collectors.counting()));
         System.out.println(appleColorCount);
 
         //groupingby 对每类求平均值
-        Map<String,Double> weightAverageColor = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor,Collectors.averagingDouble(Apple::getWeight)));
+        Map<String, Double> weightAverageColor = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getColor, Collectors.averagingDouble(Apple::getWeight)));
         System.out.println(weightAverageColor);
 
         //groupingby 对每类求和
-        Map<String,Double> weightSumColor = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor,Collectors.summingDouble(Apple::getWeight)));
+        Map<String, Double> weightSumColor = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getColor, Collectors.summingDouble(Apple::getWeight)));
         System.out.println(weightSumColor);
 
         //groupingby 对每类统计分析
-        Map<String,DoubleSummaryStatistics> weightSummaryColor = inventory.stream()
-                .collect(Collectors.groupingBy(Apple::getColor,Collectors.summarizingDouble(Apple::getWeight)));
+        Map<String, DoubleSummaryStatistics> weightSummaryColor = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getColor, Collectors.summarizingDouble(Apple::getWeight)));
         System.out.println(weightSummaryColor);
 
     }
 
+    /**
+     * 查找重复元素
+     */
     @Test
-    public void test6(){
+    public void test5Repeat() {
+        List<String> repeatColorList = inventory.stream()
+                .collect(Collectors.groupingBy(a -> a.getColor(), Collectors.counting()))
+                .entrySet().stream().filter(e -> e.getValue() > 1)
+                .map(Map.Entry::getKey).collect(Collectors.toList());
+        System.out.println("重复的颜色是： " + repeatColorList);
+    }
+
+    @Test
+    public void test6() {
         System.out.println("-----groupingBy-----每类菜中，热量分类----------");
-        Map<Dish.Type,Set<String>> typeCaloriesSet = menu.stream()
+        Map<Dish.Type, Set<String>> typeCaloriesSet = menu.stream()
                 .collect(Collectors.groupingBy(Dish::getType,
                         Collectors.mapping(
-                                d ->{
-                                    if(d.getCalories() >= 700){
+                                d -> {
+                                    if (d.getCalories() >= 700) {
                                         return "高热量";
-                                    }else if(d.getCalories() >= 400){
+                                    } else if (d.getCalories() >= 400) {
                                         return "正常";
-                                    }else{
+                                    } else {
                                         return "低热量";
                                     }
                                 },

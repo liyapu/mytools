@@ -52,9 +52,28 @@ package com.lyp.likou.array;
 public class A_27 {
 
     public static int removeElement(int[] nums, int val) {
+        int length = nums.length;
+        int i, j;
+        for (i = 0, j = length - 1; i <= j; ) {
+            if (nums[i] != val) {
+                i++;
+            } else if (nums[j] == val) {
+                j--;
+            } else {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        return i;
+    }
+
+    public static int removeElement2(int[] nums, int val) {
         int newLen = 0;
         for (int i = 0; i < nums.length; i++) {
-            if(nums[i] != val){
+            if (nums[i] != val) {
                 nums[newLen++] = nums[i];
             }
         }
