@@ -6,6 +6,8 @@ import com.lyp.learn.bean.Apple;
 import com.lyp.learn.bean.Dish;
 import com.lyp.learn.bean.QuarterEnum;
 import com.lyp.learn.bean.QuarterVo;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
@@ -337,10 +339,36 @@ public class StreamTest {
     }
 
     /**
-     *  long dateSellCount = dateSells.stream()
-     *                             .flatMap(dto -> dto.getSellPoiList().stream())
-     *                             .mapToLong(SellPoi::getSellCount)
-     *                             .sum();
+     * map 查询BD
+     */
+    @Test
+    public void testFlapMapQueryDb() {
+        List<Integer> numList = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<String> strList = ListUtils.partition(numList, 3)
+                .stream()
+                .map(partList -> queryDb(partList))
+                //这里使用 List::stream 转换，不要使用Collection::stream
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(strList)) {
+            System.out.println("strList 为空：" + strList);
+            return;
+        }
+        System.out.println("strList ：" + strList);
+    }
+
+    private List<String> queryDb(List<Integer> nums) {
+        return ListUtils.emptyIfNull(nums)
+                .stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * long dateSellCount = dateSells.stream()
+     * .flatMap(dto -> dto.getSellPoiList().stream())
+     * .mapToLong(SellPoi::getSellCount)
+     * .sum();
      */
 
     @Test

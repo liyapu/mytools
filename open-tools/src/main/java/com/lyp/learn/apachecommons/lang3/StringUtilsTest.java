@@ -3,6 +3,8 @@ package com.lyp.learn.apachecommons.lang3;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 /**
  * @author: liyapu
  * @description:
@@ -10,6 +12,14 @@ import org.junit.jupiter.api.Test;
  * 方法很多，很实用，看源码即可
  */
 public class StringUtilsTest {
+
+    @Test
+    public void test1111() {
+        int a = 9999;
+        Integer b = 9999;
+        boolean flag = Objects.equals(b, a);
+        System.out.println(flag);
+    }
 
     /**
      * truncate

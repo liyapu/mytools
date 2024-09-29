@@ -2,22 +2,13 @@ package com.lyp.learn.streampk;
 
 
 import com.lyp.learn.bean.Apple;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 
 public class StreamFilterDemo {
     List<Apple> inventory = Arrays.asList(
@@ -474,16 +465,32 @@ public class StreamFilterDemo {
         System.out.println(apple);
 
         List<Apple> inventoryNew = inventory.stream()
-            .map(a -> {
-                Apple aa = new Apple();
-                aa.setAddress(a.getAddress());
-                return aa;
-            })
-            .collect(Collectors.toList());
+                .map(a -> {
+                    Apple aa = new Apple();
+                    aa.setAddress(a.getAddress());
+                    return aa;
+                })
+                .collect(Collectors.toList());
         Apple appleNew = inventoryNew.get(0);
         System.out.println(appleNew);
 
         System.out.println(apple == appleNew);
+    }
+
+
+    /**
+     * 查找重复的
+     */
+    @Test
+    public void testFindRepeat() {
+        List<String> repetitionSkuIdList = inventory.stream()
+                .collect(Collectors.groupingBy(Apple::getColor, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        System.out.println("repetitionSkuIdList = " + repetitionSkuIdList);
     }
 
 }

@@ -1,0 +1,45 @@
+{
+  "poiId": 323,
+  "poiType": 2,
+  "targetType": 1,
+  "planTakeDate": 1723125600000,
+  "refundBillNo": "TGD20240808001613",
+  "supplierId": 6031,
+  "supplierName": "小美企业测试",
+  "owner": "6031",
+  "operator": "6031",
+  "billType": 111,
+  "sourceType": 1,
+  "subTypeValue": 1,
+  "outBoundBillNo": "WLCK2024080800508216",
+  "prePickUpStartTime": 1723161600000,
+  "categoryWarehouseId": 143175537895589,
+  "skuDetailList": [
+    {
+      "skuId": 100422521065298,
+      "skuName": "测试7xbomy 3盒 3kg/袋",
+      "skuCode": "218569300021284647",
+      "unitId": 206,
+      "unitName": "袋",
+      "temperatureLevel": 5,
+      "planReturnQuantity": 2,
+      "supplierId": 6031,
+      "supplierName": "小美企业测试",
+      "skuSpec": "3盒 3kg/袋",
+      "skuBoxQuantity": 1,
+      "skuPicUrl": "https://p0.inf.test.sankuai.com/groceryimages/7eee950cb3d6d0e0637db236d2e8de946162.jpg",
+      "secondCategoryName": "蔬菜",
+      "unitType": 2,
+      "productionDateReturnDTOList": [],
+      "extraConditionList": [
+        {
+          "type": 1,
+          "value": "-1",
+          "quantity": "3.000000"
+        }
+      ]
+    }
+  ],
+  "businessBranch": 0,
+  "deliveryPlatform": 1
+}

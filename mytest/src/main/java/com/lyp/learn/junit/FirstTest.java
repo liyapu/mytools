@@ -6,16 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -31,8 +29,75 @@ import java.util.stream.Stream;
 @Slf4j
 public class FirstTest {
 
+    @Test
+    public void testLocal0001() {
+        System.out.println(NumberUtils.isCreatable("123"));
+        System.out.println(NumberUtils.isCreatable("123.123"));
+        System.out.println(NumberUtils.isCreatable("123L"));
+        System.out.println(NumberUtils.isCreatable("123f"));
+        System.out.println(NumberUtils.isCreatable("a"));
+        System.out.println(NumberUtils.isCreatable("123a"));
+
+        System.out.println("-------------");
+        System.out.println(NumberUtils.isDigits("123"));
+        System.out.println(NumberUtils.isDigits("123.123"));
+        System.out.println(NumberUtils.isDigits("123L"));
+        System.out.println(NumberUtils.isDigits("123f"));
+        System.out.println(NumberUtils.isDigits("a"));
+        System.out.println(NumberUtils.isDigits("123a"));
+
+    }
+
+
+    public static Long localDateTimeToLong(LocalDateTime localDateTime) {
+        if (Objects.isNull(localDateTime)) {
+            return 0L;
+        }
+
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    @Test
+    public void testSub011() {
+        String billCode = "SHD20220616000165443";
+        int dateInt = Integer.parseInt(billCode.substring(3, 11));
+        System.out.println(dateInt);
+
+    }
+
+    @Test
+    public void testListEmpty() {
+        List<Integer> intList = new ArrayList<>();
+//        intList.add(1);
+//        intList.add(2);
+//        intList.add(3);
+        intList.forEach(a -> System.out.println(a));
+    }
+
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-  
+
+    @Test
+    public void testa12() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        remove(list, 2);
+    }
+
+    public static void remove(List<Integer> list, Integer elem) {
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(elem)) {
+                list.remove(list.get(i));
+            }
+        }
+        System.out.println(list);
+
+    }
+
 
     /**
      * 双冷

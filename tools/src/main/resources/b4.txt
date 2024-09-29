@@ -1,0 +1,41 @@
+{
+  "supplierId": 6031,
+  "poiId": 10000402,
+  "cwId": 0,
+  "poiType": 2,
+  "billType": 2,
+  "returnType": 90,
+  "pickUpDate": 0,
+  "billSource": 3,
+  "creator": "system",
+  "skuList": [
+    {
+      "skuId": 100478969075685,
+      "skuName": "中心仓极端商品PApfxwpq 3斤*3个/份",
+      "temperatureLevel": 0,
+      "categoryId": 0,
+      "availableQuantity": 0,
+      "estimatedQuantity": 100,
+      "lockedQuantity": 0,
+      "actualSortingQuantity": 0,
+      "actualRetrievalQuantity": 0,
+      "cwId": 0,
+      "skuDictUnitId": 0,
+      "skuDictUnitName": "份",
+      "preShipmentQuantity": 0,
+      "tagList": [
+        {
+          "tagId": 2,
+          "tagValue": "0"
+        }
+      ]
+    }
+  ],
+  "planBillNo": "TG0101240914084497",
+  "genUniqueId": "TG0101240914084497",
+  "returnDateBegin": 0,
+  "returnDateEnd": 0,
+  "channel": 0,
+  "bizBranch": 0,
+  "extendInfo": []
+}
