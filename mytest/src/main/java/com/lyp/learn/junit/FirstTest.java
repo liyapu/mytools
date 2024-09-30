@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -28,6 +29,23 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void testBigDecimal0001() {
+        BigDecimal a = new BigDecimal("120.456");
+        BigDecimal b = new BigDecimal("100");
+        System.out.println(a.divide(b, 2, RoundingMode.HALF_UP).toPlainString());
+        System.out.println(a.divide(b, 2, RoundingMode.HALF_UP).stripTrailingZeros());
+    }
+
+    @Test
+    public void testBigDecimal0002() {
+        BigDecimal a = new BigDecimal(0.3333333333333);
+        BigDecimal b = new BigDecimal(100);
+        System.out.println(a.divide(b));
+//        System.out.println(a.divide(b, 2, RoundingMode.HALF_UP).toPlainString());
+//        System.out.println(a.divide(b, 2, RoundingMode.HALF_UP).stripTrailingZeros());
+    }
 
     @Test
     public void testLocal0001() {
