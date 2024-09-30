@@ -1,7 +1,7 @@
 package com.lyp.learn.mockdata;
 
-import com.lyp.learn.mockdata.bean.Student;
-import com.lyp.learn.mockdata.bean.StudentPageResult;
+import com.lyp.learn.mockdata.bean.User;
+import com.lyp.learn.mockdata.bean.UserPageResult;
 import com.lyp.learn.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,28 +17,27 @@ import java.util.stream.Collectors;
  * @description
  */
 @Slf4j
-public class StudentService {
+public class UserService {
 
-    private static List<Student> studentAllList = new ArrayList<>();
+    private static List<User> userAllList = new ArrayList<>();
 
     static {
         for (int i = 1; i <= 50; i++) {
-            Student student = new Student();
-            student.setId(i);
-            student.setAge("age" + i);
-            student.setName("student" + i);
-            studentAllList.add(student);
+            User user = new User();
+            user.setId(i);
+            user.setUserName("user" + i);
+            userAllList.add(user);
         }
     }
 
 
-    public static List<Student> getStudentList(String name, Integer age, Integer offset, Integer limit) {
+    public static List<User> getUserList(String name, Integer offset, Integer limit) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            log.warn("getStudentList InterruptedException");
+            log.warn("getUserList InterruptedException");
         }
-        List<Student> tempResult = studentAllList.stream()
+        List<User> tempResult = userAllList.stream()
 //                .filter(s -> s.getName().contains(name))
                 .collect(Collectors.toList());
         if (tempResult.size() > offset) {
@@ -50,17 +49,17 @@ public class StudentService {
         } else {
             tempResult = new ArrayList<>();
         }
-        System.out.println("getStudentList " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " age:" + age + " offset:" + offset + " limit:" + limit + " tempResult:" + JsonUtil.writeToString(tempResult));
+        System.out.println("getUserList " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " offset:" + offset + " limit:" + limit + " tempResult:" + JsonUtil.writeToString(tempResult));
         return tempResult;
     }
 
-    public static List<Student> getStudentListThrowException(String name, Integer age, Integer offset, Integer limit) throws Exception {
+    public static List<User> getUserListThrowException(String name, Integer offset, Integer limit) throws Exception {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            log.warn("getStudentList InterruptedException");
+            log.warn("getUserList InterruptedException");
         }
-        List<Student> tempResult = studentAllList.stream()
+        List<User> tempResult = userAllList.stream()
 //                .filter(s -> s.getName().contains(name))
                 .collect(Collectors.toList());
         if (tempResult.size() > offset) {
@@ -72,17 +71,17 @@ public class StudentService {
         } else {
             tempResult = new ArrayList<>();
         }
-        System.out.println("getStudentListThrowException " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " age:" + age + " offset:" + offset + " limit:" + limit + " tempResult:" + JsonUtil.writeToString(tempResult));
+        System.out.println("getUserListThrowException " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " offset:" + offset + " limit:" + limit + " tempResult:" + JsonUtil.writeToString(tempResult));
         return tempResult;
     }
 
-    public static StudentPageResult getStudentPageResultList(String name, Integer age, Integer offset, Integer limit) {
+    public static UserPageResult getUserPageResultList(String name, Integer offset, Integer limit) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            log.warn("getStudentList InterruptedException");
+            log.warn("getUserList InterruptedException");
         }
-        List<Student> tempResult = studentAllList.stream()
+        List<User> tempResult = userAllList.stream()
 //                .filter(s -> s.getName().contains(name))
                 .collect(Collectors.toList());
         //总条数
@@ -97,16 +96,16 @@ public class StudentService {
         } else {
             tempResult = new ArrayList<>();
         }
-        StudentPageResult result = new StudentPageResult();
+        UserPageResult result = new UserPageResult();
         result.setCode(0);
         result.setMsg("success");
 
-        StudentPageResult.StudentPageInfo studentPageInfo = new StudentPageResult.StudentPageInfo();
-        studentPageInfo.setTotal(total);
-        studentPageInfo.setStudentList(tempResult);
+        UserPageResult.UserPageInfo userPageInfo = new UserPageResult.UserPageInfo();
+        userPageInfo.setTotal(total);
+        userPageInfo.setUserList(tempResult);
 
-        result.setData(studentPageInfo);
-        System.out.println("getStudentPageResultList " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " age:" + age + " offset:" + offset + " limit:" + limit + " currentThread:" + Thread.currentThread().getName() + " result:" + JsonUtil.writeToString(result));
+        result.setData(userPageInfo);
+        System.out.println("getUserPageResultList " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " name:" + name + " offset:" + offset + " limit:" + limit + " currentThread:" + Thread.currentThread().getName() + " result:" + JsonUtil.writeToString(result));
         return result;
     }
 
