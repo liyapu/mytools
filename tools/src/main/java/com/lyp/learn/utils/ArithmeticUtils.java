@@ -9,6 +9,22 @@ import java.math.BigDecimal;
  * 告警：线上慎用 BigDecimal ！
  * https://mp.weixin.qq.com/s/hzJfdhTpYWyOXVDZbsoNYQ
  */
+/*
+输入数字	UP	DOWN	CEILING	FLOOR	HALF_UP	HALF_DOWN	HALF_EVEN	UNNECESSARY
+5.5	    6	 5	    6	    5	    6	        5	    6	抛出 ArithmeticException
+2.5	    3	 2	    3	    2	    3	        2	    2	抛出 ArithmeticException
+1.6	    2	 1	    2	    1	    2	        2	    2	抛出 ArithmeticException
+1.1	    2	 1	    2	    1	    1	        1	    1	抛出 ArithmeticException
+1.0	    1	 1	    1	    1	    1	        1	    1	1
+-1.0	-1	 -1	    -1	    -1	    -1	        -1	    -1	-1
+-1.1	-2	 -1	    -1	    -2	    -1	        -1	    -1	抛出 ArithmeticException
+-1.6	-2	 -1	    -1	    -2	    -2	        -2	    -2	抛出 ArithmeticException
+-2.5	-3	 -2	    -2	    -3	    -3	        -2	    -2	抛出 ArithmeticException
+-5.5	-6	 -5	    -5	    -6	    -6	        -5	    -6	抛出 ArithmeticException
+
+
+链接：https://www.jianshu.com/p/8f52256843b2
+ */
 public class ArithmeticUtils {
 
     //默认除法运算精度
@@ -313,5 +329,17 @@ public class ArithmeticUtils {
      */
     public static String showStr(String v1) {
         return new BigDecimal(v1).stripTrailingZeros().toPlainString();
+    }
+
+    /**
+     * 转换String保留2位
+     */
+    public static String genTransString(BigDecimal num) {
+        if (num == null) {
+            num = BigDecimal.ZERO;
+        } else {
+            num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        return num.stripTrailingZeros().toPlainString();
     }
 }

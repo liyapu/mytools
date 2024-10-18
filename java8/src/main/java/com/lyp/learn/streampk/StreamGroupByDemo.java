@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.lyp.learn.bean.Apple;
 import com.lyp.learn.bean.AppleVO;
 import com.lyp.learn.bean.Dish;
+import com.lyp.learn.utils.JsonUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -449,9 +450,9 @@ public class StreamGroupByDemo {
     }
 
     @Test
-    public void test15(){
+    public void test15() {
         System.out.println("-----partitioningBy-----根据谓词进行分类,两级----------");
-        Map<Boolean,Map<Dish.Type,List<Dish>>> booleanTypeList =
+        Map<Boolean, Map<Dish.Type, List<Dish>>> booleanTypeList =
                 menu.stream()
                         .collect(Collectors.partitioningBy(Dish::isVegetarian,
                                 Collectors.groupingBy(Dish::getType)));
@@ -459,6 +460,73 @@ public class StreamGroupByDemo {
         System.out.println(JSON.toJSONString(booleanTypeList));
         System.out.println();
     }
+
+    //--------------------------
+    //在Java 8的Stream API中，使用groupBy之后对结果中的List直接进行操作是很常见的需求。以下是一些常用的方法和示例：
+
+    //使用groupingBy和下游收集器
+    @Test
+    public void test30() {
+        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Map<String, List<Integer>> result = intList.stream()
+                .collect(Collectors.groupingBy(String::valueOf,
+                        Collectors.mapping(i -> i * 2, Collectors.toList())
+                ));
+        System.out.println("result = " + result);
+    }
+
+    //使用groupingBy后对值进行转换
+    @Test
+    public void test31() {
+        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        Map<String, List<String>> result = intList.stream()
+                .collect(Collectors.groupingBy(
+                        String::valueOf,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                l -> l.stream().map(i -> "Value: " + i).collect(Collectors.toList())
+                        )
+                ));
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    public void test311() {
+        Map<String, List<Integer>> result = inventory.stream()
+                .collect(groupingBy(Apple::getColor,
+                        Collectors.collectingAndThen(Collectors.toList(), l -> l.stream().map(Apple::getWeight).distinct().collect(toList()))));
+        System.out.println("result = " + JsonUtil.writeToString(result));
+    }
+
+    //对分组后的结果进行过滤
+//    @Test
+//    public void test32() {
+//        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+//
+//        Map<String, List<String>> result = intList.stream()
+//                .collect(Collectors.groupingBy(
+//                        String::valueOf,
+//                        Collectors.filtering(i -> i % 2 == 0, Collectors.toList())
+//                ));
+//        System.out.println("result = " + result);
+//    }
+
+    //对分组后的结果进行排序
+//    @Test
+//    public void test32() {
+//        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+//
+//        Map<String, List<String>> result = intList.stream()
+//                .collect(Collectors.groupingBy(
+//                        String::valueOf,
+//                        Collectors.collectingAndThen(
+//                                Collectors.toList(),
+//                                l -> l.stream().sorted().collect(Collectors.toList())
+//                        )
+//                ));
+//        System.out.println("result = " + result);
+//    }
 
 
 }

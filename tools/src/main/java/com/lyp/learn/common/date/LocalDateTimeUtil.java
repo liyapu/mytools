@@ -812,4 +812,23 @@ public class LocalDateTimeUtil {
     public static String getNowDateTimeFormat() {
         return LocalDateTime.now().format(DatePattern.PURE_DATETIME_FORMATTER);
     }
+
+    /**
+     * 获取一天的开始时间戳
+     *
+     * @param localDate 日期
+     */
+    public static Long getStartOfDay(LocalDate localDate) {
+        return LocalDateTime.of(localDate, LocalTime.MIN).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+    }
+
+    /**
+     * 获取一天的结束时间戳
+     *
+     * @param localDate 日期
+     */
+    public static Long getEndOfDay(LocalDate localDate) {
+        return LocalDateTime.of(localDate, LocalTime.MAX).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+    }
+
 }

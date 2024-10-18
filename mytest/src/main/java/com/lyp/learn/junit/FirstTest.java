@@ -31,6 +31,21 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     @Test
+    public void testSet001() {
+        Set<Integer> set1 = new HashSet<>();
+        set1.add(1);
+        set1.add(2);
+        set1.add(4);
+        set1.add(5);
+
+        Set<Integer> set2 = new HashSet<>();
+        set2.add(1);
+        set2.add(2);
+        set2.add(9);
+        System.out.println(set1.containsAll(set2));
+    }
+
+    @Test
     public void testBigDecimal0001() {
         BigDecimal a = new BigDecimal("120.456");
         BigDecimal b = new BigDecimal("100");
