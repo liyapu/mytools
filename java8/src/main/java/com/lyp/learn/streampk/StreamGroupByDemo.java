@@ -404,8 +404,20 @@ public class StreamGroupByDemo {
     @Test
     public void test117() {
         TreeMap<String, List<Apple>> colorToAppleListTreeMap = inventory.stream()
-            .collect(groupingBy(Apple::getColor, TreeMap::new, mapping(Function.identity(), toList())));
+                .collect(groupingBy(Apple::getColor, TreeMap::new, mapping(Function.identity(), toList())));
         System.out.println(colorToAppleListTreeMap);
+        System.out.println(JSON.toJSONString(colorToAppleListTreeMap));
+    }
+
+    /**
+     * 使用 TreeMap 收集，key值自动排序
+     */
+    @Test
+    public void test118() {
+        TreeMap<Integer, List<Apple>> colorToAppleListTreeMap = inventory.stream()
+                .collect(groupingBy(Apple::getWeight, TreeMap::new, mapping(Function.identity(), toList())));
+        System.out.println(colorToAppleListTreeMap);
+        System.out.println(JSON.toJSONString(colorToAppleListTreeMap));
     }
 
     /**
@@ -526,6 +538,13 @@ public class StreamGroupByDemo {
 //                        )
 //                ));
 //        System.out.println("result = " + result);
+//    }
+
+
+//    @Test
+//    public void testTreeMap001() {
+//        inventory.stream()
+//                .
 //    }
 
 
