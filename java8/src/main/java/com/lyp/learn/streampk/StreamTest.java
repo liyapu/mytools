@@ -937,4 +937,19 @@ public class StreamTest {
         return IntStream.rangeClosed(2, sqar)
                 .noneMatch(i -> condidate % i == 0);
     }
+
+    /**
+     * intStream 生成 1到40连续的 List列表
+     */
+    @Test
+    public void test30() {
+        /**
+         *  这段代码使用了IntStream.rangeClosed(1, 40)来生成一个从1到40的整数流，
+         *  然后使用boxed()将IntStream转换为Stream<Integer>，
+         *  最后使用collect(Collectors.toList())收集结果到一个List中。
+         */
+        List<Integer> intList = IntStream.rangeClosed(1, 40).boxed().collect(Collectors.toList());
+        System.out.println(intList);
+    }
+
 }
