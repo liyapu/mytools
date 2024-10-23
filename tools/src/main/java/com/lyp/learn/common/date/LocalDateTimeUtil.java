@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAccessor;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,10 @@ public class LocalDateTimeUtil {
      * @param epochMilli 从1970-01-01T00:00:00Z开始计数的毫秒数
      * @return {@link LocalDateTime}
      */
-    public static LocalDateTime of(long epochMilli) {
+    public static LocalDateTime of(Long epochMilli) {
+        if (Objects.isNull(epochMilli)) {
+            return null;
+        }
         return of(Instant.ofEpochMilli(epochMilli));
     }
 
@@ -41,7 +45,10 @@ public class LocalDateTimeUtil {
      * @param epochMilli 从1970-01-01T00:00:00Z开始计数的毫秒数
      * @return {@link LocalDateTime}
      */
-    public static LocalDateTime of(long epochMilli, ZoneId zoneId) {
+    public static LocalDateTime of(Long epochMilli, ZoneId zoneId) {
+        if (Objects.isNull(epochMilli) || Objects.isNull(zoneId)) {
+            return null;
+        }
         return of(Instant.ofEpochMilli(epochMilli), zoneId);
     }
 

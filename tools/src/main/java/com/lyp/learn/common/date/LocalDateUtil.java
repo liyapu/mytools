@@ -50,7 +50,10 @@ public class LocalDateUtil {
      * @param epochMilli 毫秒计算的时间戳
      * @return {@link LocalDate}
      */
-    public static LocalDate of(long epochMilli) {
+    public static LocalDate of(Long epochMilli) {
+        if (Objects.isNull(epochMilli)) {
+            return null;
+        }
         return of(Instant.ofEpochMilli(epochMilli));
     }
 
@@ -62,7 +65,10 @@ public class LocalDateUtil {
      * @param zoneId     时区
      * @return {@link LocalDate}
      */
-    public static LocalDate of(long epochMilli, ZoneId zoneId) {
+    public static LocalDate of(Long epochMilli, ZoneId zoneId) {
+        if (Objects.isNull(epochMilli) || Objects.isNull(zoneId)) {
+            return null;
+        }
         return of(Instant.ofEpochMilli(epochMilli), zoneId);
     }
 
