@@ -84,6 +84,9 @@ public class LocalDateTimeUtil {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime ofSecs(Long epochSecond) {
+        if (Objects.isNull(epochSecond)) {
+            return null;
+        }
         return of(Instant.ofEpochSecond(epochSecond));
     }
 
@@ -95,6 +98,9 @@ public class LocalDateTimeUtil {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime ofSecs(Long epochSecond, ZoneId zoneId) {
+        if (Objects.isNull(epochSecond) || Objects.isNull(zoneId)) {
+            return null;
+        }
         return of(Instant.ofEpochSecond(epochSecond), zoneId);
     }
 

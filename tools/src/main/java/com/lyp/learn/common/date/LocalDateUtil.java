@@ -132,6 +132,9 @@ public class LocalDateUtil {
      * @return {@link LocalDate}
      */
     public static LocalDate ofSecs(Long epochSecond) {
+        if (Objects.isNull(epochSecond)) {
+            return null;
+        }
         return of(Instant.ofEpochSecond(epochSecond));
     }
 
@@ -144,6 +147,9 @@ public class LocalDateUtil {
      * @return {@link LocalDate}
      */
     public static LocalDate ofSecs(Long epochSecond, ZoneId zoneId) {
+        if (Objects.isNull(epochSecond) || Objects.isNull(zoneId)) {
+            return null;
+        }
         return of(Instant.ofEpochSecond(epochSecond), zoneId);
     }
 
