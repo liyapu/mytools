@@ -5,18 +5,12 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.lyp.learn.bean.Apple;
 import com.lyp.learn.utils.JsonUtil;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author: liyapu
@@ -25,11 +19,23 @@ import org.junit.jupiter.api.Test;
  */
 public class StreamMapDemo {
     List<Apple> inventory = Arrays.asList(
-        new Apple("green", 80, "黄土高原"),
-        new Apple("green", 200, "黄河故道"),
-        new Apple("red", 160, "渤海湾"),
-        new Apple("yellow", 20, "渤海湾"),
-        new Apple("yellow", 30, "山东栖霞")
+            new Apple("green", 80, "黄土高原"),
+            new Apple("green", 200, "黄河故道"),
+            new Apple("red", 160, "渤海湾"),
+            new Apple("yellow", 20, "渤海湾"),
+            new Apple("yellow", 30, "山东栖霞")
+    );
+
+
+    List<Apple> inventory2 = Arrays.asList(
+            new Apple("green", 500, "黄土高原"),
+            new Apple("green", 80, "黄土高原"),
+            new Apple("green", 200, "黄河故道"),
+            new Apple("red", 160, "渤海湾"),
+            new Apple("yellow", 70, "渤海湾"),
+            new Apple("yellow", 20, "渤海湾"),
+            new Apple("green", 900, "黄河故道"),
+            new Apple("yellow", 30, "山东栖霞")
     );
 
     Map<String, List<String>> map = new HashMap<>();
@@ -71,6 +77,7 @@ public class StreamMapDemo {
                 .collect(Collectors.groupingBy(Apple::getAddress));
         System.out.println(address$appleMap);
     }
+
 
     /**
      * 把 Map 的 value 值集合进行操作
@@ -127,6 +134,37 @@ public class StreamMapDemo {
                     .append(";");
         });
         System.out.println(sb.toString());
+    }
+
+    @Test
+    public void test05() {
+        //取第一个
+        Map<String, Integer> color2WeightDefaultMapV1 = inventory2.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getWeight, (v1, v2) -> v1));
+        System.out.println("color2WeightDefaultMapV1 ==== " + color2WeightDefaultMapV1);
+
+        //取最后一个
+        Map<String, Integer> color2WeightDefaultMapV2 = inventory2.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getWeight, (v1, v2) -> v2));
+        System.out.println("color2WeightDefaultMapV2 ==== " + color2WeightDefaultMapV2);
+
+        //取最小值
+        Map<String, Integer> color2WeightDefaultMapV3 = inventory2.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getWeight, (v1, v2) -> {
+                    if (Objects.isNull(v1)) {
+                        return v2;
+                    }
+                    if (Objects.isNull(v2)) {
+                        return v1;
+                    }
+                    return Math.min(v1, v2);
+                }));
+        System.out.println("color2WeightDefaultMapV3 ==== " + color2WeightDefaultMapV3);
+
+        //取最小值,如果确定不存在null值，简化写法
+        Map<String, Integer> color2WeightDefaultMapV4 = inventory2.stream()
+                .collect(Collectors.toMap(Apple::getColor, Apple::getWeight, (v1, v2) -> Math.min(v1, v2)));
+        System.out.println("color2WeightDefaultMapV4 ==== " + color2WeightDefaultMapV4);
     }
 
     //================== 排序 ================
