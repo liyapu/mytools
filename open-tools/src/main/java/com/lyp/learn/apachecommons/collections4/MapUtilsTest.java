@@ -1,5 +1,6 @@
 package com.lyp.learn.apachecommons.collections4;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.collections4.IterableMap;
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.MapUtils;
@@ -241,7 +242,7 @@ public class MapUtilsTest {
      * toProperties：可以有非常简便的转化
      */
     @Test
-    public void tesToProperties(){
+    public void tesToProperties() {
         Map<String, String> map = new HashMap<>();
         map.put("key1", "value1");
         map.put("key2", "value2");
@@ -250,5 +251,22 @@ public class MapUtilsTest {
 
         Properties properties = MapUtils.toProperties(map);
         System.out.println(properties);
+    }
+
+    @Test
+    public void test00() {
+        HashMap<String, String> map1 = Maps.newHashMap();
+        map1.put("a", "1");
+        map1.put("b", "2");
+        map1.put("c", "3");
+        map1.put("d", "4");
+
+        HashMap<String, String> map2 = Maps.newHashMap();
+        map2.put("a", "1");
+        map2.put("b", "2");
+        map2.put("c", "3");
+        map2.put("d", "4");
+        //说有，但是没有找到
+//        boolean isEqual = MapUtils.isEqualMap(map1, map2);
     }
 }
