@@ -1,5 +1,6 @@
 package com.lyp.learn.junit;
 
+import cn.hutool.json.JSONUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,42 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void test001() {
+        Map<Long, Long> map = new HashMap<>();
+        //[100551198173809,100551238455134,100551133851243,100551301491118,100551301264893]}
+        //,response:{"code":0,"errorMessage":"success","rdcId":323,"skuToTargetInventory":{}}
+        map.put(100551198173809L, 100L);
+        map.put(100551238455134L, 200L);
+        map.put(100551133851243L, 300L);
+        map.put(100551301491118L, 400L);
+        map.put(100551301264893L, 500L);
+        System.out.println(JSONUtil.toJsonStr(map));
+    }
+
+    @Test
+    public void test002() {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 11);
+        map.put(2, null);
+        //get存在的值
+        int a1 = map.get(1);
+        //get存在的值，但是value为null
+        //int a2 = map.get(2);//java.lang.NullPointerException
+        //int a2 = map.getOrDefault(2, 0);//java.lang.NullPointerException
+        int a2 = Optional.ofNullable(map.get(2)).orElse(0);
+        //get不存在的值
+        //int a3 = map.get(3);//java.lang.NullPointerException
+        int a3 = map.getOrDefault(3, 0);
+        //get不存在的值
+        int a4 = Optional.ofNullable(map.get(4)).orElse(0);
+
+        System.out.println("a1 = " + a1);
+        System.out.println("a2 = " + a2);
+        System.out.println("a3 = " + a3);
+        System.out.println("a4 = " + a4);
+    }
 
     @Test
     public void testSet001() {

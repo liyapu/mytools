@@ -1,10 +1,12 @@
 package com.lyp.learn.base.collections;
 
+import com.google.common.collect.Sets;
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import org.junit.Test;
 
 public class HashMapDemo {
 
@@ -113,6 +115,25 @@ public class HashMapDemo {
         hashMap.put("china", set);
         // after JDK1.8
         hashMap.computeIfAbsent("china", key -> getValues(key)).add("liSi");
+        System.out.println(hashMap);
+    }
+
+    @Test
+    public void testComputeIfAbsent0411() {
+        HashMap<String, Set<String>> hashMap = new HashMap<>();
+
+        Set<String> set = new HashSet<>();
+        set.add("zhangSan");
+
+        hashMap.put("china", set);
+        // after JDK1.8
+        Set<String> chinaSet = hashMap.computeIfAbsent("china", key -> getValues(key));
+        chinaSet.add("liSi");
+
+        //key为空，则返回一个新set集合，并和 qin键关联起来
+        Set<String> qinSet = hashMap.computeIfAbsent("qin", key -> Sets.newHashSet());
+        qinSet.add("qinshihuang");
+
         System.out.println(hashMap);
     }
 

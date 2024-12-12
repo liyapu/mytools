@@ -548,4 +548,29 @@ public class StreamGroupByDemo {
 //    }
 
 
+    /**
+     * groupingBy之后，对分组后的结果进行排序
+     * 根据 热量字段倒叙排
+     * 注意：groupingBy之后，对分组后的结果进行排序时，需要使用collectingAndThen
+     * 否则会报错：java.lang.IllegalStateException: Duplicate key
+     */
+    @Test
+    public void test50() {
+        Map<Dish.Type, List<Dish>> groupedItems = menu.stream()
+                .collect(Collectors.groupingBy(
+                        Dish::getType,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                list -> {
+                                    list.sort(Comparator.comparingInt(Dish::getCalories).reversed());
+                                    return list;
+                                }
+                        )
+                ));
+        for (Map.Entry<Dish.Type, List<Dish>> entry : groupedItems.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().stream().map(Dish::getCalories).collect(toList()));
+        }
+    }
+
+
 }

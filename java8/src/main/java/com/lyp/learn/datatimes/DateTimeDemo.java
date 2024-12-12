@@ -1,17 +1,14 @@
 package com.lyp.learn.datatimes;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
+import org.junit.jupiter.api.Test;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
-import org.junit.jupiter.api.Test;
 
 /**
  * Java 8中的时间处理
@@ -433,10 +430,34 @@ public class DateTimeDemo {
         //指定日期减去 1个月，时分秒 重置为任意值
         LocalDateTime ldt = LocalDateTime.of(2020, 1, 6, 14, 30, 55);
         LocalDateTime ldtbm = ldt.minusMonths(1)
-            .withHour(23)
-            .withMinute(59)
-            .withSecond(59);
+                .withHour(23)
+                .withMinute(59)
+                .withSecond(59);
         System.out.println(ldtbm.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+    }
+
+
+    @Test
+    public void test11() {
+        long now = System.currentTimeMillis();
+        long previousDay = getPreviousDay(now);
+        System.out.println(now);
+        System.out.println(previousDay);
+        System.out.println(now - previousDay);
+    }
+
+    /**
+     * 获取指定时间戳的前一天相应时间戳
+     *
+     * @param timestamp
+     * @return
+     */
+    public static long getPreviousDay(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        LocalDateTime previousDay = localDateTime.minusDays(1);
+        ZonedDateTime zonedDateTime = previousDay.atZone(ZoneId.systemDefault());
+        return zonedDateTime.toInstant().toEpochMilli();
     }
 
 }
