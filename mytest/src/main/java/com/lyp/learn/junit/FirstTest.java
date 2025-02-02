@@ -33,6 +33,34 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     @Test
+    public void test0003() {
+        String numStr1 = "10";
+        String numStr2 = "2";
+
+        // 字符串比较
+        int stringCompareResult = numStr1.compareTo(numStr2);
+        if (stringCompareResult < 0) {
+            System.out.println(numStr1 + " 小于 " + numStr2 + " (字符串比较)");
+        } else if (stringCompareResult > 0) {
+            System.out.println(numStr1 + " 大于 " + numStr2 + " (字符串比较)");
+        } else {
+            System.out.println(numStr1 + " 等于 " + numStr2 + " (字符串比较)");
+        }
+
+        // 数字比较
+        int num1 = Integer.parseInt(numStr1);
+        int num2 = Integer.parseInt(numStr2);
+        if (num1 < num2) {
+            System.out.println(num1 + " 小于 " + num2 + " (数字比较)");
+        } else if (num1 > num2) {
+            System.out.println(num1 + " 大于 " + num2 + " (数字比较)");
+        } else {
+            System.out.println(num1 + " 等于 " + num2 + " (数字比较)");
+        }
+    }
+
+
+    @Test
     public void test0002() {
         List<Integer> numbers = IntStream.range(0, 100)
                 .boxed()

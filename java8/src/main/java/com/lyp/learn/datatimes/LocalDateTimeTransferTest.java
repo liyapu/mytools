@@ -1,13 +1,10 @@
 package com.lyp.learn.datatimes;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import org.junit.jupiter.api.Test;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import org.junit.jupiter.api.Test;
 
 /**
  * @author liyapu
@@ -118,6 +115,13 @@ public class LocalDateTimeTransferTest {
         //将当前时间戳转为当前时间
         LocalDateTime localDateTime2 = LocalDateTime.ofEpochSecond(milliseconds1 / 1000, 0, ZoneOffset.ofHours(8));
         System.out.println("localDateTime2 = " + localDateTime2);
+
+        // 将时间戳转为东八区 LocalDateTime
+        LocalDateTime localDateTime3 = Instant.ofEpochMilli(milliseconds1)
+                .atZone(ZoneOffset.ofHours(8))
+                .toLocalDateTime();
+        System.out.println("localDateTime3 = " + localDateTime3);
+
     }
 
     //==============LocalDate==========时间戳=======================================
