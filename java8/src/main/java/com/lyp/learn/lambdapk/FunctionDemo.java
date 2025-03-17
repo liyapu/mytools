@@ -1,8 +1,10 @@
 package com.lyp.learn.lambdapk;
 
 
+import com.lyp.learn.tools.ExcelValueParseUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class FunctionDemo {
@@ -18,13 +20,25 @@ public class FunctionDemo {
     }
 
     @Test
-    public void test11(){
-        String result = strHandler("aabb我们",x -> x.toUpperCase());
+    public void test11() {
+        String result = strHandler("aabb我们", x -> x.toUpperCase());
         System.out.println(result);
     }
 
-    public String strHandler(String str,Function<String,String> function){
-       return function.apply(str);
+    public String strHandler(String str, Function<String, String> function) {
+        return function.apply(str);
+    }
+
+    /**
+     * 外部定义 Function函数，使用 apply 调用
+     */
+    @Test
+    public void test12() {
+        String ageStr = "18";
+        Integer age = ExcelValueParseUtil.parseInteger.apply(ageStr);
+        List<Integer> ageList = ExcelValueParseUtil.parseIntegerList.apply(ageStr);
+        System.out.println(age);
+        System.out.println(ageList);
     }
 
     /**
@@ -34,9 +48,9 @@ public class FunctionDemo {
      * 换句话说就是先执行before对象的apply，再执行当前对象的apply，将两个执行逻辑串起来
      */
     @Test
-    public void test31(){
-        Function<Integer,Integer> f1 = n -> n * 2;
-        Function<Integer,Integer> f2 = i -> i * i;
+    public void test31() {
+        Function<Integer, Integer> f1 = n -> n * 2;
+        Function<Integer, Integer> f2 = i -> i * i;
 
         //先执行f2，然后再把结果传给f1
         int result1 = f1.compose(f2).apply(5);
