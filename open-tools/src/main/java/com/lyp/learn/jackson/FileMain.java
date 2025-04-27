@@ -14,12 +14,14 @@ public class FileMain {
 
     public static void main(String[] args) {
         try {
-            String filePath = FileMain.class.getResource("/atemp.txt").getPath();
+//            String filePath = FileMain.class.getResource("/atemp.txt").getPath();
+            String filePath = FileMain.class.getResource("/btemp.txt").getPath();
+//            String filePath = FileMain.class.getResource("/difftmep.txt").getPath();
 //            log.info("filePath :{}", filePath);
 //            System.out.println("filePath:" + filePath);
             List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
 //            log.info("line size:{}", lines.size());
-//            System.out.println("line size:" + lines.size());
+            System.out.println("line size:" + lines.size());
 
             for (String line : lines) {
                 if (!line.contains("message")) {

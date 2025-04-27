@@ -1,0 +1,495 @@
+{
+    "code": 0,
+    "msg": "成功",
+    "data": {
+        "total": 1,
+        "list": [
+            {
+                "vendorId": 6031,
+                "vendorCode": "1005700",
+                "vendorName": "小美企业测试",
+                "productId": "100614397045952",
+                "productName": "富硒蛋",
+                "skuId": "100614479070756",
+                "skuName": "富硒蛋 30枚 1.65kg/板",
+                "barCodeList": [
+                    "218569300031123745"
+                ],
+                "categoryName": "生鲜和日配-蛋类-鲜蛋-鲜鸡蛋",
+                "saleSpec": "30枚 1.65kg/板",
+                "saleUnitName": "板",
+                "boxQuantity": 5,
+                "boxLength": null,
+                "boxWidth": null,
+                "boxHeight": null,
+                "boxVolume": null,
+                "guaranteePeriod": 30,
+                "guaranteePeriodUnit": 3,
+                "produceAreaName": "中国（详见包装）",
+                "brandName": "丛裕草",
+                "lbImage": "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg",
+                "lbImageList": [
+                    "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg",
+                    "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg"
+                ],
+                "productStatus": 1,
+                "qualificationApprovalStatus": 2,
+                "contactPhoneNumber": null,
+                "productSubmitTS": 1745745734000,
+                "accessEdit": null,
+                "productUpdateTS": 1745745761000,
+                "skuScheduleSet": false,
+                "porscheStatus": 2,
+                "sellingPoint": "",
+                "skuCombinedName": "【蛋清稠密清澈】富硒蛋 30枚 1.65kg/板",
+                "cspuIdFlag": false,
+                "cspuId": null,
+                "subAuditType": 1,
+                "innerAuditStatus": 2,
+                "qualificationVerifyCode": 1,
+                "skuQualificationSummaryDTO": {
+                    "skuId": 100614479070756,
+                    "auditStatus": 2,
+                    "auditExposedStatus": 2,
+                    "qualificationAuditType": 1,
+                    "hasExpiredQualification": false,
+                    "whiteListStartTime": null,
+                    "whiteListEndTime": null,
+                    "inExpireAlarmPeriod": false,
+                    "expireTime": 1748337733459,
+                    "inWatchList": false,
+                    "riskControlAuditStatus": null,
+                    "applyTime": null,
+                    "qualificationStatus": 2,
+                    "qualificationDraftStatus": 3,
+                    "riskControlAuditReason": null
+                },
+                "recommendSkuSpec": null,
+                "recommendSkuSpecUnitName": null,
+                "riskControlStatus": 2,
+                "skuType": 1,
+                "giftPropertyValueDTO": null,
+                "sellPrice": null,
+                "lifeCycleStage": 2,
+                "propertyIntegrityStatus": 1,
+                "categoryPropertyList": [
+                    {
+                        "propertyCode": "BAO_ZHUANG_FANG_SHI",
+                        "propertyValueList": [
+                            {
+                                "valueId": "1427608496655876108",
+                                "value": "蛋托装"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "CHAN_DI_CHENG_SHI",
+                        "propertyValueList": [
+                            {
+                                "valueId": "36664",
+                                "value": "详见包装"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "DAN_MEI_KE_ZHONG",
+                        "propertyValueList": [
+                            {
+                                "valueId": "35300",
+                                "value": "55g/枚（含）-56/枚（不含）"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "DAN_QIAO_YAN_SE",
+                        "propertyValueList": [
+                            {
+                                "valueId": "1427608503903744029",
+                                "value": "白壳"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHANG_PIN_TE_SE",
+                        "propertyValueList": [
+                            {
+                                "valueId": "1427608496634929222",
+                                "value": "富硒蛋"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHI_FOU_BAO_JIE_DAN",
+                        "propertyValueList": [
+                            {
+                                "valueId": "36362",
+                                "value": "非保洁蛋"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHI_FOU_LI_HE_ZHUANG",
+                        "propertyValueList": [
+                            {
+                                "valueId": "1498886433795121206",
+                                "value": "非礼盒装"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHI_FOU_PEN_MA",
+                        "propertyValueList": [
+                            {
+                                "valueId": "36360",
+                                "value": "无喷码"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHOU_MAI_GUI_GE",
+                        "propertyValueList": [
+                            {
+                                "valueId": "0",
+                                "value": "1.65"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHOU_MAI_GUI_GE_UNIT",
+                        "propertyValueList": [
+                            {
+                                "valueId": "102",
+                                "value": "kg"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHOU_MAI_SHU_LIANG",
+                        "propertyValueList": [
+                            {
+                                "valueId": "0",
+                                "value": "30"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "SHOU_MAI_SHU_LIANG_UNIT",
+                        "propertyValueList": [
+                            {
+                                "valueId": "252",
+                                "value": "枚"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    },
+                    {
+                        "propertyCode": "XIAO_SHOU_DAN_WEI",
+                        "propertyValueList": [
+                            {
+                                "valueId": "202",
+                                "value": "板"
+                            }
+                        ],
+                        "propertyId": null,
+                        "propertyName": null,
+                        "valueType": null,
+                        "extValue": null
+                    }
+                ],
+                "checkStatusSpilt": [
+                    0
+                ],
+                "scene5CspuIdFlag": true,
+                "scene5CspuId": 20803082741014,
+                "brandUseStatus": true,
+                "cspuAuditStatus": 2,
+                "governStatus": null,
+                "vendorQualificationList": [
+                    {
+                        "qualificationType": 3,
+                        "qualificationCode": 0,
+                        "qualificationMsg": null
+                    },
+                    {
+                        "qualificationType": 2,
+                        "qualificationCode": 0,
+                        "qualificationMsg": null
+                    }
+                ],
+                "tuanMaterialAdoptStatus": 1,
+                "saleStatus": 0,
+                "unsaleCodeList": [
+                    702
+                ],
+                "aggregationSaleStatus": 0,
+                "periodSeg": null,
+                "cpId": null,
+                "supplierAuthorizationStatus": 1,
+                "isSkuInProcess": true,
+                "purchaserAuditStatus": null,
+                "latestProcessInstAuditStatus": 1,
+                "latestActivityKey": "TASK_QUALIFICATION_AUDIT_REVOCATION",
+                "latestAuditRejectedActivityKey": "",
+                "tagIdList": [
+                    15,
+                    7,
+                    57025,
+                    30016,
+                    56000,
+                    32024,
+                    13001,
+                    18,
+                    21001,
+                    54001,
+                    40020,
+                    100134901
+                ],
+                "productMediaDTOList": [
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_summary",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/520379bc3a32b57001ee646f0101eade186076.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "video_short",
+                        "url": [
+                            "http://msstest-corp.sankuai.com/v1/mss_c664dbaa3bf545b9a7dbfce8b84bcf19/grocery-video-file-bucket/c23f0e2b1cef48d0c63f1233c5a7e2a2.mp4"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_background_white",
+                        "url": [
+                            "https://img.meituan.net/groceryproductapipicpublic/8a97a332fea1b80bbf90c52baf36a3d730487.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_promotion",
+                        "url": null,
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_animation",
+                        "url": null,
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_entity",
+                        "url": [
+                            "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_entity",
+                        "url": [
+                            "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_major",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/520379bc3a32b57001ee646f0101eade186076.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_major",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/0a9860eaa0bc625daae26f5018d4cd2b66806.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_source_major",
+                        "url": null,
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_description",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/f271093758889f0fa200a096260b90f096020.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_description",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/07e0f7649ce65b94addfc55923fa526799845.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_description",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/eb522418b05b6c1c58cb9fa735c37bab223715.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_description",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/eb302781c86c6143449ce9eb8b01a2bb151987.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_description",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/7065ff19f0858fc7c888e6be3bd15cba381743.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_operation",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/520379bc3a32b57001ee646f0101eade186076.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_operation",
+                        "url": [
+                            "https://img.meituan.net/groceryimages/0a9860eaa0bc625daae26f5018d4cd2b66806.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_operation",
+                        "url": [
+                            "https://img.meituan.net/groceryproductapipicpublic/8a97a332fea1b80bbf90c52baf36a3d730487.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "image_backmark",
+                        "url": [
+                            "https://p0.meituan.net/imgquality/f5433bfdaea8aa411166e55ba89a8c8775512.jpg"
+                        ],
+                        "keyValuesDTOS": null
+                    },
+                    {
+                        "vendorId": null,
+                        "productId": null,
+                        "skuId": 100614479070756,
+                        "propertyCode": "tuan_material_sell_point",
+                        "url": null,
+                        "keyValuesDTOS": null
+                    }
+                ],
+                "purchaserSampleStatus": false,
+                "entityBarcodeList": [
+                    "218569300031123745"
+                ]
+            }
+        ]
+    }
+}

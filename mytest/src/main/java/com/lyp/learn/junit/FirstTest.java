@@ -33,6 +33,19 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     @Test
+    public void test0001() {
+        Boolean hit = null;
+        System.out.println(Boolean.TRUE.equals(hit));
+        System.out.println(Boolean.FALSE.equals(hit));
+        int a = 3;
+        if (a > 1 && Boolean.TRUE.equals(hit)) {
+            System.out.println("在白名单，不应该执行到此");
+        } else {
+            System.out.println("不在在白名单，不应该执行到此");
+        }
+    }
+
+    @Test
     public void test0003() {
         String numStr1 = "10";
         String numStr2 = "2";
