@@ -1,6 +1,6 @@
 package com.lyp.learn.base.reflect;
 
-import org.testng.collections.Lists;
+import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

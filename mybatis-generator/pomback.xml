@@ -89,12 +89,12 @@
                 <version>5.3.2</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>7.0.0</version>
-                <scope>compile</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.testng</groupId>-->
+<!--                <artifactId>testng</artifactId>-->
+<!--                <version>7.0.0</version>-->
+<!--                <scope>compile</scope>-->
+<!--            </dependency>-->
             <!-- junit 5 单元测试依赖 end     -->
 
 
