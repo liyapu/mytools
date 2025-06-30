@@ -4,6 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -53,6 +54,50 @@ public class DateGrouperUtils {
         }
 
         return dateGroups;
+    }
+
+    /**
+     * 将给定的开始日期和结束日期按照groupSize天为一个分组，分成不同的组
+     *
+     * @param startDate 开始日期,包含此日期
+     * @param endDate   结束日期,包含此日期
+     * @return 分组后的日期对列表，每个对包含一个开始日期和一个结束日期
+     */
+    public static List<Pair<Long, Long>> groupDatesLongByGroupSize(LocalDate startDate, LocalDate endDate, Long groupSize) {
+        if (Objects.isNull(startDate) || Objects.isNull(endDate) || Objects.isNull(groupSize) || groupSize <= 0) {
+            return Collections.emptyList();
+        }
+        List<Pair<Long, Long>> dateGroups = new ArrayList<>();
+        LocalDate currentStartDate = startDate;
+
+        while (!currentStartDate.isAfter(endDate)) {
+            LocalDate currentEndDate = currentStartDate.plusDays(groupSize - 1L);
+            if (currentEndDate.isAfter(endDate)) {
+                currentEndDate = endDate;
+            }
+            long startMillis = currentStartDate.atStartOfDay().toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+            long endMillis = currentEndDate.atTime(LocalTime.MAX).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+            dateGroups.add(Pair.of(startMillis, endMillis));
+            currentStartDate = currentEndDate.plusDays(1);
+        }
+        return dateGroups;
+    }
+
+    @Test
+    public void testGroupDatesLongByGroupSize() {
+        LocalDate startDate = LocalDate.of(2025, 5, 1);
+        LocalDate endDate = LocalDate.of(2025, 7, 20);
+        List<Pair<Long, Long>> pairs = groupDatesLongByGroupSize(startDate, endDate, 31L);
+        System.out.println(pairs);
+    }
+
+    @Test
+    public void testGroupDatesLongByGroupSize2() {
+        LocalDate now = LocalDate.now();
+        LocalDate startDate = now.minusDays(62);
+        LocalDate endDate = now.plusDays(31);
+        List<Pair<Long, Long>> pairs = groupDatesLongByGroupSize(startDate, endDate, 32L);
+        System.out.println(pairs);
     }
 
     /**

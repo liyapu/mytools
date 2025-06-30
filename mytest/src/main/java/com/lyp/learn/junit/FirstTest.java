@@ -3,6 +3,7 @@ package com.lyp.learn.junit;
 import cn.hutool.json.JSONUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.lyp.learn.hamcrest.City;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
@@ -17,6 +18,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +33,75 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void test00031() {
+        // 原始List
+        List<Integer> numbers = Arrays.asList(5, 2, 8, 2, 5, 2, 2, 2, 1, 3);
+
+        // 1. 使用自定义比较器创建TreeSet(降序)
+        Set<Integer> sortedSet = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1); // 降序排列
+            }
+        });
+
+        // 2. 将List元素添加到TreeSet
+        sortedSet.addAll(numbers);
+
+        // 3. 结果输出
+        System.out.println("原始List: " + numbers);
+        System.out.println("排序后Set: " + sortedSet);
+
+        // 4. 如果需要转回List
+        List<Integer> sortedList = new ArrayList<>(sortedSet);
+        System.out.println("排序后List: " + sortedList);
+    }
+
+    @Test
+    public void tst0002() {
+        LocalDate date1 = LocalDate.of(2025, 5, 1);
+        LocalDate date2 = LocalDate.of(2025, 5, 3);
+
+        // 方法1：推荐方式
+        long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+        System.out.println("间隔天数: " + daysBetween);
+    }
+
+    @Test
+    public void test00001() {
+        String a = "SHD202505190000034736";
+        System.out.println(a.substring(3, 11));
+        String b = "PO202505190000034747";
+        System.out.println(b.substring(2, 10));
+
+    }
+
+    @Test
+    public void test00002() {
+        City city1 = new City();
+        city1.setName("北京");
+        city1.setState("100");
+
+        City city2 = new City();
+        city2.setName("上海");
+        city2.setState("200");
+
+        List<City> cityList1 = Lists.newArrayList(city1, city2);
+        System.out.println(cityList1);
+        System.out.println("---------------");
+
+        List<City> cityList2 = cityList1.stream()
+                .map(c -> {
+                    if (c.getState().equals("100")) {
+                        c.setName("北京修改后的值");
+                    }
+                    return c;
+                }).collect(Collectors.toList());
+        System.out.println(cityList1);
+        System.out.println(cityList2);
+    }
 
     @Test
     public void test0001() {

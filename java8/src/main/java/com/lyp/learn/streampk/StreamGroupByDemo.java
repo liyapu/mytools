@@ -573,4 +573,16 @@ public class StreamGroupByDemo {
     }
 
 
+    @Test
+    public void testGroupBy01() {
+        List<List<Apple>> applePartList = inventory.stream()
+                .collect(groupingBy(Apple::getAddress))
+                .values()
+                .stream()
+                .collect(toList());
+        System.out.println("applePartList  " + JsonUtil.writeToString(applePartList));
+
+    }
+
+
 }
