@@ -1,6 +1,7 @@
 package com.lyp.learn.streampk;
 
 
+import com.lyp.learn.bean.Apple;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -165,13 +166,59 @@ public class PredicateDemo {
     }
 
 
-    public List<String> filterStr(List<String> list,Predicate<String> predicate){
+    public List<String> filterStr(List<String> list, Predicate<String> predicate) {
         List<String> result = new ArrayList<>();
-        for(String s : list){
-            if(predicate.test(s)){
+        for (String s : list) {
+            if (predicate.test(s)) {
                 result.add(s);
             }
         }
         return result;
+    }
+
+    @Test
+    public void test9() {
+        List<String> list1 = Arrays.asList("java", "a", "hi", "lambda");
+        System.out.println("test9 start list1 :" + list1);
+        filterTest9(list1);
+        //外层对象 list1 不变
+        System.out.println("test9 end list1 :" + list1);
+    }
+
+    public void filterTest9(List<String> list1) {
+        System.out.println("filterTest9 start list1 :" + list1);
+        list1 = list1.stream().filter(a -> a.length() > 3).collect(Collectors.toList());
+        System.out.println("filterTest9 end  list1 :" + list1);
+
+        list1.set(0, "replace");
+        System.out.println("filterTest9 re  list1 :" + list1);
+
+    }
+
+
+    @Test
+    public void test10() {
+        List<Apple> list1 = Arrays.asList(
+                new Apple("green", 80, "黄土高原"),
+                new Apple("green", 200, "黄河故道"),
+                new Apple("red", 160, "渤海湾"),
+                new Apple("yellow", 20, "渤海湾")
+        );
+        System.out.println("test10 start list1 :" + list1);
+        filterTest10(list1);
+        System.out.println("test10 end list1 :" + list1);
+    }
+
+    public void filterTest10(List<Apple> list1) {
+        System.out.println("filterTest10 start list1 :" + list1);
+        //这里是局部的list1变量，不影响调用处的list1的长度
+        list1 = list1.stream().filter(a -> a.getColor().length() > 3).collect(Collectors.toList());
+        System.out.println("filterTest10 end  list1 :" + list1);
+
+        //这里替换列表中的对象，调用处的列表中的对象也修改了
+        list1.forEach(a -> a.setColor("replaceColor"));
+
+        System.out.println("filterTest re  list1 :" + list1);
+
     }
 }
