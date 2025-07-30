@@ -35,6 +35,25 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     @Test
+    public void test000001() {
+        // 创建示例Map
+        Map<Long, List<Long>> rdcId2FailedRawSkuListMap = new HashMap<>();
+        rdcId2FailedRawSkuListMap.put(1001L, Arrays.asList(5001L, 5002L, 5003L));
+        rdcId2FailedRawSkuListMap.put(2002L, Arrays.asList(6001L, 6002L));
+
+        // 转换为易读字符串
+        String result = rdcId2FailedRawSkuListMap.entrySet().stream()
+                .map(entry -> String.format("rdcId:%d 失败商品列表: %s",
+                        entry.getKey(),
+                        entry.getValue().stream()
+                                .map(Object::toString)
+                                .collect(Collectors.joining(","))))
+                .collect(Collectors.joining("; "));
+
+        System.out.println(result);
+    }
+
+    @Test
     public void test00031() {
         // 原始List
         List<Integer> numbers = Arrays.asList(5, 2, 8, 2, 5, 2, 2, 2, 1, 3);

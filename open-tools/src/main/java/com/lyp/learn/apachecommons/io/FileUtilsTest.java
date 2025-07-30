@@ -1,6 +1,5 @@
 package com.lyp.learn.apachecommons.io;
 
-import com.beust.jcommander.internal.Lists;
 import com.google.common.base.Charsets;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +12,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.google.common.collect.Lists;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.io.filefilter.FileFilterUtils;
