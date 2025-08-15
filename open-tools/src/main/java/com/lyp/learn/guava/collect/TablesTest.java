@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
 public class TablesTest {
     /**
      * 返回具有指定行键，列键和值的不可变单元格
+     *        1
+     *    A  A1
+     *
      */
     @Test
     public void test_immutableCell() {
@@ -38,6 +41,7 @@ public class TablesTest {
      *
      * transpose(Table<R, C, V>)方法允许你把Table<C, R, V>转置成Table<R, C, V>。
      * 例如，如果你在用Table构建加权有向图，这个方法就可以把有向图反转。
+     *
      */
     @Test
     public void test_transpose() {
@@ -81,8 +85,60 @@ public class TablesTest {
         System.out.println(table.get("5", "B"));
     }
 
+    /**
+     *          1       2       3           5
+     *      A   A1      A2      A3
+     *      B   B1                         B5
+     *      C   C1      C2
+     */
     @Test
-    public void test_table4() {
+    public void test_table40() {
+        Table<String, String, String> table = HashBasedTable.create();
+        table.put("A", "1", "A1");
+        table.put("A", "2", "A2");
+        table.put("A", "3", "A3");
+        table.put("B", "1", "B1");
+        table.put("B", "5", "B5");
+        table.put("C", "1", "C1");
+        table.put("C", "2", "C2");
+
+        System.out.println("table.rowKeySet() ---> " + table.rowKeySet());
+        System.out.println("table.columnKeySet() ---> " + table.columnKeySet());
+        System.out.println("table.cellSet() ---> " + table.cellSet());
+        System.out.println("table.values() ---> " + table.values());
+        System.out.println("table.rowMap() ---> " + table.rowMap());
+        System.out.println("table.columnMap() ---> " + table.columnMap());
+
+        System.out.println("------------");
+        System.out.println("table.row(\"A\") ---> " + table.row("A"));
+        System.out.println("table.row(\"A\").get(\"1\") ---> " + table.row("A").get("1"));
+        System.out.println("table.row(\"A\").get(\"10\") ---> " + table.row("A").get("10"));
+        System.out.println("table.row(\"B\") ---> " + table.row("B"));
+        System.out.println("table.row(\"X\") ---> " + table.row("X"));
+        System.out.println("table.row(\"X\").get(\"1\") ---> " + table.row("X").get("1"));
+        System.out.println("table.row(\"X\").get(\"10\") ---> " + table.row("X").get("10"));
+        System.out.println("table.column(\"1\") ---> " + table.column("1"));
+        System.out.println("table.column(\"10\") ---> " + table.column("10"));
+        System.out.println("------------");
+
+        System.out.println("table.contains(\"A\", \"1\") ---> " + table.contains("A", "1"));
+        System.out.println("table.contains(\"A\", \"10\") ---> " + table.contains("A", "10"));
+        System.out.println("table.containsColumn(\"1\") ---> " + table.containsColumn("1"));
+        System.out.println("table.containsColumn(\"10\") ---> " + table.containsColumn("10"));
+        System.out.println("table.containsRow(\"A\") ---> " + table.containsRow("A"));
+        System.out.println("table.containsRow(\"X\") ---> " + table.containsRow("X"));
+        System.out.println("table.containsValue(\"A1\") ---> " + table.containsValue("A1"));
+        System.out.println("table.containsValue(\"A10\") ---> " + table.containsValue("A10"));
+        System.out.println("table.size() ---> " + table.size());
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
+    @Test
+    public void test_table41() {
         Table<String, String, String> table = HashBasedTable.create();
         table.put("keyIdA", "类型111", "备注111");
         table.put("keyIdB", "类型222", "备注222");

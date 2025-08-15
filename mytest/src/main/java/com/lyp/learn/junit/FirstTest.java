@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +34,44 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+    @Test
+    public void test0000002(){
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,01)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,02)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,03)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,04)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,05)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,06)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,07)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,8)));
+        System.out.println(getWeekNumber(LocalDate.of(2026,01,9)));
+    }
+
+    @Test
+    public void test0000001(){
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,01)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,02)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,03)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,04)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,05)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,06)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,07)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,8)));
+        System.out.println(getWeekNumber(LocalDate.of(2025,01,9)));
+    }
+
+    public static int getWeekNumber(LocalDate date) {
+        DayOfWeek daysOfWeek = LocalDate.of(date.getYear(), 1, 1).getDayOfWeek();
+        int rightDays =  DayOfWeek.SUNDAY.getValue() - daysOfWeek.getValue() + 1;
+        // ISO 周系统，周一为一周的第一天，且第一周至少包含4天
+        WeekFields weekFields = WeekFields.ISO;
+        // 如果第一周不够4天，则升级为第一周
+        if (rightDays < weekFields.getMinimalDaysInFirstWeek()) {
+            return date.get(weekFields.weekOfYear()) + 1;
+        } else {
+            return date.get(weekFields.weekOfYear());
+        }
+    }
 
     @Test
     public void test000001() {
