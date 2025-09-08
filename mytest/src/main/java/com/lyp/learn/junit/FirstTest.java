@@ -34,6 +34,30 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void test110001(){
+        List<String> result = new ArrayList<>();
+        List<String> s1List= Lists.newArrayList("1","2","3");
+        List<String> s2List= Collections.emptyList();
+        List<String> s3List= Lists.newArrayList("4","5");
+
+        result.addAll(s1List);
+        result.addAll(s2List);
+        result.addAll(s3List);
+        System.out.println(result);
+    }
+
+    @Test
+    public void test100001(){
+        double a = 200.00;
+        double b = -200.00;
+        System.out.println(a);
+        System.out.println(b);
+    }
+
+
+
     @Test
     public void test0000002(){
         System.out.println(getWeekNumber(LocalDate.of(2026,01,01)));
