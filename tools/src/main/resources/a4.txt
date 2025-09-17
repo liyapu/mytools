@@ -1,0 +1,95 @@
+WITH ars_sale_forecast_theory_oss AS (
+        SELECT dt,
+               poi_id,
+               base_sku_id,
+               category3_id,
+               category4_id,
+               theory_sale AS theory_sale
+          FROM mart_mallpa.topic_sc_ars_sale_forecast_poi_sku_theory_sale_dt
+         WHERE dt = '20250907'
+
+        UNION ALL
+
+   	    SELECT dt,
+               poi_id,
+               base_sku_id,
+               category3_id,
+               category4_id,
+               CAST(sale_complete AS DECIMAL(26,2)) AS theory_sale
+          FROM mart_mallpa.topic_sc_ars_forecast_not_purchase_poi_sku_oos_fill_data_dt
+         WHERE dt = '20250907'
+       ),
+       ars_sale_theory as(
+        SELECT dt,
+               poi_id,
+               base_sku_id,
+               category3_id,
+               category4_id,
+               sum(theory_sale) AS theory_sale_sum
+          FROM ars_sale_forecast_theory_oss
+          GROUP BY dt,
+                  poi_id,
+                  base_sku_id,
+                  category3_id,
+                  category4_id
+       ),
+       dim_poi_snapshot AS (
+        SELECT dt,
+               poi_id,
+               management_city_id
+          FROM mart_mall.dim_poi_snapshot
+         WHERE dt = '20250907'
+       ),
+       fdc_deliver_group AS (
+        SELECT dt,
+               base_sku_id,
+               poi_id,
+               -- 业务分组类型:88-仓配,77-非仓配,00-未配置,66-仓配/非仓配都不满足【已废弃,仅20240526以前有数】
+               -- flag
+ 			   CASE flag
+                    WHEN 88 THEN 1
+                    WHEN 77 THEN 2
+                    ELSE 3
+                    -- 业务分组 1:仓配; 2:非仓配; 3:其他
+                     END AS business_group_type
+          FROM mart_mall.topic_pdt_fdc_deliver_group_poi_sku_dt
+         WHERE dt = '20250907'
+         AND flag in (77,88)
+       ),
+       bom_multi_recipe AS (
+        SELECT dt,
+               poi_id,
+               -- 加工品
+               base_sku_id,
+               -- 原料
+ 	           sku_base_id,
+               management_city_id,
+               -- 标准库存转化比例
+ 	           standard_quantity
+          FROM mart_mall.dim_scp_sce_multi_recipe_ingredient_poi_sku_dt
+         WHERE dt = '20250907'
+       ),
+       management_city_poi_sku_business_sale AS (
+        SELECT a.dt AS dt,
+               b.management_city_id AS management_city_id,
+               a.poi_id AS poi_id,
+               c.business_group_type as business_group_type,
+               -- 加工品
+               a.base_sku_id AS base_sku_id,
+               a.category3_id AS category3_id,
+               a.category4_id AS category4_id,
+               -- 原料
+               -- 加工品，此处是真正对应的原料
+               -- 成品，此处还是成品本身
+ 	           NVL(d.sku_base_id, a.base_sku_id) AS sku_base_id,
+               a.theory_sale_sum AS theory_sale_sum,
+               d.standard_quantity AS standard_quantity,
+               a.theory_sale_sum * IF(d.standard_quantity IS NULL OR d.standard_quantity = 0, CAST(1 AS DECIMAL(26,6)), d.standard_quantity) AS theory_sale_sum_split
+          FROM ars_sale_theory a
+          LEFT JOIN dim_poi_snapshot b ON (a.dt = b.dt AND a.poi_id = b.poi_id)
+          LEFT JOIN fdc_deliver_group c ON (a.dt = c.dt AND a.poi_id = c.poi_id AND a.base_sku_id = c.base_sku_id)
+          LEFT JOIN bom_multi_recipe d ON (a.dt = d.dt AND a.poi_id = d.poi_id AND a.base_sku_id = d.base_sku_id)
+       )
+       SELECT dt,management_city_id,sku_base_id,category4_id,business_group_type,sum(theory_sale_sum_split) as theory_sale_sum_split_sum
+       FROM management_city_poi_sku_business_sale
+       group by dt,management_city_id,sku_base_id,category4_id,business_group_type;

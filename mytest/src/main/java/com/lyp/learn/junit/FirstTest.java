@@ -34,13 +34,461 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+    @Test
+    public void test0001211(){
+
+//        findMatchingDateLastYear(LocalDate.of(2025, 9, 16));
+        findMatchingDateLastYear(LocalDate.of(2024, 2, 29));
+//        findMatchingDateLastYear(LocalDate.of(2023,12,31));
+//        findMatchingDateLastYear(LocalDate.of(2027,12,31));
+    }
+
+    public static LocalDate findMatchingDateLastYear(LocalDate currentDate) {
+        System.out.println("今年: " + currentDate + ",周数: " + currentDate.get(WeekFields.ISO.weekOfWeekBasedYear()) +
+                "，星期" + currentDate.getDayOfWeek().getValue());
+
+        // 获取当前周数
+        int currentWeek = currentDate.get(WeekFields.ISO.weekOfWeekBasedYear());
+        // 获取当前是星期几
+        DayOfWeek currentDayOfWeek = currentDate.getDayOfWeek();
+
+        // 尝试在去年找到相同周数和星期几的日期
+        LocalDate lastYearDate = findDateInLastYear(
+                currentDate.getYear() - 1,
+                currentWeek,
+                currentDayOfWeek
+        );
+
+        // 如果找不到，尝试调整星期几
+        if (lastYearDate == null) {
+            for (int i = 1; i < 7; i++) {
+                DayOfWeek adjustedDay = currentDayOfWeek.minus(i);
+                lastYearDate = findDateInLastYear(
+                        currentDate.getYear() - 1,
+                        currentWeek,
+                        adjustedDay
+                );
+                if (lastYearDate != null) break;
+            }
+        }
+
+        // 如果仍然找不到，尝试调整周数
+        if (lastYearDate == null) {
+            for (int i = 1; i < currentWeek; i++) {
+                lastYearDate = findDateInLastYear(
+                        currentDate.getYear() - 1,
+                        currentWeek - i,
+                        currentDayOfWeek
+                );
+                if (lastYearDate != null) break;
+            }
+        }
+
+//        return lastYearDate != null ? lastYearDate : LocalDate.of(currentDate.getYear() - 1, 1, 1); // 默认返回去年第一天
+        lastYearDate =  lastYearDate != null ? lastYearDate : getLastYearSameDay(currentDate);
+        System.out.println("目标日期: " + lastYearDate + ",周数: " + lastYearDate.get(WeekFields.ISO.weekOfWeekBasedYear()) +
+                "，星期" + lastYearDate.getDayOfWeek().getValue());
+        System.out.println();
+        return lastYearDate;
+    }
+
+    private static LocalDate findDateInLastYear(int year, int week, DayOfWeek dayOfWeek) {
+        // 获取去年的第一周第一天(ISO标准周一为第一天)
+        LocalDate firstDayOfYear = LocalDate.of(year, 1, 1)
+                .with(WeekFields.ISO.dayOfWeek(), 1);
+
+        // 计算目标周的周一
+        LocalDate targetWeekMonday = firstDayOfYear.plusWeeks(week - 1);
+
+        // 计算该周的目标星期几
+        LocalDate targetDate = targetWeekMonday.with(dayOfWeek);
+
+        // 检查是否确实属于目标周
+        if (targetDate.get(WeekFields.ISO.weekOfWeekBasedYear()) == week) {
+            return targetDate;
+        }
+        return null;
+    }
+
+    /**
+     * 获取去年今日日期，处理特殊日期（如闰年2月29日）
+     * @param currentDate 当前日期
+     * @return 去年对应的日期，若去年不存在相同日期则返回2月28日
+     */
+    public static LocalDate getLastYearSameDay(LocalDate currentDate) {
+        int lastYear = currentDate.getYear() - 1;
+        int month = currentDate.getMonthValue();
+        int day = currentDate.getDayOfMonth();
+
+        // 处理2月29日特殊情况
+        if (month == 2 && day == 29 && !LocalDate.of(lastYear, 1, 1).isLeapYear()) {
+            return LocalDate.of(lastYear, 2, 28);
+        }
+
+        // 处理其他月份31日的情况（如4月31日不存在）
+        try {
+            return LocalDate.of(lastYear, month, day);
+        } catch (Exception e) {
+            // 如果日期无效（如9月31日），返回该月最后一天
+            return LocalDate.of(lastYear, month, 1)
+                    .withDayOfMonth(LocalDate.of(lastYear, month, 1).lengthOfMonth());
+        }
+    }
 
     @Test
-    public void test110001(){
+    public void test000121(){
+        System.out.println(getFirstWeekMondayOfLastYear(LocalDate.now()));;
+    }
+
+    public static LocalDate getFirstWeekMondayOfLastYear(LocalDate currentDate) {
+        // 获取去年的年份
+        int lastYear = currentDate.getYear() - 1;
+
+        // 使用ISO周标准(周一为一周的第一天)
+        WeekFields weekFields = WeekFields.ISO;
+
+        // 获取周字段定义(根据地区)
+//        WeekFields weekFields = WeekFields.of(Locale.CHINA);
+        // 获取当前是今年的第几周
+        int weekOfYear = currentDate.get(weekFields.weekOfWeekBasedYear());
+        // 获取当前是星期几
+        DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+        System.out.println("当前日期: " + currentDate + ",今年第" + weekOfYear + "周，星期" + dayOfWeek.getValue());
+
+
+
+        // 获取去年的第一周第一天(周一)
+        LocalDate lastYearSameWeekDate = LocalDate.of(lastYear, 1, 1)
+                .with(weekFields.dayOfWeek(), 1L); // 调整为周一
+
+        System.out.println("去年相同周数和星期几的日期: " + lastYearSameWeekDate + ",验证去年周数: " + lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) +
+                "，星期" + lastYearSameWeekDate.getDayOfWeek().getValue());
+
+        // 计算第38周的周一
+        LocalDate targetWeekMonday = lastYearSameWeekDate.plusWeeks(weekOfYear - 1);
+
+        // 计算该周的星期二
+        LocalDate targetDate = targetWeekMonday.with(dayOfWeek);
+
+        // 检查是否跨年(周数属于去年还是前年)
+        int actualWeek = targetDate.get(WeekFields.ISO.weekOfWeekBasedYear());
+        if (actualWeek != weekOfYear) {
+            // 如果周数不匹配，说明跨年了，需要往前调整一周
+            targetDate = targetDate.minusWeeks(1);
+        }
+
+
+
+//        // 验证是否确实是第一周(可能跨年)
+//        if (lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) != 1) {
+//            lastYearSameWeekDate = lastYearSameWeekDate.plusWeeks(1);
+//        }
+        System.out.println("去年相同周数和星期几的日期: " + lastYearSameWeekDate + ",验证去年周数: " + lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) +
+                "，星期" + lastYearSameWeekDate.getDayOfWeek().getValue());
+        System.out.println();
+
+        return lastYearSameWeekDate;
+
+    }
+
+        @Test
+    public void test00001231111(){
+        // 当前日期
+        LocalDate currentDate = LocalDate.of(2025, 9, 16);
+
+        WeekFields weekFields = WeekFields.of(Locale.CHINA);
+
+        // 获取当前周数和星期
+        int currentWeek = currentDate.get(weekFields.weekOfWeekBasedYear());
+        DayOfWeek currentDayOfWeek = currentDate.getDayOfWeek();
+
+        // 计算去年的相同周数和星期
+        LocalDate lastYearDate = findSameWeekLastYear(currentDate, currentWeek, currentDayOfWeek, weekFields);
+
+        System.out.println("去年相同周数和星期二的日期是: " + lastYearDate);
+    }
+
+    public static LocalDate findSameWeekLastYear(LocalDate date, int targetWeek, DayOfWeek targetDay, WeekFields weekFields) {
+        // 获取去年的年份
+        int lastYear = date.getYear() - 1;
+
+        // 构建去年的第一周第一天(ISO标准周一为第一天)
+        LocalDate firstDayOfLastYear = LocalDate.of(lastYear, 1, 1)
+                .with(weekFields.dayOfWeek(), 1); // 调整为周一
+
+        // 计算第38周的周一
+        LocalDate targetWeekMonday = firstDayOfLastYear.plusWeeks(targetWeek - 1);
+
+        // 计算该周的星期二
+        LocalDate targetDate = targetWeekMonday.with(targetDay);
+
+        // 检查是否跨年(周数属于去年还是前年)
+        int actualWeek = targetDate.get(weekFields.weekOfWeekBasedYear());
+        if (actualWeek != targetWeek) {
+            // 如果周数不匹配，说明跨年了，需要往前调整一周
+            targetDate = targetDate.minusWeeks(1);
+        }
+        return targetDate;
+    }
+
+
+
+
+    @Test
+    public void test0000123111(){
+        calLastYearSameWeekDay(LocalDate.now());
+        calLastYearSameWeekDay(LocalDate.of(2023,12,31));
+        calLastYearSameWeekDay(LocalDate.of(2027,12,31));
+    }
+
+    private static void calLastYearSameWeekDay(LocalDate currentDate) {
+
+        /// ////////
+        // 获取周字段定义(根据地区)
+        WeekFields weekFields = WeekFields.of(Locale.CHINA);
+        // 获取当前是今年的第几周
+        int weekOfYear = currentDate.get(weekFields.weekOfWeekBasedYear());
+        // 获取当前是星期几
+        DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+        System.out.println("当前日期: " + currentDate + ",今年第" + weekOfYear + "周，星期" + dayOfWeek.getValue());
+
+        LocalDate lastYearDate = currentDate.minusYears(1);
+
+        // 直接定位到去年相同周数的第一周
+        // 计算去年相同周数和星期几的日期
+//        LocalDate lastYearSameWeekDate = lastYearDate
+//                .with(weekFields.weekOfWeekBasedYear(), weekOfYear)
+//                .with(weekFields.dayOfWeek(), dayOfWeek.getValue()+1); // 设置为该周的第一天
+
+        // 定位到去年该周的第一天(周一)
+        LocalDate lastYearSameWeekDate = lastYearDate
+                .with(weekFields.weekOfWeekBasedYear(), weekOfYear)
+                .with(weekFields.dayOfWeek(), 1);
+        System.out.println("去年相同周数和星期几的日期: " + lastYearSameWeekDate + ",验证去年周数: " + lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) +
+                "，星期" + lastYearSameWeekDate.getDayOfWeek().getValue());
+
+        // 计算该周中与目标星期几相同的日期
+        lastYearSameWeekDate =  lastYearSameWeekDate.plusDays(dayOfWeek.getValue() - 1);
+
+
+        System.out.println("去年相同周数和星期几的日期: " + lastYearSameWeekDate + ",验证去年周数: " + lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) +
+                "，星期" + lastYearSameWeekDate.getDayOfWeek().getValue());
+        System.out.println();
+    }
+
+    private static LocalDate findLastYearSameWeekDate(LocalDate currentDate,
+                                                      int weekOfYear,
+                                                      DayOfWeek dayOfWeek) {
+        WeekFields weekFields = WeekFields.of(Locale.CHINA);
+        LocalDate lastYearDate = currentDate.minusYears(1);
+
+        // 直接定位到去年相同周数的第一周
+        LocalDate firstDayOfTargetWeek = lastYearDate
+                .with(weekFields.weekOfWeekBasedYear(), weekOfYear)
+                .with(weekFields.dayOfWeek(), dayOfWeek.getValue()+1); // 设置为该周的第一天
+
+        // 计算该周中与当前星期几相同的日期
+//        int daysToAdd = dayOfWeek.getValue() - 1;
+//        return firstDayOfTargetWeek.plusDays(daysToAdd);
+        return firstDayOfTargetWeek;
+    }
+
+    @Test
+    public void test000012311(){
+        // 获取当前日期
+        LocalDate currentDate = LocalDate.now();
+        System.out.println("当前日期: " + currentDate);
+
+        // 获取周字段定义(根据地区)
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+
+        // 获取当前是今年的第几周
+        int weekOfYear = currentDate.get(weekFields.weekOfWeekBasedYear());
+
+        // 获取当前是星期几
+        DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+        System.out.println("今年第" + weekOfYear + "周，星期" + dayOfWeek.getValue());
+
+        // 计算去年相同周数和星期几的日期
+        LocalDate lastYearDate = findLastYearSameWeekDay(currentDate, weekOfYear, dayOfWeek);
+
+        System.out.println("去年相同周数的日期: " + lastYearDate);
+        System.out.println("去年第" + lastYearDate.get(weekFields.weekOfWeekBasedYear()) +
+                "周，星期" + lastYearDate.getDayOfWeek().getValue());
+    }
+
+    private static LocalDate findLastYearSameWeekDay(LocalDate currentDate, int weekOfYear, DayOfWeek dayOfWeek) {
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        LocalDate lastYearDate = currentDate.minusYears(1);
+
+        // 尝试直接查找相同周数和星期几
+        LocalDate candidate = lastYearDate
+                .with(weekFields.weekOfWeekBasedYear(), weekOfYear)
+                .with(weekFields.dayOfWeek(), dayOfWeek.getValue());
+
+        // 验证找到的日期是否确实在去年的同一周
+        if (candidate.get(weekFields.weekOfWeekBasedYear()) == weekOfYear) {
+            return candidate;
+        }
+
+        // 如果找不到，则逐日向前查找
+        for (int i = 1; i <= 6; i++) {
+            candidate = candidate.minusDays(1);
+            if (candidate.get(weekFields.weekOfWeekBasedYear()) == weekOfYear &&
+                    candidate.getDayOfWeek() == dayOfWeek) {
+                return candidate;
+            }
+        }
+
+        // 如果仍然找不到，返回最接近的日期
+        return candidate;
+    }
+
+    @Test
+    public void test00001231(){
+        // 获取当前日期
+        LocalDate currentDate = LocalDate.now();
+
+        // 获取周字段定义(根据地区)
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+
+        // 获取当前是今年的第几周
+        int weekOfYear = currentDate.get(weekFields.weekOfWeekBasedYear());
+
+        // 获取当前是星期几
+        DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+
+        // 计算去年相同周数和星期几的日期
+        LocalDate lastYearSameWeekDate = currentDate.minusYears(1)
+                .with(weekFields.weekOfWeekBasedYear(), weekOfYear)
+                .with(weekFields.dayOfWeek(), dayOfWeek.getValue());
+
+        System.out.println("当前日期: " + currentDate);
+        System.out.println("今年第" + weekOfYear + "周，星期" + dayOfWeek.getValue());
+        System.out.println("去年相同周数的日期: " + lastYearSameWeekDate);
+        System.out.println("去年第" + lastYearSameWeekDate.get(weekFields.weekOfWeekBasedYear()) +
+                "周，星期" + lastYearSameWeekDate.getDayOfWeek().getValue());
+    }
+
+    public static BigDecimal divide(BigDecimal num1, BigDecimal num2, int scale) {
+        if (num1 == null || num2 == null || num2.compareTo(BigDecimal.ZERO) == 0) {
+            return null;
+        }
+        return num1.divide(num2, scale, RoundingMode.HALF_UP);
+    }
+
+    public static String divideStr(BigDecimal num1, BigDecimal num2, int scale) {
+        return Optional.ofNullable(divide(num1, num2, scale))
+                .map(BigDecimal::toPlainString)
+                .orElse(StringUtils.EMPTY);
+    }
+
+    public static String divideStr(BigDecimal num1, BigDecimal num2) {
+        return divideStr(num1, num2, 1);
+    }
+
+    @Test
+    public void test0000123(){
+        BigDecimal num1 = new BigDecimal("122.2345");
+        BigDecimal num2 = new BigDecimal("23.566");
+        System.out.println(divideStr(num1, num2));
+        System.out.println(divideStr(num1, num2, 3));
+    }
+
+
+    public static List<String> generateHalfHourIntervals() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime startOfDay = now.with(LocalTime.MIN);
+        List<String> intervals = new ArrayList<>();
+
+        while (startOfDay.isBefore(now)) {
+            int currentMinute = startOfDay.getMinute();
+            int adjustedMinute = currentMinute < 30 ? 0 : 30;
+            LocalDateTime adjustedTime = startOfDay.withMinute(adjustedMinute);
+
+            // 跳过当前未完成的半小时区间
+            if (adjustedTime.isBefore(now)) {
+                intervals.add(adjustedTime.format(FORMATTER));
+            }
+            startOfDay = startOfDay.plusMinutes(30);
+        }
+        return intervals;
+    }
+
+    @Test
+    public void test000012212() {
+        generateHalfHourIntervals().forEach(System.out::println);
+    }
+
+
+    public static List<String> generateAdjustedTimestamps() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime startOfDay = now.with(LocalTime.MIN);
+        LocalDateTime adjustedEnd = now.withMinute(now.getMinute() < 30 ? 0 : 30);
+        List<String> timestamps = new ArrayList<>();
+
+        while (startOfDay.isBefore(adjustedEnd)) {
+            int minute = startOfDay.getMinute();
+            LocalDateTime adjustedTime = startOfDay.withMinute(minute < 30 ? 0 : 30);
+            timestamps.add(adjustedTime.format(FORMATTER));
+            startOfDay = startOfDay.plusMinutes(30);
+        }
+        return timestamps;
+    }
+
+
+    @Test
+    public void test00001221() {
+        generateAdjustedTimestamps().forEach(System.out::println);
+    }
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+
+    public static List<String> generateHalfHourTimestamps(LocalDate baseLocalDate) {
+        LocalTime localTime = LocalTime.now();
+        int nowHour = localTime.getHour();
+        int nowMinute = localTime.getMinute() < 30 ? 0 : 30;
+
+
+        LocalDateTime baseDayCurrent = baseLocalDate.atTime(nowHour, nowMinute, 0, 0);
+        LocalDateTime baseStartOfDay = baseLocalDate.atTime(LocalTime.MIN);
+        List<String> dateHourList = new ArrayList<>();
+
+        while (baseStartOfDay.isBefore(baseDayCurrent)) {
+            int minute = baseStartOfDay.getMinute();
+            int adjustedMinute = minute < 30 ? 0 : 30;
+            LocalDateTime adjustedTime = baseStartOfDay.withMinute(adjustedMinute);
+
+            dateHourList.add(adjustedTime.format(FORMATTER));
+
+            baseStartOfDay = baseStartOfDay.plusMinutes(30);
+        }
+        return dateHourList;
+    }
+
+
+    @Test
+    public void test0000122() {
+        LocalDate baseLocalDate = LocalDate.now().minusDays(10);
+        generateHalfHourTimestamps(baseLocalDate).forEach(System.out::println);
+    }
+
+
+    @Test
+    public void test111100002() {
+        String str = "hello,wold, 你好，世界!!!";
+        System.out.println(str);
+        byte[] bytes = str.getBytes();
+        System.out.println(bytes);
+        System.out.println(new String(bytes));
+    }
+
+    @Test
+    public void test110001() {
         List<String> result = new ArrayList<>();
-        List<String> s1List= Lists.newArrayList("1","2","3");
-        List<String> s2List= Collections.emptyList();
-        List<String> s3List= Lists.newArrayList("4","5");
+        List<String> s1List = Lists.newArrayList("1", "2", "3");
+        List<String> s2List = Collections.emptyList();
+        List<String> s3List = Lists.newArrayList("4", "5");
 
         result.addAll(s1List);
         result.addAll(s2List);
@@ -49,7 +497,7 @@ public class FirstTest {
     }
 
     @Test
-    public void test100001(){
+    public void test100001() {
         double a = 200.00;
         double b = -200.00;
         System.out.println(a);
@@ -57,36 +505,35 @@ public class FirstTest {
     }
 
 
-
     @Test
-    public void test0000002(){
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,01)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,02)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,03)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,04)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,05)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,06)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,07)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,8)));
-        System.out.println(getWeekNumber(LocalDate.of(2026,01,9)));
+    public void test0000002() {
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 01)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 02)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 03)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 04)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 05)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 06)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 07)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 8)));
+        System.out.println(getWeekNumber(LocalDate.of(2026, 01, 9)));
     }
 
     @Test
-    public void test0000001(){
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,01)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,02)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,03)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,04)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,05)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,06)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,07)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,8)));
-        System.out.println(getWeekNumber(LocalDate.of(2025,01,9)));
+    public void test0000001() {
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 01)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 02)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 03)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 04)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 05)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 06)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 07)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 8)));
+        System.out.println(getWeekNumber(LocalDate.of(2025, 01, 9)));
     }
 
     public static int getWeekNumber(LocalDate date) {
         DayOfWeek daysOfWeek = LocalDate.of(date.getYear(), 1, 1).getDayOfWeek();
-        int rightDays =  DayOfWeek.SUNDAY.getValue() - daysOfWeek.getValue() + 1;
+        int rightDays = DayOfWeek.SUNDAY.getValue() - daysOfWeek.getValue() + 1;
         // ISO 周系统，周一为一周的第一天，且第一周至少包含4天
         WeekFields weekFields = WeekFields.ISO;
         // 如果第一周不够4天，则升级为第一周
@@ -498,7 +945,7 @@ public class FirstTest {
         List<Integer> needPriceSkuList = Stream.of(compSkuList, adjustSkuList)
                 .flatMap(Collection::stream)
                 .distinct()
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
 
         for (Integer num : needPriceSkuList) {
             System.out.println("num = " + num);
@@ -616,28 +1063,28 @@ public class FirstTest {
     @Test
     public void testSupport() {
         List<Integer> supportOld = Arrays
-            .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
-                230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230030, 230031,
-                230032, 230033, 230034,
-                230035, 230036, 230007, 230008, 230009, 230079, 230080, 230081, 230092, 230082, 230083, 230084, 230085,
-                230086, 230087, 230088,
-                230089, 230090, 230091, 230077, 230078, 230061, 230062, 230063, 230064, 230065, 230066, 230067, 230068,
-                230069, 230070, 230071,
-                230072, 230073, 230074, 230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050,
-                230051, 230052, 230053,
-                230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
-                230094);
+                .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
+                        230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230030, 230031,
+                        230032, 230033, 230034,
+                        230035, 230036, 230007, 230008, 230009, 230079, 230080, 230081, 230092, 230082, 230083, 230084, 230085,
+                        230086, 230087, 230088,
+                        230089, 230090, 230091, 230077, 230078, 230061, 230062, 230063, 230064, 230065, 230066, 230067, 230068,
+                        230069, 230070, 230071,
+                        230072, 230073, 230074, 230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050,
+                        230051, 230052, 230053,
+                        230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
+                        230094);
 
         List<Integer> listNew = Arrays
-            .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
-                230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230010, 230003,
-                230004, 230005,
-                230006, 230030, 230031, 230032, 230033, 230034, 230035, 230036, 230007, 230008, 230009, 230079, 230080,
-                230081, 230082, 230083, 230084, 230085, 230086, 230087, 230088, 230089, 230090, 230077, 230078, 230061,
-                230062, 230063, 230064, 230065, 230066, 230067, 230068, 230069, 230070, 230071, 230072, 230073, 230074,
-                230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050, 230051, 230052, 230053,
-                230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
-                230091);
+                .asList(230017, 230018, 230019, 230020, 230021, 230022, 230023, 230024, 230011, 230012,
+                        230013, 230014, 230015, 230016, 230001, 230002, 230025, 230026, 230027, 230028, 230029, 230010, 230003,
+                        230004, 230005,
+                        230006, 230030, 230031, 230032, 230033, 230034, 230035, 230036, 230007, 230008, 230009, 230079, 230080,
+                        230081, 230082, 230083, 230084, 230085, 230086, 230087, 230088, 230089, 230090, 230077, 230078, 230061,
+                        230062, 230063, 230064, 230065, 230066, 230067, 230068, 230069, 230070, 230071, 230072, 230073, 230074,
+                        230075, 230076, 230037, 230038, 230039, 230040, 230041, 230042, 230043, 230050, 230051, 230052, 230053,
+                        230054, 230055, 230056, 230057, 230058, 230059, 230060, 230044, 230045, 230046, 230047, 230048, 230049,
+                        230091);
 
         for (Integer old : supportOld) {
             if (!listNew.contains(old)) {
@@ -668,7 +1115,7 @@ public class FirstTest {
         poiIdList.add(8L);
 
         String result1 = String.join(",", poiIdList.stream().map(k -> k.toString()).collect(
-            Collectors.toList()));
+                Collectors.toList()));
         String result2 = poiIdList.stream().map(Object::toString).collect(Collectors.joining(","));
         System.out.println(result1);
         System.out.println(result2);
@@ -716,9 +1163,9 @@ public class FirstTest {
         //List<Integer> intLists = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> intLists = new ArrayList<>();
         final List<Integer> listResult = intLists.stream()
-            .map(i -> i * i)
-            .peek(System.out::println)
-            .collect(Collectors.toList());
+                .map(i -> i * i)
+                .peek(System.out::println)
+                .collect(Collectors.toList());
         System.out.println("listResult = " + listResult);
     }
 
@@ -740,9 +1187,9 @@ public class FirstTest {
         List<Integer> intList = null;
         //List<Integer> intList = Arrays.asList(1, 2, 3);
         final List<Integer> newIntList = ListUtils.emptyIfNull(intList).stream()
-            .map(i -> i + 10)
-            .peek(i -> System.out.println("i peek " + i))
-            .collect(Collectors.toList());
+                .map(i -> i + 10)
+                .peek(i -> System.out.println("i peek " + i))
+                .collect(Collectors.toList());
         System.out.println(newIntList);
     }
 
@@ -757,8 +1204,8 @@ public class FirstTest {
     public void testForEach() {
         List<String> listNull = null;
         List<String> collect = CollectionUtils.emptyIfNull(listNull).stream()
-            .map(s -> "---->" + s)
-            .collect(Collectors.toList());
+                .map(s -> "---->" + s)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -788,7 +1235,7 @@ public class FirstTest {
 
     private void calPrint(long quantity, int mg_to_kg) {
         String str = new BigDecimal(quantity).divide(new BigDecimal(mg_to_kg))
-            .setScale(3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
+                .setScale(3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
         System.out.println(str);
     }
 
@@ -857,7 +1304,7 @@ public class FirstTest {
      * 【强制】任何货币金额，均以最小货币单位且整型类型来进行存储。
      */
     /**
-     *【强制】浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals
+     * 【强制】浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals
      * 来判断。
      * 说明：浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。二进
      * 制无法精确表示大部分的十进制小数，具体原理参考《码出高效》。
@@ -868,19 +1315,19 @@ public class FirstTest {
         float a = 1.0F - 0.9F;
         float b = 0.9F - 0.8F;
         if (a == b) {
-        // 预期进入此代码块，执行其它业务逻辑
-        // 但事实上 a==b 的结果为 false
+            // 预期进入此代码块，执行其它业务逻辑
+            // 但事实上 a==b 的结果为 false
         }
         Float x = Float.valueOf(a);
         Float y = Float.valueOf(b);
         if (x.equals(y)) {
-        // 预期进入此代码块，执行其它业务逻辑
-        // 但事实上 equals 的结果为 false
+            // 预期进入此代码块，执行其它业务逻辑
+            // 但事实上 equals 的结果为 false
         }
     }
 
     @Test
-    public void testFloat2(){
+    public void testFloat2() {
         //正例：
         //(1) 指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的。
         float a = 1.0F - 0.9F;
@@ -908,12 +1355,12 @@ public class FirstTest {
 
     /**
      * 【强制】禁止使用构造方法 BigDecimal(double)的方式把 double 值转化为 BigDecimal 对象。
-     *  说明：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
-     *   如：BigDecimal g = new BigDecimal(0.1F); 
-     *   实际的存储值为：0.10000000149
+     * 说明：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
+     * 如：BigDecimal g = new BigDecimal(0.1F);
+     * 实际的存储值为：0.10000000149
      */
     @Test
-    public void testBigDecimalDemo1(){
+    public void testBigDecimalDemo1() {
         //正例：优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 valueOf 方法，此方法内部其实执行了
         //Double 的 toString，而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。
         BigDecimal recommend1 = new BigDecimal("0.1");
@@ -921,21 +1368,22 @@ public class FirstTest {
     }
 
     @Test
-    public void testStr(){
-        String str = "10309\n" + "10309\n"  + "9453\n" + "97119\n" + "97119";
+    public void testStr() {
+        String str = "10309\n" + "10309\n" + "9453\n" + "97119\n" + "97119";
         String[] split = str.split("\n");
         String collect = Arrays.stream(str.split("\n"))
                 .collect(Collectors.toSet()).stream()
                 .collect(Collectors.joining(","));
         System.out.println(collect);
     }
+
     /**
      * 强制】不要在程序中写死一年为365天，避免在公历闰年时出现日期转换错误或程序逻辑错误
      */
     @Test
-    public void testYearNums(){
+    public void testYearNums() {
         //获取今年的天数
-        int intdaysOfThisYear=LocalDate.now().lengthOfYear();
+        int intdaysOfThisYear = LocalDate.now().lengthOfYear();
         //获取指定某年的天数
         int intdaysOfThisYear2 = LocalDate.of(2011, 1, 1).lengthOfYear();
 
@@ -946,13 +1394,13 @@ public class FirstTest {
      * 而大写的YYYY代表是week in which year（JDK7之后引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的YYYY就是下一年）
      */
     @Test
-    public void testYear(){
+    public void testYear() {
         //正例：表示日期和时间的格式如下所示
         String strTime = "2021-12-02";
         LocalDate parse = LocalDate.parse(strTime, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println("parse : " + parse) ;
+        System.out.println("parse : " + parse);
 
-        LocalDateTime localDateTimeNow1 = LocalDateTime.parse("2018-12-18 15:41:15",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        LocalDateTime localDateTimeNow1 = LocalDateTime.parse("2018-12-18 15:41:15", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         System.out.println("localDateTimeNow1 : " + localDateTimeNow1);
     }
 
@@ -972,11 +1420,11 @@ public class FirstTest {
      * （说明：说明：equals()方法会比较值和精度（1.0与1.00返回结果为false），而compareTo()则会忽略精度）
      */
     @Test
-    public void testBigDecimalCompareTo(){
+    public void testBigDecimalCompareTo() {
         BigDecimal num1 = new BigDecimal("100.000");
         BigDecimal num2 = new BigDecimal("100");
 
-        System.out.println(Objects.equals(num1,num2));
+        System.out.println(Objects.equals(num1, num2));
         System.out.println(num1.compareTo(num2));
 
     }
@@ -985,7 +1433,7 @@ public class FirstTest {
      * 获取当前时间的 毫秒时间戳
      */
     @Test
-    public void testEpochMilli(){
+    public void testEpochMilli() {
         long epochMilli = Instant.now().toEpochMilli();
         System.out.println(epochMilli);
         long currentTimeMillis = System.currentTimeMillis();
@@ -993,7 +1441,7 @@ public class FirstTest {
     }
 
     @Test
-    public void testBigDecimal4(){
+    public void testBigDecimal4() {
         //Java有自带的 stripTrailingZeros() 方法用于去除末尾多余的0
 
         BigDecimal num = new BigDecimal("100.000");
@@ -1007,7 +1455,7 @@ public class FirstTest {
     }
 
     @Test
-    public void testBigDecimal3(){
+    public void testBigDecimal3() {
         BigDecimal bg = new BigDecimal("100000000.0000000");
         System.out.println(bg);
 
@@ -1020,7 +1468,7 @@ public class FirstTest {
     }
 
     @Test
-    public void testBigDecimal2(){
+    public void testBigDecimal2() {
         BigDecimal bg = new BigDecimal(100.0000000);
         System.out.println(bg);
 
@@ -1031,13 +1479,13 @@ public class FirstTest {
     }
 
     @Test
-    public void testOptional(){
+    public void testOptional() {
 //        Optional<Integer> numOptional = Optional.ofNullable(null);
         Optional<Integer> numOptional = Optional.ofNullable(2);
-        Integer count  = 100;
+        Integer count = 100;
         String confirmAuthorization = "--";
 
-        if(numOptional.isPresent() && null != numOptional.get()) {
+        if (numOptional.isPresent() && null != numOptional.get()) {
             confirmAuthorization = "确认";
         }
         System.out.println("confirmAuthorization = " + confirmAuthorization);
@@ -1048,7 +1496,7 @@ public class FirstTest {
      * 测试 list 方法
      */
     @Test
-    public void testList02(){
+    public void testList02() {
         List<Integer> ints = new ArrayList<>();
         ints.add(1);
         ints.add(2);
@@ -1071,7 +1519,7 @@ public class FirstTest {
      * 测试 list 方法
      */
     @Test
-    public void testList01(){
+    public void testList01() {
         List<Integer> ints = new ArrayList<>();
         ints.add(1);
         ints.add(2);
@@ -1089,22 +1537,23 @@ public class FirstTest {
         System.out.println("ints = " + ints);
         System.out.println("others = " + others);
     }
+
     /**
      * nbsp NBSP 其ASCII码值为160，这才知道，原来ASCII码中除了32之外还有160这个特殊的空格
      * 但是不间断空格有个问题，就是它无法被trim()所裁剪，也无法被正则表达式的\s所匹配，也无法被StringUtils的isBlank()所识别，也就是说，无法像裁剪寻常空格那样移除这个不间断空格。
-     *
+     * <p>
      * 我们可以利用不间断空格的Unicode编码来移除它，其编码为\u00A0
      */
     @Test
-    public void testNbsp1(){
+    public void testNbsp1() {
         final char c1 = ' '; //db里的空格
         final char c2 = ' '; //手动输入的空格
-        System.out.println((int)c1); //160
-        System.out.println((int)c2); //32
+        System.out.println((int) c1); //160
+        System.out.println((int) c2); //32
     }
 
     @Test
-    public void testNbsp2(){
+    public void testNbsp2() {
 //        replace("\u00A0", "")
 //        replaceAll("\\u00A0+", "")  //这是正则表达式的写法
         String idCard = "  22072 2198808014012    ";
@@ -1112,32 +1561,33 @@ public class FirstTest {
         System.out.println("idCardTemp= " + idCardTemp);
 
     }
+
     @Test
-    public void testTrim(){
+    public void testTrim() {
         String str = "a b       c   d   e   f";
 
         String idCard = "   22011      219880    7014218    ";
 //        String idCardTemp = idCard.trim();
         String idCardTemp = replaceBlank(idCard);
-        System.out.println("idCard = "+ idCard);
-        System.out.println("idCardTemp = "+ idCardTemp);
+        System.out.println("idCard = " + idCard);
+        System.out.println("idCardTemp = " + idCardTemp);
 
     }
 
     @Test
-    public void testTrim2(){
+    public void testTrim2() {
         String str = "a b       c   d   e   f";
 
         String idCard = "   22011      219880    7014218    ";
         //        String idCardTemp = idCard.trim();
         String idCardTemp = replaceBlank2(idCard);
-        System.out.println("idCard = "+ idCard);
-        System.out.println("idCardTemp = "+ idCardTemp);
+        System.out.println("idCard = " + idCard);
+        System.out.println("idCardTemp = " + idCardTemp);
 
     }
 
     @Test
-    public void test5(){
+    public void test5() {
 
         long numberOfOffender = 6L;
         BigDecimal selfProportion = new BigDecimal(0.9);
@@ -1151,9 +1601,9 @@ public class FirstTest {
     }
 
     @Test
-    public void test4(){
-        List<String> names = Arrays.asList("赵","钱","孙","李","周","郑","王");
-        List<String> nums = Arrays.asList("一","二","三","四","五","六","七","八","九","十");
+    public void test4() {
+        List<String> names = Arrays.asList("赵", "钱", "孙", "李", "周", "郑", "王");
+        List<String> nums = Arrays.asList("一", "二", "三", "四", "五", "六", "七", "八", "九", "十");
         for (String name : names) {
             for (String num : nums) {
                 System.out.println(name + num);
@@ -1163,8 +1613,8 @@ public class FirstTest {
     }
 
     @Test
-    public void testL3(){
-        LocalDate localDateTimeNow1 = LocalDate.parse("2018-12",DateTimeFormatter.ofPattern("yyyy-MM"));
+    public void testL3() {
+        LocalDate localDateTimeNow1 = LocalDate.parse("2018-12", DateTimeFormatter.ofPattern("yyyy-MM"));
         System.out.println("localDateTimeNow1 : " + localDateTimeNow1);
     }
 
@@ -1173,14 +1623,14 @@ public class FirstTest {
     public void testL2() {
         List<String> payrollMonthList = Arrays.asList("2019-01", "2019-02", "2019-03", "2019-10", "2019-11", "2019-12");
         for (String payrollMonth : payrollMonthList) {
-            LocalDate parse = LocalDate.parse(payrollMonth,DateTimeFormatter.ofPattern("yyyy-MM"));
+            LocalDate parse = LocalDate.parse(payrollMonth, DateTimeFormatter.ofPattern("yyyy-MM"));
             System.out.println(parse.format(DateTimeFormatter.ofPattern("yyyy-MM")));
         }
     }
 
 
-        @Test
-    public void testL1(){
+    @Test
+    public void testL1() {
         List<String> payrollMonthList = Arrays.asList("2019-01", "2019-02", "2019-03", "2019-10", "2019-11", "2019-12");
         for (String payrollMonth : payrollMonthList) {
             String[] yearMonthArray = payrollMonth.split("-");
@@ -1201,7 +1651,7 @@ public class FirstTest {
                 month = "12";
                 year = String.valueOf(Integer.parseInt(year) - 1);
             } else {
-                month = Strings.padStart((Integer.parseInt(month) - 1)+"",2,'0');
+                month = Strings.padStart((Integer.parseInt(month) - 1) + "", 2, '0');
             }
             String settleMonth = year + month;
             System.out.println(settleMonth);
@@ -1210,7 +1660,7 @@ public class FirstTest {
     }
 
     @Test
-    public void addTest(){
+    public void addTest() {
         String s1 = "+";
         String s2 = "+";
         String s3 = "+";
@@ -1265,15 +1715,17 @@ public class FirstTest {
             System.out.println(s);
         }
     }
+
     //英文表头正则表达式
     private static final Pattern headPattern = Pattern.compile("^[A-Za-z0-9]+$");
 
     Pattern pt = Pattern.compile("^[　*| *| *|\\s*]*|[　*| *| *|\\s*]*$");
 
     /**
-     *   去除子符串首尾空格方法
-     *   匹配首尾空白字符的正则表达式：^\s* ¦\s*$
-     *   评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式
+     * 去除子符串首尾空格方法
+     * 匹配首尾空白字符的正则表达式：^\s* ¦\s*$
+     * 评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式
+     *
      * @param str
      * @return
      */

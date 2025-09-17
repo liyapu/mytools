@@ -1,0 +1,515 @@
+##Description##
+##-- 门店维度表（日），WIKI：http://wiki.sankuai.com/pages/viewpage.action?pageId=769551916
+-- zhangmingming05@20190712,增加门店开业天数
+-- zhangmingming05@20190816,增加组织关系，28天新店标签
+-- mahongbo@20190910,处理测试标识，小象租户增加文字判断
+
+##TaskInfo##
+creator = 'liangzhao02@meituan.com'
+
+source = {
+    'db': META['horigindb'],
+}
+
+stream = {
+    'format': '',
+}
+
+target = {
+    'db': META['hmart_mall'],
+    'table': 'dim_poi_snapshot',
+}
+
+##Preload##
+
+#if $isCLEANUP
+drop table if exists $target.table;
+#end if
+
+
+##Load##
+set hive.exec.dynamic.partition=true;
+set hive.exec.parallel=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+SET spark.shuffle.manager=rss;
+SET spark.executor.memory=1024M;
+SET spark.yarn.executor.memoryOverhead=768M;
+SET spark.memory.fraction=0.7;
+
+INSERT OVERWRITE TABLE `$target.table` partition(dt)
+select  store.poi_id                                                                        as poi_id
+        ,store.poi_name                                                                     as poi_name
+        ,store.type                                                                         as type
+        ,if(store.poi_name like '%测试%' or store.simple_name like '%测试%', 1, store.test) as `test`
+        ,store.city_id                                                                      as city_id
+        ,poi.city_name                                                                     as city_name
+        ,store.address                                                                      as address
+        ,store.longitude                                                                    as longitude
+        ,store.latitude                                                                     as latitude
+        ,business.service_phone                                                             as service_phone
+        ,if(new_bussiness_time.poi_id > 0, new_bussiness_time.opening_time, business.opening_time) as opening_time
+        ,coalesce(business.`status`, 2)                                                     as `status`
+        ,business.promote_info                                                              as promote_info
+        ,delivery.delivery_price_threshold                                                  as delivery_price_threshold
+        ,delivery.shipping_fee                                                              as shipping_fee
+        ,delivery.region                                                                    as region
+        ,delivery.free_threshold                                                            as free_threshold
+        ,store.ctime                                                                        as ctime
+        ,store.tenant_id
+        ,store.biz_id
+        ,store.company_id
+        ,store.district_id
+        ,store.district_name
+        ,store.is_logistics_station
+        ,store.open_time                                                                    as open_time
+        ,poi.province_id
+        ,province.province_name
+        ,store.open_days
+        ,org.org1_id
+        ,org.org1_name
+        ,org.org2_id
+        ,org.org2_name
+        ,org.org3_id
+        ,org.org3_name
+        ,org.org4_id
+        ,org.org4_name
+        ,if(coalesce(store.open_days ,0) <= 28, 1, 0)                                      as `is_28d_new_poi`
+        ,case
+            when store.tenant_id = 1 then org.region_id
+            when store.tenant_id = 2 then haitun.region_id
+            else null
+        end                                                                                 as region_id
+        ,case
+            when store.tenant_id = 1 then org.region_name
+            when store.tenant_id = 2 then haitun.region_name
+            else null
+        end                                                                                 as region_name
+        ,tenant.code_value                                                                  as tenant_name
+        ,biz.code_value                                                                     as biz_name
+        ,if('$now.datekey' < '20191226', 0, store.virtual_type)                             as virtual_type
+        ,if('$now.datekey' < '20191226', store.poi_id, store.binding_poi_id)                as binding_poi_id
+        ,case
+            when store.type = 3 AND store.yt_type = 30 then org.h_zone_id
+            else org.zone_id
+        end as zone_id
+        ,case
+            when store.type = 3 AND store.yt_type = 30 then org.h_zone_name
+            else org.zone_name
+        end as zone_name
+        ,store.simple_name
+        ,store.poi_city_code
+        ,if(
+            store.poi_city_code is not null and store.poi_city_code<>'',
+            concat_ws('-',store.simple_name,store.poi_city_code),
+            store.simple_name
+        )                                                                                   as poi_long_name
+        ,store.simple_name                                                                  as poi_short_name
+        ,store.district_type
+        ,store.confirm_status
+        ,store.road
+        ,coalesce(business.sub_status, -1)                                                  as sub_status
+        ,m.delivery_type
+        ,if(new_bussiness_time.poi_id > 0, new_bussiness_time.business_begin_time, m.business_begin_time) as business_begin_time
+        ,if(new_bussiness_time.poi_id > 0, new_bussiness_time.business_end_time, m.business_end_time) as business_end_time
+        ,mapping.management_city_id                                                         as management_city_id
+        ,mapping.management_city_name                                                       as management_city_name
+        ,store.temperature_zone                                                             as temperature_zone
+        ,area.total_usable_area                                                             as total_usable_area
+        ,store.close_time                                                                   as poi_close_time
+        ,business.sub_status_reason
+        ,business.sub_status_reason_else
+        ,business.remarks                                                                   as business_remarks
+        ,from_unixtime(business.sub_status_start_time)                                      as sub_status_start_time
+        ,expand.management_area_id
+        ,expand.management_area_name
+        ,expand.big_poi_flag
+        ,if(new_bussiness_time.poi_id > 0, new_bussiness_time.business_time_period, m.business_time_period) as business_time_period
+        ,case
+            when new_bussiness_time.poi_id > 0 then new_bussiness_time.business_duration
+            else unix_timestamp(m.business_end_time, 'yyyy-MM-dd HH:mm:ss') - unix_timestamp(m.business_begin_time, 'yyyy-MM-dd HH:mm:ss')
+        end as business_duration
+        ,poi.sub_type
+        ,poi.rdc_status
+        ,label.is_cdc
+        ,label.label_info
+        ,store.yt_type
+        ,'$now.datekey'                                                                     as dt
+from
+    (
+        -- 门店基础维度表(粒度为poi_id)
+        select  poi_id
+                ,poi_name
+                ,type
+                ,test
+                ,city_id
+                ,address
+                ,longitude
+                ,latitude
+                ,ctime
+                ,tenant_id
+                ,biz_id
+                ,company_id
+                ,district_id
+                ,district_name
+                ,is_logistics_station
+                ,open_time
+                ,simple_name
+                ,poi_city_code
+                ,virtual_type
+                ,binding_poi_id
+                ,if(open_time is not null, datediff('$now.date', open_time) + 1, null)  as open_days
+                ,district_type
+                ,confirm_status
+                ,road
+                ,temperature_zone
+                ,close_time
+                ,yt_type
+                ,dt
+        from    mart_mall.dim_com_poi_snapshot
+        where   dt = '$now.datekey'
+    ) store
+-- 商家营业信息表,粒度为：poi_id
+-- 目的:获取客服热线、营业时间、门店状态、商家公告
+left outer join origindb.mall_mall_poi__poi_business business
+on              store.poi_id = business.poi_id
+-- 商家配送信息表,粒度为:poi_id
+-- 目的:获取起送价格(单位:分)、配送费(单位:分)、配送范围、满额配送费减免(单位:分)
+left outer join origindb.mall_mall_poi__poi_delivery delivery
+on              store.poi_id = delivery.poi_id
+left join origindb.mall_mall_poi__poi_store poi
+on store.poi_id = poi.poi_id
+LEFT JOIN (
+    SELECT  area_id AS province_id
+            ,area_name AS province_name
+    FROM origindb_ss.mall_mall_poi__dict_area
+    WHERE dt = '$now.datekey'
+    AND area_type = 2
+    group by area_id,area_name
+) province
+ON poi.province_id = province.province_id
+left outer join
+    (
+        select  a.poi_id        as poi_id
+                ,org.org1_id
+                ,org.org1_name
+                ,org.org2_id
+                ,org.org2_name
+                ,org.org3_id
+                ,org.org3_name
+                ,org.org4_id
+                ,org.org4_name
+                ,org.region_id
+                ,org.region_name
+                ,org.zone_id
+                ,org.zone_name
+                ,org.h_zone_id
+                ,org.h_zone_name
+        from
+            (
+                -- 组织-资源-关系表
+                -- 目的:获取组织id、门店id
+                select  org_id
+                        ,poi_id
+                        ,dt
+                from    mart_mall.dim_com_org_poi_da
+                where   dt = '$now.datekey'
+            ) a
+        left outer join
+            (
+                -- 组织架构维表,粒度为:org_id
+                -- 目的:获取门店组织架构、大区、战区
+                select  org_id
+                        ,org1_id
+                        ,org1_name
+                        ,org2_id
+                        ,org2_name
+                        ,org3_id
+                        ,org3_name
+                        ,org4_id
+                        ,org4_name
+                        ,level_org_map['41']['org_id']      as region_id
+                        ,level_org_map['41']['org_name']    as region_name
+                        ,level_org_map['168']['org_id']     as zone_id
+                        ,level_org_map['168']['org_name']   as zone_name
+                        ,level_org_map['489']['org_id']     as h_zone_id
+                        ,level_org_map['489']['org_name']   as h_zone_name
+                        ,dt
+                from    mart_mall.dim_com_org_snapshot
+                where   dt = '$now.datekey'
+            ) org
+        on  a.org_id = org.org_id
+        and a.dt = org.dt
+    ) org
+on  store.poi_id = org.poi_id
+left outer join
+    (
+        select  a.poi_id        as poi_id
+                ,org.org1_id
+                ,org.org1_name
+                ,org.org2_id
+                ,org.org2_name
+                ,org.org3_id
+                ,org.org3_name
+                ,org.org4_id
+                ,org.org4_name
+                ,org.region_id
+                ,org.region_name
+        from
+            (
+                -- 组织-资源-关系表
+                -- 目的:获取组织id、门店id
+                select  org_id
+                        ,poi_id
+                        ,dt
+                from    mart_mall.dim_com_org_poi_da
+                where   dt = '$now.datekey'
+            ) a
+        left outer join
+            (
+                -- 组织架构维表,粒度为:org_id
+                -- 目的:获取门店组织架构、大区、战区
+                select  org_id
+                        ,org1_id
+                        ,org1_name
+                        ,org2_id
+                        ,org2_name
+                        ,org3_id
+                        ,org3_name
+                        ,org4_id
+                        ,org4_name
+                        ,level_org_map['108']['org_id']     as region_id
+                        ,level_org_map['108']['org_name']   as region_name
+                        ,dt
+                from    mart_mall.dim_com_org_snapshot
+                where   dt = '$now.datekey'
+            ) org
+        on  a.org_id=org.org_id
+        and a.dt=org.dt
+    ) haitun
+on store.poi_id = haitun.poi_id
+left outer join
+    (
+        -- 小象码表,粒度为:code, type
+        -- 目的:获取业态码值
+        select      code
+                    ,max(code_value)            as code_value
+        from        mart_mall.dim_code_table
+        where       type = 'biz_id'
+        group by    code
+    ) biz
+on  store.biz_id = biz.code
+left outer join
+    (
+        -- 小象码表,粒度为:code, type
+        -- 目的:获租户态码值
+        select      code
+                    ,max(code_value)            as code_value
+        from        mart_mall.dim_code_table
+        where       type = 'tenant_id'
+        group by    code
+    ) tenant
+on      store.tenant_id = tenant.code
+left join
+    (
+        select  del.dt
+                ,del.poi_id
+                ,del.delivery_type
+                ,del.opening_time
+                ,case
+                    when dim_date.day_of_week=1 then get_json_object(del.opening_time,'\\$[0]')
+                    when dim_date.day_of_week=2 then get_json_object(del.opening_time,'\\$[1]')
+                    when dim_date.day_of_week=3 then get_json_object(del.opening_time,'\\$[2]')
+                    when dim_date.day_of_week=4 then get_json_object(del.opening_time,'\\$[3]')
+                    when dim_date.day_of_week=5 then get_json_object(del.opening_time,'\\$[4]')
+                    when dim_date.day_of_week=6 then get_json_object(del.opening_time,'\\$[5]')
+                    when dim_date.day_of_week=7 then get_json_object(del.opening_time,'\\$[6]')
+                    else null
+                end as business_time_period
+                ,case
+                    when dim_date.day_of_week = 1 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[0][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 2 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[1][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 3 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[2][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 4 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[3][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 5 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[4][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 6 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[5][0].beginTime'), ':00')
+                    when dim_date.day_of_week = 7 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[6][0].beginTime'), ':00')
+                    else null
+                end as business_begin_time
+                ,case
+                    when dim_date.day_of_week = 1 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[0][0].endTime'), ':00')
+                    when dim_date.day_of_week = 2 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[1][0].endTime'), ':00')
+                    when dim_date.day_of_week = 3 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[2][0].endTime'), ':00')
+                    when dim_date.day_of_week = 4 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[3][0].endTime'), ':00')
+                    when dim_date.day_of_week = 5 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[4][0].endTime'), ':00')
+                    when dim_date.day_of_week = 6 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[5][0].endTime'), ':00')
+                    when dim_date.day_of_week = 7 then concat(dim_date.date, ' ', get_json_object(del.opening_time,'\\$[6][0].endTime'), ':00')
+                    else null
+                end as business_end_time
+        from
+            (
+                select  dt
+                        ,poi_id
+                        ,delivery_type
+                        ,opening_time
+                from    origindb_ss.mall_mall_delivery__poi_delivery_base_config
+                where   dt = '$now.datekey'
+            ) del
+        left join   mart_mall.dim_date  dim_date
+        on          del.dt = dim_date.datekey
+    ) m
+ on store.poi_id = m.poi_id
+left join
+    (
+        -- 物理城市、经营城市映射表，粒度为:city_id
+        -- 目的:将物理城市映射为经营城市
+        select  city_id
+                ,city_name
+                ,management_city_id
+                ,management_city_name
+        from    origindb_ss.mall_mall_poi__area_city_management_mapping
+        where   dt = '$now.datekey'
+        -- 获取有效数据
+        and     valid = 1
+    ) mapping
+on  store.city_id = mapping.city_id
+left join
+    (
+        select      poi_id                                                                              -- 门店id-PK
+                    ,sum(case when item_dict_id =14 then item_value else 0 end) as total_usable_area    -- 总使用面积（m²）
+                    ,sum(case when item_dict_id =15 then item_value else 0 end) as freezer_area         -- 冷冻库面积（m²）
+                    ,sum(case when item_dict_id =16 then item_value else 0 end) as cold_storage_area    -- 冷藏库面积（m²）
+                    ,sum(case when item_dict_id =17 then item_value else 0 end) as aquatic_area_area    -- 水产区面积（m²）
+                    ,dt
+        from        origindb_ss.mall_mall_poi__poi_archives
+        where       item_dict_id in (14,15,16,17)
+                    #if not $isRELOAD
+                        and dt = '$now.datekey'
+                    #end if
+        group by    dt
+                    ,poi_id
+    ) area
+on  store.poi_id = area.poi_id
+left join
+    (
+        select  poi_id
+                ,max(if(large_station=1,1,0)) as big_poi_flag
+                ,max(management_area_id)    as management_area_id
+                ,max(management_area_name)  as management_area_name
+        from mart_mall.dim_poi_expand_snapshot
+        where dt = '$now.datekey'
+        group by    poi_id
+    )expand
+on store.poi_id = expand.poi_id
+left join (
+    select
+        dt
+        ,poi_id
+        ,opening_time
+        ,business_time_period
+        ,business_duration
+        ,concat('$now.date', ' ', business_begin_time, ':00') as business_begin_time
+        ,concat('$now.date', ' ', business_end_time, ':00') as business_end_time
+    from
+        mart_mall.dim_poi_opening_time_config_da
+    where
+        dt = '$now.datekey'
+) new_bussiness_time
+on store.poi_id = new_bussiness_time.poi_id
+left join (
+    select
+	    a.poi_id,
+        to_json(
+        collect_list(named_struct('id', b.id, 'name', b.label_name,'desc',b.label_desc))
+        ) as label_info,
+        MAX(IF(a.label_id = 3,1,0)) as is_cdc
+    from
+	origindb.mall_mall_poi__poi_label_relation  a
+    left join origindb.mall_mall_poi__label_info b
+    on a.label_id = b.id
+    GROUP BY a.poi_id
+)label
+on store.poi_id = label.poi_id
+where   1 = 1
+;
+
+##TargetDDL##
+CREATE TABLE IF NOT EXISTS `$target.table` (
+    poi_id                   bigint         comment '门店id-PK',
+    poi_name                 string         comment '名称',
+    type                     bigint         comment '类型，0:门店，1:dc仓库，2:rdc,3:fdc 5:tdc',
+    test                     bigint         comment '门店是否为测试门店，0普通门店，1测试门店',
+    city_id                  bigint         comment '城市id',
+    city_name                string         comment '城市名称',
+    address                  string         comment '门店地址',
+    longitude                double         comment '门店坐标经度',
+    latitude                 double         comment '门店坐标纬度',
+    service_phone            string         comment '服务电话',
+    opening_time             string         comment '营业时间',
+    `status`                 int            comment '是否营业：1上线，下线',
+    promote_info             string         comment '商家公告',
+    delivery_price_threshold bigint         comment '起送价,单位分',
+    shipping_fee             bigint         comment '配送费单位分',
+    region                   string         comment '配送范围',
+    free_threshold           bigint         comment '满额配送费减免，单位分',
+    ctime                    bigint         comment '创建时间',
+    tenant_id                bigint         comment '租户id',
+    biz_id                   bigint         comment '业态标识，1生鲜，2菜店,3c2',
+    company_id               bigint         comment '公司id',
+    district_id              bigint         comment '城市行政区域id',
+    district_name            string         comment '城市行政区域名称',
+    `is_logistics_station`   int            comment '是否物流站点，0：否，1：是',
+    `open_time`              string         comment '门店开业时间（芥末手工维护）',
+    province_id              bigint         comment '省份id',
+    province_name            string         comment '省份名称',
+    open_days                bigint         comment '开业天数',
+    org1_id                  bigint         comment '一级组织id',
+    org1_name                string         comment '一级组织名称',
+    org2_id                  bigint         comment '二级组织id',
+    org2_name                string         comment '二级组织名称',
+    org3_id                  bigint         comment '三级组织id',
+    org3_name                string         comment '三级组织名称',
+    org4_id                  bigint         comment '四级组织id',
+    org4_name                string         comment '四级组织名称',
+    is_28d_new_poi           bigint         comment '是否28天新店，1是，0否',
+    region_id                bigint         comment '大区ID',
+    region_name              string         comment '大区名称',
+    tenant_name              string         comment '租户名称',
+    biz_name                 string         comment '业态名称',
+    virtual_type	         bigint         comment '虚拟门店类型，0-非虚拟门店，1-虚拟门店，20191226正式启用',
+    binding_poi_id	         bigint         comment '虚拟店绑定的实体仓,对于虚拟店，这个值表示其绑定的实体仓；对于实体仓，这个值和其poiId相等,20191226正式启用',
+    zone_id                  bigint         comment '战区ID【易变维，用最新分区】',
+    zone_name                string         comment '战区名称【易变维，用最新分区】',
+    simple_name              string         comment '门店简称',
+    poi_city_code            string         comment '门店编码，门店名称拼音首字母前两位+预留码+自增码',
+    poi_long_name            string         comment '门店长名，【门店简称】-【门店编码】',
+    poi_short_name           string         comment '门店短名，【门店编码】',
+    district_type	         bigint         comment '行政区类型',
+    confirm_status	         bigint         comment '是否点击准备营业状态 0-否,1-是',
+    road	                 string         comment '街道信息',
+    sub_status               int            comment '门店状态拆分:1-正常营业,2-暂停营业,3-筹建,4-闭站(其中1、2对应上线 3、4对应下线),若为null则设置为默认值-1以区分系统中的默认值0',
+    delivery_type            bigint         comment '履约类型(0-仅配送 1-配送+自提 2-仅自提)',
+    business_begin_time      string         comment '营业开始时间',
+    business_end_time        string         comment '营业结束时间',
+    management_city_id       bigint         comment '经营城市id',
+    management_city_name     string         comment '经营城市名称',
+    temperature_zone         int            comment 'RDC属性,0未设置,1常温、2生鲜、3水产、4综合',
+    total_usable_area       decimal(26,6)   comment '总使用面积(m²)',
+    poi_close_time          string          comment '闭店时间',
+    sub_status_reason       int             comment '细分状态变更原因 1-疫情；2-政府大型会议活动；3-标的出险（含失火、漏电、漏水及物业管理原因）；4-政府检查管控；5-其他',
+    sub_status_reason_else  string          comment '变更原因0其他类型 手动输入',
+    business_remarks        string          comment '备注 变更原因其他类型',
+    sub_status_start_time   bigint          comment '当前状态开始时间',
+    management_area_id      bigint          comment '【废弃，不维护】经营区域id',
+    management_area_name    string          comment '【废弃，不维护】经营区域名称',
+    big_poi_flag            bigint          comment '是否大站：1是大站 0非大站',
+    business_time_period    string          COMMENT '营业时段json',
+    business_duration       bigint          COMMENT '营业时长（当天多段营业时长相加），单位：秒',
+    sub_type                bigint          COMMENT '类型, 0 无子类型 1 批市仓 2 产地仓',
+    rdc_status              bigint          COMMENT 'RDC状态 1正常 2停用',
+    is_cdc                  bigint          comment '是否为CDC门店，1是，0否，null，未配置（只有系统侧配置了该标签才会有1和0的值，未配置默认为null）',
+    label_info              string          COMMENT '门店标签信息，json数组格式',
+    yt_type                 string          COMMENT '业态字段，10：小象  30：H店  10_30：小象&H店'
+) COMMENT '门店维度表(日),业务主键为poi_id'
+PARTITIONED BY (
+    dt                       STRING
+) STORED AS ORC;

@@ -1,0 +1,159 @@
+##Description##
+请描述该ETL任务, 方便理解代码内容, 例如该任务产生什么数据、用于支持什么需求等
+
+##TaskInfo##
+creator = 'lipeng68@meituan.com'
+
+source = {
+    'db': META['hmart_mall'], ## 源库对应的dsn，用于表示Extract阶段的数据源
+}
+
+stream = {
+    'format': '', ## 单引号中按序填写目标表的列名, 以逗号分割, 与Extract节点的结果顺序对应, hive2hive流程请留空
+}
+
+target = {
+    'db': META['hmart_mall'],  ## 目标库对应的dsn名
+    'table': 'dim_poi_snapshot',  ## 目标表的table名
+}
+
+##Extract##
+## 这里填写一个能读取source库下数据sql, 读出的数据会load到target库，hive2hive流程请留空
+
+##Preload##
+## 这里可以写load数据之前执行的SQL，例如清理数据、删除特定分区等，不需要请留空
+
+##Load##
+## 这里填写一个能load数据的SQL，非hive2hive流程请留空
+## 注意：注释参数请使用##，--注释仅对SQL语句生效
+SET hive.exec.dynamic.partition.mode=nonstrict;
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.max.dynamic.partitions=1000;
+## 触发spark合并小文件的阈值(20M)
+SET spark.sql.mergeSmallFileSize=20971520;
+SET spark.hadoopRDD.targetBytesInPartition=67108864;
+SET spark.sql.adaptive.shuffle.targetPostShuffleInputSize=134217728;
+## spark shuffle默认分区数
+SET spark.sql.shuffle.partitions=500;
+
+
+INSERT OVERWRITE TABLE `$target.table` partition(dt)
+select
+    poi_id
+    ,poi_name
+    ,type
+    ,test
+    ,city_id
+    ,city_name
+    ,address
+    ,longitude
+    ,latitude
+    ,service_phone
+    ,opening_time
+    ,`status`
+    ,promote_info
+    ,delivery_price_threshold
+    ,shipping_fee
+    ,region
+    ,free_threshold
+    ,ctime
+    ,tenant_id
+    ,biz_id
+    ,company_id
+    ,district_id
+    ,district_name
+    ,`is_logistics_station`
+    ,`open_time`
+    ,province_id
+    ,province_name
+    ,open_days
+    ,org1_id
+    ,org1_name
+    ,org2_id
+    ,org2_name
+    ,org3_id
+    ,org3_name
+    ,org4_id
+    ,org4_name
+    ,is_28d_new_poi
+    ,region_id
+    ,region_name
+    ,tenant_name
+    ,biz_name
+    ,virtual_type
+    ,binding_poi_id
+    ,zone_id
+    ,zone_name
+    ,simple_name
+    ,poi_city_code
+    ,poi_long_name
+    ,poi_short_name
+    ,district_type
+    ,confirm_status
+    ,road
+    ,dt
+
+FROM
+mart_mall.dim_poi_snapshot
+where dt='20210901' and poi_id <> 10000222
+;
+
+##TargetDDL##
+## 填写目标表的表结构定义，用于目标表不存在的时候根据ddl建表。请确保sql中的字段和ddl中的字段的数量、顺序一致！！
+CREATE TABLE IF NOT EXISTS `$target.table` (
+    poi_id                   bigint comment '门店id',
+    poi_name                 string comment '名称',
+    type                     bigint comment '类型，0:门店，1:dc仓库，2:rdc,3:fdc',
+    test                     bigint comment '门店是否为测试门店，0普通门店，1测试门店',
+    city_id                  bigint comment '城市id',
+    city_name                string comment '城市名称',
+    address                  string comment '门店地址',
+    longitude                double comment '门店坐标经度',
+    latitude                 double comment '门店坐标纬度',
+    service_phone            string comment '服务电话',
+    opening_time             string comment '营业时间',
+    `status`                 int    comment '是否营业：1上线，下线',
+    promote_info             string comment '商家公告',
+    delivery_price_threshold bigint comment '起送价,单位分',
+    shipping_fee             bigint comment '配送费单位分',
+    region                   string comment '配送范围',
+    free_threshold           bigint comment '满额配送费减免，单位分',
+    ctime                    bigint comment '创建时间',
+    tenant_id                bigint comment '租户id',
+    biz_id                   bigint comment '业态标识，1生鲜，2菜店,3c2',
+    company_id               bigint comment '公司id',
+    district_id              bigint comment '城市行政区域id',
+    district_name            string comment '城市行政区域名称',
+    `is_logistics_station`   int    comment '是否物流站点，0：否，1：是',
+    `open_time`              string comment '门店开业时间（芥末手工维护）',
+    province_id              bigint comment '省份id',
+    province_name            string comment '省份名称',
+    open_days                bigint comment '开业天数',
+    org1_id                  bigint comment '一级组织id',
+    org1_name                string comment '一级组织名称',
+    org2_id                  bigint comment '二级组织id',
+    org2_name                string comment '二级组织名称',
+    org3_id                  bigint comment '三级组织id',
+    org3_name                string comment '三级组织名称',
+    org4_id                  bigint comment '四级组织id',
+    org4_name                string comment '四级组织名称',
+    is_28d_new_poi           bigint comment '是否28天新店，1是，0否',
+    region_id                bigint comment '大区ID',
+    region_name              string comment '大区名称',
+    tenant_name              string comment '租户名称',
+    biz_name                 string comment '业态名称',
+    virtual_type	         bigint comment '虚拟门店类型，0-非虚拟门店，1-虚拟门店，20191226正式启用',
+    binding_poi_id	         bigint comment '虚拟店绑定的实体仓,对于虚拟店，这个值表示其绑定的实体仓；对于实体仓，这个值和其poiId相等,20191226正式启用',
+    zone_id                  bigint comment '战区ID',
+    zone_name                string comment '站区名称',
+    simple_name              string comment '门店简称',
+    poi_city_code            string comment '门店编码，门店名称拼音首字母前两位+预留码+自增码',
+    poi_long_name            string comment '门店长名，【门店简称】-【门店编码】',
+    poi_short_name           string comment '门店短名，【门店编码】',
+    district_type	         bigint comment '行政区类型',
+    confirm_status	         bigint comment '是否点击准备营业状态 0-否,1-是',
+    road	                 string comment '街道信息'
+) COMMENT '门店维度表（日）'
+PARTITIONED BY (
+    dt                       STRING
+) STORED AS ORC;

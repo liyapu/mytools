@@ -1,0 +1,188 @@
+##Description##
+##-- 门店维度表（日），WIKI：http://wiki.sankuai.com/pages/viewpage.action?pageId=769551916
+-- zhangmingming05@20190712,增加门店开业天数
+-- zhangmingming05@20190816,增加组织关系，28天新店标签
+-- mahongbo@20190910,处理测试标识，小象租户增加文字判断
+
+##TaskInfo##
+creator = 'liangzhao02@meituan.com'
+
+source = {
+    'db': META['horigindb'],
+}
+
+stream = {
+    'format': '',
+}
+
+target = {
+    'db': META['hmart_mall'],
+    'table': 'dim_poi_snapshot',
+}
+
+##Preload##
+
+#if $isCLEANUP
+drop table if exists $target.table;
+#end if
+
+
+##Load##
+set hive.exec.dynamic.partition=true;
+set hive.exec.parallel=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+INSERT OVERWRITE TABLE `$target.table` partition(dt)
+select
+    store.poi_id as poi_id,
+    store.name as poi_name,
+    store.type as type,
+    if(store.name like '%测试%', 1, store.test) as `test`,
+    store.city_id as city_id,
+    city.city_name as city_name,
+    store.address as address,
+    store.longitude as longitude,
+    store.latitude as latitude,
+    business.service_phone as service_phone,
+    business.opening_time as opening_time,
+    business.`status` as `status`,
+    business.promote_info as promote_info,
+    delivery.delivery_price_threshold as delivery_price_threshold,
+    delivery.shipping_fee as shipping_fee,
+    delivery.region as region,
+    delivery.free_threshold as free_threshold,
+    store.ctime as ctime,
+    store.tenant_id,
+    store.biz_id,
+    store.company_id,
+    store.district_id,
+    store.district_name,
+    store.is_logistics_station,
+    if(store.open_time>0,from_unixtime(store.open_time/1000),null) as open_time,
+    province.province_id,
+    province.province_name,
+    -- if(store.open_time>0,datediff('$now.date',from_unixtime(store.open_time/1000))+1,null) as open_days,
+    store.open_days,
+    org.org1_id,
+    org.org1_name,
+    org.org2_id,
+    org.org2_name,
+    org.org3_id,
+    org.org3_name,
+    org.org4_id,
+    org.org4_name,
+    --if(coalesce(if(store.open_time>0,datediff('$now.date',from_unixtime(store.open_time/1000))+1,null),0)<=28,1,0) as is28_new_poi,
+    if (coalesce(store.open_days ,0) <= 28, 1, 0) as `is_28d_new_poi`,
+    '$now.datekey' as dt
+from
+    (
+        select
+            ps.*,
+            if (
+                ps.open_time > 0,
+                datediff('$now.date', from_unixtime(ps.open_time/1000)) + 1,
+                null
+            ) as `open_days`
+        from
+            origindb.mall_mall_poi__poi_store ps
+    ) store
+    left outer join origindb.mall_mall_poi__poi_business business
+        on store.poi_id = business.poi_id
+    left outer join origindb.mall_mall_poi__poi_delivery delivery
+        on store.poi_id = delivery.poi_id
+    left outer join
+    (
+        select
+            area_id as `city_id`,
+            area_name as `city_name`,
+            parent_area_id
+        from
+            origindb_ss.mall_mall_poi__dict_area
+        where
+            dt = '$now.datekey'
+            and area_type = 1
+    ) city on store.city_id = city.city_id
+    left outer join (
+        select
+            id,
+            area_id as province_id,
+            area_name as province_name
+        from
+            origindb_ss.mall_mall_poi__dict_area
+        where
+            dt = '$now.datekey' and
+            area_type=2
+    ) province on city.parent_area_id = province.id
+    left outer join (
+        select
+            a.resource_id as poi_id,
+            b.org_id as org4_id,
+            b.org_name as org4_name,
+            c.org_id as org3_id,
+            c.org_name as org3_name,
+            d.org_id as org2_id,
+            d.org_name as org2_name,
+            e.org_id as org1_id,
+            e.org_name as org1_name
+        from
+            origindb_ss.mall_mall_org__org_resource_relation a
+            join mart_mall.dim_op_wms_org b
+                on a.org_id = b.org_id
+            join mart_mall.dim_op_wms_org c
+                on b.parent_id = c.org_id
+            join mart_mall.dim_op_wms_org d
+                on c.parent_id = d.org_id
+            join mart_mall.dim_op_wms_org e
+                on d.parent_id = e.org_id
+        where
+            dt = '$now.delta(1).datekey'
+            and a.valid = 1
+            and a.resource_type = 0
+    ) org on store.poi_id = org.poi_id
+where
+    1 = 1
+
+
+##TargetDDL##
+CREATE TABLE IF NOT EXISTS `$target.table` (
+    poi_id                   bigint comment '门店id',
+    poi_name                 string comment '名称',
+    type                     bigint comment '类型，0:门店1:dc仓库',
+    test                     bigint comment '门店是否为测试门店，0普通门店，1测试门店',
+    city_id                  bigint comment '城市id',
+    city_name                string comment '城市名称',
+    address                  string comment '门店地址',
+    longitude                double comment '门店坐标经度',
+    latitude                 double comment '门店坐标纬度',
+    service_phone            string comment '服务电话',
+    opening_time             string comment '营业时间',
+    `status`                 int    comment '是否营业',
+    promote_info             string comment '商家公告',
+    delivery_price_threshold bigint comment '起送价,单位分',
+    shipping_fee             bigint comment '配送费单位分',
+    region                   string comment '配送范围',
+    free_threshold           bigint comment '满额配送费减免，单位分',
+    ctime                    bigint comment '创建时间',
+    tenant_id                bigint comment '租户id',
+    biz_id                   bigint comment '业态标识，1生鲜，2菜店,3c2',
+    company_id               bigint comment '公司id',
+    district_id              bigint comment '城市行政区域id',
+    district_name            string comment '城市行政区域名称',
+    `is_logistics_station`   int    comment '是否物流站点，0：否，1：是',
+    `open_time`              string comment '门店开业时间（芥末手工维护）',
+    province_id              bigint comment '省份id',
+    province_name            string comment '省份名称',
+    open_days                bigint comment '开业天数',
+    org1_id                  bigint comment '一级组织id',
+    org1_name                string comment '一级组织名称',
+    org2_id                  bigint comment '二级组织id',
+    org2_name                string comment '二级组织名称',
+    org3_id                  bigint comment '三级组织id',
+    org3_name                string comment '三级组织名称',
+    org4_id                  bigint comment '四级组织id',
+    org4_name                string comment '四级组织名称',
+    is_28d_new_poi           bigint comment '是否28天新店，1是，0否'
+) COMMENT '门店维度表（日）'
+PARTITIONED BY (
+    dt                       STRING comment '日期键分区'
+) STORED AS ORC;
