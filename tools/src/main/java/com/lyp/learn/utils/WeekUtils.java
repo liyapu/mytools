@@ -6,7 +6,7 @@ import java.time.temporal.WeekFields;
 /**
  * @author liyapu
  * @date 2025-09-17 12:30
- * @desc
+ * @desc  周日历网址  https://www.huilvwang.com/rili/rili.html?year=2025
  */
 public class WeekUtils {
 
