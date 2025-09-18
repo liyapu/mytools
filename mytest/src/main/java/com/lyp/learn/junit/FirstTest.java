@@ -34,6 +34,101 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    @Test
+    public void test001a1(){
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 1));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 2));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 3));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 4));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 5));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 6));
+        System.out.println(LocalDate.of(2027,1,1).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 7));
+        System.out.println();
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 1));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 2));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 3));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 4));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 5));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 6));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 10).with(WeekFields.ISO.dayOfWeek(), 7));
+        System.out.println();
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 53).with(WeekFields.ISO.dayOfWeek(), 7));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 53).with(WeekFields.ISO.dayOfWeek(), 7));
+        System.out.println(LocalDate.of(2027,1,4).with(WeekFields.ISO.weekOfWeekBasedYear(), 53).with(WeekFields.ISO.dayOfWeek(), 7));
+    }
+
+
+    @Test
+    public void a3(){
+        List<BigDecimal> list1 = Lists.newArrayList(new BigDecimal("1"),new BigDecimal("0"),null,new BigDecimal("5"));
+
+//        Optional<BigDecimal> reduce1 = list1.stream().reduce(BigDecimal::add);
+//        System.out.println(reduce1.get());
+
+        BigDecimal reduce2 = list1.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(reduce2);
+    }
+
+    @Test
+    public void a2(){
+        System.out.println(new BigDecimal("12.3456").intValue());
+        System.out.println(new BigDecimal("12.456").intValue());
+        System.out.println(new BigDecimal("12.567").intValue());
+        System.out.println(new BigDecimal("12.678").intValue());
+        System.out.println("-------");
+        System.out.println(new BigDecimal("12.3456").multiply(new BigDecimal("100")).intValue());
+        System.out.println(new BigDecimal("12.456").multiply(new BigDecimal("100")).intValue());
+        System.out.println(new BigDecimal("12.567").multiply(new BigDecimal("100")).intValue());
+        System.out.println(new BigDecimal("12.678").multiply(new BigDecimal("100")).intValue());
+    }
+
+    @Test
+    public void testa2(){
+        System.out.println(getFutureDaysRange(LocalDate.now(),7));
+    }
+
+    public static List<LocalDate> getFutureDaysRange(LocalDate baseDate, int daysAfter) {
+        if (daysAfter <= 0) {
+            throw new IllegalArgumentException("天数参数必须大于0");
+        }
+
+        List<LocalDate> dateRange = new ArrayList<>(daysAfter);
+
+        for (int i = 1; i <= daysAfter; i++) {
+            dateRange.add(baseDate.plusDays(i));
+        }
+
+        return dateRange;
+    }
+
+
+    @Test
+    public void testa1(){
+        System.out.println(getPreviousDaysRange(LocalDate.now(),7));
+    }
+    /**
+     * 获取从今天(T0)往前N天到昨天(T0-1)的日期列表
+     * @param daysBefore 要获取的天数范围（如7表示[T0-7, T0-1]）
+     * @return 包含N个LocalDate的List，按从早到晚排序
+     * @throws IllegalArgumentException 如果daysBefore为负数
+     */
+    public static List<LocalDate> getPreviousDaysRange(LocalDate baseDate,int daysBefore) {
+        if (daysBefore < 0) {
+            throw new IllegalArgumentException("天数参数不能为负数");
+        }
+
+        LocalDate startDate = baseDate.minusDays(daysBefore);
+        List<LocalDate> dateRange = new ArrayList<>(daysBefore);
+
+        // Java 8兼容的日期遍历方式
+        for (int i = 0; i < daysBefore; i++) {
+            dateRange.add(startDate.plusDays(i));
+        }
+
+        return dateRange;
+    }
+
     @Test
     public void test0001211(){
 
