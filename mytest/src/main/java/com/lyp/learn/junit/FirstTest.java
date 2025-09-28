@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.*;
@@ -34,6 +35,70 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class FirstTest {
+
+    private static final String TODAY = "20250507";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.BASIC_ISO_DATE;
+
+   @Test
+    public void test0021111(){
+        List<String> dates = Lists.newArrayList(
+                "20250409", "20250410", "20250411", "20250412", "20250413", "20250414", "20250415",
+                "20250416", "20250417", "20250418", "20250419", "20250420", "20250421", "20250422",
+                "20250423", "20250424", "20250425", "20250426", "20250427", "20250428", "20250429",
+                "20250430", "20250501", "20250502", "20250503", "20250504", "20250505", "20250506",
+                "20250507", "20250508", "20250509", "20250510", "20250511", "20250512", "20250513",
+                "20250514"
+        );
+
+        printHeader();
+        dates.forEach(this::calculateAndPrintPeriod);
+    }
+
+    private  void calculateAndPrintPeriod(String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr, DATE_FORMAT);
+        LocalDate today = LocalDate.parse(TODAY, DATE_FORMAT);
+        long daysDiff = date.toEpochDay() - today.toEpochDay();
+
+        String period;
+        if (daysDiff >= -28 && daysDiff <= -22) {
+            period = "T-28-T-22";
+        } else if (daysDiff >= -21 && daysDiff <= -15) {
+            period = "T-21-T-15";
+        } else if (daysDiff >= -14 && daysDiff <= -8) {
+            period = "T-14-T-8";
+        } else if (daysDiff >= -7 && daysDiff <= -1) {
+            period = "T-7-T-1";
+        } else if (daysDiff >= 0 && daysDiff <= 6) {
+            period = "T0-T6";
+        } else if (daysDiff == 7) {
+            period = "T7";
+        } else {
+            period = "Unknown";
+        }
+
+        System.out.printf("│ %-10s │ %-12s │ %+4d 天 │%n",
+                date.format(DateTimeFormatter.ISO_DATE),
+                period,
+                daysDiff);
+    }
+
+    private  void printHeader() {
+        System.out.println("┌────────────┬──────────────┬──────────┐");
+        System.out.println("│   日期     │    周期      │ 相差天数 │");
+        System.out.println("├────────────┼──────────────┼──────────┤");
+    }
+
+    @Test
+    public void test00211(){
+        System.out.println(buildDemandDateStr(LocalDate.now()));
+    }
+
+    private static String buildDemandDateStr(LocalDate inputDate) {
+        if(Objects.isNull(inputDate)){
+            return StringUtils.EMPTY;
+        }
+        return  inputDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.CHINA);
+    }
 
     @Test
     public void test001a1(){
