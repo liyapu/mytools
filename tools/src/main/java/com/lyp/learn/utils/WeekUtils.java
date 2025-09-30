@@ -410,4 +410,51 @@ public class WeekUtils {
                 .with(weekFields.weekOfWeekBasedYear(), inputWeek)
                 .with(weekFields.dayOfWeek(), inputDayOfWeek.getValue());
     }
+
+    /**
+     * 查找与输入日期具有相同周数和星期几的去年日期,兜底返回去年今日
+     *
+     * @param inputDate 输入日期
+     */
+    public static LocalDate findLastSameWeekAndDay3(LocalDate inputDate) {
+        // ISO标准:每周以‌周一‌为第一天，‌第一周‌必须包含‌至少4天‌的当年日期
+        WeekFields weekFields = WeekFields.ISO;
+
+        // 获取输入日期所在的周数
+        int inputWeek = inputDate.get(weekFields.weekOfWeekBasedYear());
+        // 获取输入日期是星期几
+        DayOfWeek inputDayOfWeek = inputDate.getDayOfWeek();
+        // 获取输入日期所在周对应的年
+        int inputYear = inputDate.get(weekFields.weekBasedYear());
+
+        int lastYear = inputYear - 1;
+
+        // 使用ISO标准计算年份具有多少周, 返回 52/53周
+        int lastYearWeekCount = LocalDate.of(lastYear, 12, 28).get(WeekFields.ISO.weekOfWeekBasedYear());
+
+        if (lastYearWeekCount < inputWeek) {
+            // 去年周数小于今年周数，按照周数星期无法找到，默认降级为去年今日
+            return getLastYearToday(inputDate);
+        }
+        //使用去年的中间日期 6月1号定位,然后在此基础上调整 多少周,星期几
+        return LocalDate.of(lastYear, 6, 1)
+                .with(weekFields.weekOfWeekBasedYear(), inputWeek)
+                .with(weekFields.dayOfWeek(), inputDayOfWeek.getValue());
+    }
+
+    @Test
+    public void test056(){
+        LocalDate inputDate = LocalDate.of(2000, 1, 1);
+        System.out.println("--inputDate " + inputDate);
+        LocalDate date = null;
+        for (int i = 0; i < 2000000; i++) {
+            date = inputDate.plusDays(i);
+            LocalDate result1 = findLastSameWeekAndDay2(date);
+            LocalDate result2 = findLastSameWeekAndDay3(date);
+            if(!result1.equals(result2)){
+                System.out.println(date);
+            }
+        }
+        System.out.println("--date " + date);
+    }
 }
