@@ -7,6 +7,7 @@ import com.lyp.learn.hamcrest.City;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
@@ -36,8 +37,192 @@ import java.util.stream.Stream;
 @Slf4j
 public class FirstTest {
 
+    @Test
+    public void test0004556(){
+        Map<String,BigDecimal> baseDaysRestoredSalesMap = null;
+        BigDecimal sumReceiveCycleBaseDaysRestoredSales = MapUtils.emptyIfNull(baseDaysRestoredSalesMap).values().stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(sumReceiveCycleBaseDaysRestoredSales);
+    }
+
+    @Test
+    public void test0222(){
+        Map<Long,String> map = new HashMap<>();
+        String s = map.get(null);
+        System.out.println(s);
+    }
+
+    @Test
+    public void testadd0122(){
+        String  str = "0\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "3\n" +
+                "2\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "3\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "4\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "13\n" +
+                "0\n" +
+                "12\n" +
+                "3\n" +
+                "3\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "7\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "1\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "3\n" +
+                "1\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "4\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "5\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "1\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "2\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "9\n" +
+                "0\n" +
+                "6\n" +
+                "0\n" +
+                "1\n" +
+                "2\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "6\n" +
+                "0\n" +
+                "2\n" +
+                "0\n" +
+                "2\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "0\n" +
+                "2\n" +
+                "1\n" +
+                "4\n" +
+                "0";
+        String[] split = str.split("\n");
+        int sum = Arrays.stream(split).mapToInt(a -> Integer.parseInt(a)).sum();
+        System.out.println(sum);
+    }
+
+
+    @Test
+    public void testJoin01(){
+//        List<String> strList = Lists.newArrayList();
+        List<String> strList = Lists.newArrayList("aaa","bbb");
+        String str = ListUtils.emptyIfNull(strList)
+                .stream()
+                .collect(Collectors.joining(";"));
+        System.out.println(str);
+    }
+
     private static final String TODAY = "20250507";
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.BASIC_ISO_DATE;
+
 
    @Test
     public void test0021111(){

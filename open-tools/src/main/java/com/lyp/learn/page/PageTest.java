@@ -21,6 +21,19 @@ public class PageTest {
                 pageSize, "查询已存在 fdcDemandPlanByDayPO 发生死循环", PersonPO::getId);
     }
 
+    public List<PersonPO> queryByPage2(Long fdcId, String createDateStr) {
+        PageQueryByLastMaxQueryId<PersonPO> pageQueryByLastMaxQueryId = (limit, lastMaxQueryId) ->
+                this.queryByPageUsingLastMaxQueryId(fdcId, createDateStr, limit, lastMaxQueryId);
+
+        int pageSize = 200;
+        long defaultMaxId = 1689;
+        // defaultMaxId = mapper.selectMinId(fdcId,createDateStr);
+
+        return PageQueryUtil.queryAllResultByPageHasDefaultMaxId(pageQueryByLastMaxQueryId,
+                pageSize, "查询已存在 fdcDemandPlanByDayPO 发生死循环", PersonPO::getId,
+                defaultMaxId);
+    }
+
 
 //    List<PersonPO> queryByPageUsingLastMaxQueryId(@Param("fdcId") Long fdcId,
 //                                                              @Param("createDateStr") String createDateStr,
