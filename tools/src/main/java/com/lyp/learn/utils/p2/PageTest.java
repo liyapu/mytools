@@ -1,7 +1,7 @@
-package com.lyp.learn.page;
+package com.lyp.learn.utils.p2;
 
-import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +44,7 @@ public class PageTest {
                                                   String createDateStr,
                                                   int limit,
                                                   long lastMaxQueryId){
-        return Lists.newArrayList();
+        return new ArrayList<>();
     }
 
 
@@ -64,7 +64,7 @@ public class PageTest {
 
     List<Long> queryModifiedSkuIdListByPage(Long fdcId, String createDateStr,
                                             int offset, int limit){
-        return Lists.newArrayList();
+        return new ArrayList<>();
     }
 
 

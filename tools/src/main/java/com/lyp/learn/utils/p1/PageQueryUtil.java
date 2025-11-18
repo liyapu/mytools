@@ -1,10 +1,9 @@
-package com.lyp.learn.page;
+package com.lyp.learn.utils.p1;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 
 
@@ -27,7 +26,6 @@ public class PageQueryUtil {
         List<T> result = Lists.newArrayList();
         while (true) {
             if (cycleCount > DEAD_CYCLE_LIMIT) {
-//                throw new DeadCycleException(deadCycleErrorMessage);
                 throw new RuntimeException(deadCycleErrorMessage);
             }
             List<T> list = pageQuery.getPageResult(offset, pageSize);
@@ -48,42 +46,6 @@ public class PageQueryUtil {
         List<T> ans = Lists.newArrayList();
         int cycleCount = 0;
         long lastMaxQueryId = -1;
-        while (true) {
-            if (cycleCount > DEAD_CYCLE_LIMIT) {
-//                throw new DeadCycleException(deadCycleErrorMessage);
-                throw new RuntimeException(deadCycleErrorMessage);
-            }
-            List<T> list = pageQueryByLastMaxQueryId.getPageResultByLastMaxQueryId(pageSize, lastMaxQueryId);
-            ans.addAll(list);
-            if (CollectionUtils.size(list) < pageSize) {
-                break;
-            }
-            lastMaxQueryId = function.apply(list.get(list.size() - 1));
-            cycleCount++;
-        }
-        return ans;
-    }
-
-    /**
-     * 上层先查询出来最小的id,然后传入进来，这样防止 最小值 -1 耗时过长
-     * @param pageQueryByLastMaxQueryId
-     * @param pageSize
-     * @param deadCycleErrorMessage
-     * @param function
-     * @param defaultMaxId
-     * @return
-     * @param <T>
-     */
-    public static <T> List<T> queryAllResultByPageHasDefaultMaxId(PageQueryByLastMaxQueryId<T> pageQueryByLastMaxQueryId,
-                                                   int pageSize,
-                                                   String deadCycleErrorMessage,
-                                                   Function<T, Long> function, Long defaultMaxId) {
-        List<T> ans = Lists.newArrayList();
-        int cycleCount = 0;
-        long lastMaxQueryId = -1;
-        if(Objects.nonNull(defaultMaxId)){
-            lastMaxQueryId = defaultMaxId;
-        }
         while (true) {
             if (cycleCount > DEAD_CYCLE_LIMIT) {
 //                throw new DeadCycleException(deadCycleErrorMessage);
