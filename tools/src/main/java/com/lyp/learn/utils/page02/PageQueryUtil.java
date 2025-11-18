@@ -1,4 +1,4 @@
-package com.lyp.learn.utils.p1;
+package com.lyp.learn.utils.page02;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;

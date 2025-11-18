@@ -1,12 +1,4 @@
-package com.lyp.learn.utils.p;
-
-import com.google.common.collect.Maps;
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+package com.lyp.learn.utils.page01;
 
 /**
  * @author liyapu
