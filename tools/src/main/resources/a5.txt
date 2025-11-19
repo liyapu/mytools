@@ -1,87 +1,26 @@
+入参: 2025-09-18,验证去年周数: 38，星期4
+结果: 2024-09-19,验证去年周数: 38，星期4
 
-WITH ars_sale_forecast_theory_oss AS (
-    SELECT dt,
-           poi_id,
-           base_sku_id,
-           category3_id,
-           category4_id,
-           theory_sale AS theory_sale
-      FROM mart_mallpa.topic_sc_ars_sale_forecast_poi_sku_theory_sale_dt
-     WHERE dt = '20250907'
+入参: 2024-01-01,验证去年周数: 1，星期1
+结果: 2023-01-02,验证去年周数: 1，星期1
 
-    UNION ALL
+入参: 2023-12-31,验证去年周数: 52，星期7
+结果: 2022-01-02,验证去年周数: 52，星期7
 
-    SELECT dt,
-           poi_id,
-           base_sku_id,
-           category3_id,
-           category4_id,
-           CAST(sale_complete AS DECIMAL(26,2)) AS theory_sale
-      FROM mart_mallpa.topic_sc_ars_forecast_not_purchase_poi_sku_oos_fill_data_dt
-     WHERE dt = '20250907'
-   ),
-   ars_sale_theory AS (
-    SELECT dt,
-           poi_id,
-           base_sku_id,
-           category3_id,
-           category4_id,
-           SUM(theory_sale) AS theory_sale_sum
-      FROM ars_sale_forecast_theory_oss
-      GROUP BY dt,
-              poi_id,
-              base_sku_id,
-              category3_id,
-              category4_id
-   ),
-   dim_poi_snapshot AS (
-    SELECT dt,
-           poi_id,
-           management_city_id
-      FROM mart_mall.dim_poi_snapshot
-     WHERE dt = '20250907'
-   ),
-   fdc_deliver_group AS (
-    SELECT dt,
-           base_sku_id,
-           poi_id,
-           CASE flag
-                WHEN 88 THEN 1
-                WHEN 77 THEN 2
-                ELSE 3
-            END AS business_group_type
-      FROM mart_mall.topic_pdt_fdc_deliver_group_poi_sku_dt
-     WHERE dt = '20250907'
-     AND flag IN (77,88)
-   ),
-   bom_multi_recipe AS (
-    SELECT dt,
-           poi_id,
-           base_sku_id,
-           sku_base_id,
-           management_city_id,
-           standard_quantity
-      FROM mart_mall.dim_scp_sce_multi_recipe_ingredient_poi_sku_dt
-     WHERE dt = '20250907'
-   ),
-   management_city_poi_sku_business_sale AS (
-    SELECT a.dt AS dt,
-           b.management_city_id AS management_city_id,
-           a.poi_id AS poi_id,
-           c.business_group_type AS business_group_type,
-           a.base_sku_id AS base_sku_id,
-           a.category3_id AS category3_id,
-           a.category4_id AS category4_id,
-           NVL(d.sku_base_id, a.base_sku_id) AS sku_base_id,
-           a.theory_sale_sum AS theory_sale_sum,
-           d.standard_quantity AS standard_quantity,
-           a.theory_sale_sum * IF(d.standard_quantity IS NULL OR d.standard_quantity = 0,
-                                 CAST(1 AS DECIMAL(26,6)),
-                                 d.standard_quantity) AS theory_sale_sum_split
-      FROM ars_sale_theory a
-      LEFT JOIN dim_poi_snapshot b ON (a.dt = b.dt AND a.poi_id = b.poi_id)
-      LEFT JOIN fdc_deliver_group c ON (a.dt = c.dt AND a.poi_id = c.poi_id AND a.base_sku_id = c.base_sku_id)
-      LEFT JOIN bom_multi_recipe d ON (a.dt = d.dt AND a.poi_id = d.poi_id AND a.base_sku_id = d.base_sku_id)
-   )
-SELECT *
-FROM management_city_poi_sku_business_sale;
+入参: 2024-02-29,验证去年周数: 9，星期4
+结果: 2023-03-02,验证去年周数: 9，星期4
+
+入参: 2027-12-31,验证去年周数: 52，星期5
+结果: 2026-12-25,验证去年周数: 52，星期5
+
+入参: 2026-12-31,验证去年周数: 53，星期4
+结果: 2025-12-31,验证去年周数: 1，星期3
+
+入参: 2026-12-01,验证去年周数: 49，星期2
+结果: 2025-12-02,验证去年周数: 49，星期2
+
+入参: 2027-12-31,验证去年周数: 52，星期5
+结果: 2026-12-25,验证去年周数: 52，星期5
+
+入参: 2028-01-01,验证去年周数: 52，星期6
+结果: 2027-01-01,验证去年周数: 53，星期5

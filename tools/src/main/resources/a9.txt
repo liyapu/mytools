@@ -1,69 +1,10 @@
+SELECT dt, management_city_id, business_group_type, adjust_type, sku_id_or_category_id, theory_sale_sum_sum
+FROM mart_forecast.forecast_theory_sale
+-- 同步一天
+-- where dt = '$now.datekey' 
+-- 历史刷数 去年 前年 今天 前后扩展多少天
+-- where (dt BETWEEN 20230624 and 20231103 ) or (dt BETWEEN 20240624 and 20241103 ) or (dt BETWEEN 20250624 and 20250912 )
+-- 同步昨天  去年今日加50天  前年今日加50天
+where dt = '$now.datekey' or dt = '$now.delta(years=1).delta(days=-50).datekey' or dt = '$now.delta(years=2).delta(days=-50).datekey'
 
-## 片段化开发功能已上线～ 使用文档链接: https://km.sankuai.com/page/1271824941
-## 可将长SQL拆分为多个可独立执行的片段（如一个子查询），单独修改调试，提升开发维护效率～
-## 片段间可使用“$”进行引用，例如：
-## SELECT  c.a  FROM $cut_n c
-## 点击右上角复制按钮，我们会帮您将引用的CUT转为对应代码复制。键盘快捷键复制无法达成此效果，请自行选择。
-## 祝您使用愉快～
- WITH tx_sys_scp_order_date_hour as(
-        SELECT dt,
-               base_sku_id,
-               poi_id,
-               pay_success_time,
-               sku_sale_num,
-               -- concat(date_format(pay_success_time, 'yyyy-MM-dd HH:'),CASE WHEN minute(pay_success_time) < 30 THEN '00' ELSE '30' END) AS pay_success_date_hour
-               concat(date_format(pay_success_time, 'yyyyMMddHH'),CASE WHEN minute(pay_success_time) < 30 THEN '00' ELSE '30' END) AS pay_success_date_hour
-          FROM app_mall_data.app_tx_sys_scp_order_sku_view
-         WHERE dt = '20250907'
-           AND sku_sale_num > 0
-       ),
-       dim_poi_snapshot AS (
-        SELECT dt,
-               poi_id,
-               management_city_id
-          FROM mart_mall.dim_poi_snapshot
-         WHERE dt = '20250907'
-       ),
-       bom_multi_recipe as(
-        SELECT dt,
-               poi_id,
-               -- 加工品
-               base_sku_id,
-               -- 原料
- 			   sku_base_id,
-               management_city_id,
-               -- 标准库存转化比例
- 		       standard_quantity
-          FROM mart_mall.dim_scp_sce_multi_recipe_ingredient_poi_sku_dt
-         WHERE dt = '20250907'
-       ),
-       management_city_poi_sku_sale AS (
-        SELECT a.dt AS dt,
-               b.management_city_id AS management_city_id,
-               a.poi_id AS poi_id,
-               a.pay_success_date_hour AS pay_success_date_hour,
-               -- 加工品
- 			   a.base_sku_id AS base_sku_id,
-               -- 原料
-               -- 加工品，此处是真正对应的原料
-               -- 成品，此处还是成品本身
- 		       NVL(c.sku_base_id, a.base_sku_id) AS sku_base_id,
-               a.sku_sale_num AS sku_sale_num,
-               c.standard_quantity,
-               a.sku_sale_num * IF(c.standard_quantity IS NULL OR c.standard_quantity = 0, CAST(1 AS DECIMAL(26,6)), c.standard_quantity) AS sku_sale_num_split
-          FROM tx_sys_scp_order_date_hour a
-          LEFT JOIN dim_poi_snapshot b ON (a.dt = b.dt AND a.poi_id = b.poi_id)
-          LEFT JOIN bom_multi_recipe c ON (a.dt = c.dt AND a.poi_id = c.poi_id AND a.base_sku_id = c.base_sku_id)
-       )
-SELECT dt,
-       management_city_id,
-       pay_success_date_hour,
-       base_sku_id,
-       sku_base_id,
-       sum(sku_sale_num_split) AS sku_sale_num_split_sum
-  FROM management_city_poi_sku_sale
- GROUP BY dt,
-          management_city_id,
-          pay_success_date_hour,
-          base_sku_id,
-          sku_base_id;
+;
