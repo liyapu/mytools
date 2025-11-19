@@ -1,4 +1,4 @@
-package com.lyp.learn.utils;
+package com.lyp.learn.utils.retry01;
 
 import com.github.rholder.retry.Attempt;
 import com.github.rholder.retry.RetryException;
