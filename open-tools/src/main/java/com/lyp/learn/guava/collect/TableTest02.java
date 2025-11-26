@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * 提供 Table 的静态方法
  */
-public class TablesTest {
+public class TableTest02 {
     /**
      * 返回具有指定行键，列键和值的不可变单元格
      *        1

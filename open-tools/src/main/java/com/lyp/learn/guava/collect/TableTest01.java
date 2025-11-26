@@ -1,5 +1,6 @@
 package com.lyp.learn.guava.collect;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
@@ -26,7 +27,7 @@ import java.util.Set;
  *
  *
  */
-public class TableTest {
+public class TableTest01 {
     /**
      *      1       2       3       4
      *  A   A1      A2      A3      A4
@@ -188,5 +189,6 @@ public class TableTest {
     @Test
     public void testTableJson(){
         System.out.println(JSONObject.toJSONString(table));
+        System.out.println(JSONUtil.toJsonStr(table));
     }
 }
