@@ -1,20 +1,47 @@
-入参: 2025-09-18,验证去年周数: 38，星期4
-结果: 2024-09-19,验证去年周数: 38，星期4
-
-入参: 2024-01-01,验证去年周数: 1，星期1
-结果: 2023-01-02,验证去年周数: 1，星期1
-
-入参: 2023-12-31,验证去年周数: 52，星期7
-结果: 2023-01-01,验证去年周数: 52，星期7
-
-入参: 2024-02-29,验证去年周数: 9，星期4
-结果: 2023-03-02,验证去年周数: 9，星期4
-
-入参: 2027-12-31,验证去年周数: 52，星期5
-结果: 2026-12-25,验证去年周数: 52，星期5
-
-入参: 2026-12-31,验证去年周数: 53，星期4
-结果: 2025-12-31,验证去年周数: 1，星期3
-
-入参: 2026-12-01,验证去年周数: 49，星期2
-结果: 2025-12-02,验证去年周数: 49，星期2
+{
+  "createTime": 1765260405789,
+  "eventType": "TASK_APPROVE",
+  "pdId": 82493,
+  "bpmCode": "EMWR3000002609691",
+  "formData": {
+    "inputBusinessGroup": "仓配",
+    "bpm0rrarxnqjwto": {
+      "approveType": "ANY",
+      "approvers": [
+        "2171715"
+      ]
+    },
+    "captionsUrl": "https://1975-dkafu-sl-manager.mall.test.sankuai.com/maicai/supply/rdcNewProductCollaborativeApproval.html?approvalBillCode=NPA202512090005",
+    "inputAggregateCategory": "家居家装_小象超市"
+  },
+  "proc": {
+    "applicant": "5828273",
+    "submitTime": 1765251865000,
+    "finishTime": 1765251865000
+  },
+  "task": {
+    "participant": "2171715",
+    "taskInstId": "692000000000003136",
+    "taskName": "审批任务",
+    "nodeCode": "bpm0rrarxnqjwto",
+    "createTime": 1765251866000,
+    "auditTime": 1765260405760,
+    "comment": "没问题，通过"
+  },
+  "formFields": [
+    {
+      "name": "业务分组",
+      "id": "inputBusinessGroup"
+    },
+    {
+      "name": "聚合类目",
+      "id": "inputAggregateCategory"
+    },
+    {
+      "name": "详情链接",
+      "id": "captionsUrl"
+    }
+  ],
+  "auto": false,
+  "nodeCompleted": true
+}

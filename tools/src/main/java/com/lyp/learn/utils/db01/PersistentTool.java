@@ -2,7 +2,6 @@ package com.lyp.learn.utils.db01;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.sankuai.mall.cap.model.CommonPersistenceBO;
 import org.apache.commons.collections4.ListUtils;
 
 import java.util.List;

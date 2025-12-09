@@ -1,6 +1,7 @@
 package com.lyp.learn.unit;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author liyapu
@@ -19,7 +20,7 @@ public class BigDecimalUtils {
         if (num == null) {
             num = BigDecimal.ZERO;
         } else {
-            num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+            num = num.setScale(2, RoundingMode.HALF_UP);
         }
         return num.stripTrailingZeros().toPlainString();
     }
@@ -84,7 +85,7 @@ public class BigDecimalUtils {
         if (num2 == null) {
             num2 = BigDecimal.ZERO;
         }
-        return num1.add(num2).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return num1.add(num2).setScale(2, RoundingMode.HALF_UP);
     }
 
     /**
@@ -101,7 +102,7 @@ public class BigDecimalUtils {
         if (num2 == null) {
             num2 = BigDecimal.ZERO;
         }
-        return num1.subtract(num2).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return num1.subtract(num2).setScale(2, RoundingMode.HALF_UP);
     }
 
     /**
@@ -121,7 +122,7 @@ public class BigDecimalUtils {
         if (compare(num2)) {
             return BigDecimal.ZERO;
         } else {
-            return num1.multiply(num2).setScale(2, BigDecimal.ROUND_HALF_UP);
+            return num1.multiply(num2).setScale(2, RoundingMode.HALF_UP);
         }
     }
 
@@ -164,7 +165,7 @@ public class BigDecimalUtils {
         if (compare(num2)) {
             return BigDecimal.ZERO;
         } else {
-            return num1.divide(num2, 2, BigDecimal.ROUND_HALF_UP);
+            return num1.divide(num2, 2, RoundingMode.HALF_UP);
         }
     }
 
@@ -185,7 +186,7 @@ public class BigDecimalUtils {
         if (compare(num2)) {
             return BigDecimal.ZERO;
         }
-        return num1.divide(num2, 4, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return num1.divide(num2, 4, RoundingMode.HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
 
     }
 
@@ -206,8 +207,8 @@ public class BigDecimalUtils {
         if (num2.intValue() == 0) {
             return BigDecimal.ZERO.toPlainString();
         }
-        return new BigDecimal(num1).divide(new BigDecimal(num2), 4, BigDecimal.ROUND_HALF_UP)
-                .setScale(2, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
+        return new BigDecimal(num1).divide(new BigDecimal(num2), 4, RoundingMode.HALF_UP)
+                .setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
 
     }
 
@@ -228,8 +229,8 @@ public class BigDecimalUtils {
         if (num2.intValue() == 0) {
             return BigDecimal.ZERO;
         }
-        return new BigDecimal(num1).divide(new BigDecimal(num2), 4, BigDecimal.ROUND_HALF_UP)
-                .setScale(2, BigDecimal.ROUND_HALF_UP);
+        return new BigDecimal(num1).divide(new BigDecimal(num2), 4, RoundingMode.HALF_UP)
+                .setScale(2, RoundingMode.HALF_UP);
 
     }
 
@@ -245,6 +246,25 @@ public class BigDecimalUtils {
         } else {
             return false;
         }
+    }
+
+
+    public static void main(String[] args) {
+        BigDecimal b1 = new BigDecimal("123.4567");
+        BigDecimal b2 = new BigDecimal("123.4567000");
+
+        System.out.println(b1.stripTrailingZeros().toPlainString());
+        System.out.println(b1.setScale(0, RoundingMode.HALF_UP).toPlainString());
+        System.out.println(b1.setScale(0, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
+        System.out.println(b1.setScale(6, RoundingMode.HALF_UP).toPlainString());
+        System.out.println(b1.setScale(6, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
+
+        System.out.println("----------------");
+        System.out.println(b2.stripTrailingZeros().toPlainString());
+        System.out.println(b2.setScale(0, RoundingMode.HALF_UP).toPlainString());
+        System.out.println(b2.setScale(0, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
+        System.out.println(b2.setScale(6, RoundingMode.HALF_UP).toPlainString());
+        System.out.println(b2.setScale(6, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
     }
 
 

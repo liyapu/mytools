@@ -38,6 +38,23 @@ import java.util.stream.Stream;
 public class FirstTest {
 
     @Test
+    public void test112(){
+        Map<String, String> factorParamMap = new HashMap<>();
+        factorParamMap.put("riskRdcCitySellSkuNewProduct", "1");
+        System.out.println(JSONUtil.toJsonStr(factorParamMap));
+    }
+
+    @Test
+    public void tess111(){
+
+
+        String s = "a";
+        List<String> approvers = Arrays.asList(s.split(","));
+        System.out.println(approvers.contains("aa"));
+
+    }
+
+    @Test
     public void test00A001(){
         Integer a = 1;
         String b = null;

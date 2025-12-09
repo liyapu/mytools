@@ -1,10 +1,41 @@
-SELECT dt, management_city_id, business_group_type, adjust_type, sku_id_or_category_id, theory_sale_sum_sum
-FROM mart_forecast.forecast_theory_sale
--- 同步一天
--- where dt = '$now.datekey'
--- 历史刷数 去年 前年 今天 前后扩展多少天
--- where (dt BETWEEN 20230624 and 20231103 ) or (dt BETWEEN 20240624 and 20241103 ) or (dt BETWEEN 20250624 and 20250912 )
--- 同步昨天  去年今日加50天  前年今日加50天
-where dt = '$now.datekey' or dt = '$now.delta(years=1).delta(days=-50).datekey' or dt = '$now.delta(years=2).delta(days=-50).datekey'
-
-;
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "skuInfoList": [
+      {
+        "safeStockDay": 5,
+        "bottomLinePCS": 3,
+        "skuId": 1191151,
+        "skuName": "(测试)cyj12.3.39.41",
+        "manageCityId": 351,
+        "manageCityName": null
+      },
+      {
+        "safeStockDay": 5,
+        "bottomLinePCS": 3,
+        "skuId": 1191137,
+        "skuName": "(测试)cyj12.3.29.12",
+        "manageCityId": 351,
+        "manageCityName": null
+      },
+      {
+        "safeStockDay": 1,
+        "bottomLinePCS": 2,
+        "skuId": 1306631,
+        "skuName": "欧舒丹护手霜礼盒果香花香30ml*2+10ml*3法国进口",
+        "manageCityId": 351,
+        "manageCityName": null
+      },
+      {
+        "safeStockDay": 11,
+        "bottomLinePCS": 12,
+        "skuId": 1296507,
+        "skuName": "柏翠咖啡机 PE3899pro",
+        "manageCityId": 351,
+        "manageCityName": null
+      }
+    ]
+  },
+  "success": true
+}
