@@ -1,4 +1,4 @@
-package com.lyp.likou.array;
+package com.lyp.likou.my;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import java.util.Map;
  * -109 <= target <= 109
  * 只会存在一个有效答案
  */
-public class A_1 {
+public class A00001_两数之和 {
 
     public static int[] twoSum(int[] nums, int target) {
         // 值对应的索引下标
@@ -56,5 +56,19 @@ public class A_1 {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
         System.out.println(Arrays.toString(twoSum(nums, target)));
+        System.out.println(Arrays.toString(twoSum2(nums, target)));
+    }
+
+
+    public static int[] twoSum2(int[] nums, int target) {
+        Map<Integer,Integer> value2IndexMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int cur = nums[i];
+            if(value2IndexMap.containsKey(target-cur)){
+                return new int[] {value2IndexMap.get(target-cur),i};
+            }
+            value2IndexMap.put(nums[i],i);
+        }
+        return null;
     }
 }
