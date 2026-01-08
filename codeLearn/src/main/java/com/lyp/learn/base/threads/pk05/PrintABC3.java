@@ -28,6 +28,7 @@ public class PrintABC3 {
     private static Condition B = lock.newCondition();
     private static Condition C = lock.newCondition();
     private static int count = 0;
+    private static int max_times = 10;
 
 
     static class ThreadA extends Thread {
@@ -35,9 +36,8 @@ public class PrintABC3 {
         public void run() {
             try {
                 lock.lock();
-                for (int i = 0; i < 10; i++) {
-                    while (count % 3 != 0)//注意这里是不等于0，也就是说在count % 3为0之前，当前线程一直阻塞状态
-                    {
+                for (int i = 0; i < max_times; i++) {
+                    while (count % 3 != 0){//注意这里是不等于0，也就是说在count % 3为0之前，当前线程一直阻塞状态
                         A.await(); // A释放lock锁
                     }
                     System.out.print("A");
@@ -56,7 +56,7 @@ public class PrintABC3 {
         public void run() {
             try {
                 lock.lock();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < max_times; i++) {
                     while (count % 3 != 1) {
                         B.await();// B释放lock锁，当前面A线程执行后会通过B.signal()唤醒该线程
                     }
@@ -76,7 +76,7 @@ public class PrintABC3 {
         public void run() {
             try {
                 lock.lock();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < max_times; i++) {
                     while (count % 3 != 2) {
                         C.await();// C释放lock锁，当前面B线程执行后会通过C.signal()唤醒该线程
                     }
