@@ -35,7 +35,7 @@ import java.util.Objects;
  * 以上组合方式可以写成一个式子，即状态转移方程
  *
  * f(n) = max f(i) + 1  其中 i < n 且 a[i] < a[n]
- * f(n)=maxf(i)+1 其中 i<n 且 a[i]<a[n]
+ * f(n)=maxf(i)+1其中i<n且a[i]<a[n]
  *
  * 这种思考如何通过 f(1)...f(n-1) 求出 f(n) 的过程实际就是在思考状态转移方程怎么写。
  *

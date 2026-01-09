@@ -47,7 +47,7 @@ public class A00141_环形链表 {
         }
         //初始化时，让快慢指针相同，则while判断条件 fast是否周到终点为null了
         ListNode slow = head,fast = head;
-        while(fast != null && fast.next != null && fast.next.next != null){
+        while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
             if(slow == fast){
