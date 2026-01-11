@@ -46,7 +46,7 @@ import java.util.Set;
  *
  * 进阶：你是否可以使用 O(1) 空间解决此题？
  */
-public class A00142_环形链表 {
+public class A00142_环形链表2 {
 
     public static class ListNode {
         int val;
