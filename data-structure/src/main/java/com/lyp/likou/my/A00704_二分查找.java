@@ -24,6 +24,8 @@ package com.lyp.likou.my;
  * n 将在 [1, 10000]之间。
  * nums 的每个元素都将在 [-9999, 9999]之间。
  */
+
+
 public class A00704_二分查找 {
 
 
@@ -40,6 +42,7 @@ public class A00704_二分查找 {
         }
 
         int left = 0, right = len - 1;
+        //这里条件存在 left = right ，所以是 left <= right ,target可能是left和right相等的那个位置
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (target > nums[mid]) {
@@ -53,3 +56,12 @@ public class A00704_二分查找 {
         return -1;
     }
 }
+/**
+ * 相似题型参考
+ *
+ * A00033_搜索旋转排序数组
+ * A00153_寻找旋转排序数组中的最小值
+ * A00162_寻找峰值
+ *
+ *
+ */

@@ -26,9 +26,9 @@ public class A00560_和为K的子数组 {
         int result = 0;
         for (int i = 0; i < numsLength; i++) {
             int sum = 0;
-            for (int j = i; j < numsLength ; j++) {
+            for (int j = i; j < numsLength; j++) {
                 sum += nums[j];
-                if(sum ==k){
+                if (sum == k) {
                     result++;
                 }
             }
@@ -42,3 +42,11 @@ public class A00560_和为K的子数组 {
         System.out.println(subarraySum(nums, k));
     }
 }
+
+/**
+ * 相似题型参考
+ *
+ * A00560_和为K的子数组
+ * A00713_乘积小于K的子数组
+ *
+ */

@@ -65,10 +65,6 @@ public class A00144_二叉树的前序遍历 {
     }
 
     /**
-     * 参考
-     * A00144_二叉树的前序遍历
-     * A00094_二叉树的中序遍历
-     * A00145_二叉树的后序遍历
      * 递归
      * 史上最全遍历二叉树详解
      * https://leetcode.cn/problems/binary-tree-preorder-traversal/solutions/87526/leetcodesuan-fa-xiu-lian-dong-hua-yan-shi-xbian-2/
@@ -132,3 +128,12 @@ public class A00144_二叉树的前序遍历 {
     }
 
 }
+
+/**
+ * 相似题型参考
+ *
+ * A00144_二叉树的前序遍历
+ * A00094_二叉树的中序遍历
+ * A00145_二叉树的后序遍历
+ *
+ */
