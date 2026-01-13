@@ -40,7 +40,6 @@ public class L_92 {
      * 缺点是：如果 left 和 right 的区域很大，恰好是链表的头节点和尾节点时，找到 left 和 right 需要遍历一次，
      * 反转它们之间的链表还需要遍历一次，虽然总的时间复杂度为 O(N)，但遍历了链表 2 次，可不可以只遍历一次呢？
      * 答案是可以的
-     *
      */
     public static ListNode reverseBetween(ListNode head, int left, int right) {
         // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论
@@ -64,7 +63,6 @@ public class L_92 {
 
         // 第 3 步：切断出一个子链表（截取链表）
         ListNode rightNextNode = rightNode.next;
-
 
         //断开[left,right]链表的指针
         // 注意：切断链接

@@ -1,0 +1,109 @@
+package com.lyp.likou.lk;
+
+/**
+ * 206. 反转链表
+ * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+ *
+ *
+ * 示例 1：
+ * 输入：head = [1,2,3,4,5]
+ * 输出：[5,4,3,2,1]
+ *
+ * 示例 2：
+ * 输入：head = [1,2]
+ * 输出：[2,1]
+ *
+ * 示例 3：
+ * 输入：head = []
+ * 输出：[]
+ *
+ *
+ * 提示：
+ * 链表中节点的数目范围是 [0, 5000]
+ * -5000 <= Node.val <= 5000
+ * 进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+ */
+public class A00206_反转链表 {
+
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //pre 表示新链表的尾节点
+        ListNode current = head, temp = null, pre = null;
+        //假设列表为 1->2->3->4->5
+        while (current != null) {
+            //当前 current为1
+            //temp 指向2，防止丢失
+            temp = current.next;
+            //当前current 1的next指针指向反转链表的尾部
+            current.next = pre;
+            //反转链表的尾部指向当前current元素
+            pre = current;
+            //当前原始current 指向 temp,即current的下一个元素
+            current = temp;
+        }
+        return pre;
+    }
+
+    /**
+     * 假设链表为 1→2→3→∅，我们想要把它改成  ∅←1←2←3。
+     *
+     * 在遍历链表时，将当前节点的 next 指针改为指向前一个节点。由于节点没有引用其前一个节点，因此必须事先存储其前一个节点。
+     * 在更改引用之前，还需要存储后一个节点。最后返回新的头引用
+     *
+     *       1    2      3     4    5
+     * pre  cur  next
+     *      pre  cur    next
+     *      用三个指针，记录三个值，然后顺序下推
+     * 作者：LeetCode-Solution
+     * 链接：https://leetcode-cn.com/problems/reverse-linked-list/solution/fan-zhuan-lian-biao-by-leetcode-solution-d1k2/
+     * 来源：力扣（LeetCode）
+     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     * @param head
+     * @return
+     */
+    public ListNode reverseList2(ListNode head) {
+        //pre 执行新的反转链表的头结点
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            //先记录cur的下一个结点，防止丢失
+            ListNode next = cur.next;
+            //当前结点的next 指向反转链表
+            cur.next = pre;
+            //反转链表头结点 后移
+            pre = cur;
+            //当前结点后移，进行下一个结点的操作
+            cur = next;
+        }
+        return pre;
+    }
+}
+
+
+/**
+ * 相似题型参考
+ *
+ * A00206_反转链表
+ * A00092_反转链表2
+ *
+ */
