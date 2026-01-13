@@ -1,5 +1,7 @@
 package com.lyp.likou.lk;
 
+import com.lyp.likou.link.ListNode;
+
 /**
  * 206. 反转链表
  * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
@@ -96,6 +98,29 @@ public class A00206_反转链表 {
             cur = next;
         }
         return pre;
+    }
+
+    /**
+     * 自身递归
+     *
+     * 1 → 2
+     * 变成 1->2->1 成环 然后 变成 2->1
+     * 作为list 输入，按照这个进行写程序
+     * @param head
+     * @return
+     */
+    public static ListNode reverseList3(ListNode head) {
+        // 因为下面有 head.next.next ，这里需要判断 head.next 是否为null
+        if(null == head || null == head.next){
+            return head;
+        }
+
+       ListNode newHead = reverseList3(head.next);
+        // head 的下一个节点的 next 是 head
+        head.next.next = head;
+        //断掉 head.next 的指针，否则有环
+        head.next = null;
+        return newHead;
     }
 }
 

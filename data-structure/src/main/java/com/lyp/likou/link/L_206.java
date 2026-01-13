@@ -71,25 +71,7 @@ public class L_206 {
        return pre;
     }
 
-    /**
-     * 1 → 2
-     * 作为list 输入，按照这个进行写程序
-     * @param head
-     * @return
-     */
-    public static ListNode reverseList3(ListNode head) {
-        // 因为下面有 head.next.next ，这里需要判断 head.next 是否为null
-       if(null == head || null == head.next){
-           return head;
-       }
 
-       ListNode newHead = reverseList3(head.next);
-       // head 的下一个节点的 next 是 head
-       head.next.next = head;
-       //断掉 head.next 的指针，否则有环
-       head.next = null;
-       return newHead;
-    }
 
     public ListNode reverseList4(ListNode head) {
         if (head == null || head.next == null) {
