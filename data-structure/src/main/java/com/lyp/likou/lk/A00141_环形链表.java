@@ -41,6 +41,11 @@ public class A00141_环形链表 {
         }
     }
 
+    /**
+     * A00876_链表的中间结点 题，while循环中多加一个相等判断即可
+     * @param head
+     * @return
+     */
     public boolean hasCycle(ListNode head) {
         if(head == null || head.next == null || head.next.next == null){
             return false;
