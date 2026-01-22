@@ -112,6 +112,8 @@ public class A00019_删除链表的倒数第N个结点 {
         for (int i = 0; i < n; i++) {
             first = first.next;
         }
+        //有可能操作第一个结点时，新建一个dummyNode 是比较合适的
+        //比如删除第一个结点
         ListNode dummyNode = new ListNode(0, head);
         ListNode second = dummyNode;
         while (first != null) {
