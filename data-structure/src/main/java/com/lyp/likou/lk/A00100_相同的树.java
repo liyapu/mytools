@@ -31,7 +31,7 @@ import com.lyp.likou.lk.po.TreeNode;
  * 两棵树上的节点数目都在范围 [0, 100] 内
  * -104 <= Node.val <= 104
  */
-public class A000100_相同的树 {
+public class A00100_相同的树 {
 
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if(p == null && q == null){
