@@ -18,25 +18,26 @@ import java.util.List;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] arr = {2, 6, 9, 11, 16, 20, 23, 25, 26, 29, 33, 35};
-        System.out.println(findKey(arr, 1));
-        System.out.println(findKey(arr, 100));
-        System.out.println(findKey(arr, 2));
-        System.out.println(findKey(arr, 11));
-        System.out.println(findKey(arr, 29));
-        System.out.println(findKey(arr, 35));
-        System.out.println(findKey(arr, 50));
-        System.out.println("--------------");
-        System.out.println(search(arr, 1));
-        System.out.println(search(arr, 2));
-        System.out.println(search(arr, 11));
-        System.out.println(search(arr, 29));
-        System.out.println(search(arr, 35));
-        System.out.println(search(arr, 50));
-        System.out.println("--------------");
+//        int[] arr = {2, 6, 9, 11, 16, 20, 23, 25, 26, 29, 33, 35};
+//        System.out.println(findKey(arr, 1));
+//        System.out.println(findKey(arr, 100));
+//        System.out.println(findKey(arr, 2));
+//        System.out.println(findKey(arr, 11));
+//        System.out.println(findKey(arr, 29));
+//        System.out.println(findKey(arr, 35));
+//        System.out.println(findKey(arr, 50));
+//        System.out.println("--------------");
+//        System.out.println(search(arr, 1));
+//        System.out.println(search(arr, 2));
+//        System.out.println(search(arr, 11));
+//        System.out.println(search(arr, 29));
+//        System.out.println(search(arr, 35));
+//        System.out.println(search(arr, 50));
+//        System.out.println("--------------");
 
         // 查找可以返回多个重复key
-        int[] array = {2, 6, 9, 11, 16, 20, 20, 20, 20, 20, 20, 20, 23, 25, 26, 29, 33, 35};
+//        int[] array = {2, 6, 9, 11, 16, 20, 20, 20, 20, 20, 20, 20, 23, 25, 26, 29, 33, 35};
+        int[] array = {2, 6, 9, 11, 16, 20, 20, 20, 20, 20, 23, 25, 29, 29, 33, 35};
         List<Integer> allKey = findAllKey(array, 20);
         System.out.println(allKey);
 
